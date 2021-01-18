@@ -4,24 +4,24 @@ Este sitio está creado usando Frontity para el _frontend_ y _WordPress_ como el
 
 #### Tabla de Contenidos
 
+- [Conectar Frontity con WordPress](#conectar-frontity-wp)
 - [Crear un servidor de desarrollo](#launch-a-development-server)
 - [Crear un proyecto listo para producción](#create-a-production-ready-build)
-- [Conectar Frontity con WordPress](#conectar-frontity-wp)
 - [Despelgar](#deploy)
-
-### Cómo crear un servidor de desarrollo.
-
-Para crear un servidor de desarrollo corre el comando:
 
 ### Cómo conectar tu proyecto Frontity con WordPress
 
-Abrir el frontity.settings.js y cambiar la línea 56
+Para conectar abre el archivo frontity.settings.js y cambiar la línea 56
 
 ```
 "url": "http://isae.test",
 ```
 
 por el url de tu WordPress Local.
+
+### Cómo crear un servidor de desarrollo.
+
+Para crear un servidor de desarrollo corre el comando:
 
 ```
 npx frontity dev
