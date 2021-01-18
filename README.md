@@ -5,8 +5,8 @@ Este sitio está creado usando Frontity para el _frontend_ y _WordPress_ como el
 #### Tabla de Contenidos
 
 - [Crear un servidor de desarrollo](#launch-a-development-server)
-- [Create a production-ready build](#create-a-production-ready-build)
-- [Deploy](#deploy)
+- [Crear un proyecto listo para producción](#create-a-production-ready-build)
+- [Despelgar](#deploy)
 
 ### Cómo crear un servidor de desarrollo.
 
