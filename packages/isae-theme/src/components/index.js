@@ -1,8 +1,9 @@
 import React from 'react';
 import { Global, css, connect, styled, Head } from 'frontity';
-// import Switcher from '@frontity/components/switch';
+import Switch from "@frontity/components/switch";
 import Title from './title'
 import Header from './header';
+import HomePage from './home-page';
 import Footer from './footer';
 
 const globalStyles = css`
@@ -16,6 +17,7 @@ const globalStyles = css`
 `
 
 const Theme = ({ state }) => {
+  const data = state.source.get(state.router.link);
   return (
     <>
       <Title />
@@ -27,6 +29,9 @@ const Theme = ({ state }) => {
       </Head>
       <Global styles={globalStyles} />
       <Header />
+      <Switch>
+        <HomePage when={data.isHome} />
+      </Switch>
       <Footer />
     </>
   )

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { styled, connect } from 'frontity';
 import FooterLogo from './icons/footer-logo';
 import Link from './link';
