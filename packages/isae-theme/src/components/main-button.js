@@ -18,9 +18,13 @@ const Styledlink = styled(Link)`
   }
 `;
 
-const MainButton = ({ background, color, children }) => {
+const MainButton = ({ background, color, link, children }) => {
   return (
-    <Styledlink background={background} color={color}>
+    <Styledlink
+      background={background}
+      color={color}
+      link={link}
+    >
       {children}
       <RightArrowCircle color={color} />
     </Styledlink>
