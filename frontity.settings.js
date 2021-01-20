@@ -12,36 +12,7 @@ const settings = {
       "name": "isae-theme",
       "state": {
         "theme": {
-          "menu": [
-            [
-              "Inicio",
-              "/"
-            ],
-            [
-              "Sedes",
-              "#sedes"
-            ],
-            [
-              "Vida Universitaria",
-              "#vida-universitaria"
-            ],
-            [
-              "Conócenos",
-              "/conocenos"
-            ],
-            [
-              "Investigación",
-              "#investigacion"
-            ],
-            [
-              "UTE",
-              "#ute"
-            ],
-            [
-              "ISAE Virtual",
-              "isae-virtual"
-            ]
-          ],
+          "menu": [],
           "featured": {
             "showOnList": false,
             "showOnPost": false

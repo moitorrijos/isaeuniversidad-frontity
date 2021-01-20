@@ -1,7 +1,7 @@
 import React from 'react';
 import { styled, connect } from 'frontity';
 import FooterLogo from './icons/footer-logo';
-import Link from './link';
+import Link from "@frontity/components/link";
 import colors from '../styles/colors';
 import MainContainer from './main-container';
 import Grid from './grid';
@@ -38,8 +38,8 @@ const StyledLink = styled(Link)`
 `;
 
 const Footer = ({ state }) => {
-  const vida_uni = state.source.get('48').items;
-  const sobre_isae = state.source.get('54').items;
+  const menu_vida_uni = state.source.get('48').items;
+  const menu_sobre_isae = state.source.get('54').items;
   const sedes = state.source.get('/sede').items;
   
   return (
@@ -55,7 +55,7 @@ const Footer = ({ state }) => {
           <FooterItem>
             <FooterTitle>Vida Unviersitaria</FooterTitle>
             <FooterNav>
-              {vida_uni.map( item => {
+              {menu_vida_uni.map( item => {
                 const { id, title, url } = item
                 return (
                   <StyledLink key={id} link={url}>{title}</StyledLink>
@@ -78,7 +78,7 @@ const Footer = ({ state }) => {
           <FooterItem>
             <FooterTitle>Sobre ISAE</FooterTitle>
             <FooterNav>
-              {sobre_isae.map( item => {
+              {menu_sobre_isae.map( item => {
                 const { id, title, url } = item
                 return (
                   <StyledLink key={id} link={url}>{title}</StyledLink>

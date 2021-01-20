@@ -34,6 +34,7 @@ export default {
   actions: {
     theme: {
       beforeSSR: async ({ actions }) => {
+        await actions.source.fetch("2");
         await actions.source.fetch("54");
         await actions.source.fetch("47");
         await actions.source.fetch("48");

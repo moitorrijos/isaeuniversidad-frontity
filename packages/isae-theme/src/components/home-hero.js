@@ -2,6 +2,7 @@ import React from 'react';
 import { styled } from 'frontity';
 import colors from '../styles/colors';
 import MainContainer from './main-container';
+import MainButton from './main-button';
 
 const HeroContainer = styled.div`
   background-color: ${colors.primaryBlueBright};
@@ -45,6 +46,9 @@ const HomeHero = () => {
               Estudia en cualquiera de nuestras 8 sedes.{' '}
               <em>#estudiaenISAE</em>
             </p>
+            <MainButton background={colors.primaryYellow} color={colors.primaryBlue}>
+              Más Información
+            </MainButton>
           </HeroInfo>
           <HeroImage></HeroImage>
         </HeroInner>

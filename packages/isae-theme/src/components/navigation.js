@@ -1,6 +1,6 @@
 import React from 'react';
 import { styled, connect } from 'frontity';
-import Link from './link';
+import Link from "@frontity/components/link";
 import colors from '../styles/colors';
 
 const Nav = styled.nav`
@@ -10,10 +10,11 @@ const Nav = styled.nav`
 
   a {
     display: block;
-    padding: 40px 28px;
+    padding: 40px 24px;
     text-decoration: none;
-    color: ${colors.primaryBlue};
+    color: ${colors.primaryText100};
     transition: all 0.25s ease-in-out;
+    font-size: 15px;
 
     &.current-page, &:hover {
       background-color: ${colors.lightGray};
@@ -21,21 +22,24 @@ const Nav = styled.nav`
   }
 `;
 
-const Navigation = ({ state }) => (
-  <Nav>
-    {state.theme.menu.map(([name, link]) => {
-      const isCurrentPage = state.router.link === link;
-      return(
-        <Link
-          key={name}
-          link={link}
-          className={isCurrentPage ? 'current-page' : ''}
-        >
-          {name}
-        </Link>
-      )
-    })}
-  </Nav>
-)
+const Navigation = ({ state }) => {
+  const items = state.source.get('2').items;
+  console.log(items);
+  return (
+    <Nav>
+      {items.map(item => {
+        const { id, title, url } = item;
+        return(
+          <Link
+            key={id}
+            link={url}
+          >
+            {title}
+          </Link>
+        )
+      })}
+    </Nav>
+  );
+};
 
 export default connect(Navigation);

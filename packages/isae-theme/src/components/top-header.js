@@ -2,7 +2,7 @@ import React from 'react';
 import { styled, connect } from 'frontity';
 import Placeholder from './icons/placeholder';
 import colors from '../styles/colors';
-import Link from './link';
+import Link from "@frontity/components/link";
 
 const TopHeaderContainer = styled.div`
   background-color: ${colors.primaryBlue};
@@ -22,7 +22,7 @@ const TopHeaderContainer = styled.div`
 `;
 
 const TopContent = styled.div`
-  margin-left: 180px;
+  margin-left: 145px;
   margin-top: 10px;
   margin-bottom: 10px;
   color: ${colors.white};
