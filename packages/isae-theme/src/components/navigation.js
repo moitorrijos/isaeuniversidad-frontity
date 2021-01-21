@@ -24,7 +24,6 @@ const Nav = styled.nav`
 
 const Navigation = ({ state }) => {
   const items = state.source.get('2').items;
-  console.log(items);
   return (
     <Nav>
       {items.map(item => {

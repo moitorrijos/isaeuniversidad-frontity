@@ -29,7 +29,7 @@ const Paragraph = styled.p`
   font-size: 18px;
 `;
 
-const StyledLink = styled(Link)`
+const FooterLink = styled(Link)`
   display: block;
   color: ${colors.white};
   text-decoration: none;
@@ -40,7 +40,7 @@ const StyledLink = styled(Link)`
 const Footer = ({ state }) => {
   const menu_vida_uni = state.source.get('48').items;
   const menu_sobre_isae = state.source.get('54').items;
-  const sedes = state.source.get('/sede').items;
+  const branches = state.source.get('/sede').items;
   
   return (
     <FooterContainer>
@@ -58,7 +58,7 @@ const Footer = ({ state }) => {
               {menu_vida_uni.map( item => {
                 const { id, title, url } = item
                 return (
-                  <StyledLink key={id} link={url}>{title}</StyledLink>
+                  <FooterLink key={id} link={url}>{title}</FooterLink>
                 )
               })}
             </FooterNav>
@@ -66,11 +66,11 @@ const Footer = ({ state }) => {
           <FooterItem>
             <FooterTitle>Sedes</FooterTitle>
             <FooterNav>
-              {[...sedes].reverse().map( sede => {
-                const data = state.source[sede.type][sede.id];
+              {[...branches].reverse().map( branch => {
+                const data = state.source[branch.type][branch.id];
                 const { id, link, title } = data;
                 return (
-                  <StyledLink key={id} link={link}>{title.rendered}</StyledLink>
+                  <FooterLink key={id} link={link}>{title.rendered}</FooterLink>
                 )
               })}
             </FooterNav>
@@ -81,7 +81,7 @@ const Footer = ({ state }) => {
               {menu_sobre_isae.map( item => {
                 const { id, title, url } = item
                 return (
-                  <StyledLink key={id} link={url}>{title}</StyledLink>
+                  <FooterLink key={id} link={url}>{title}</FooterLink>
                 )
               })}
             </FooterNav>

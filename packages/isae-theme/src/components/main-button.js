@@ -12,9 +12,15 @@ const Styledlink = styled(Link)`
   display: inline-flex;
   flex-flow: row nowrap;
   align-items: center;
+  transition: all 0.25s ease-in-out;
 
   svg {
     margin-left: 12px;
+  }
+
+  &:hover {
+    transform: scale(1.01) translateY(-1px);
+    box-shadow: 0px 32px 80px rgba(10, 31, 68, 0.06), 0px 32px 48px rgba(50, 50, 71, 0.05)
   }
 `;
 

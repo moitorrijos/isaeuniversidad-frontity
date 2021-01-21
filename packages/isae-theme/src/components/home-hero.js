@@ -37,13 +37,12 @@ const HeroImage = styled.div`
     width: 100%;
     display: block;
     object-fit: cover;
-    border-radius: 1rem;
+    border-radius: 24px;
   }
 `;
 
 const HomeHero = ({ state }) => {
   const { acf, title } = state.source['sede'][36];
-
   return (
     <HeroContainer>
       <MainContainer>
