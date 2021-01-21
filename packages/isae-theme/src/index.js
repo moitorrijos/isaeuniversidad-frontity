@@ -20,6 +20,7 @@ export default {
         await actions.source.fetch("47");
         await actions.source.fetch("48");
         await actions.source.fetch("/sede");
+        await actions.source.fetch("/ofertaacadmica");
       }
     }
   },

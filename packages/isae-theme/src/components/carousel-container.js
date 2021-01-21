@@ -18,9 +18,10 @@ const CarouselContainer = styled.div`
 const CarouselButtons = styled.div`
   display: grid;
   align-items: center;
+  justify-content: space-between;
   grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-  width: 100px;
+  gap: 12px;
+  width: 120px;
   margin: 0 auto 4rem;
 `;
 
@@ -47,6 +48,7 @@ const Carousel = ({ columns, gap, width, children }) => {
       <CarouselContainer
         columns={columns}
         gap={gap}
+        width={width}
       >
         {children}
       </CarouselContainer>

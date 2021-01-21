@@ -10,10 +10,12 @@ const Container = styled.div`
   overflow-x: hidden;
 `;
 
-const MainContainer = ({ children }) => (
-  <Container>
-    {children}
-  </Container>
-)
+const MainContainer = ({ children }) => {
+  return (
+    <Container>
+      {children}
+    </Container>
+  )
+}
 
 export default MainContainer;
