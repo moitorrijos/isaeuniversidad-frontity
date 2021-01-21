@@ -37,58 +37,78 @@ const FooterLink = styled(Link)`
   padding-bottom: 8px;
 `;
 
+const FooterCopyright = styled.div`
+  background-color: ${colors.primaryBlue600};
+  color: ${colors.white};
+  padding: 14px 4rem;
+  p {
+    text-align: center;
+    margin: 0;
+    font-size: 14px;
+  }
+`;
+
 const Footer = ({ state }) => {
   const menu_vida_uni = state.source.get('48').items;
   const menu_sobre_isae = state.source.get('54').items;
   const branches = state.source.get('/sede').items;
   
   return (
-    <FooterContainer>
-      <MainContainer>
-        <Grid columns="4" gap="20px">
-          <FooterItem>
-            <FooterLogo />
-            <Paragraph>
-              {state.frontity.description}
-            </Paragraph>
-          </FooterItem>
-          <FooterItem>
-            <FooterTitle>Vida Unviersitaria</FooterTitle>
-            <FooterNav>
-              {menu_vida_uni.map( item => {
-                const { id, title, url } = item
-                return (
-                  <FooterLink key={id} link={url}>{title}</FooterLink>
-                )
-              })}
-            </FooterNav>
-          </FooterItem>
-          <FooterItem>
-            <FooterTitle>Sedes</FooterTitle>
-            <FooterNav>
-              {[...branches].reverse().map( branch => {
-                const data = state.source[branch.type][branch.id];
-                const { id, link, title } = data;
-                return (
-                  <FooterLink key={id} link={link}>{title.rendered}</FooterLink>
-                )
-              })}
-            </FooterNav>
-          </FooterItem>
-          <FooterItem>
-            <FooterTitle>Sobre ISAE</FooterTitle>
-            <FooterNav>
-              {menu_sobre_isae.map( item => {
-                const { id, title, url } = item
-                return (
-                  <FooterLink key={id} link={url}>{title}</FooterLink>
-                )
-              })}
-            </FooterNav>
-          </FooterItem>
-        </Grid>
-      </MainContainer>
-    </FooterContainer>
+    <>
+      <FooterContainer>
+        <MainContainer>
+          <Grid columns="4" gap="20px">
+            <FooterItem>
+              <FooterLogo />
+              <Paragraph>
+                {state.frontity.description}
+              </Paragraph>
+              <Paragraph>
+                (+507) 278-1432 / 278-1444
+                info@isaeuniversidad.ac.pa
+              </Paragraph>
+            </FooterItem>
+            <FooterItem>
+              <FooterTitle>Vida Unviersitaria</FooterTitle>
+              <FooterNav>
+                {menu_vida_uni.map( item => {
+                  const { id, title, url } = item
+                  return (
+                    <FooterLink key={id} link={url}>{title}</FooterLink>
+                  )
+                })}
+              </FooterNav>
+            </FooterItem>
+            <FooterItem>
+              <FooterTitle>Sedes</FooterTitle>
+              <FooterNav>
+                {[...branches].reverse().map( branch => {
+                  const data = state.source[branch.type][branch.id];
+                  const { id, link, title } = data;
+                  return (
+                    <FooterLink key={id} link={link}>{title.rendered}</FooterLink>
+                  )
+                })}
+              </FooterNav>
+            </FooterItem>
+            <FooterItem>
+              <FooterTitle>Sobre ISAE</FooterTitle>
+              <FooterNav>
+                {menu_sobre_isae.map( item => {
+                  const { id, title, url } = item
+                  return (
+                    <FooterLink key={id} link={url}>{title}</FooterLink>
+                  )
+                })}
+              </FooterNav>
+            </FooterItem>
+          </Grid>
+        </MainContainer>
+      </FooterContainer>
+      <FooterCopyright>
+        <p>&copy; {new Date().getFullYear()} ISAE Universidad todos los derechos reservados.</p>
+      </FooterCopyright>
+    </>
   )
 }
 

@@ -11,6 +11,16 @@ const CardContainer = styled(Link)`
   background-color: ${colors.lightGray};
   transition: all 0.25s ease-in-out;
   text-decoration: none;
+
+  &:nth-of-type(n+4) {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &:hover {
+    transform: scale(1.01) translateY(-1px);
+    box-shadow: 0px 32px 80px rgba(10, 31, 68, 0.06), 0px 32px 48px rgba(50, 50, 71, 0.05)
+  }
 `;
 
 const CardImage = styled.figure`
@@ -25,6 +35,15 @@ const CardImage = styled.figure`
 
 const CardInfo = styled.div`
   color: ${colors.primaryText100};
+
+  h2 {
+    color: ${colors.primaryBlueBright};
+    margin: 10px 0;
+  }
+
+  p {
+    margin: 4px 0;
+  }
 `;
 
 const CardItem = ({ link, data, title }) => {
