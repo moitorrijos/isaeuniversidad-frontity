@@ -2,6 +2,7 @@ import React from 'react';
 import Link from "@frontity/components/link";
 import { styled } from 'frontity';
 import RightArrowCircle from './icons/right-arrow-circle';
+import { effects } from '../styles/effects';
 
 const Styledlink = styled(Link)`
   background-color: ${props => props.background};
@@ -19,8 +20,8 @@ const Styledlink = styled(Link)`
   }
 
   &:hover {
-    transform: scale(1.01) translateY(-1px);
-    box-shadow: 0px 32px 80px rgba(10, 31, 68, 0.06), 0px 32px 48px rgba(50, 50, 71, 0.05)
+    transform: ${effects.transform};
+    box-shadow: ${effects.boxShadow};
   }
 `;
 

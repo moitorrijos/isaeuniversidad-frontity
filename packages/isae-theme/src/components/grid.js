@@ -8,8 +8,8 @@ const GridContainer = styled.div`
   gap: ${props => props.gap};
 `;
 
-const Grid = ({ columns, gap, children }) => (
-  <GridContainer columns={columns} gap={gap}>
+const Grid = ({ columns, rows, gap, children }) => (
+  <GridContainer columns={columns} gap={gap} rows={rows}>
     {children}
   </GridContainer>
 )

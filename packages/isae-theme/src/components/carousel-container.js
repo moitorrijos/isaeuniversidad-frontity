@@ -1,25 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { styled } from 'frontity';
 import colors from '../styles/colors';
 
 const CarouselContainer = styled.div`
-  display: flex;
-  flex-flow: row nowrap;
+  display: grid;
+  grid-template-columns: repeat(${props => props.columns}, 1fr);
   gap: ${props => props.gap};
   padding-bottom: 4rem;
   font-weight: 500;
-
-   & > * {
-     width: 380px;
-     flex-shrink: 0;
-   }
 `;
 
 const CarouselButtons = styled.div`
   display: grid;
   align-items: center;
   justify-content: space-between;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(${props => props.columns}, 1fr);
   gap: 12px;
   width: 120px;
   margin: 0 auto 4rem;
@@ -41,17 +36,16 @@ const Button = styled.button`
   border-color: ${props => props.primary ? colors.primaryBlue : colors.white};
 `;
 
-const Carousel = ({ columns, gap, width, children }) => {
+const Carousel = ({ columns, gap, children }) => {
   return (
     <>
       <CarouselContainer
         columns={columns}
         gap={gap}
-        width={width}
       >
         {children}
       </CarouselContainer>
-      <CarouselButtons>
+      <CarouselButtons columns={columns}>
         <Button primary></Button>
         <Button></Button>
         <Button></Button>

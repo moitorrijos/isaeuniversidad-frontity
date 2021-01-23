@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { connect, styled } from 'frontity';
 import colors from '../styles/colors';
 import CardItem from './card-item';
@@ -21,7 +21,7 @@ const HomeBranches = ({ state }) => {
       <Heading>{state.frontity.description}</Heading>
       <MainContainer>
         <Carousel columns="3" gap="40px">
-          {[...branches].reverse().map(branch => {
+          {[...branches].reverse().slice(0,3).map(branch => {
             const data = state.source[branch.type][branch.id];
             const { id, link, acf, title } = data;
             return (

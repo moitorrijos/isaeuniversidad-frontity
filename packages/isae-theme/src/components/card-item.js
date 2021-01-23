@@ -3,11 +3,12 @@ import { styled } from 'frontity';
 import colors from '../styles/colors';
 import Image from "@frontity/components/image";
 import Link from "@frontity/components/link";
+import { effects } from '../styles/effects';
 
 const CardContainer = styled(Link)`
   display: block;
   padding: 1rem 1rem 2rem;
-  border-radius: 18px;
+  border-radius: 22px;
   background-color: ${colors.lightGray};
   transition: all 0.25s ease-in-out;
   text-decoration: none;
@@ -18,8 +19,8 @@ const CardContainer = styled(Link)`
   }
 
   &:hover {
-    transform: scale(1.01) translateY(-1px);
-    box-shadow: 0px 32px 80px rgba(10, 31, 68, 0.06), 0px 32px 48px rgba(50, 50, 71, 0.05)
+    transform: ${effects.transform};
+    box-shadow: ${effects.boxShadow};
   }
 `;
 
@@ -53,7 +54,11 @@ const CardItem = ({ link, data, title }) => {
   return (
     <CardContainer link={link}>
       <CardImage>
-        <Image alt={title.rendered} src={data.foto.sizes.medium_large} />
+        <Image
+          alt={title.rendered}
+          src={data.foto.sizes.medium_large}
+
+        />
       </CardImage>
       <CardInfo>
         <h2>{data.ciudad}</h2>
