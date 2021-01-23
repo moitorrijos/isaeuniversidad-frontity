@@ -38,11 +38,14 @@ const CardInfo = styled.div`
 
   h2 {
     color: ${colors.primaryBlueBright};
-    margin: 10px 0;
+    font-size: 28px;
+    margin: 28px 0 10px;
   }
 
   p {
     margin: 4px 0;
+    color: ${colors.primaryText50};
+    font-size: 18px;
   }
 `;
 

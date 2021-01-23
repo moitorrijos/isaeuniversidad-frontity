@@ -50,8 +50,7 @@ const HomeAcademic = ({ state }) => {
   const items = state.source.get('/ofertaacadmica').items;
   return ([...items].reverse().map((item, index) => {
     const { id, title, featured_media, acf } = state.source[item.type][item.id]
-    const media = state.source.attachment[featured_media];
-    const { source_url, alt_text } = media;
+    const { source_url, alt_text } = state.source.attachment[featured_media];
     function createMarkup() {
       return {__html: acf.descripcion};
     }

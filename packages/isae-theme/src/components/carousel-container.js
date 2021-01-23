@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { styled } from 'frontity';
 import colors from '../styles/colors';
 
@@ -35,11 +35,10 @@ const Button = styled.button`
   cursor: pointer;
   border: none;
   outline: 0;
-
-  &:first-of-type {
-    box-sizing: content-box;
-    border: 6px solid ${colors.primaryBlue};
-  }
+  box-sizing: content-box;
+  border-width: 6px;
+  border-style: solid;
+  border-color: ${props => props.primary ? colors.primaryBlue : colors.white};
 `;
 
 const Carousel = ({ columns, gap, width, children }) => {
@@ -53,7 +52,7 @@ const Carousel = ({ columns, gap, width, children }) => {
         {children}
       </CarouselContainer>
       <CarouselButtons>
-        <Button></Button>
+        <Button primary></Button>
         <Button></Button>
         <Button></Button>
       </CarouselButtons>
