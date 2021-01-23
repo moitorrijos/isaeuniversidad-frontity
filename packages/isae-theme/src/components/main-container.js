@@ -7,12 +7,15 @@ const Container = styled.div`
   padding-right: 4rem;
   margin-left: auto;
   margin-right: auto;
+  overflow-x: hidden;
 `;
 
-const MainContainer = ({ children }) => (
-  <Container>
-    {children}
-  </Container>
-)
+const MainContainer = ({ children }) => {
+  return (
+    <Container>
+      {children}
+    </Container>
+  )
+}
 
 export default MainContainer;

@@ -30,6 +30,11 @@ const settings = {
               type: "sede",
               endpoint: "sede",
               archive: "/sede"
+            },
+            {
+              type: "ofertaacadmica",
+              endpoint: "ofertaacadmica",
+              archive: "/ofertaacadmica"
             }
           ]
         }

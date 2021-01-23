@@ -1,8 +1,9 @@
 import React from 'react';
-import { styled } from 'frontity';
+import { styled, connect } from 'frontity';
 import colors from '../styles/colors';
 import MainContainer from './main-container';
 import MainButton from './main-button';
+import Image from "@frontity/components/image";
 
 const HeroContainer = styled.div`
   background-color: ${colors.primaryBlueBright};
@@ -31,9 +32,17 @@ const HeroInfo = styled.div`
   }
 `;
 
-const HeroImage = styled.div``;
+const HeroImage = styled.div`
+  img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    border-radius: 24px;
+  }
+`;
 
-const HomeHero = () => {
+const HomeHero = ({ state }) => {
+  const { acf, title } = state.source['sede'][36];
   return (
     <HeroContainer>
       <MainContainer>
@@ -46,15 +55,24 @@ const HomeHero = () => {
               Estudia en cualquiera de nuestras 8 sedes.{' '}
               <em>#estudiaenISAE</em>
             </p>
-            <MainButton background={colors.primaryYellow} color={colors.primaryBlue}>
+            <MainButton
+              background={colors.primaryYellow}
+              color={colors.primaryBlue}
+              link="#0"
+            >
               Más Información
             </MainButton>
           </HeroInfo>
-          <HeroImage></HeroImage>
+          <HeroImage>
+            <Image
+              alt={title.rendered}
+              src={acf.foto.sizes.large}
+            />
+          </HeroImage>
         </HeroInner>
       </MainContainer>
     </HeroContainer>
   );
 }
 
-export default HomeHero;
+export default connect(HomeHero);
