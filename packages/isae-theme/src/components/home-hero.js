@@ -42,7 +42,7 @@ const HeroImage = styled.div`
 `;
 
 const HomeHero = ({ state }) => {
-  const { acf, title } = state.source['sede'][36];
+  const { acf, title } = state.source.sede[36];
   return (
     <HeroContainer>
       <MainContainer>
@@ -66,7 +66,8 @@ const HomeHero = ({ state }) => {
           <HeroImage>
             <Image
               alt={title.rendered}
-              src={acf.foto.sizes.large}
+              src={acf.foto.sizes["1536x1536"]}
+              height="620"
             />
           </HeroImage>
         </HeroInner>

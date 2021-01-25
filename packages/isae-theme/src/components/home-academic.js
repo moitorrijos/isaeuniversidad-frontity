@@ -94,7 +94,7 @@ const HomeAcademic = ({ state }) => {
                 </MainButton>
               </AcademicInfo>
               <AcademicImage>
-                <Image alt={alt_text} src={source_url} />
+                <Image alt={alt_text} src={source_url} height="529" />
               </AcademicImage>
             </AcademicContainer>
           </MainContainer>

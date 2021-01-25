@@ -67,7 +67,7 @@ const SlimCardItem = ({ title, link, alt_text, source_url, postDate, name }) => 
     <SlimCardContainer>
       <SlimCardImage>
         {source_url && (
-          <Image src={source_url} alt={alt_text} />
+          <Image src={source_url} alt={alt_text} height="330" />
           )}
       </SlimCardImage>
       <SlimCardInfo link={link}>

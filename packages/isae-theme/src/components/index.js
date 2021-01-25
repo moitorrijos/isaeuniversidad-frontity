@@ -1,5 +1,5 @@
 import React from 'react';
-import { Global, css, connect, styled, Head } from 'frontity';
+import { Global, css, connect, Head } from 'frontity';
 import Switch from "@frontity/components/switch";
 import Title from './title'
 import Header from './header';

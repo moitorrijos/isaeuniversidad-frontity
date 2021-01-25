@@ -57,7 +57,7 @@ const CardItem = ({ link, data, title }) => {
         <Image
           alt={title.rendered}
           src={data.foto.sizes.medium_large}
-
+          height="300"
         />
       </CardImage>
       <CardInfo>
