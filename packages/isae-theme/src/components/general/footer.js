@@ -1,10 +1,10 @@
 import React from 'react';
 import { styled, connect } from 'frontity';
-import FooterLogo from './icons/footer-logo';
+import FooterLogo from '../icons/footer-logo';
 import Link from "@frontity/components/link";
-import colors from '../styles/colors';
-import MainContainer from './main-container';
-import Grid from './grid';
+import colors from '../../styles/colors';
+import MainContainer from '../main-container';
+import Grid from '../grid';
 
 const FooterContainer = styled.footer`
   padding-top: 4rem;

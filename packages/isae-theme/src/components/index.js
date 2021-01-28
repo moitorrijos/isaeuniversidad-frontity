@@ -1,10 +1,10 @@
 import React from 'react';
 import { Global, css, connect, Head } from 'frontity';
 import Switch from "@frontity/components/switch";
-import Title from './title'
-import Header from './header';
+import Title from './general/title'
+import Header from './general/header';
 import HomePage from './home-page';
-import Footer from './footer';
+import Footer from './general/footer';
 
 const globalStyles = css`
   body {

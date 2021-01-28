@@ -1,7 +1,7 @@
 import React from 'react';
 import { styled, connect } from 'frontity';
 import Link from "@frontity/components/link";
-import colors from '../styles/colors';
+import colors from '../../styles/colors';
 
 const Nav = styled.nav`
   padding: 0 24px;

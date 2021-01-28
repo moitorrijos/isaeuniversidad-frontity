@@ -1,7 +1,7 @@
 import React from 'react';
 import { styled } from 'frontity';
-import Link from './link';
-import Logo from './icons/logo';
+import Link from '../link';
+import Logo from '../icons/logo';
 
 const LogoContainer = styled.div`
   width: 100%;

@@ -35,7 +35,12 @@ const settings = {
               type: "ofertaacadmica",
               endpoint: "ofertaacadmica",
               archive: "/ofertaacadmica"
-            }
+            },
+            {
+              type: "evento",
+              endpoint: "evento",
+              archive: "/evento"
+            },
           ]
         }
       }

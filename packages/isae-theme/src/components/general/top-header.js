@@ -1,7 +1,7 @@
 import React from 'react';
 import { styled, connect } from 'frontity';
-import Placeholder from './icons/placeholder';
-import colors from '../styles/colors';
+import Placeholder from '../icons/placeholder';
+import colors from '../../styles/colors';
 import Link from "@frontity/components/link";
 
 const TopHeaderContainer = styled.div`

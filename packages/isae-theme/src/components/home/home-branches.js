@@ -1,9 +1,9 @@
 import React, { useRef } from 'react';
 import { connect, styled } from 'frontity';
-import colors from '../styles/colors';
-import CardItem from './card-item';
-import Carousel from './carousel-container';
-import MainContainer from './main-container';
+import colors from '../../styles/colors';
+import CardItem from '../card-item';
+import Carousel from '../carousel-container';
+import MainContainer from '../main-container';
 
 const Heading = styled.h1`
   text-align: center;

@@ -1,9 +1,9 @@
 import React from 'react';
 import { styled, connect } from 'frontity';
-import MainContainer from './main-container';
-import Grid from './grid';
-import SlimCardItem from './slim-card-item';
-import colors from '../styles/colors';
+import MainContainer from '../main-container';
+import Grid from '../grid';
+import SlimCardItem from '../slim-card-item';
+import colors from '../../styles/colors';
 
 const LatestNews = styled.div`
   padding: 8rem 0;
@@ -16,7 +16,7 @@ const Heading = styled.h2`
 `;
 
 const HomeNews = ({ state }) => {
-  const news = state.source.get(state.router.link).items
+  const news = state.source.get("/category/destacada/").items
   return (
     <LatestNews>
       <Heading>Últimas Noticias</Heading>

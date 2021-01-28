@@ -1,8 +1,8 @@
 import React from 'react';
 import { styled, connect } from 'frontity';
-import colors from '../styles/colors';
-import MainContainer from './main-container';
-import MainButton from './main-button';
+import colors from '../../styles/colors';
+import MainContainer from '../main-container';
+import MainButton from '../main-button';
 import Image from "@frontity/components/image";
 
 const HeroContainer = styled.div`

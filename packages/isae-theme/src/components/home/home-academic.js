@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect, styled } from 'frontity';
-import colors from '../styles/colors';
-import MainContainer from './main-container';
+import colors from '../../styles/colors';
+import MainContainer from '../main-container';
 import Image from "@frontity/components/image";
-import MainButton from './main-button';
+import MainButton from '../main-button';
 
 const Academic = styled.div`
   padding: 8rem 0;
