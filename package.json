@@ -23,6 +23,7 @@
     "@frontity/tiny-router": "^1.2.4",
     "@frontity/wp-source": "^1.10.0",
     "frontity": "^1.13.0",
-    "isae-theme": "file:packages/isae-theme"
+    "isae-theme": "file:packages/isae-theme",
+    "react-hook-form": "^6.14.2"
   }
 }
