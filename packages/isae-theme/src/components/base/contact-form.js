@@ -13,6 +13,7 @@ const FormContainer = styled.div`
 const FormGrid = styled.div`
   display: grid;
   grid-template-columns: 320px 1fr;
+  align-items: center;
   gap: 100px;
 `;
 
@@ -26,7 +27,7 @@ const Form = styled.form`
   gap: 36px;
 
   input, select, button {
-    padding: 8px 1rem;
+    padding: 10px 1rem;
     border-radius: 8px;
     font-size: 1rem;
   }
@@ -74,11 +75,11 @@ const ContactForm = ({ state }) => {
             </p>
           </FormInfo>
           <Form onSubmit={handleSubmit(onSubmit)}>
-            <input name="firstName" placeholder="Nombre" ref={register} />
-            <input name="lastName" placeholder="Apellido" ref={register} />
-            <input name="yourEmail" placeholder="Correo" ref={register} />
-            <input name="phoneNumber" placeholder="Teléfono" ref={register} />
-            <select name="academic" ref={register}>
+            <input name="nombre" placeholder="Nombre" ref={register} />
+            <input name="apellido" placeholder="Apellido" ref={register} />
+            <input name="correo" placeholder="Correo" ref={register} />
+            <input name="telefono" placeholder="Teléfono" ref={register} />
+            <select name="oferta" ref={register}>
               {academics.map(academic => {
                   const { id, title } = state.source[academic.type][academic.id]
                   return(
