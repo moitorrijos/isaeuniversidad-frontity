@@ -8,6 +8,10 @@ import Image from "@frontity/components/image";
 const HeroContainer = styled.div`
   background-color: ${colors.primaryBlueBright};
   position: relative;
+  background-image: url(${props => props.url}/wp-content/uploads/2021/01/background-isae-home-hero-full.svg);
+  background-repeat: no-repeat;
+  background-position: -160px top;
+  background-size: 300px;
 `;
 
 const HeroInner = styled.div`
@@ -16,6 +20,9 @@ const HeroInner = styled.div`
   grid-template-columns: 368px 1fr;
   gap: 100px;
   align-items: center;
+  background-image: url(${props => props.url}/wp-content/uploads/2021/01/background-isae-home-hero.svg);
+  background-repeat: no-repeat;
+  background-position: center center;
 `;
 
 const HeroInfo = styled.div`
@@ -43,10 +50,11 @@ const HeroImage = styled.div`
 
 const HomeHero = ({ state }) => {
   const { acf, title } = state.source.sede[36];
+  const backgrouldUrl = state.source.url;
   return (
-    <HeroContainer>
+    <HeroContainer url={backgrouldUrl}>
       <MainContainer>
-        <HeroInner>
+        <HeroInner url={backgrouldUrl}>
           <HeroInfo>
             <h1>Matrículas Abiertas</h1>
             <p>
