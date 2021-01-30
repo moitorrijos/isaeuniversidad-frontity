@@ -24,7 +24,7 @@ const settings = {
       "name": "@frontity/wp-source",
       "state": {
         "source": {
-          "url": "http://isae.test",
+          "url": process.env.WP_SOURCE_URL,
           "postTypes": [
             {
               type: "sede",
