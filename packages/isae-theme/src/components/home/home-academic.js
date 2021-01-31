@@ -7,6 +7,8 @@ import MainButton from '../main-button';
 
 const Academic = styled.div`
   padding: 8rem 0;
+  background-repeat: no-repeat;
+  background-position: center center;
 
   &:nth-of-type(odd) {
     background-color: ${colors.lightGray};
@@ -41,6 +43,7 @@ const AcademicImage = styled.figure`
 
   img {
     width: 100%;
+    border-radius: 22px;
     height: auto;
     object-fit: cover;
   }
@@ -48,15 +51,23 @@ const AcademicImage = styled.figure`
 
 const HomeAcademic = ({ state }) => {
   const items = state.source.get('/ofertaacadmica').items;
+  const backgroundUrl = state.source.url;
   return ([...items].reverse().map((item, index) => {
     const { id, title, featured_media, acf } = state.source[item.type][item.id]
     const { source_url, alt_text } = state.source.attachment[featured_media];
     function createMarkup() {
       return {__html: acf.descripcion};
     }
+    const position = +index + 1
     if (index % 2 !== 0) {
       return (
-        <Academic key={id}>
+        <Academic
+          key={id}
+          style={{
+            backgroundImage: `url(${backgroundUrl}/wp-content/uploads/2021/01/background-isae-${position}.svg)`,
+            backgroundPosition: '25% center'
+          }}
+        >
           <MainContainer>
               <AcademicContainer>
               <AcademicImage>
@@ -79,7 +90,13 @@ const HomeAcademic = ({ state }) => {
       );
     } else {
       return (
-        <Academic key={id}>
+        <Academic
+          key={id}
+          style={{
+            backgroundImage: `url(${backgroundUrl}/wp-content/uploads/2021/01/background-isae-${position}.svg)`,
+            backgroundPosition: '70% center'
+          }}
+        >
           <MainContainer>
             <AcademicContainer>
               <AcademicInfo>
