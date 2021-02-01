@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { styled, connect } from 'frontity';
 import Link from "@frontity/components/link";
 import colors from '../../styles/colors';
+import Chevron from '../icons/chevron';
 
 const Nav = styled.nav`
   padding: 0 24px;
@@ -10,14 +11,20 @@ const Nav = styled.nav`
   border: none;
 `;
 
-const MainMenu = styled.div`
+const MenuLink = styled.div`
   padding: 42px 24px;
   cursor: pointer;
   text-decoration: none;
   color: ${colors.primaryText100};
   transition: all 0.25s ease-in-out;
   font-size: 15px;
-  background-color: ${props => props.currentMenu ? colors.lightGray : colors.white};
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+
+  svg {
+    margin-left: 10px;
+  }
 `;
 
 const Submenu = styled.div`
@@ -82,14 +89,21 @@ const Navigation = ({ state, actions }) => {
   return (
     <Nav>
       {items.map(item => {
-        const { id, title } = item;
+        const { id, title, type } = item;
+        console.log(currentTitle, title, hidden);
         return(
           <React.Fragment key={id}>
-            <MainMenu
+            <MenuLink
               onClick={e => showSubmenu(item, e)}
+              link="#0"
             >
               {title}
-            </MainMenu>
+              {type === 'custom' &&
+                <Chevron
+                  style={((currentTitle === title) && !hidden) ? {transform: 'rotate(180deg)'} : {transform: 'rotate(0)'}}
+                />
+              }
+            </MenuLink>
             <Submenu hidden={hidden}>
               <h2>{currentTitle}</h2>
               {currentType === "custom" &&
@@ -97,7 +111,7 @@ const Navigation = ({ state, actions }) => {
                   {[...subMenuItems].reverse().map(item => {
                     const {id, title, link} = state.source[item.type][item.id]
                     return(
-                      <Link key={id} href={link}>{title.rendered}</Link>
+                      <Link key={id} link={link} onClick={() => setHidden(!hidden)}>{title.rendered}</Link>
                     )
                   })}
                 </SubMenuList>
