@@ -8,19 +8,16 @@ const Nav = styled.nav`
   display: flex;
   flex-flow: row nowrap;
   border: none;
+`;
 
-  a {
-    display: block;
-    padding: 42px 24px;
-    text-decoration: none;
-    color: ${colors.primaryText100};
-    transition: all 0.25s ease-in-out;
-    font-size: 15px;
-
-    &.current-page, &:hover, &:active {
-      background-color: ${colors.lightGray};
-    }
-  }
+const MainMenu = styled.div`
+  padding: 42px 24px;
+  cursor: pointer;
+  text-decoration: none;
+  color: ${colors.primaryText100};
+  transition: all 0.25s ease-in-out;
+  font-size: 15px;
+  background-color: ${props => props.currentMenu ? colors.lightGray : colors.white};
 `;
 
 const Submenu = styled.div`
@@ -35,6 +32,7 @@ const Submenu = styled.div`
 
   h2 {
     font-size: 20px;
+    padding-left: 40px;
   }
 `;
 
@@ -46,18 +44,30 @@ const SubMenuList = styled.div`
 
   a {
     padding: 24px 40px;
+    display: block;
+    text-decoration: none;
+    color: ${colors.primaryText100};
+    transition: all 0.25s ease-in-out;
+    font-size: 15px;
   }
 `;
 
 const Navigation = ({ state, actions }) => {
   const items = state.source.get('2').items;
   const [hidden, setHidden] = useState(true);
+  const [currentMenu, setCurrentMenu] = useState(false);
   const [currentTitle, setCurrentTitle] = useState('');
   const [currentType, setCurrentType] = useState('');
+  const [subMenuItems, setSubMenuItems] = useState([]);
+  const subMenuSlugs = [
+    {id: 1, slug: 'oferta-academica', cat: 'ofertaacadmica'},
+    {id: 2, slug: 'sedes', cat: 'sede' }
+  ];
   const showSubmenu = (item, e) => {
-    const { title, type, url } = item;
+    const { title, type, url, object_slug } = item;
     e.preventDefault();
     setHidden(false);
+    setCurrentMenu(!currentMenu);
     setCurrentType(type);
     if (type !== 'custom') {
       actions.router.set(url);
@@ -65,31 +75,35 @@ const Navigation = ({ state, actions }) => {
     }
     if (title === currentTitle) setHidden(!hidden);
     setCurrentTitle(title);
+    const slug = subMenuSlugs.filter(slug => object_slug === slug.slug);
+    const currentSlug = slug[0].cat;
+    setSubMenuItems(state.source.get(`/${currentSlug}`).items);
   };
   return (
     <Nav>
       {items.map(item => {
-        const { id, title, type } = item;
+        const { id, title } = item;
         return(
-          <Link
-            key={id}
-            onClick={e => showSubmenu(item, e)}
-            link="#"
-          >
-            {title}
-            <Submenu key={id} hidden={hidden}>
+          <React.Fragment key={id}>
+            <MainMenu
+              onClick={e => showSubmenu(item, e)}
+            >
+              {title}
+            </MainMenu>
+            <Submenu hidden={hidden}>
               <h2>{currentTitle}</h2>
-              {currentType === "custom" && 
+              {currentType === "custom" &&
                 <SubMenuList>
-                  <Link src="#0">Prueba 1</Link>
-                  <Link src="#0">Prueba 2</Link>
-                  <Link src="#0">Prueba 3</Link>
-                  <Link src="#0">Prueba 4</Link>
-                  <Link src="#0">Prueba 5</Link>
+                  {[...subMenuItems].reverse().map(item => {
+                    const {id, title, link} = state.source[item.type][item.id]
+                    return(
+                      <Link key={id} href={link}>{title.rendered}</Link>
+                    )
+                  })}
                 </SubMenuList>
               }
             </Submenu>
-          </Link>
+          </React.Fragment>
         )
       })}
     </Nav>
