@@ -6,7 +6,7 @@ import BoldCardItem from '../bold-card-item';
 import colors from '../../styles/colors';
 
 const LatestActivities = styled.div`
-  padding: 8rem;
+  padding: 8rem 0;
   background-color: ${colors.lightGray};
 `;
 
