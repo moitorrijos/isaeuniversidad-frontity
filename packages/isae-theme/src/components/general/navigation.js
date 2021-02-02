@@ -44,8 +44,8 @@ const Submenu = styled.div`
 `;
 
 const SubMenuList = styled.div`
-  display: flex;
-  flex-flow: row wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   border-bottom: 1px solid ${colors.mediumGray};
   margin-bottom: 12px;
 
@@ -90,17 +90,18 @@ const Navigation = ({ state, actions }) => {
     <Nav>
       {items.map(item => {
         const { id, title, type } = item;
-        console.log(currentTitle, title, hidden);
+        const isCurrentMenuItem = (currentTitle === title) && !hidden
         return(
           <React.Fragment key={id}>
             <MenuLink
               onClick={e => showSubmenu(item, e)}
               link="#0"
+              style={isCurrentMenuItem ? {backgroundColor: colors.lightGray} : {backgroundColor: colors.white}}
             >
               {title}
               {type === 'custom' &&
                 <Chevron
-                  style={((currentTitle === title) && !hidden) ? {transform: 'rotate(180deg)'} : {transform: 'rotate(0)'}}
+                  style={isCurrentMenuItem ? {transform: 'rotate(180deg)'} : {transform: 'rotate(0)'}}
                 />
               }
             </MenuLink>

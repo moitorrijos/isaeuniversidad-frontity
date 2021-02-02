@@ -35,6 +35,11 @@ const FooterLink = styled(Link)`
   text-decoration: none;
   padding-top: 8px;
   padding-bottom: 8px;
+  transition: all 0.25s ease-in-out;
+
+  &:hover {
+    padding-left: 4px;
+  }
 `;
 
 const FooterCopyright = styled.div`
