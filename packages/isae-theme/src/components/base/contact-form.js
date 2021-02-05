@@ -61,7 +61,7 @@ const ContactForm = ({ state }) => {
   const onSubmit = data => console.log(data);
 
   return(
-    <FormContainer>
+    <FormContainer id="formulario-contacto">
       <MainContainer>
         <FormGrid>
           <FormInfo>

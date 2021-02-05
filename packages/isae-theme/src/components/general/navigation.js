@@ -55,7 +55,7 @@ const SubMenuList = styled.div`
     text-decoration: none;
     color: ${colors.primaryText100};
     transition: all 0.25s ease-in-out;
-    font-size: 15px;
+    font-size: 14px;
   }
 `;
 
@@ -68,7 +68,8 @@ const Navigation = ({ state, actions }) => {
   const [subMenuItems, setSubMenuItems] = useState([]);
   const subMenuSlugs = [
     {id: 1, slug: 'oferta-academica', cat: 'ofertaacadmica'},
-    {id: 2, slug: 'sedes', cat: 'sede' }
+    {id: 2, slug: 'sedes', cat: 'sede' },
+    {id: 3, slug: 'vida-universitaria', cat: 'vidauniversitaria'}
   ];
   const showSubmenu = (item, e) => {
     const { title, type, url, object_slug } = item;
@@ -83,7 +84,7 @@ const Navigation = ({ state, actions }) => {
     if (title === currentTitle) setHidden(!hidden);
     setCurrentTitle(title);
     const slug = subMenuSlugs.filter(slug => object_slug === slug.slug);
-    const currentSlug = slug[0].cat;
+    const currentSlug = slug.length ? slug[0].cat : null;
     setSubMenuItems(state.source.get(`/${currentSlug}`).items);
   };
   return (
@@ -109,7 +110,7 @@ const Navigation = ({ state, actions }) => {
               <h2>{currentTitle}</h2>
               {currentType === "custom" &&
                 <SubMenuList>
-                  {[...subMenuItems].reverse().map(item => {
+                  {subMenuItems && [...subMenuItems].reverse().map(item => {
                     const {id, title, link} = state.source[item.type][item.id]
                     return(
                       <Link key={id} link={link} onClick={() => setHidden(!hidden)}>{title.rendered}</Link>

@@ -21,6 +21,7 @@ export default {
         await actions.source.fetch("48");
         await actions.source.fetch("/sede");
         await actions.source.fetch("/ofertaacadmica");
+        await actions.source.fetch("/vidauniversitaria");
         await actions.source.fetch("/category/destacada/");
         await actions.source.fetch("/category/actividades/");
       }

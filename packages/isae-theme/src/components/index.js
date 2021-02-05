@@ -4,6 +4,7 @@ import Switch from "@frontity/components/switch";
 import Title from './general/title'
 import Header from './general/header';
 import HomePage from './home-page';
+import AcademicsPage from './academics-page';
 import Footer from './general/footer';
 
 const globalStyles = css`
@@ -52,6 +53,7 @@ const Theme = ({ state }) => {
       <Header />
       <Switch>
         <HomePage when={data.isHome} />
+        <AcademicsPage when={data.isOfertaacadmica} />
       </Switch>
       <Footer />
     </>

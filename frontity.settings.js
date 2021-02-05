@@ -41,6 +41,11 @@ const settings = {
               endpoint: "evento",
               archive: "/evento"
             },
+            {
+              type: "vidauniversitaria",
+              endpoint: "vidauniversitaria",
+              archive: "/vidauniversitaria"
+            },
           ]
         }
       }
