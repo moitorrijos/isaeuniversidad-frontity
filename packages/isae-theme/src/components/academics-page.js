@@ -52,7 +52,7 @@ const AcademicsPage = ({ state }) => {
         imageUrl={featured_image_src}
       />
       <FilterParagraph>Filtrar {title.rendered} según sede</FilterParagraph>
-      {acf.sedes.length && <FilterButtons>
+      {acf.sedes && <FilterButtons>
           {acf.sedes.map(sede => {
             const { acf } = state.source.sede[sede.ID];
             return(
