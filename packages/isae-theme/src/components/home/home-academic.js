@@ -4,6 +4,7 @@ import colors from '../../styles/colors';
 import MainContainer from '../main-container';
 import Image from "@frontity/components/image";
 import MainButton from '../main-button';
+import createMarkup from '../../helpers/create-markup';
 
 const Academic = styled.div`
   padding: 8rem 0;
@@ -40,12 +41,13 @@ const AcademicInfo = styled.div`
 const AcademicImage = styled.figure`
   margin: 0;
   width: 575px;
+  height: 580px;
 
   img {
     width: 100%;
     border-radius: 22px;
-    height: auto;
     object-fit: cover;
+    object-position: center;
   }
 `;
 
@@ -53,11 +55,7 @@ const HomeAcademic = ({ state }) => {
   const items = state.source.get('/ofertaacadmica').items;
   const backgroundUrl = state.source.url;
   return ([...items].reverse().map((item, index) => {
-    const { id, title, featured_media, acf } = state.source[item.type][item.id]
-    const { source_url, alt_text } = state.source.attachment[featured_media];
-    function createMarkup() {
-      return {__html: acf.descripcion};
-    }
+    const { id, title, featured_image_src, acf } = state.source[item.type][item.id]
     const position = +index + 1
     if (index % 2 !== 0) {
       return (
@@ -65,17 +63,17 @@ const HomeAcademic = ({ state }) => {
           key={id}
           style={{
             backgroundImage: `url(${backgroundUrl}/wp-content/uploads/2021/01/background-isae-${position}.svg)`,
-            backgroundPosition: '25% center'
+            backgroundPosition: '20% center'
           }}
         >
           <MainContainer>
               <AcademicContainer>
               <AcademicImage>
-                <Image alt={alt_text} src={source_url} />
+                <Image alt={title.rendered} src={featured_image_src} />
               </AcademicImage>
               <AcademicInfo>
                 <h2>{title.rendered}</h2>
-                <div dangerouslySetInnerHTML={createMarkup()} />
+                <div dangerouslySetInnerHTML={createMarkup(acf.descripcion)} />
                 <MainButton
                   background={colors.primaryBlue}
                   color={colors.white}
@@ -94,14 +92,14 @@ const HomeAcademic = ({ state }) => {
           key={id}
           style={{
             backgroundImage: `url(${backgroundUrl}/wp-content/uploads/2021/01/background-isae-${position}.svg)`,
-            backgroundPosition: '70% center'
+            backgroundPosition: '80% center'
           }}
         >
           <MainContainer>
             <AcademicContainer>
               <AcademicInfo>
                 <h2>{title.rendered}</h2>
-                <div dangerouslySetInnerHTML={createMarkup()}  />
+                <div dangerouslySetInnerHTML={createMarkup(acf.descripcion)} />
                 <MainButton
                   background={colors.primaryBlue}
                   color={colors.white}
@@ -111,7 +109,7 @@ const HomeAcademic = ({ state }) => {
                 </MainButton>
               </AcademicInfo>
               <AcademicImage>
-                <Image alt={alt_text} src={source_url} height="529" />
+                <Image alt={title.rendered} src={featured_image_src} height="529" />
               </AcademicImage>
             </AcademicContainer>
           </MainContainer>

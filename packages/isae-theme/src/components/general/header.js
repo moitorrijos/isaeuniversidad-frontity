@@ -10,7 +10,7 @@ const HeaderContainer = styled.div`
   padding-left: 1rem;
   padding-right: 1rem;
   position: relative;
-  z-index: 2;
+  z-index: 4;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;

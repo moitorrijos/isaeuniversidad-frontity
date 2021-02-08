@@ -18,6 +18,7 @@ const MenuLink = styled.div`
   color: ${colors.primaryText100};
   transition: all 0.25s ease-in-out;
   font-size: 15px;
+  font-size: clamp(13px, 0.9vw, 1rem);
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
@@ -45,7 +46,7 @@ const Submenu = styled.div`
 
 const SubMenuList = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   border-bottom: 1px solid ${colors.mediumGray};
   margin-bottom: 12px;
 

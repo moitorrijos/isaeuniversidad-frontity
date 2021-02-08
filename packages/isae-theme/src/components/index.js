@@ -1,19 +1,22 @@
 import React from 'react';
 import { Global, css, connect, Head } from 'frontity';
+import colors from '../styles/colors';
 import Switch from "@frontity/components/switch";
 import Title from './general/title'
 import Header from './general/header';
 import HomePage from './home-page';
 import AcademicsPage from './academics-page';
+import BranchPage from './branch-page';
 import Footer from './general/footer';
 
 const globalStyles = css`
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", 'DM Sans', sans-serif;
     font-size: 16px;
-    line-height: 1.5;
+    line-height: 1.6;
     padding: 0;
     margin: 0;
+    color: ${colors.primaryText80};
   }
 
   h1, h2, h3, h4 {
@@ -54,6 +57,7 @@ const Theme = ({ state }) => {
       <Switch>
         <HomePage when={data.isHome} />
         <AcademicsPage when={data.isOfertaacadmica} />
+        <BranchPage when={data.isSede} />
       </Switch>
       <Footer />
     </>
