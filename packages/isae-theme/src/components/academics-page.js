@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { styled, connect } from 'frontity';
 import colors from '../styles/colors';
 import PostHero from './post-hero';
-import Link from "@frontity/components/link";
+import FilterButtons from './filter-buttons';
 
 const FilterParagraph = styled.p`
   max-width: 500px;
@@ -12,37 +12,14 @@ const FilterParagraph = styled.p`
   font-size: 18px;
 `;
 
-const FilterButtons = styled.div`
-  max-width: 715px;
-  margin: 0 auto 8rem;
-  display: flex;
-  flex-flow: row nowrap;
-  gap: 10px;
-
-  a {
-    padding: 16px 40px;
-    border-radius: 8px;
-    border: 1px solid ${colors.secondaryBlue};
-    color: ${colors.secondaryBlue};
-    text-decoration: none;
-    transition: all 0.25s ease-in-out;
-
-    &:first-child {
-      background-color: ${colors.secondaryBlue};
-      color: ${colors.white};
-    }
-
-    &:hover {
-      background-color: ${colors.secondaryBlue};
-      color: ${colors.white};
-    }
-  }
-`;
-
 const AcademicsPage = ({ state }) => {
   const academics = state.source.get(state.router.link);
   const { acf, title, featured_image_src } = state.source[academics.type][academics.id]
   const { descripcion } = acf;
+  const [ currentItem, setCurrentItem ] = useState('campus-central');
+  function filterButton(slug) {
+    setCurrentItem(slug);
+  }
   return(
     <>
       <PostHero
@@ -52,11 +29,25 @@ const AcademicsPage = ({ state }) => {
         imageUrl={featured_image_src}
       />
       <FilterParagraph>Filtrar {title.rendered} según sede</FilterParagraph>
-      {acf.sedes && <FilterButtons>
+      {acf.sedes && 
+        <FilterButtons>
           {acf.sedes.map(sede => {
-            const { acf } = state.source.sede[sede.ID];
+            const { id, slug, acf } = state.source.sede[sede.ID];
             return(
-              <Link link={acf.link}>{acf.ciudad}</Link>
+              <button
+                key={id}
+                id={slug}
+                onClick={ () => { filterButton(slug) }}
+                style={ currentItem === slug ? {
+                  backgroundColor: colors.secondaryBlue,
+                  color: colors.white
+                 } : {
+                   backgroundColor: colors.white,
+                   color: colors.secondaryBlue
+                 } }
+              >
+                  {acf.ciudad}
+              </button>
             )
           })}
         </FilterButtons>}

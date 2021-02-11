@@ -41,6 +41,8 @@ const Submenu = styled.div`
   h2 {
     font-size: 20px;
     padding-left: 40px;
+    margin: 24px 0 16px;
+    font-weight: 500;
   }
 `;
 
