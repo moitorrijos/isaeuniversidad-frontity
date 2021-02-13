@@ -15,16 +15,14 @@ const FilterParagraph = styled.p`
 
 const AvailableCareers = styled.div``;
 
-const CarrerCard = styled.div`
-
-`;
+const CareerCard = styled.div``;
 
 const AcademicsPage = ({ state }) => {
   const academics = state.source.get(state.router.link);
   const { acf, title, featured_image_src } = state.source[academics.type][academics.id];
   const { descripcion } = acf;
-  const carreras = state.source.carrera;
-  const carreras_disponibles = carreras.filter( carrera => `/${carrera.acf.oferta_academica.post_type}/${carrera.acf.oferta_academica.post_name}` === academics);
+  const carreras = state.source.get('/carrera').items;
+  console.log(carreras);
   const [ currentItem, setCurrentItem ] = useState('campus-central');
   function filterButton(slug) {
     setCurrentItem(slug);
