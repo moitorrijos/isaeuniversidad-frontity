@@ -46,6 +46,11 @@ const settings = {
               endpoint: "vidauniversitaria",
               archive: "/vidauniversitaria"
             },
+            {
+              type: "carrera",
+              endpoint: "carrera",
+              archive: "/carrera"
+            }
           ]
         }
       }
