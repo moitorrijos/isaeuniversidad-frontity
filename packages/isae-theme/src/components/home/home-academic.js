@@ -40,11 +40,10 @@ const AcademicInfo = styled.div`
 
 const AcademicImage = styled.figure`
   margin: 0;
-  width: 575px;
-  height: 580px;
 
   img {
-    width: 100%;
+    height: 528px;
+    width: 575px;
     border-radius: 22px;
     object-fit: cover;
     object-position: center;

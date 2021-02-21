@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { styled, connect } from 'frontity';
 import colors from '../styles/colors';
 import PostHero from './post-hero';
 import FilterButtons from './filter-buttons';
+import CareerCards from './career-cards';
+import AcademicUnits from './academic-units';
+import HomeNews from './home/home-news';
 
 const BranchHeader = styled.h2`
   max-width: 700px;
@@ -21,9 +24,19 @@ const BranchParagraph = styled.p`
 
 const BranchPage = ({ state }) => {
   const branches = state.source.get(state.router.link);
-  const { acf } = state.source[branches.type][branches.id]
+  const { acf } = state.source[branches.type][branches.id];
+  const carreras = state.source.get('/carrera').items;
+  const [ currentItem, setCurrentItem ] = useState('all');
+  const currentItemStyle = {
+    backgroundColor: colors.secondaryBlue,
+    color: colors.white
+  };
+  const itemStyle = {
+    color: colors.secondaryBlue,
+    backgroundColor: colors.white
+  };
   function filterButton(slug) {
-    console.log(slug);
+    setCurrentItem(slug);
   }
   return(
     <>
@@ -36,14 +49,35 @@ const BranchPage = ({ state }) => {
       <BranchHeader>Oferta Académica</BranchHeader>
       <BranchParagraph>Disponible en la sede de {acf.ciudad}</BranchParagraph>
       {acf.ofertas_academicas && <FilterButtons>
-          <button onClick={ () => { filterButton("all") } } primary={true}>Todo</button>
-          {acf.ofertas_academicas.map(oferta => {
-            const { id, title, slug } = state.source[oferta.post_type][oferta.ID];
+          {acf.ofertas_academicas.map((oferta, index) => {
+            let { id, title, slug } = state.source[oferta.post_type][oferta.ID];
+            if (index === 0) {
+              id = 0;
+              slug = 'all';
+              return (
+                <button
+                  key={id}
+                  onClick={ () => { filterButton(slug) } }
+                  style = { currentItem === slug ? currentItemStyle : itemStyle }
+                >
+                  Todo
+                </button>
+              )
+            }
             return(
-              <button key={id} onClick={ () => { filterButton(slug)} } primary={false}>{title.rendered}</button>
+              <button
+                key={id}
+                onClick={ () => { filterButton(slug) } }
+                style = { currentItem === slug ? currentItemStyle : itemStyle }
+              >
+                {title.rendered}
+              </button>
             )
           })}
         </FilterButtons>}
+        <CareerCards carreras={carreras} oferta={currentItem} />
+        <AcademicUnits />
+        <HomeNews />
     </>
   );
 }

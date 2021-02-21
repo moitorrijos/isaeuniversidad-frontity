@@ -50,6 +50,11 @@ const settings = {
               type: "carrera",
               endpoint: "carrera",
               archive: "/carrera"
+            },
+            {
+              type: "departamento",
+              endpoint: "departamento",
+              archive: "/departamento"
             }
           ]
         }

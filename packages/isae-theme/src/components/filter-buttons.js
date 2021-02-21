@@ -23,11 +23,6 @@ const FilterContainer = styled.div`
     transition: all 0.25s ease-in-out;
     cursor: pointer;
 
-    &:first-of-type {
-      background-color: ${colors.secondaryBlue};
-      color: ${colors.white};
-    }
-
     &:hover {
       background-color: ${colors.secondaryBlue};
       color: ${colors.white};

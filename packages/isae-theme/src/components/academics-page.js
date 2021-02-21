@@ -3,7 +3,8 @@ import { styled, connect } from 'frontity';
 import colors from '../styles/colors';
 import PostHero from './post-hero';
 import FilterButtons from './filter-buttons';
-import Grid from './grid';
+import ContactForm from './base/contact-form';
+import CareerCards from './career-cards';
 
 const FilterParagraph = styled.p`
   max-width: 500px;
@@ -13,16 +14,12 @@ const FilterParagraph = styled.p`
   font-size: 18px;
 `;
 
-const AvailableCareers = styled.div``;
-
-const CareerCard = styled.div``;
 
 const AcademicsPage = ({ state }) => {
   const academics = state.source.get(state.router.link);
-  const { acf, title, featured_image_src } = state.source[academics.type][academics.id];
+  const { acf, title, featured_image_src, slug } = state.source[academics.type][academics.id];
   const { descripcion } = acf;
   const carreras = state.source.get('/carrera').items;
-  console.log(carreras);
   const [ currentItem, setCurrentItem ] = useState('campus-central');
   function filterButton(slug) {
     setCurrentItem(slug);
@@ -43,7 +40,6 @@ const AcademicsPage = ({ state }) => {
             return(
               <button
                 key={id}
-                id={slug}
                 onClick={ () => { filterButton(slug) }}
                 style={ currentItem === slug ? {
                   backgroundColor: colors.secondaryBlue,
@@ -58,21 +54,8 @@ const AcademicsPage = ({ state }) => {
             )
           })}
         </FilterButtons>}
-        <AvailableCareers>
-          <h1>Carreras Disponibles</h1>
-          <Grid columns="4" gap="20px">
-            {carreras_disponibles.map(carrera => {
-              return(
-                <CareerCard>
-                  <figure>
-                    <Image alt={carrera.title.rendered} src={carrera.featured_image_src} height="240" />
-                  </figure>
-                  <h3>{carrera.title.rendered}</h3>
-                </CareerCard>
-              )
-            })}
-          </Grid>
-        </AvailableCareers>
+        <CareerCards carreras={carreras} oferta={slug} />
+        <ContactForm />
     </>
   );
 

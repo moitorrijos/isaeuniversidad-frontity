@@ -22,6 +22,7 @@ const globalStyles = css`
   h1, h2, h3, h4 {
     margin: 2rem 0;
     line-height: 1.1;
+    font-weight: 500;
   }
 
   h1 {
