@@ -4,19 +4,23 @@ import colors from '../styles/colors';
 import { effects } from '../styles/effects';
 import Image from "@frontity/components/image";
 import createMarkup from '../helpers/create-markup';
+import MainContainer from './main-container';
 
-const HeroContainer = styled.div`
+const Hero = styled.div`
   background-image: url(${props => props.background});
   background-color: ${colors.lightGray};
   background-position: left top;
   background-size: contain;
   background-repeat: no-repeat;
+  min-height: 95vh;
+  position: relative;
+`;
+
+const HeroContainer = styled.div`
   display: grid;
-  grid-template-columns: 8rem 288px 288px 1fr;
+  grid-template-columns: 2rem 288px 288px 1fr;
   grid-template-rows: 5rem auto 5rem;
   align-items: center;
-  position: relative;
-  min-height: 95vh;
 `;
 
 const InfoCard = styled.div`
@@ -48,21 +52,25 @@ const InfoImage = styled.figure`
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 1rem 0 0 1rem;
+    border-radius: 1rem;
   }  
 `;
 
 const PostHero = ({ background, title, description, imageUrl }) => {
   return(
-    <HeroContainer background={background}>
-      <InfoCard>
-        <h1>{title}</h1>
-        <div dangerouslySetInnerHTML={createMarkup(description)} />
-      </InfoCard>
-      <InfoImage>
-        <Image alt={title} src={imageUrl} height="622" />
-      </InfoImage>
-    </HeroContainer>
+    <Hero background={background}>
+      <MainContainer>
+        <HeroContainer>
+          <InfoCard>
+            <h1>{title}</h1>
+            <div dangerouslySetInnerHTML={createMarkup(description)} />
+          </InfoCard>
+          <InfoImage>
+            <Image alt={title} src={imageUrl} height="622" />
+          </InfoImage>
+        </HeroContainer>
+      </MainContainer>
+    </Hero>
   );
 }
 

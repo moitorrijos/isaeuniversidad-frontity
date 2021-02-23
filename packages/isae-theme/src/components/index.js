@@ -7,6 +7,7 @@ import Header from './general/header';
 import HomePage from './home-page';
 import AcademicsPage from './academics-page';
 import BranchPage from './branch-page';
+import CareerPage from './pages/career-page';
 import Footer from './general/footer';
 
 const globalStyles = css`
@@ -59,6 +60,7 @@ const Theme = ({ state }) => {
         <HomePage when={data.isHome} />
         <AcademicsPage when={data.isOfertaacadmica} />
         <BranchPage when={data.isSede} />
+        <CareerPage when={data.isCarrera} />
       </Switch>
       <Footer />
     </>

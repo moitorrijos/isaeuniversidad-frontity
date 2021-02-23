@@ -23,7 +23,14 @@ const HomeNews = ({ state }) => {
       <MainContainer>
         <Grid columns="3" gap="30px">
           {[...news].slice(0, 3).map(post => {
-            const { id, title, link, featured_media, date, author } = state.source[post.type][post.id];
+            const {
+              id,
+              title,
+              link,
+              featured_media,
+              date,
+              author
+            } = state.source[post.type][post.id];
             const { name } = state.source.author[author];
             const media = state.source.attachment[featured_media];
             const postDate = new Date(date);
