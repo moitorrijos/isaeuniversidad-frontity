@@ -4,7 +4,7 @@ import colors from '../styles/colors';
 
 const FilterContainer = styled.div`
   max-width: 800px;
-  margin: 0 auto 8rem;
+  margin: 0 auto 4rem;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;

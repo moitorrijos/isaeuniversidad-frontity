@@ -6,7 +6,7 @@ import SingleCard from './base/single-card';
 
 const AvailableCareers = styled.div`
   max-width: 1200px;
-  margin: 4rem auto 8rem;
+  margin: 8rem auto;
   h2 {
     color: ${colors.primaryBlue};
     text-align: center;

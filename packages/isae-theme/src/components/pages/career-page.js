@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect, styled } from 'frontity';
 import colors from '../../styles/colors';
 import { effects } from '../../styles/effects';
@@ -22,6 +22,14 @@ const CareerPage = ({ state }) => {
     acf,
     featured_image_src
   } = state.source[career.type][career.id];
+  const [ hidden1, setHidden1 ] = useState(false);
+  const [ hidden2, setHidden2 ] = useState(true);
+  function toggleTab1() {
+    setHidden1(!hidden1);
+  }
+  function toggleTab2() {
+    setHidden2(!hidden2);
+  }
   return(
     <>
       <BigHero background={featured_image_src}>
@@ -29,7 +37,7 @@ const CareerPage = ({ state }) => {
         <h3>{acf.descripcion}</h3>
         <LinkButton link={acf.boton_plan_de_estudio} >Ver Plan de Estudio</LinkButton>
       </BigHero>
-      <DescriptionCards backgroundColor="mediumGray">
+      <DescriptionCards backgroundColor={colors.lightGray}>
         <MainContainer style={{overflow: "visible"}}>
           <Grid columns="4" gap="20px">
             <HoursCard>
@@ -57,7 +65,7 @@ const CareerPage = ({ state }) => {
       </DescriptionCards>
       <FilterHeading>Disponible en Sedes</FilterHeading>
       {acf.sedes && <BranchFilterButtons branches={acf.sedes} />}
-      <DescriptionCards backgroundColor="white">
+      <DescriptionCards backgroundColor={colors.white}>
         <MainContainer>
           <Grid columns="3" gap="20px">
             <DescriptionCard>
@@ -78,6 +86,36 @@ const CareerPage = ({ state }) => {
           </Grid>
         </MainContainer>
       </DescriptionCards>
+      <RequirementsSection>
+        <MainContainer>
+          <FlexboxContainer>
+            <GeneralRequirementes>
+              <h2>Requisitos</h2>
+              <div dangerouslySetInnerHTML={createMarkup(acf.requisitos_generales)} />
+            </GeneralRequirementes>
+            <RequirementTabs>
+              <Requirements>
+                <RequirementsHeading onClick={toggleTab1}>
+                  Requisitos para estudiantes nacionales
+                  <span>{ hidden1 ? "-" : "+"}</span>
+                </RequirementsHeading>
+                {hidden1 && <RequirementsInfo
+                  dangerouslySetInnerHTML={createMarkup(acf.requisitos_nacionales)} 
+                />}
+              </Requirements>
+              <Requirements>
+              <RequirementsHeading onClick={toggleTab2}>
+                  Requisitos para estudiantes extranjeros
+                  <span>{ hidden2 ? "-" : "+"}</span>
+                </RequirementsHeading>
+                {hidden2 && <RequirementsInfo
+                  dangerouslySetInnerHTML={createMarkup(acf.requisitos_extranjeros)} 
+                />}
+              </Requirements>
+            </RequirementTabs>
+          </FlexboxContainer>
+        </MainContainer>
+      </RequirementsSection>
     </>
   );
 }
@@ -129,8 +167,8 @@ const LinkButton = styled(Link)`
 `;
 
 const DescriptionCards = styled.div`
-  padding: 6rem 0;
-  background-color: ${props => props.backgroundColor ? colors.backgroundColor : colors.white};
+  padding: 4rem 0;
+  background-color: ${props => props.backgroundColor ? props.backgroundColor : colors.white};
 
   ul {
     margin: 0;
@@ -167,8 +205,8 @@ const HoursCard = styled.div`
   svg {
     grid-area: icon;
     padding: 20px;
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
     background-color: ${colors.primaryYellow100};
     border-radius: 16px;
   }
@@ -191,7 +229,7 @@ const DescriptionCard = styled.div`
   background-color: ${colors.lightGray};
   border-radius: 20px;
   display: grid;
-  margin: 4rem 0;
+  margin: 5rem 0;
   text-align: center;
   grid-template-rows: 120px 100px auto;
   grid-template-columns: 1fr;
@@ -201,8 +239,8 @@ const DescriptionCard = styled.div`
   svg {
     margin: 0 auto;
     padding: 20px;
-    width: 40px;
-    height: 40px;
+    width: 55px;
+    height: 55px;
     background-color: ${colors.primaryYellow100};
     border-radius: 20px;
     align-self: center;
@@ -221,10 +259,69 @@ const DescriptionCard = styled.div`
   }
 `;
 
-
 const FilterHeading = styled.h2`
   color: ${colors.primaryBlue};
   margin: 10rem 4rem;
   font-size: 42px;
   text-align: center;
+`;
+
+const FlexboxContainer = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  gap: 40px;
+`;
+
+const RequirementsSection = styled.div`
+  padding: 4rem 0;
+`;
+
+const GeneralRequirementes = styled.div`
+  width: 400px;
+  padding: 2rem 0;
+  h2 {
+    color: ${colors.primaryBlue};
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+  p, ul, ol {
+    color: ${colors.primaryText50};
+  }
+`;
+
+const RequirementTabs = styled.div`
+  flex-grow: 1;
+`;
+
+const Requirements = styled.div`
+  border-radius: 12px;
+  border: 1px solid ${colors.mediumGray};
+  margin-bottom: 1rem;
+`;
+
+const RequirementsInfo = styled.div`
+  padding: 0 4rem 2rem;
+  color: ${colors.primaryText50};
+`;
+
+const RequirementsHeading = styled.button`
+  padding: 2rem 4rem;
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  color: ${colors.primaryBlue};
+  font-size: 1.25rem;
+  appearance: none;
+  border: none;
+  outline: 0;
+  background-color: transparent;
+  cursor: pointer;
+
+  span {
+    display: block;
+    font-size: 2rem;
+  }
 `;
