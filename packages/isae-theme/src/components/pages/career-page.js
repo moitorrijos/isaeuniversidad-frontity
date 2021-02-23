@@ -137,6 +137,10 @@ const DescriptionCards = styled.div`
     padding: 0;
     list-style-position: inside;
   }
+
+  p, ul, ol {
+    color: ${colors.primaryText50}
+  }
 `;
 
 const HoursCard = styled.div`
@@ -183,25 +187,16 @@ const HoursCard = styled.div`
 `;
 
 const DescriptionCard = styled.div`
-  padding: 2rem 6rem;
+  padding: 6rem 4rem;
   background-color: ${colors.lightGray};
   border-radius: 20px;
   display: grid;
   margin: 4rem 0;
   text-align: center;
-  grid-template-rows: 140px auto auto;
+  grid-template-rows: 120px 100px auto;
+  grid-template-columns: 1fr;
   justify-content: center;
-  align-items: center;
-  grid-template-areas:
-    "icon"
-    "title"
-    "description";
   transition: all 0.25s ease-in-out;
-
-  h3 {
-    margin: 0;
-    color: ${colors.secondaryOrange500};
-  }
 
   svg {
     margin: 0 auto;
@@ -210,7 +205,15 @@ const DescriptionCard = styled.div`
     height: 40px;
     background-color: ${colors.primaryYellow100};
     border-radius: 20px;
+    align-self: center;
   }
+
+  h3 {
+    margin: 1rem 0;
+    color: ${colors.secondaryOrange500};
+    align-self: end;
+  }
+
 
   &:hover {
     transform: ${effects.transform};
