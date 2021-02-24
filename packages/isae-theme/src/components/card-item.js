@@ -13,11 +13,6 @@ const CardContainer = styled(Link)`
   transition: all 0.25s ease-in-out;
   text-decoration: none;
 
-  &:nth-of-type(n+4) {
-    opacity: 0;
-    pointer-events: none;
-  }
-
   &:hover {
     transform: ${effects.transform};
     box-shadow: ${effects.boxShadow};

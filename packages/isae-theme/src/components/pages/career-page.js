@@ -14,6 +14,9 @@ import ResolutionIcon from '../icons/resolution-icon';
 import ScheduleIcon from '../icons/schedule-icon';
 import BookIcon from '../icons/book-icon';
 import createMarkup from '../../helpers/create-markup';
+import Image from "@frontity/components/image";
+import SingleCard from '../base/single-card';
+import ContactForm from '../base/contact-form';
 
 const CareerPage = ({ state }) => {
   const career = state.source.get(state.router.link);
@@ -22,8 +25,9 @@ const CareerPage = ({ state }) => {
     acf,
     featured_image_src
   } = state.source[career.type][career.id];
-  const [ hidden1, setHidden1 ] = useState(false);
-  const [ hidden2, setHidden2 ] = useState(true);
+  const careers = state.source.get('/carrera').items;
+  const [ hidden1, setHidden1 ] = useState(true);
+  const [ hidden2, setHidden2 ] = useState(false);
   function toggleTab1() {
     setHidden1(!hidden1);
   }
@@ -116,6 +120,106 @@ const CareerPage = ({ state }) => {
           </FlexboxContainer>
         </MainContainer>
       </RequirementsSection>
+      <ProfileSection>
+        <MainContainer>
+          <ProfileFlexboxContainer>
+            <ProfileSectionDescription>
+              <h2>Perfil del Egresado</h2>
+              <h3>Saber Hacer</h3>
+              <div
+                dangerouslySetInnerHTML={createMarkup(acf.saber_hacer.saber_hacer_descripcion)}
+              />
+            </ProfileSectionDescription>
+            <ProfileSectionImages>
+              <ProfileImages>
+                {acf.saber_hacer.saber_hacer_imagen2 && <Image
+                  src={acf.saber_hacer.saber_hacer_imagen1.url}
+                  alt={acf.saber_hacer.saber_hacer_descripcion} 
+                />}
+                {acf.saber_hacer.saber_hacer_imagen2 && <Image
+                  src={acf.saber_hacer.saber_hacer_imagen2.url}
+                  alt={acf.saber_hacer.saber_hacer_descripcion} 
+                />}
+              </ProfileImages>
+            </ProfileSectionImages>
+          </ProfileFlexboxContainer>
+          <ProfileFlexboxContainer>
+            <ProfileSectionImages>
+              <ProfileImages>
+                {acf.saber_ser.saber_ser_imagen2 && <Image
+                  src={acf.saber_ser.saber_ser_imagen1.url}
+                  alt={acf.saber_ser.saber_ser_descripcion} 
+                />}
+                {acf.saber_ser.saber_ser_imagen2 && <Image
+                  src={acf.saber_ser.saber_ser_imagen2.url}
+                  alt={acf.saber_ser.saber_ser_descripcion} 
+                />}
+              </ProfileImages>
+            </ProfileSectionImages>
+            <ProfileSectionDescription>
+              <h3>Saber Ser</h3>
+              <div
+                dangerouslySetInnerHTML={createMarkup(acf.saber_ser.saber_ser_descripcion)}
+              />
+            </ProfileSectionDescription>
+          </ProfileFlexboxContainer>
+          <ProfileFlexboxContainer>
+            <ProfileSectionDescription>
+              <h3>Saber Convivir</h3>
+              <div
+                dangerouslySetInnerHTML={createMarkup(acf.saber_convivir.saber_convivir_descripcion)}
+              />
+            </ProfileSectionDescription>
+            <ProfileSectionImages>
+              <ProfileImages>
+                {acf.saber_convivir.saber_convivir_imagen2 && <Image
+                  src={acf.saber_convivir.saber_convivir_imagen1.url}
+                  alt={acf.saber_convivir.saber_convivir_descripcion} 
+                />}
+                {acf.saber_convivir.saber_convivir_imagen2 && <Image
+                  src={acf.saber_convivir.saber_convivir_imagen2.url}
+                  alt={acf.saber_convivir.saber_convivir_descripcion} 
+                />}
+              </ProfileImages>
+            </ProfileSectionImages>
+          </ProfileFlexboxContainer>
+          <ProfileFlexboxContainer>
+            <ProfileSectionImages>
+              <ProfileImages>
+                {acf.saber_conocer.saber_conocer_imagen2 && <Image
+                  src={acf.saber_conocer.saber_conocer_imagen1.url}
+                  alt={acf.saber_conocer.saber_conocer_descripcion} 
+                />}
+                {acf.saber_conocer.saber_conocer_imagen2 && <Image
+                  src={acf.saber_conocer.saber_conocer_imagen2.url}
+                  alt={acf.saber_conocer.saber_conocer_descripcion} 
+                />}
+              </ProfileImages> 
+            </ProfileSectionImages>
+            <ProfileSectionDescription>
+              <h3>Saber Conocer</h3>
+              <div
+                dangerouslySetInnerHTML={createMarkup(acf.saber_conocer.saber_conocer_descripcion)}
+              />
+            </ProfileSectionDescription>
+          </ProfileFlexboxContainer>
+        </MainContainer>
+      </ProfileSection>
+      <OtherPrograms>
+        <h2>Otros Programas</h2>
+        <MainContainer>
+          <Grid columns="3" gap="30px">
+            {[...careers].reverse().map(career => {
+              const available_career = state.source[career.type][career.id];
+              const { id, link, title, featured_image_src } = available_career;
+              return(
+                <SingleCard key={id} link={link} image={featured_image_src} title={title} />
+              );
+            })}
+          </Grid>
+        </MainContainer>
+      </OtherPrograms>
+      <ContactForm />
     </>
   );
 }
@@ -166,8 +270,15 @@ const LinkButton = styled(Link)`
   }
 `;
 
+const FilterHeading = styled.h2`
+  color: ${colors.primaryBlue};
+  margin: 8rem 2rem 4rem;
+  font-size: 42px;
+  text-align: center;
+`;
+
 const DescriptionCards = styled.div`
-  padding: 4rem 0;
+  padding: 0 0 4rem;
   background-color: ${props => props.backgroundColor ? props.backgroundColor : colors.white};
 
   ul {
@@ -259,13 +370,6 @@ const DescriptionCard = styled.div`
   }
 `;
 
-const FilterHeading = styled.h2`
-  color: ${colors.primaryBlue};
-  margin: 10rem 4rem;
-  font-size: 42px;
-  text-align: center;
-`;
-
 const FlexboxContainer = styled.div`
   display: flex;
   flex-flow: row wrap;
@@ -274,7 +378,7 @@ const FlexboxContainer = styled.div`
 `;
 
 const RequirementsSection = styled.div`
-  padding: 4rem 0;
+  padding: 4rem 0 10rem;
 `;
 
 const GeneralRequirementes = styled.div`
@@ -323,5 +427,59 @@ const RequirementsHeading = styled.button`
   span {
     display: block;
     font-size: 2rem;
+  }
+`;
+
+const ProfileSection = styled.div`
+  padding: 8rem 0;
+  background-image: linear-gradient(270deg, #C67A1D 0%, #F79824 100%);
+  color: ${colors.white};
+`;
+
+const ProfileFlexboxContainer = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 4rem 0;
+`;
+
+const ProfileSectionDescription = styled.div`
+  max-width: 500px;
+`;
+
+const ProfileSectionImages = styled.div`
+  max-width: 700px;
+  position: relative;
+`;
+
+const ProfileImages = styled.div`
+  display: grid;
+  grid-template-rows: 80px auto 80px;
+  grid-template-columns: 1fr 50px 1fr;
+  img {
+    border-radius: 12px;
+    width: 380px;
+    height: 460px;
+    object-fit: cover;
+    object-position: center;
+    &:nth-of-type(1) {
+      grid-column: 1 / 3;
+      grid-row: 1 / 3;
+    }
+    &:nth-of-type(2) {
+      grid-column: 2 / 4;
+      grid-row: 2 / 4;
+    }
+  }
+`;
+
+const OtherPrograms = styled.div`
+  padding: 6rem 4rem;
+
+  h2 {
+    color: ${colors.primaryBlue};
+    text-align: center;
+    margin-bottom: 4rem;
   }
 `;

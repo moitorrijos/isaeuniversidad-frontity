@@ -9,14 +9,14 @@ const CardContainer = styled(Link)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 272px;
   padding: 0 10px;
   text-decoration: none;
 
   figure {
+    width: 100%;
     img {
-      width: 272px;
-      height: 240px;
+      width: 100%;
+      height: 260px;
       border-radius: 20px;
       object-fit: cover;
       object-position: center;
