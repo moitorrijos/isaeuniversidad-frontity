@@ -55,20 +55,27 @@ const Date = styled.p`
   font-size: 14px;
 `;
 
+const EmptyImage = styled.div`
+  width: 100%;
+  height: 330px;
+  background-image: linear-gradient(${colors.white}, ${colors.lightGray});
+  border-radius: 14px;
+`;
+
 const AuthorName = styled.p`
   color: ${colors.primaryBlueBright};
 `;
 
-const SlimCardItem = ({ title, link, alt_text, source_url, postDate, name }) => {
+const SlimCardItem = ({ title, link, source_url, postDate, name }) => {
   const day = postDate.getDate();
   const getMonth = postDate.getMonth();
   const year = postDate.getFullYear();
   return (
     <SlimCardContainer>
       <SlimCardImage>
-        {source_url && (
-          <Image src={source_url} alt={alt_text} height="330" />
-          )}
+        {source_url ? (
+          <Image src={source_url} alt={title.rendered} height="330" />
+          ) : (<EmptyImage />)}
       </SlimCardImage>
       <SlimCardInfo link={link}>
         <Date>{day} de {months[parseInt(getMonth)]} de {year}</Date>

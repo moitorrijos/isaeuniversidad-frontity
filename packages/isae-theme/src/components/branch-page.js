@@ -45,6 +45,9 @@ const BranchPage = ({ state }) => {
         title={acf.ciudad}
         description={acf.direccion}
         imageUrl={acf.foto.url}
+        direccion={acf.direccion}
+        telefono={acf.telefono}
+        celular={acf.celular}
       />
       <BranchHeader>Oferta Académica</BranchHeader>
       <BranchParagraph>Disponible en la sede de {acf.ciudad}</BranchParagraph>

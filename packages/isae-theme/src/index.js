@@ -26,6 +26,7 @@ export default {
         await actions.source.fetch("/departamento");
         await actions.source.fetch("/category/destacada/");
         await actions.source.fetch("/category/actividades/");
+        await actions.source.fetch("/category/noticias/");
       }
     }
   },

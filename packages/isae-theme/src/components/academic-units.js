@@ -65,6 +65,7 @@ const AcademicUnits = ({ state }) => {
         <Grid columns="2" gap="40px">
           {[...departamentos].reverse().map(depto => {
             const {
+              id,
               acf,
               title,
               featured_image_src,
@@ -72,10 +73,9 @@ const AcademicUnits = ({ state }) => {
               descripcion_corta,
               numero_de_telefono
             } = state.source.departamento[depto.id];
-            console.log(acf.sede.post_name, campus);
             if ( acf.sede.post_name && acf.sede.post_name === campus ) {
               return(
-                <Unit>
+                <Unit key={id}>
                   <DepartmentImage>
                     { featured_image_src ?
                       <Image alt={title.rendered} src={featured_image_src} /> :

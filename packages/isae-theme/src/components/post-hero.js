@@ -10,7 +10,7 @@ const Hero = styled.div`
   background-image: url(${props => props.background});
   background-color: ${colors.lightGray};
   background-position: left top;
-  background-size: contain;
+  background-size: 30%;
   background-repeat: no-repeat;
   min-height: 95vh;
   position: relative;
@@ -34,9 +34,12 @@ const InfoCard = styled.div`
   grid-row: 2 / 3;
   position: relative;
   z-index: 2;
+  font-size: 1.2rem;
 
   h1 {
     margin-top: 0;
+    font-size: 32px;
+    line-height: 1.1;
     color: ${colors.primaryBlue};
   }
 `;
@@ -56,14 +59,23 @@ const InfoImage = styled.figure`
   }  
 `;
 
-const PostHero = ({ background, title, description, imageUrl }) => {
+const PostHero = ({ background, title, description, imageUrl, direccion, telefono, celular }) => {
   return(
     <Hero background={background}>
       <MainContainer>
         <HeroContainer>
           <InfoCard>
             <h1>{title}</h1>
-            <div dangerouslySetInnerHTML={createMarkup(description)} />
+            { direccion ?
+              ( <p>
+                <strong>Dirección: </strong>{" "}
+                <span dangerouslySetInnerHTML={createMarkup(direccion)} />
+              </p> )
+              :
+              ( <div dangerouslySetInnerHTML={createMarkup(description)} /> )
+            }
+            {telefono && <p><strong>Teléfono:</strong> {telefono}</p>}
+            {celular && <p><strong>WhatsApp:</strong> {celular}</p>}
           </InfoCard>
           <InfoImage>
             <Image alt={title} src={imageUrl} height="622" />

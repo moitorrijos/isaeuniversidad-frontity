@@ -8,6 +8,7 @@ import HomePage from './home-page';
 import AcademicsPage from './academics-page';
 import BranchPage from './branch-page';
 import CareerPage from './pages/career-page';
+import UniversityLifePage from './pages/university-life-page';
 import Footer from './general/footer';
 
 const globalStyles = css`
@@ -61,6 +62,7 @@ const Theme = ({ state }) => {
         <AcademicsPage when={data.isOfertaacadmica} />
         <BranchPage when={data.isSede} />
         <CareerPage when={data.isCarrera} />
+        <UniversityLifePage when={data.isVidauniversitaria} />
       </Switch>
       <Footer />
     </>

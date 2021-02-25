@@ -27,19 +27,12 @@ const HomeNews = ({ state }) => {
               id,
               title,
               link,
-              featured_media,
+              featured_image_src,
               date,
               author
             } = state.source[post.type][post.id];
             const { name } = state.source.author[author];
-            const media = state.source.attachment[featured_media];
             const postDate = new Date(date);
-            if (media) {
-              var { alt_text, source_url } = media
-            } else {
-              var alt_text = null;
-              var source_url = null;
-            }
             return(
               <SlimCardItem
                 key={id}
@@ -47,8 +40,7 @@ const HomeNews = ({ state }) => {
                 title={title}
                 link={link}
                 name={name}
-                alt_text={alt_text}
-                source_url={source_url}
+                source_url={featured_image_src}
               />
             )
           })}
