@@ -6,13 +6,15 @@ import SlimCardItem from '../slim-card-item';
 import colors from '../../styles/colors';
 
 const LatestNews = styled.div`
-  padding: 8rem 0;
+  padding: 4rem 0 0;
 `;
 
 const Heading = styled.h2`
   text-align: center;
   color: ${colors.primaryBlue};
   padding: 0 20px;
+  margin-top: 2rem;
+  margin-bottom: 8rem;
 `;
 
 const HomeNews = ({ state }) => {

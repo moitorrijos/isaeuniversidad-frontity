@@ -68,14 +68,14 @@ const PostHero = ({ background, title, description, imageUrl, direccion, telefon
             <h1>{title}</h1>
             { direccion ?
               ( <p>
-                <strong>Dirección: </strong>{" "}
+                <strong>Dirección:</strong>{" "}
                 <span dangerouslySetInnerHTML={createMarkup(direccion)} />
               </p> )
               :
               ( <div dangerouslySetInnerHTML={createMarkup(description)} /> )
             }
-            {telefono && <p><strong>Teléfono:</strong> {telefono}</p>}
-            {celular && <p><strong>WhatsApp:</strong> {celular}</p>}
+            {telefono && <p><strong>Teléfono:</strong>{" "}{telefono}</p>}
+            {celular && <p><strong>WhatsApp:</strong>{" "}{celular}</p>}
           </InfoCard>
           <InfoImage>
             <Image alt={title} src={imageUrl} height="622" />

@@ -24,6 +24,7 @@ const Heading = styled.h2`
   text-align: center;
   color: ${colors.primaryBlue};
   padding: 0 20px;
+  margin: 1rem 0 6rem;
 `;
 
 const UniversityLifePage = ({ state }) => {

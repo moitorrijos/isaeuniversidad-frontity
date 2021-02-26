@@ -13,7 +13,7 @@ const SlimCardContainer = styled.div`
   border-radius: 18px;
   transition: all 0.25s ease-in-out;
   text-decoration: none;
-  padding: 8rem 0;
+  padding: 0 0 8rem;
 `;
 
 const SlimCardImage = styled.figure`
