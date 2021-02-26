@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { styled, connect } from 'frontity';
-import Link from "@frontity/components/link";
 import colors from '../../styles/colors';
 import Chevron from '../icons/chevron';
 
@@ -11,7 +10,10 @@ const Nav = styled.nav`
   border: none;
 `;
 
-const MenuLink = styled.div`
+const MenuLink = styled.button`
+  border: none;
+  outline: 0;
+  appearance: none;
   padding: 42px 24px;
   cursor: pointer;
   text-decoration: none;
@@ -46,36 +48,55 @@ const Submenu = styled.div`
   }
 `;
 
+const SubSubmenu = styled.div`
+  display: ${props => props.hidden_submenu ? 'none' : 'block'};
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: ${colors.lightGray};
+  padding: 24px 40px;
+`;
+
 const SubMenuList = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   border-bottom: 1px solid ${colors.mediumGray};
   margin-bottom: 12px;
+`;
 
-  a {
-    padding: 24px 40px;
-    display: block;
-    text-decoration: none;
-    color: ${colors.primaryText100};
-    transition: all 0.25s ease-in-out;
-    font-size: 14px;
-  }
+const SubSubmenuList = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  padding: 40px 20px;
+`;
+
+const SubMenuLink = styled.button`
+  border: none;
+  outline: 0;
+  appearance: none;
+  padding: 42px 40px;
+  text-align: left;
+  display: block;
+  text-decoration: none;
+  color: ${colors.primaryText100};
+  background-color: ${colors.lightGray};
+  transition: all 0.25s ease-in-out;
+  font-size: 14px;
+  cursor: pointer;
 `;
 
 const Navigation = ({ state, actions }) => {
   const items = state.source.get('2').items;
   const [hidden, setHidden] = useState(true);
+  const [hidden_submenu, setHiddenSubmenu] = useState(true);
   const [currentMenu, setCurrentMenu] = useState(false);
   const [currentTitle, setCurrentTitle] = useState('');
   const [currentType, setCurrentType] = useState('');
   const [subMenuItems, setSubMenuItems] = useState([]);
-  const subMenuSlugs = [
-    {id: 1, slug: 'oferta-academica', cat: 'ofertaacadmica'},
-    {id: 2, slug: 'sedes', cat: 'sede' },
-    {id: 3, slug: 'vida-universitaria', cat: 'vidauniversitaria'}
-  ];
   const showSubmenu = (item, e) => {
-    const { title, type, url, object_slug } = item;
+    const { title, type, url, children } = item;
     e.preventDefault();
     setHidden(false);
     setCurrentMenu(!currentMenu);
@@ -86,20 +107,24 @@ const Navigation = ({ state, actions }) => {
     }
     if (title === currentTitle) setHidden(!hidden);
     setCurrentTitle(title);
-    const slug = subMenuSlugs.filter(slug => object_slug === slug.slug);
-    const currentSlug = slug.length ? slug[0].cat : null;
-    setSubMenuItems(state.source.get(`/${currentSlug}`).items);
+    setSubMenuItems(children);
   };
+  const showSubSubmenu = (subItem, e) => {
+    // const { url, title, type, children } = item;
+    e.preventDefault();
+    console.log(subItem);
+    setHiddenSubmenu(!hidden_submenu);
+  }
   return (
     <Nav>
       {items.map(item => {
-        const { id, title, type } = item;
+        const { id, title, type, children } = item;
+        console.log(children ? children : 'no children');
         const isCurrentMenuItem = (currentTitle === title) && !hidden
         return(
           <React.Fragment key={id}>
             <MenuLink
               onClick={e => showSubmenu(item, e)}
-              link="#0"
               style={isCurrentMenuItem ? {backgroundColor: colors.lightGray} : {backgroundColor: colors.white}}
             >
               {title}
@@ -109,19 +134,24 @@ const Navigation = ({ state, actions }) => {
                 />
               }
             </MenuLink>
-            <Submenu hidden={hidden}>
+            {children && <Submenu hidden={hidden}>
               <h2>{currentTitle}</h2>
               {currentType === "custom" &&
                 <SubMenuList>
-                  {subMenuItems && [...subMenuItems].reverse().map(item => {
-                    const {id, title, link} = state.source[item.type][item.id]
+                  {subMenuItems && subMenuItems.map(subItem => {
+                    const { id, title } = subItem;
                     return(
-                      <Link key={id} link={link} onClick={() => setHidden(!hidden)}>{title.rendered}</Link>
+                      <SubMenuLink key={id} onClick={e => showSubSubmenu(subItem, e)}>{title}</SubMenuLink>
                     )
                   })}
                 </SubMenuList>
               }
-            </Submenu>
+              <SubSubmenu hidden_submenu={hidden_submenu}>
+                <SubSubmenuList>
+                  <p>Sub Submenu goes here...</p>
+                </SubSubmenuList>
+              </SubSubmenu>
+            </Submenu>}
           </React.Fragment>
         )
       })}

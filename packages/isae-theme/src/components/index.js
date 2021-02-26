@@ -2,7 +2,7 @@ import React from 'react';
 import { Global, css, connect, Head } from 'frontity';
 import colors from '../styles/colors';
 import Switch from "@frontity/components/switch";
-import Title from './general/title'
+import Title from './general/title';
 import Header from './general/header';
 import HomePage from './home-page';
 import AcademicsPage from './academics-page';
