@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { styled, connect } from 'frontity';
 import colors from '../../styles/colors';
+import Link from '@frontity/components/link';
 import Chevron from '../icons/chevron';
 
 const Nav = styled.nav`
@@ -70,6 +71,12 @@ const SubSubmenuList = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   padding: 40px 20px;
+
+  a {
+    color: ${colors.primaryText100};
+    text-decoration: none;
+    font-size: 15px;
+  }
 `;
 
 const SubMenuLink = styled.button`
@@ -95,6 +102,7 @@ const Navigation = ({ state, actions }) => {
   const [currentTitle, setCurrentTitle] = useState('');
   const [currentType, setCurrentType] = useState('');
   const [subMenuItems, setSubMenuItems] = useState([]);
+  const [subSubmenuItems, setSubSubmenuItems] = useState([]);
   const showSubmenu = (item, e) => {
     const { title, type, url, children } = item;
     e.preventDefault();
@@ -103,23 +111,31 @@ const Navigation = ({ state, actions }) => {
     setCurrentType(type);
     if (type !== 'custom') {
       actions.router.set(url);
-      setHidden(true);
+      hideAllMenus();
     }
     if (title === currentTitle) setHidden(!hidden);
     setCurrentTitle(title);
     setSubMenuItems(children);
   };
   const showSubSubmenu = (subItem, e) => {
-    // const { url, title, type, children } = item;
+    const { children, url } = subItem;
     e.preventDefault();
-    console.log(subItem);
+    if (children) {
+      setSubSubmenuItems(children);
+    } else {
+      actions.router.set(url);
+      hideAllMenus();
+    }
     setHiddenSubmenu(!hidden_submenu);
+  }
+  const hideAllMenus = () => {
+    setHidden(true);
+    setHiddenSubmenu(true);
   }
   return (
     <Nav>
       {items.map(item => {
         const { id, title, type, children } = item;
-        console.log(children ? children : 'no children');
         const isCurrentMenuItem = (currentTitle === title) && !hidden
         return(
           <React.Fragment key={id}>
@@ -148,7 +164,12 @@ const Navigation = ({ state, actions }) => {
               }
               <SubSubmenu hidden_submenu={hidden_submenu}>
                 <SubSubmenuList>
-                  <p>Sub Submenu goes here...</p>
+                  {subSubmenuItems && subSubmenuItems.map(subSubmenuItem => {
+                    const { id, url, title } = subSubmenuItem;
+                    return(
+                      <Link key={id} link={url} onClick={ hideAllMenus }>{title}</Link>
+                    );
+                  })}
                 </SubSubmenuList>
               </SubSubmenu>
             </Submenu>}
