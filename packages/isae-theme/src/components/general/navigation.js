@@ -51,7 +51,7 @@ const Submenu = styled.div`
 `;
 
 const SubSubmenu = styled.div`
-  display: ${props => props.hidden_submenu ? 'none' : 'block'};
+  display: ${props => props.hidden_submenu ? 'none' : 'grid'};
   position: absolute;
   top: 100%;
   left: 0;
@@ -59,6 +59,14 @@ const SubSubmenu = styled.div`
   box-sizing: border-box;
   background-color: ${colors.lightGray};
   padding: 24px 40px;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+
+  a {
+    color: ${colors.primaryText100};
+    text-decoration: none;
+    font-size: 15px;
+    padding: 20px 40px;
+  }
 `;
 
 const SubMenuList = styled.div`
@@ -66,18 +74,6 @@ const SubMenuList = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   border-bottom: 1px solid ${colors.mediumGray};
   margin-bottom: 12px;
-`;
-
-const SubSubmenuList = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  padding: 40px 20px;
-
-  a {
-    color: ${colors.primaryText100};
-    text-decoration: none;
-    font-size: 15px;
-  }
 `;
 
 const SubMenuLink = styled.button`
@@ -112,6 +108,7 @@ const Navigation = ({ state, actions }) => {
   const showSubmenu = (item, e) => {
     const { title, type, url, children } = item;
     e.preventDefault();
+    hideAllMenus();
     setHidden(false);
     setCurrentMenu(!currentMenu);
     setCurrentType(type);
@@ -179,16 +176,14 @@ const Navigation = ({ state, actions }) => {
                   })}
                 </SubMenuList>
               }
-              <SubSubmenu hidden_submenu={hidden_submenu}>
-                <SubSubmenuList>
-                  {subSubmenuItems && subSubmenuItems.map(subSubmenuItem => {
-                    const { id, url, title } = subSubmenuItem;
-                    return(
-                      <Link key={id} link={url} onClick={ hideAllMenus }>{title}</Link>
-                    );
-                  })}
-                </SubSubmenuList>
-              </SubSubmenu>
+              {(currentTitle === title) && <SubSubmenu hidden_submenu={hidden_submenu}>
+                {subSubmenuItems && subSubmenuItems.map(subSubmenuItem => {
+                  const { id, url, title } = subSubmenuItem;
+                  return(
+                    <Link key={id} link={url} onClick={ hideAllMenus }>{title}</Link>
+                  );
+                })}
+              </SubSubmenu>}
             </Submenu>}
           </React.Fragment>
         )
