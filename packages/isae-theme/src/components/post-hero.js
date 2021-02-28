@@ -35,6 +35,7 @@ const InfoCard = styled.div`
   position: relative;
   z-index: 2;
   font-size: 1.2rem;
+  min-height: 420px;
 
   h1 {
     margin-top: 0;

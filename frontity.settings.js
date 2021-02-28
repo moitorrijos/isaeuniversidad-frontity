@@ -55,6 +55,11 @@ const settings = {
               type: "departamento",
               endpoint: "departamento",
               archive: "/departamento"
+            },
+            {
+              type: "investigacion",
+              endpoint: "investigacion",
+              archive: "/investigacion"
             }
           ]
         }

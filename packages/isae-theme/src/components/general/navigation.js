@@ -3,6 +3,7 @@ import { styled, connect } from 'frontity';
 import colors from '../../styles/colors';
 import Link from '@frontity/components/link';
 import Chevron from '../icons/chevron';
+import ArrowIcon from '../icons/arrow-icon';
 
 const Nav = styled.nav`
   padding: 0 24px;
@@ -62,14 +63,14 @@ const SubSubmenu = styled.div`
 
 const SubMenuList = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   border-bottom: 1px solid ${colors.mediumGray};
   margin-bottom: 12px;
 `;
 
 const SubSubmenuList = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   padding: 40px 20px;
 
   a {
@@ -85,13 +86,17 @@ const SubMenuLink = styled.button`
   appearance: none;
   padding: 42px 40px;
   text-align: left;
-  display: block;
+  display: flex;
+  align-items: center;
   text-decoration: none;
   color: ${colors.primaryText100};
   background-color: ${colors.lightGray};
   transition: all 0.25s ease-in-out;
   font-size: 14px;
   cursor: pointer;
+  svg {
+    margin-right: 10px;
+  }
 `;
 
 const Navigation = ({ state, actions }) => {
@@ -103,6 +108,7 @@ const Navigation = ({ state, actions }) => {
   const [currentType, setCurrentType] = useState('');
   const [subMenuItems, setSubMenuItems] = useState([]);
   const [subSubmenuItems, setSubSubmenuItems] = useState([]);
+  const [currentSubmenuTitle, setCurrentSubmenuTitle] = useState('');
   const showSubmenu = (item, e) => {
     const { title, type, url, children } = item;
     e.preventDefault();
@@ -118,7 +124,7 @@ const Navigation = ({ state, actions }) => {
     setSubMenuItems(children);
   };
   const showSubSubmenu = (subItem, e) => {
-    const { children, url } = subItem;
+    const { children, url, title } = subItem;
     e.preventDefault();
     if (children) {
       setSubSubmenuItems(children);
@@ -126,6 +132,7 @@ const Navigation = ({ state, actions }) => {
       actions.router.set(url);
       hideAllMenus();
     }
+    setCurrentSubmenuTitle(title);
     setHiddenSubmenu(!hidden_submenu);
   }
   const hideAllMenus = () => {
@@ -152,12 +159,22 @@ const Navigation = ({ state, actions }) => {
             </MenuLink>
             {children && <Submenu hidden={hidden}>
               <h2>{currentTitle}</h2>
-              {currentType === "custom" &&
+              {(currentType === "custom") &&
                 <SubMenuList>
                   {subMenuItems && subMenuItems.map(subItem => {
                     const { id, title } = subItem;
+                    const isCurrentSubmenuItem = (title === currentSubmenuTitle);
                     return(
-                      <SubMenuLink key={id} onClick={e => showSubSubmenu(subItem, e)}>{title}</SubMenuLink>
+                      <SubMenuLink
+                        key={id}
+                        onClick={e => showSubSubmenu(subItem, e)}
+                        style={isCurrentSubmenuItem ? { color: colors.primaryBlueBright } : { color: colors.primaryText100 }}
+                      >
+                        <ArrowIcon
+                          style={isCurrentSubmenuItem ? { display: 'inline-block' } : { display: 'none' }}
+                        />
+                        {title}
+                      </SubMenuLink>
                     )
                   })}
                 </SubMenuList>

@@ -24,6 +24,7 @@ export default {
         await actions.source.fetch("/vidauniversitaria");
         await actions.source.fetch("/carrera");
         await actions.source.fetch("/departamento");
+        await actions.source.fetch("/investigacion");
         await actions.source.fetch("/category/destacada/");
         await actions.source.fetch("/category/actividades/");
         await actions.source.fetch("/category/noticias/");
