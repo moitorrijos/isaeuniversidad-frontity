@@ -11,6 +11,7 @@ import CareerPage from './pages/career-page';
 import InvestigationsPage from './pages/investigations-page';
 import UniversityLifePage from './pages/university-life-page';
 import Footer from './general/footer';
+import Page from './page';
 
 const globalStyles = css`
   body {
@@ -19,7 +20,7 @@ const globalStyles = css`
     line-height: 1.6;
     padding: 0;
     margin: 0;
-    color: ${colors.primaryText80};
+    color: ${colors.primaryText50};
   }
 
   h1, h2, h3, h4 {
@@ -65,6 +66,7 @@ const Theme = ({ state }) => {
         <CareerPage when={data.isCarrera} />
         <UniversityLifePage when={data.isVidauniversitaria} />
         <InvestigationsPage when={data.isInvestigacion} />
+        <Page when={data.isPage} />
       </Switch>
       <Footer />
     </>
