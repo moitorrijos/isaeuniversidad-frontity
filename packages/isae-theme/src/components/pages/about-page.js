@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect, styled } from 'frontity';
 import colors from '../../styles/colors';
 import MainContainer from '../main-container';
 import Grid from '../grid';
 import Image from "@frontity/components/image";
 import createMarkup from '../../helpers/create-markup';
+import Link from "@frontity/components/link";
 
 const Message = styled.div`
   padding: 8rem 0;
@@ -87,11 +88,104 @@ const Icon = styled.figure`
   }
 `;
 
+const Reglamentos = styled.div`
+  background-color: ${colors.primaryBlueBright};
+  padding: 8rem 0 12rem;
+
+  h2 {
+    color: ${colors.white};
+    padding: 0;
+    text-align: center;
+    margin-bottom: 6rem;
+  }
+`;
+
+const Reglamento = styled.div`
+  padding: 40px 30px;
+  border-radius: 20px;
+  background-color: ${colors.white};
+  color: ${colors.primaryText50};
+
+  button {
+    cursor: pointer;
+    padding: 0;
+    color: ${colors.primaryBlueBright};
+    text-decoration: underline;
+  }
+`;
+
+const ReglamentosCarreras = styled.div`
+  padding: 6rem 0;
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    li {
+      padding: 1rem 0;
+    }
+  }
+`;
+
+const MoreInfo = styled.div`
+  padding: 8rem 0;
+  background-color: ${colors.primaryBlueBright};
+  background-image: url(${props => props.background ? props.background : ''});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  h2, h4 {
+    margin: 1rem 0;
+    text-align: center;
+    line-height: 1.1;
+    color: ${colors.white};
+  }
+
+  h4 {
+    margin-bottom: 4rem;
+  }
+`;
+
+const InnerContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+`;
+
+const Info = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  img {
+    width: 90px;
+    height: 90px;
+  }
+
+  h4, a {
+    color: ${colors.white};
+  }
+
+  h4 {
+    margin: 2rem 0 0.5rem;
+  }
+`;
+
 const AboutPage = ({ state }) => {
   const about = state.source.page[90517];
+  const sourceUrl = state.source.url;
   const { acf } = about;
   const background = `${state.source.url}/wp-content/uploads/2021/03/background-isae-9.svg`;
-  const values = Object.values(acf.nuestros_valores);
+  const valores = Object.values(acf.nuestros_valores);
+  const iconos = Object.keys(acf.nuestros_valores);
+  const reglamentos = Object.values(acf.reglamentos);
+  const more_info = acf.mas_informacion_sobre_isae;
+  const more_info_bg = sourceUrl + '/wp-content/uploads/2021/03/modelo-universidad.jpg';
+  const reglamentos_de_carreras = acf.reglamentos.reglamento_de_carreras.carreras;
+  const [ hidden, setHidden ] = useState(true);
+  const verCarreras = () => {
+    setHidden(!hidden);
+  }
   return(
     <>
       <Message background={background} bgColor={colors.lightGray}>
@@ -139,18 +233,60 @@ const AboutPage = ({ state }) => {
         <MainContainer>
           <h2>Nuestros Valores</h2>
           <Grid columns="4" gap="40px">
-            {values.map(value => (
-              <Value key={value.icono.ID ? value.icono.ID : value.icono}>
-                <Icon>
-                  <Image src={value.icono.url ? value.icono.url : ''} />
-                </Icon>
-                <h3>{value.titulo}</h3>
-                <p>{value.texto}</p>
-              </Value>
-            ))}
+            {valores.map((valor, index) => {
+              return(
+                <Value key={valor.icono.id ? valor.icono.ID : valor.icono}>
+                  <Icon>
+                    <Image src={valor.icono.url ? valor.icono.url : `${sourceUrl}/wp-content/uploads/2021/03/${iconos[index]}.svg`} />
+                  </Icon>
+                  <h3>{valor.titulo}</h3>
+                  <p>{valor.texto}</p>
+                </Value>
+              ) 
+            })}
           </Grid>
         </MainContainer>
       </Values>
+      <Reglamentos>
+        <h2>Reglamentos</h2>
+        <MainContainer>
+          <Grid columns="5" gap="20px">
+            {reglamentos.map(reglamento => (
+              <Reglamento>
+                <h4>{reglamento.titulo}</h4>
+                {reglamento.url && <Link src={reglamento.url}>Ver aquí</Link>}
+                {reglamento.carreras && <button onClick={verCarreras}>Ver reglamentos</button>}
+              </Reglamento>
+            ))}
+          </Grid>
+        </MainContainer>
+      </Reglamentos>
+      <ReglamentosCarreras style={ hidden ? { display: 'none' } : { display: 'block' } }>
+        <MainContainer>
+          <ul>
+            {Object.values(reglamentos_de_carreras).map(reglamento => (
+              <li>
+                <Link link={reglamento.url}>{reglamento.carrera} &raquo;</Link>
+              </li>
+            ))}
+          </ul>
+        </MainContainer>
+      </ReglamentosCarreras>
+      <MoreInfo background={more_info_bg}>
+        <h2>Más Información</h2>
+        <h4>Sobre ISAE</h4>
+        <MainContainer>
+          <InnerContainer>
+            {Object.values(more_info).map(info => (
+              <Info>
+                <Image src={info.icono.url} />
+                <h4>Modelo Educativo</h4>
+                <Link link={info.url}>Descargar aquí</Link>
+              </Info>
+            ))}
+          </InnerContainer>
+        </MainContainer>
+      </MoreInfo>
     </>
   );
 }

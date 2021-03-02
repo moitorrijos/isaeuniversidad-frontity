@@ -44,6 +44,18 @@ const globalStyles = css`
   h4 {
     font-size: 1.2rem;
   }
+
+  a {
+    color: ${colors.primaryBlueBright};
+  }
+
+  button {
+    appearance: none;
+    background: none;
+    border: none;
+    outline: 0;
+    font-size: 1rem;
+  }
 `
 
 const Theme = ({ state }) => {
