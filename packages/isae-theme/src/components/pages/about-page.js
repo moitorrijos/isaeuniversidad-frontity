@@ -252,7 +252,7 @@ const AboutPage = ({ state }) => {
         <MainContainer>
           <Grid columns="5" gap="20px">
             {reglamentos.map(reglamento => (
-              <Reglamento>
+              <Reglamento key={reglamento.carrera}>
                 <h4>{reglamento.titulo}</h4>
                 {reglamento.url && <Link src={reglamento.url}>Ver aquí</Link>}
                 {reglamento.carreras && <button onClick={verCarreras}>Ver reglamentos</button>}
@@ -265,7 +265,7 @@ const AboutPage = ({ state }) => {
         <MainContainer>
           <ul>
             {Object.values(reglamentos_de_carreras).map(reglamento => (
-              <li>
+              <li key={reglamento.url}>
                 <Link link={reglamento.url}>{reglamento.carrera} &raquo;</Link>
               </li>
             ))}
@@ -278,7 +278,7 @@ const AboutPage = ({ state }) => {
         <MainContainer>
           <InnerContainer>
             {Object.values(more_info).map(info => (
-              <Info>
+              <Info key={info.icono.id}>
                 <Image src={info.icono.url} />
                 <h4>Modelo Educativo</h4>
                 <Link link={info.url}>Descargar aquí</Link>

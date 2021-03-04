@@ -134,11 +134,11 @@ const CareerPage = ({ state }) => {
               <ProfileImages>
                 {acf.saber_hacer.saber_hacer_imagen2 && <Image
                   src={acf.saber_hacer.saber_hacer_imagen1.url}
-                  alt={acf.saber_hacer.saber_hacer_descripcion} 
+                  alt={acf.saber_hacer.saber_hacer_imagen1.alt} 
                 />}
                 {acf.saber_hacer.saber_hacer_imagen2 && <Image
                   src={acf.saber_hacer.saber_hacer_imagen2.url}
-                  alt={acf.saber_hacer.saber_hacer_descripcion} 
+                  alt={acf.saber_hacer.saber_hacer_imagen2.alt} 
                 />}
               </ProfileImages>
             </ProfileSectionImages>
