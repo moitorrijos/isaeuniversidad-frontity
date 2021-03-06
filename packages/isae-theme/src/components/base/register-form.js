@@ -64,7 +64,7 @@ const Form = styled.form`
   }
 `;
 
-const RegisterForm = ({ state }) => {
+const RegisterForm = ({ state, egresado }) => {
   const academics = state.source.get('/ofertaacadmica').items;
   const branches = state.source.get('/sede').items;
   const { register, handleSubmit } = useForm();
@@ -75,9 +75,9 @@ const RegisterForm = ({ state }) => {
       <MainContainer>
         <FormGrid>
           <FormInfo>
-            <h3>Soy Estudiante de ISAE UNIVERSIDAD</h3>
-            <p>Si eres estudiante de ISAE UNIVERSIDAD, completa el formulario y disfruta de actividades y beneficios exclusivos para ustedes.</p>
-            Si eres estudiante de ISAE UNIVERSIDAD, completa el formulario y disfruta de actividades y beneficios exclusivos para ustedes.
+            <h3>Soy {egresado ? 'Egresado' : 'Estudiante'} de ISAE UNIVERSIDAD</h3>
+            <p>Si eres {egresado ? 'egresado' : 'estudiante'} de ISAE UNIVERSIDAD, completa el formulario y disfruta de actividades y beneficios exclusivos para ustedes.</p>
+            Si eres {egresado ? 'egresado' : 'estudiante'} de ISAE UNIVERSIDAD, completa el formulario y disfruta de actividades y beneficios exclusivos para ustedes.
             <h3>Contáctenos</h3>
             <p>
               (+507) 2781432 Ext. 8094:<br />

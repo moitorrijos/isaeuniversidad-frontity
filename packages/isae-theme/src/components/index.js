@@ -57,6 +57,10 @@ const globalStyles = css`
     outline: 0;
     font-size: 1rem;
   }
+
+  figure {
+    margin: 0;
+  }
 `
 
 const Theme = ({ state }) => {

@@ -12,7 +12,7 @@ const SlimHeroContainer = styled.div`
   background-repeat: no-repeat;
   background-size: contain;
   background-position: left center;
-  background-color: ${colors.lightGray};
+  background-color: ${props => props.bgColor ? props.bgColor : colors.lightGray};
 `;
 
 const FeaturedImage = styled.figure`
@@ -39,9 +39,9 @@ const DescriptionContainer = styled.div`
 `;
 
 
-const SlimHero = ({ background, featured_image, title, description }) => {
+const SlimHero = ({ background, bgColor, featured_image, title, description }) => {
   return(
-    <SlimHeroContainer background={background}>
+    <SlimHeroContainer background={background} bgColor={bgColor}>
       <MainContainer>
         <Grid columns="2" gap="40px">
           <FeaturedImage>
