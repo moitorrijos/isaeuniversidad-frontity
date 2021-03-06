@@ -6,6 +6,8 @@ import Link from "@frontity/components/link";
 import MainContainer from '../main-container';
 import Grid from '../grid';
 import HoursIcon from '../icons/hours-icon';
+import CountUp from 'react-countup';
+import { InView } from 'react-intersection-observer';
 import PracticeHoursIcon from '../icons/practice-hours-icon';
 import CreditsIcon from '../icons/credits-icon';
 import FolderIcon from '../icons/folder-icon';
@@ -46,22 +48,46 @@ const CareerPage = ({ state }) => {
           <Grid columns="4" gap="20px">
             <HoursCard>
               <HoursIcon />
-              <h2>{acf.total_horas_academicas}</h2>
+              <CountUp start={0} end={+acf.total_horas_academicas}>
+                {({ countUpRef, start }) => (
+                    <InView as="h2" onChange={start}>
+                      <span ref={countUpRef} />
+                    </InView>
+                )}
+              </CountUp>
               <p>Total de Horas Teóricas</p>
             </HoursCard>
             <HoursCard>
               <PracticeHoursIcon />
-              <h2>{acf.total_horas_practicas}</h2>
+              <CountUp start={0} end={+acf.total_horas_practicas}>
+                {({ countUpRef, start }) => (
+                    <InView as="h2" onChange={start}>
+                      <span ref={countUpRef} />
+                    </InView>
+                )}
+              </CountUp>
               <p>Total de Horas Prácticas</p>
             </HoursCard>
             <HoursCard>
               <CreditsIcon />
-              <h2>{acf.total_creditos}</h2>
+              <CountUp start={0} end={+acf.total_creditos}>
+                {({ countUpRef, start }) => (
+                    <InView as="h2" onChange={start}>
+                      <span ref={countUpRef} />
+                    </InView>
+                )}
+              </CountUp>
               <p>Total de Créditos</p>
             </HoursCard>
             <HoursCard>
               <FolderIcon />
-              <h2>{acf.total_de_asignaturas}</h2>
+              <CountUp start={0} end={+acf.total_de_asignaturas}>
+                {({ countUpRef, start }) => (
+                    <InView as="h2" onChange={start}>
+                      <span ref={countUpRef} />
+                    </InView>
+                )}
+              </CountUp>
               <p>Total de Asignaturas</p>
             </HoursCard>
           </Grid>

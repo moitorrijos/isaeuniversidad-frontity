@@ -8,6 +8,8 @@
   ],
   "license": "Apache-2.0",
   "dependencies": {
-    "frontity": "^1.13.0"
+    "frontity": "^1.13.0",
+    "react-countup": "^4.3.3",
+    "react-intersection-observer": "^8.31.0"
   }
 }
