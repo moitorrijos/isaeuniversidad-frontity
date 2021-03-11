@@ -1,5 +1,6 @@
 import React from 'react';
 import { styled } from 'frontity';
+import { effects } from '../../styles/effects';
 import TopHeader from './top-header';
 import Navigation from './navigation';
 import Logo from './logo';
@@ -16,6 +17,7 @@ const HeaderContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   height: 104px;
+  box-shadow: ${effects.boxShadow};
 `
 
 const Header = () => (

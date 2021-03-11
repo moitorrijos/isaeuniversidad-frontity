@@ -8,7 +8,7 @@ import MainContainer from './main-container';
 
 const Hero = styled.div`
   background-image: url(${props => props.background});
-  background-color: ${colors.lightGray};
+  background-color: ${props => props.bgColor ? props.bgColor : colors.lightGray};
   background-position: left top;
   background-size: 30%;
   background-repeat: no-repeat;
@@ -39,7 +39,7 @@ const InfoCard = styled.div`
 
   h1 {
     margin-top: 0;
-    font-size: 32px;
+    font-size: 42px;
     line-height: 1.1;
     color: ${colors.primaryBlue};
   }
@@ -60,9 +60,9 @@ const InfoImage = styled.figure`
   }  
 `;
 
-const PostHero = ({ background, title, description, imageUrl, direccion, telefono, celular }) => {
+const PostHero = ({ background, bgColor, title, description, imageUrl, direccion, telefono, celular }) => {
   return(
-    <Hero background={background}>
+    <Hero background={background} bgColor={bgColor}>
       <MainContainer>
         <HeroContainer>
           <InfoCard>

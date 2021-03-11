@@ -19,6 +19,7 @@ export default {
         await actions.source.fetch("54");
         await actions.source.fetch("47");
         await actions.source.fetch("48");
+        await actions.source.fetch("/media");
         await actions.source.fetch("/sede");
         await actions.source.fetch("/ofertaacadmica");
         await actions.source.fetch("/vidauniversitaria");

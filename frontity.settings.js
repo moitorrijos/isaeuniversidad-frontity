@@ -27,6 +27,11 @@ const settings = {
           "url": process.env.WP_SOURCE_URL,
           "postTypes": [
             {
+              type: "media",
+              endpoint: "media",
+              archive: "/media",
+            },
+            {
               type: "sede",
               endpoint: "sede",
               archive: "/sede"

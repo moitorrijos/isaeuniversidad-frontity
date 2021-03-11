@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { styled, connect } from 'frontity';
 import colors from '../../styles/colors';
+import { effects } from '../../styles/effects';
 import Link from '@frontity/components/link';
 import Chevron from '../icons/chevron';
 import ArrowIcon from '../icons/arrow-icon';
@@ -40,7 +41,7 @@ const Submenu = styled.div`
   width: 100%;
   box-sizing: border-box;
   background-color: ${colors.lightGray};
-  padding: 24px 40px;
+  padding: 12px 40px 0;
 
   h2 {
     font-size: 20px;
@@ -58,29 +59,30 @@ const SubSubmenu = styled.div`
   width: 100%;
   box-sizing: border-box;
   background-color: ${colors.lightGray};
-  padding: 24px 40px;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  padding: 12px 40px 24px;
+  grid-template-columns: repeat(4, minmax(340px, 1fr));
+  box-shadow: ${effects.boxShadow};
 
   a {
     color: ${colors.primaryText100};
     text-decoration: none;
     font-size: 15px;
-    padding: 20px 40px;
+    padding: 24px 40px;
   }
 `;
 
 const SubMenuList = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(4, minmax(260px, 1fr));
   border-bottom: 1px solid ${colors.mediumGray};
-  margin-bottom: 12px;
+  margin-bottom: 18px;
 `;
 
 const SubMenuLink = styled.button`
   border: none;
   outline: 0;
   appearance: none;
-  padding: 42px 40px;
+  padding: 18px 40px 24px;
   text-align: left;
   display: flex;
   align-items: center;
