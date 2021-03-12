@@ -42,7 +42,7 @@ const FunctionsSection = styled.div`
 const CenteredHeading = styled.h2`
   padding: 0 4rem;
   text-align: center;
-  color: ${colors.white};
+  color: ${props => props.color};
 `;
 
 const Functions = styled.div`
@@ -60,19 +60,7 @@ const Functions = styled.div`
 
     li {
       margin: 2rem 0;
-      /* list-style-image: url("${props=>props.stateSource}"); */
-
-      &:before {
-        content: '';
-        display: inline-block;
-        height: 18px;
-        width: 18px;
-        top: 4px;
-        background-image: url("${props=>props.stateSource}");
-        position: absolute;
-        left: -20px;
-        z-index: 4;
-      }
+      list-style-image: url("${props=>props.stateSource}");
 
       &:first-of-type {
         margin-top: 0;
@@ -81,10 +69,53 @@ const Functions = styled.div`
   }
 `;
 
+const DownloadButton = styled(Link)`
+  padding: 1rem 2rem;
+  background-color: ${colors.primaryBlueBright};
+  color: ${colors.white};
+  display: inline-block;
+  margin-top: 1rem;
+  border-radius: 8px;
+  text-decoration: none;
+`;
+
+const MemorySection = styled.div`
+  padding: 10rem 0;
+  background-image: url(${props => props.background});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center top;
+`;
+
+const MemoryCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4rem;
+
+  h3 {
+    color: ${colors.primaryBlue};
+  }
+
+  img {
+    display: block;
+    width: 80px;
+    height: 80px;
+    border-radius: 12px;
+  }
+
+  a {
+    color: ${colors.primaryBlue};
+    text-align: center;
+  }
+`;
+
 const PlanningPage = ({ state }) => {
   const plan = state.source.page[91148];
   const { acf, title, featured_image_src } = plan;
   const background = state.source.url+'/wp-content/uploads/2021/03/background-isae-11.svg';
+  const background2 = state.source.url+'/wp-content/uploads/2021/03/background-isae-12.svg';
   const imageUrl = featured_image_src;
   const images = state.source.attachment;
   const listStyle = state.source.url+'/wp-content/uploads/2021/03/check.svg';
@@ -131,7 +162,7 @@ const PlanningPage = ({ state }) => {
         </MainContainer>
       </PlanningSection>
       <FunctionsSection>
-        <CenteredHeading>{acf.funciones.titulo}</CenteredHeading>
+        <CenteredHeading color={colors.white}>{acf.funciones.titulo}</CenteredHeading>
         <MainContainer>
           <Functions
             stateSource={listStyle}
@@ -145,6 +176,9 @@ const PlanningPage = ({ state }) => {
             <PlanDescription>
               <h2>{acf.plan_etrategico.titulo}</h2>
               <div dangerouslySetInnerHTML={createMarkup(acf.plan_etrategico.descripcion)} />
+              <DownloadButton link={acf.plan_etrategico.descarga ? acf.plan_etrategico.descarga : '#0'}>
+                Descargar Políticas
+              </DownloadButton>
             </PlanDescription>
             <PlanImage>
               <Image
@@ -155,6 +189,33 @@ const PlanningPage = ({ state }) => {
           </Grid>
         </MainContainer>
       </PlanningSection>
+      <MemorySection background={background2}>
+        <CenteredHeading color={colors.primaryBlue}>Memorias Institucionales</CenteredHeading>
+        <MainContainer>
+          <Grid columns="4" gap="30px">
+            <MemoryCard>
+              <Image src={acf.memorias1.icono.url ? acf.memorias1.icono.url : images[acf.memorias1.icono].source_url} />
+              <h3>{acf.memorias1.ano}</h3>
+              <Link link={acf.memorias1.url}>Descargar Memoria Institucional</Link>
+            </MemoryCard>
+            <MemoryCard>
+              <Image src={acf.memorias2.icono.url ? acf.memorias2.icono.url : images[acf.memorias2.icono].source_url} />
+              <h3>{acf.memorias2.ano}</h3>
+              <Link link={acf.memorias2.url}>Descargar Memoria Institucional</Link>
+            </MemoryCard>
+            <MemoryCard>
+              <Image src={acf.memorias3.icono.url ? acf.memorias3.icono.url : images[acf.memorias3.icono].source_url} />
+              <h3>{acf.memorias3.ano}</h3>
+              <Link link={acf.memorias3.url}>Descargar Memoria Institucional</Link>
+            </MemoryCard>
+            <MemoryCard>
+              <Image src={acf.memorias4.icono.url ? acf.memorias4.icono.url : images[acf.memorias4.icono].source_url} />
+              <h3>{acf.memorias4.ano}</h3>
+              <Link link={acf.memorias4.url}>Descargar Memoria Institucional</Link>
+            </MemoryCard>
+          </Grid>
+        </MainContainer>
+      </MemorySection>
     </>
   );
 }
