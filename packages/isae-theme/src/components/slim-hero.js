@@ -45,7 +45,7 @@ const SlimHero = ({ background, bgColor, featured_image, title, description }) =
       <MainContainer>
         <Grid columns="2" gap="40px">
           <FeaturedImage>
-            <Image src={featured_image} alt={title.rendered} />
+            <Image src={featured_image} alt={title} />
           </FeaturedImage>
           <DescriptionContainer>
             <h1>{title}</h1>

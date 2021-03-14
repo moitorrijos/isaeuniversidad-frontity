@@ -24,8 +24,6 @@
     "@frontity/wp-source": "^1.11.2",
     "dotenv": "^8.2.0",
     "frontity": "^1.14.2",
-    "isae-theme": "file:packages/isae-theme",
-    "react-countup": "^4.3.3",
-    "react-hook-form": "^6.15.4"
+    "isae-theme": "file:packages/isae-theme"
   }
 }

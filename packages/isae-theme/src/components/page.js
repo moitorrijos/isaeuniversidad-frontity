@@ -3,6 +3,7 @@ import { connect } from 'frontity';
 import AboutPage from './pages/about-page';
 import AlumniPage from './pages/alumni-page';
 import PlanningPage from './pages/planning-page';
+import PaymentPage from './pages/payment-page';
 
 const Page = ({ state }) => {
   const page = state.source.get(state.router.link);
@@ -12,6 +13,8 @@ const Page = ({ state }) => {
     return(<AlumniPage />);
   } else if (page.id === 91148) {
     return(<PlanningPage />);
+  } else if (page.id === 91204) {
+    return(<PaymentPage />);
   }
 }
 

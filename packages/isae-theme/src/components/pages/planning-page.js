@@ -6,6 +6,7 @@ import PostHero from '../post-hero';
 import MainContainer from '../main-container';
 import Grid from '../grid';
 import Image from "@frontity/components/image";
+import PrimaryButton from '../primary-button';
 import createMarkup from '../../helpers/create-markup';
 import Link from "@frontity/components/link";
 
@@ -69,16 +70,6 @@ const Functions = styled.div`
   }
 `;
 
-const DownloadButton = styled(Link)`
-  padding: 1rem 2rem;
-  background-color: ${colors.primaryBlueBright};
-  color: ${colors.white};
-  display: inline-block;
-  margin-top: 1rem;
-  border-radius: 8px;
-  text-decoration: none;
-`;
-
 const MemorySection = styled.div`
   padding: 10rem 0;
   background-image: url(${props => props.background});
@@ -117,9 +108,7 @@ const PlanningPage = ({ state }) => {
   const background = state.source.url+'/wp-content/uploads/2021/03/background-isae-11.svg';
   const background2 = state.source.url+'/wp-content/uploads/2021/03/background-isae-12.svg';
   const imageUrl = featured_image_src;
-  const images = state.source.attachment;
   const listStyle = state.source.url+'/wp-content/uploads/2021/03/check.svg';
-  console.log(plan);
   return(
     <>
       <PostHero
@@ -138,7 +127,7 @@ const PlanningPage = ({ state }) => {
             </PlanDescription>
             <PlanImage>
               <Image
-                src={acf.planificacion.imagen.url ? acf.planificacion.imagen.url : images[acf.planificacion.imagen].source_url}
+                src={acf.planificacion.imagen.url ? acf.planificacion.imagen.url : ''}
                 alt={acf.planificacion.imagen.alt ? acf.planificacion.imagen.alt : ''}
               />
             </PlanImage>
@@ -150,7 +139,7 @@ const PlanningPage = ({ state }) => {
           <Grid columns="2" gap="100px">
             <PlanImage>
               <Image
-                src={acf.objetivos.imagen.url ? acf.objetivos.imagen.url : images[acf.objetivos.imagen].source_url}
+                src={acf.objetivos.imagen.url ? acf.objetivos.imagen.url : state.source.url+'/wp-content/uploads/2021/03/Rectangle10.jpg'}
                 alt={acf.objetivos.imagen.alt ? acf.objetivos.imagen.alt : ''}
               />
             </PlanImage>
@@ -176,13 +165,13 @@ const PlanningPage = ({ state }) => {
             <PlanDescription>
               <h2>{acf.plan_etrategico.titulo}</h2>
               <div dangerouslySetInnerHTML={createMarkup(acf.plan_etrategico.descripcion)} />
-              <DownloadButton link={acf.plan_etrategico.descarga ? acf.plan_etrategico.descarga : '#0'}>
+              <PrimaryButton link={acf.plan_etrategico.descarga ? acf.plan_etrategico.descarga : '#0'}>
                 Descargar Políticas
-              </DownloadButton>
+              </PrimaryButton>
             </PlanDescription>
             <PlanImage>
               <Image
-                src={acf.plan_etrategico.imagen.url ? acf.plan_etrategico.imagen.url : images[acf.plan_etrategico.imagen].source_url}
+                src={acf.plan_etrategico.imagen.url ? acf.plan_etrategico.imagen.url : ''}
                 alt={acf.plan_etrategico.imagen.alt ? acf.plan_etrategico.imagen.alt : ''}
               />
             </PlanImage>
@@ -194,22 +183,22 @@ const PlanningPage = ({ state }) => {
         <MainContainer>
           <Grid columns="4" gap="30px">
             <MemoryCard>
-              <Image src={acf.memorias1.icono.url ? acf.memorias1.icono.url : images[acf.memorias1.icono].source_url} />
+              <Image src={acf.memorias1.icono.url ? acf.memorias1.icono.url : state.source.url+'/wp-content/uploads/2021/03/memorias1.svg'} />
               <h3>{acf.memorias1.ano}</h3>
               <Link link={acf.memorias1.url}>Descargar Memoria Institucional</Link>
             </MemoryCard>
             <MemoryCard>
-              <Image src={acf.memorias2.icono.url ? acf.memorias2.icono.url : images[acf.memorias2.icono].source_url} />
+              <Image src={acf.memorias2.icono.url ? acf.memorias2.icono.url : state.source.url+'/wp-content/uploads/2021/03/memorias2.svg'} />
               <h3>{acf.memorias2.ano}</h3>
               <Link link={acf.memorias2.url}>Descargar Memoria Institucional</Link>
             </MemoryCard>
             <MemoryCard>
-              <Image src={acf.memorias3.icono.url ? acf.memorias3.icono.url : images[acf.memorias3.icono].source_url} />
+              <Image src={acf.memorias3.icono.url ? acf.memorias3.icono.url : state.source.url+'/wp-content/uploads/2021/03/memorias3.svg'} />
               <h3>{acf.memorias3.ano}</h3>
               <Link link={acf.memorias3.url}>Descargar Memoria Institucional</Link>
             </MemoryCard>
             <MemoryCard>
-              <Image src={acf.memorias4.icono.url ? acf.memorias4.icono.url : images[acf.memorias4.icono].source_url} />
+              <Image src={acf.memorias4.icono.url ? acf.memorias4.icono.url : state.source.url+'/wp-content/uploads/2021/03/memorias4.svg'} />
               <h3>{acf.memorias4.ano}</h3>
               <Link link={acf.memorias4.url}>Descargar Memoria Institucional</Link>
             </MemoryCard>
