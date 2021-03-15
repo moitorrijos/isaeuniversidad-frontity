@@ -29,6 +29,7 @@ const PaymentImage = styled.figure`
 
 const PaymentDescription = styled.div`
   align-self: center;
+  padding: 4rem 0;
   max-width: 475px;
   color: ${colors.primaryText50};
   h1 {

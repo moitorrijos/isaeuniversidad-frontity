@@ -54,8 +54,8 @@ const HomeAcademic = ({ state }) => {
   const items = state.source.get('/ofertaacadmica').items;
   const backgroundUrl = state.source.url;
   return ([...items].reverse().map((item, index) => {
-    const { id, title, featured_image_src, acf } = state.source[item.type][item.id]
-    const position = +index + 1
+    const { id, title, featured_image_src, acf, link } = state.source[item.type][item.id];
+    const position = +index + 1;
     if (index % 2 !== 0) {
       return (
         <Academic
@@ -76,7 +76,7 @@ const HomeAcademic = ({ state }) => {
                 <MainButton
                   background={colors.primaryBlue}
                   color={colors.white}
-                  link="#0"
+                  link={link}
                 >
                   Ver Ofertas
                 </MainButton>
@@ -102,7 +102,7 @@ const HomeAcademic = ({ state }) => {
                 <MainButton
                   background={colors.primaryBlue}
                   color={colors.white}
-                  link="#0"
+                  link={link}
                 >
                   Ver Ofertas
                 </MainButton>

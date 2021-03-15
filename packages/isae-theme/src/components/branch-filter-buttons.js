@@ -47,8 +47,8 @@ const BranchFilterButtons = ({ state, branches }) => {
                   backgroundColor: colors.secondaryBlue,
                   color: colors.white
                  } : {
-                   backgroundColor: colors.white,
-                   color: colors.secondaryBlue
+                  backgroundColor: colors.white,
+                  color: colors.secondaryBlue
                  } }
               >
                   {acf.ciudad}

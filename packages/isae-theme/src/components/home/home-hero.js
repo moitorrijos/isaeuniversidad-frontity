@@ -4,6 +4,8 @@ import colors from '../../styles/colors';
 import MainContainer from '../main-container';
 import MainButton from '../main-button';
 import Image from "@frontity/components/image";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
 
 const HeroContainer = styled.div`
   background-color: ${colors.primaryBlueBright};
@@ -54,31 +56,58 @@ const HomeHero = ({ state }) => {
   return (
     <HeroContainer url={backgrouldUrl}>
       <MainContainer>
-        <HeroInner url={backgrouldUrl}>
-          <HeroInfo>
-            <h1>Matrículas Abiertas</h1>
-            <p>
-              La U de las oportunidades.{' '}
-              Matricúlate hoy mismo.{' '}
-              Estudia en cualquiera de nuestras 8 sedes.{' '}
-              <em>#estudiaenISAE</em>
-            </p>
-            <MainButton
-              background={colors.primaryYellow}
-              color={colors.primaryBlue}
-              link="#0"
-            >
-              Más Información
-            </MainButton>
-          </HeroInfo>
-          <HeroImage>
-            <Image
-              alt={title.rendered}
-              src={acf.foto.sizes["1536x1536"]}
-              height="620"
-            />
-          </HeroImage>
-        </HeroInner>
+        <Carousel>
+          <HeroInner url={backgrouldUrl}>
+            <HeroInfo>
+              <h1>Matrículas Abiertas</h1>
+              <p>
+                La U de las oportunidades.{' '}
+                Matricúlate hoy mismo.{' '}
+                Estudia en cualquiera de nuestras 8 sedes.{' '}
+                <em>#estudiaenISAE</em>
+              </p>
+              <MainButton
+                background={colors.primaryYellow}
+                color={colors.primaryBlue}
+                link="#0"
+              >
+                Más Información
+              </MainButton>
+            </HeroInfo>
+            <HeroImage>
+              <Image
+                alt={title.rendered}
+                src={acf.foto.sizes["1536x1536"]}
+                height="620"
+              />
+            </HeroImage>
+          </HeroInner>
+          <HeroInner url={backgrouldUrl}>
+            <HeroInfo>
+              <h1>Matrículas Abiertas</h1>
+              <p>
+                La U de las oportunidades.{' '}
+                Matricúlate hoy mismo.{' '}
+                Estudia en cualquiera de nuestras 8 sedes.{' '}
+                <em>#estudiaenISAE</em>
+              </p>
+              <MainButton
+                background={colors.primaryYellow}
+                color={colors.primaryBlue}
+                link="#0"
+              >
+                Más Información
+              </MainButton>
+            </HeroInfo>
+            <HeroImage>
+              <Image
+                alt={title.rendered}
+                src={acf.foto.sizes["1536x1536"]}
+                height="620"
+              />
+            </HeroImage>
+          </HeroInner>
+        </Carousel>
       </MainContainer>
     </HeroContainer>
   );
