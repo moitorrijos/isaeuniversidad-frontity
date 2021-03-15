@@ -4,8 +4,6 @@ import colors from '../../styles/colors';
 import MainContainer from '../main-container';
 import MainButton from '../main-button';
 import Image from "@frontity/components/image";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from 'react-responsive-carousel';
 
 const HeroContainer = styled.div`
   background-color: ${colors.primaryBlueBright};
@@ -16,8 +14,18 @@ const HeroContainer = styled.div`
   background-size: 300px;
 `;
 
-const HeroInner = styled.div`
+
+const Carousel = styled.div`
   height: 780px;
+  position: relative;
+`;
+
+const HeroInner = styled.div`
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
   display: grid;
   grid-template-columns: 368px 1fr;
   gap: 100px;
@@ -49,6 +57,7 @@ const HeroImage = styled.div`
     border-radius: 24px;
   }
 `;
+
 
 const HomeHero = ({ state }) => {
   const { acf, title } = state.source.sede[36];
