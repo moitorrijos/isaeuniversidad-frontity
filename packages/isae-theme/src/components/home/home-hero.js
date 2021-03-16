@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { styled, connect } from 'frontity';
 import colors from '../../styles/colors';
+import useCarousel from '../../hooks/use-carousel';
 import MainContainer from '../main-container';
 import MainButton from '../main-button';
 import Image from "@frontity/components/image";
@@ -82,35 +83,37 @@ const HomeHero = ({ state }) => {
   const { acf, title } = state.source.sede[36];
   const backgrouldUrl = state.source.url;
   const [ currentItem, setCurrentItem ] = useState(1);
-  let item1; let item2; let item3;
-  const handleCarousel = (number) => {
-    setCurrentItem(number);
-  }
-  if (currentItem === 1) {
-    item1 = { left: 0 };
-    item2 = { left: "100%", opacity: 0.25 };
-    item3 = { left: "200%", opacity: 0.25 };
-  } else if (currentItem === 2) {
-    item1 = { left: "-100%", opacity: 0.25 };
-    item2 = { left: 0 };
-    item3 = { left: "100%", opacity: 0.25 };
-  } else if (currentItem === 3) {
-    item1 = { left: "-200%", opacity: 0.25 };
-    item2 = { left: "-100%", opacity: 0.25 };
-    item3 = { left: 0 };
-  }
-  useEffect(() => {
-    const autoplay = setInterval(() => {
-      if (currentItem === 3) setCurrentItem(1);
-      else if (currentItem >= 1) setCurrentItem(currentItem + 1);
-    }, 7200);
-    return () => { clearInterval(autoplay) };
-  });
+  const carouselItems = useCarousel(currentItem, setCurrentItem);
+  // const [ currentItem, setCurrentItem ] = useState(1);
+  // let item1; let item2; let item3;
+  // const handleCarousel = (number) => {
+  //   setCurrentItem(number);
+  // }
+  // if (currentItem === 1) {
+  //   item1 = { left: 0 };
+  //   item2 = { left: "100%", opacity: 0.25 };
+  //   item3 = { left: "200%", opacity: 0.25 };
+  // } else if (currentItem === 2) {
+  //   item1 = { left: "-100%", opacity: 0.25 };
+  //   item2 = { left: 0 };
+  //   item3 = { left: "100%", opacity: 0.25 };
+  // } else if (currentItem === 3) {
+  //   item1 = { left: "-200%", opacity: 0.25 };
+  //   item2 = { left: "-100%", opacity: 0.25 };
+  //   item3 = { left: 0 };
+  // }
+  // useEffect(() => {
+  //   const autoplay = setInterval(() => {
+  //     if (currentItem === 3) setCurrentItem(1);
+  //     else if (currentItem >= 1) setCurrentItem(currentItem + 1);
+  //   }, 7200);
+  //   return () => { clearInterval(autoplay) };
+  // });
   return (
     <HeroContainer url={backgrouldUrl}>
       <MainContainer>
         <Carousel>
-          <HeroInner style={item1}>
+          <HeroInner style={carouselItems.item1}>
             <HeroInfo>
               <h1>Carrusel 1</h1>
               <p>
@@ -135,7 +138,7 @@ const HomeHero = ({ state }) => {
               />
             </HeroImage>
           </HeroInner>
-          <HeroInner style={item2}>
+          <HeroInner style={carouselItems.item2}>
             <HeroInfo>
               <h1>Carrusel 2</h1>
               <p>
@@ -160,7 +163,7 @@ const HomeHero = ({ state }) => {
               />
             </HeroImage>
           </HeroInner>
-          <HeroInner style={item3}>
+          <HeroInner style={carouselItems.item3}>
             <HeroInfo>
               <h1>Carrusel 3</h1>
               <p>
@@ -188,15 +191,15 @@ const HomeHero = ({ state }) => {
         </Carousel>
         <CarouselButtons>
           <span
-            onClick={() => { handleCarousel(1) }}
+            onClick={() => { setCurrentItem(1) }}
             style={currentItem === 1 ? { backgroundColor: colors.lightGray } : { backgroundColor: colors.mediumGray }}
           ></span>
           <span 
-            onClick={() => { handleCarousel(2) }}
+            onClick={() => { setCurrentItem(2) }}
             style={currentItem === 2 ? { backgroundColor: colors.lightGray } : { backgroundColor: colors.mediumGray }}
           ></span>
           <span 
-            onClick={() => { handleCarousel(3) }}
+            onClick={() => { setCurrentItem(3) }}
             style={currentItem === 3 ? { backgroundColor: colors.lightGray } : { backgroundColor: colors.mediumGray }}
           ></span>
         </CarouselButtons>
