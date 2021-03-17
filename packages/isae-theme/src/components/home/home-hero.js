@@ -116,9 +116,8 @@ const HomeHero = ({ state }) => {
             <HeroInfo>
               <h1>Carrusel 2</h1>
               <p>
-                La U de las oportunidades.{' '}
-                Matricúlate hoy mismo.{' '}
-                Estudia en cualquiera de nuestras 8 sedes.{' '}
+                Estudia una carrera con nosotros,
+                matricúlate en cualquiera de nuestras 8 sedes a nivel nacional
                 <em>#estudiaenISAE</em>
               </p>
               <MainButton
@@ -141,9 +140,8 @@ const HomeHero = ({ state }) => {
             <HeroInfo>
               <h1>Carrusel 3</h1>
               <p>
-                La U de las oportunidades.{' '}
-                Matricúlate hoy mismo.{' '}
-                Estudia en cualquiera de nuestras 8 sedes.{' '}
+                Estudia una carrera con nosotros,
+                matricúlate en cualquiera de nuestras 8 sedes a nivel nacional
                 <em>#estudiaenISAE</em>
               </p>
               <MainButton

@@ -26,7 +26,7 @@ const FooterNav = styled.nav``;
 
 const Paragraph = styled.p`
   color: ${colors.white};
-  font-size: 18px;
+  font-size: 14px;
 `;
 
 const FooterLink = styled(Link)`
@@ -66,7 +66,9 @@ const Footer = ({ state }) => {
             <FooterItem>
               <FooterLogo />
               <Paragraph>
-                {state.frontity.description}
+                Teléfono: +507 278-1432 / 278-1444<br />
+                WhatsApp: +507 6548-7314<br />
+                Correo: mercadeo@isaeuniversidad.ac.pa
               </Paragraph>
               <Paragraph>
                 (+507) 278-1432 / 278-1444

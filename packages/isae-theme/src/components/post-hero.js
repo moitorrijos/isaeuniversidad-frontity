@@ -45,6 +45,11 @@ const InfoCard = styled.div`
   }
 `;
 
+const Provincia = styled.p`
+  margin-top: -30px;
+  margin-bottom: 30px;
+`;
+
 const InfoImage = styled.figure`
   grid-column: 3 / 5;
   grid-row: 2 / 3;
@@ -60,13 +65,14 @@ const InfoImage = styled.figure`
   }  
 `;
 
-const PostHero = ({ background, bgColor, title, description, imageUrl, direccion, telefono, celular }) => {
+const PostHero = ({ background, bgColor, title, provincia, description, imageUrl, direccion, telefono, celular }) => {
   return(
     <Hero background={background} bgColor={bgColor}>
       <MainContainer>
         <HeroContainer>
           <InfoCard>
             <h1>{title}</h1>
+            { provincia ? ( <Provincia>{provincia}</Provincia> ) : null }
             { direccion ?
               ( <p>
                 <strong>Dirección:</strong>{" "}
