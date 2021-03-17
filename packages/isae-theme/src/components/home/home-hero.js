@@ -42,8 +42,8 @@ const CarouselButtons = styled.div`
 const HeroInner = styled.div`
   position: absolute;
   left: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 0;
+  padding: 5rem 0;
   width: 100%;
   display: grid;
   grid-template-columns: 368px 1fr;
