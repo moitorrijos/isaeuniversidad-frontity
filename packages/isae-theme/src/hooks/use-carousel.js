@@ -4,15 +4,15 @@ export default function useCarousel(currentItem, setCurrentItem) {
   let item1, item2, item3;
   if (currentItem === 1) {
     item1 = { left: 0 };
-    item2 = { left: "100%", opacity: 0.25 };
-    item3 = { left: "200%", opacity: 0.25 };
+    item2 = { left: "100%", opacity: 0 };
+    item3 = { left: "200%", opacity: 0 };
   } else if (currentItem === 2) {
-    item1 = { left: "-100%", opacity: 0.25 };
+    item1 = { left: "-100%", opacity: 0 };
     item2 = { left: 0 };
-    item3 = { left: "100%", opacity: 0.25 };
+    item3 = { left: "100%", opacity: 0 };
   } else if (currentItem === 3) {
-    item1 = { left: "-200%", opacity: 0.25 };
-    item2 = { left: "-100%", opacity: 0.25 };
+    item1 = { left: "-200%", opacity: 0 };
+    item2 = { left: "-100%", opacity: 0 };
     item3 = { left: 0 };
   }
   useEffect(() => {

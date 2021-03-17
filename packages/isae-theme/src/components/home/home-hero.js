@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { styled, connect } from 'frontity';
 import colors from '../../styles/colors';
 import useCarousel from '../../hooks/use-carousel';
@@ -84,31 +84,6 @@ const HomeHero = ({ state }) => {
   const backgrouldUrl = state.source.url;
   const [ currentItem, setCurrentItem ] = useState(1);
   const carouselItems = useCarousel(currentItem, setCurrentItem);
-  // const [ currentItem, setCurrentItem ] = useState(1);
-  // let item1; let item2; let item3;
-  // const handleCarousel = (number) => {
-  //   setCurrentItem(number);
-  // }
-  // if (currentItem === 1) {
-  //   item1 = { left: 0 };
-  //   item2 = { left: "100%", opacity: 0.25 };
-  //   item3 = { left: "200%", opacity: 0.25 };
-  // } else if (currentItem === 2) {
-  //   item1 = { left: "-100%", opacity: 0.25 };
-  //   item2 = { left: 0 };
-  //   item3 = { left: "100%", opacity: 0.25 };
-  // } else if (currentItem === 3) {
-  //   item1 = { left: "-200%", opacity: 0.25 };
-  //   item2 = { left: "-100%", opacity: 0.25 };
-  //   item3 = { left: 0 };
-  // }
-  // useEffect(() => {
-  //   const autoplay = setInterval(() => {
-  //     if (currentItem === 3) setCurrentItem(1);
-  //     else if (currentItem >= 1) setCurrentItem(currentItem + 1);
-  //   }, 7200);
-  //   return () => { clearInterval(autoplay) };
-  // });
   return (
     <HeroContainer url={backgrouldUrl}>
       <MainContainer>
@@ -117,15 +92,14 @@ const HomeHero = ({ state }) => {
             <HeroInfo>
               <h1>Carrusel 1</h1>
               <p>
-                La U de las oportunidades.{' '}
-                Matricúlate hoy mismo.{' '}
-                Estudia en cualquiera de nuestras 8 sedes.{' '}
+                Estudia una carrera con nosotros,
+                matricúlate en cualquiera de nuestras 8 sedes a nivel nacional
                 <em>#estudiaenISAE</em>
               </p>
               <MainButton
                 background={colors.primaryYellow}
                 color={colors.primaryBlue}
-                link="#0"
+                link="#formulario-contacto"
               >
                 Más Información
               </MainButton>
@@ -150,7 +124,7 @@ const HomeHero = ({ state }) => {
               <MainButton
                 background={colors.primaryYellow}
                 color={colors.primaryBlue}
-                link="#0"
+                link="#formulario-contacto"
               >
                 Más Información
               </MainButton>
@@ -175,7 +149,7 @@ const HomeHero = ({ state }) => {
               <MainButton
                 background={colors.primaryYellow}
                 color={colors.primaryBlue}
-                link="#0"
+                link="#formulario-contacto"
               >
                 Más Información
               </MainButton>
