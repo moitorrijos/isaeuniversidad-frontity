@@ -43,6 +43,7 @@ const BranchPage = ({ state }) => {
       <PostHero
         background={state.source.url + "/wp-content/uploads/2021/02/background-isae-6.svg"}
         title={acf.ciudad}
+        provincia={acf.provincia}
         description={acf.direccion}
         imageUrl={acf.foto.url}
         direccion={acf.direccion}
@@ -50,7 +51,7 @@ const BranchPage = ({ state }) => {
         celular={acf.celular}
       />
       <BranchHeader>Oferta Académica</BranchHeader>
-      <BranchParagraph>Disponible en la sede de {acf.ciudad}</BranchParagraph>
+      <BranchParagraph>Disponible en {acf.ciudad === 'Campus Central' ? 'el' : 'la'} { acf.ciudad}</BranchParagraph>
       {acf.ofertas_academicas && <FilterButtons>
           {acf.ofertas_academicas.map((oferta, index) => {
             let { id, title, slug } = state.source[oferta.post_type][oferta.ID];
