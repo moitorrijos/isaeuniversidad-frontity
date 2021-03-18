@@ -52,7 +52,7 @@ const UniversityLifePage = ({ state }) => {
         <MainContainer>
           <Grid columns="3" gap="20px">
             {posts ?
-              posts.map(post => {
+              [...posts].slice(0, 6).map(post => {
                 const {
                   id,
                   title,
