@@ -148,7 +148,7 @@ const CareerPage = ({ state }) => {
       </RequirementsSection>
       <ProfileSection>
         <MainContainer>
-          <ProfileFlexboxContainer>
+          {acf.saber_hacer.saber_hacer_descripcion && <ProfileFlexboxContainer>
             <ProfileSectionDescription>
               <h2>Perfil del Egresado</h2>
               <h3>Saber Hacer</h3>
@@ -158,25 +158,25 @@ const CareerPage = ({ state }) => {
             </ProfileSectionDescription>
             <ProfileSectionImages>
               <ProfileImages>
-                {acf.saber_hacer.saber_hacer_imagen2 && <Image
+                {acf.saber_hacer.saber_hacer_imagen1.url && <Image
                   src={acf.saber_hacer.saber_hacer_imagen1.url}
                   alt={acf.saber_hacer.saber_hacer_imagen1.alt} 
                 />}
-                {acf.saber_hacer.saber_hacer_imagen2 && <Image
+                {acf.saber_hacer.saber_hacer_imagen2.url && <Image
                   src={acf.saber_hacer.saber_hacer_imagen2.url}
                   alt={acf.saber_hacer.saber_hacer_imagen2.alt} 
                 />}
               </ProfileImages>
             </ProfileSectionImages>
-          </ProfileFlexboxContainer>
-          <ProfileFlexboxContainer>
+          </ProfileFlexboxContainer>}
+          {acf.saber_ser.saber_ser_descripcion && <ProfileFlexboxContainer>
             <ProfileSectionImages>
               <ProfileImages>
-                {acf.saber_ser.saber_ser_imagen2 && <Image
+                {acf.saber_ser.saber_ser_imagen1.url && <Image
                   src={acf.saber_ser.saber_ser_imagen1.url}
                   alt={acf.saber_ser.saber_ser_descripcion} 
                 />}
-                {acf.saber_ser.saber_ser_imagen2 && <Image
+                {acf.saber_ser.saber_ser_imagen2.url && <Image
                   src={acf.saber_ser.saber_ser_imagen2.url}
                   alt={acf.saber_ser.saber_ser_descripcion} 
                 />}
@@ -188,8 +188,8 @@ const CareerPage = ({ state }) => {
                 dangerouslySetInnerHTML={createMarkup(acf.saber_ser.saber_ser_descripcion)}
               />
             </ProfileSectionDescription>
-          </ProfileFlexboxContainer>
-          <ProfileFlexboxContainer>
+          </ProfileFlexboxContainer>}
+          {acf.saber_convivir.saber_convivir_descripcion && <ProfileFlexboxContainer>
             <ProfileSectionDescription>
               <h3>Saber Convivir</h3>
               <div
@@ -198,25 +198,25 @@ const CareerPage = ({ state }) => {
             </ProfileSectionDescription>
             <ProfileSectionImages>
               <ProfileImages>
-                {acf.saber_convivir.saber_convivir_imagen2 && <Image
+                {acf.saber_convivir.saber_convivir_imagen1.url && <Image
                   src={acf.saber_convivir.saber_convivir_imagen1.url}
                   alt={acf.saber_convivir.saber_convivir_descripcion} 
                 />}
-                {acf.saber_convivir.saber_convivir_imagen2 && <Image
+                {acf.saber_convivir.saber_convivir_imagen2.url && <Image
                   src={acf.saber_convivir.saber_convivir_imagen2.url}
                   alt={acf.saber_convivir.saber_convivir_descripcion} 
                 />}
               </ProfileImages>
             </ProfileSectionImages>
-          </ProfileFlexboxContainer>
-          <ProfileFlexboxContainer>
+          </ProfileFlexboxContainer>}
+          {acf.saber_conocer.saber_conocer_descripcion && <ProfileFlexboxContainer>
             <ProfileSectionImages>
               <ProfileImages>
-                {acf.saber_conocer.saber_conocer_imagen2 && <Image
+                {acf.saber_conocer.saber_conocer_imagen1.url && <Image
                   src={acf.saber_conocer.saber_conocer_imagen1.url}
                   alt={acf.saber_conocer.saber_conocer_descripcion} 
                 />}
-                {acf.saber_conocer.saber_conocer_imagen2 && <Image
+                {acf.saber_conocer.saber_conocer_imagen2.url && <Image
                   src={acf.saber_conocer.saber_conocer_imagen2.url}
                   alt={acf.saber_conocer.saber_conocer_descripcion} 
                 />}
@@ -228,7 +228,7 @@ const CareerPage = ({ state }) => {
                 dangerouslySetInnerHTML={createMarkup(acf.saber_conocer.saber_conocer_descripcion)}
               />
             </ProfileSectionDescription>
-          </ProfileFlexboxContainer>
+          </ProfileFlexboxContainer>}
         </MainContainer>
       </ProfileSection>
       <OtherPrograms>

@@ -17,7 +17,7 @@ const MenuLink = styled.button`
   border: none;
   outline: 0;
   appearance: none;
-  padding: 42px 24px;
+  padding: 46px 24px;
   cursor: pointer;
   text-decoration: none;
   color: ${colors.primaryText100};

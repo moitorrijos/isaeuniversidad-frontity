@@ -16,7 +16,6 @@ const HeaderContainer = styled.div`
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
-  height: 104px;
   box-shadow: ${effects.boxShadow};
 `
 
