@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect, styled } from 'frontity';
 import colors from '../../styles/colors';
 import { effects } from '../../styles/effects';
+import useCarousel from '../../hooks/use-carousel';
 import SlimHero from '../slim-hero';
 import MainContainer from '../main-container';
+import Carousel from '../carousel';
 import Grid from '../grid';
 import Image from "@frontity/components/image";
 import createMarkup from '../../helpers/create-markup';
@@ -96,6 +98,21 @@ const LatestActivities = styled.div`
   }
 `;
 
+const LatestNewsButtons = styled.div`
+  max-width: 450px;
+  margin: 1rem auto 6rem;
+  display: flex;
+  flex-flow: row nowrap;
+
+  button {
+    flex: 1;
+    padding : 1.5rem 3rem;
+    border-bottom: 3px solid ${colors.mediumGray};
+    cursor: pointer;
+    transition: all 0.25 ease-in-out;
+  }
+`;
+
 const AlumniPage = ({ state }) => {
   const alumni = state.source.page[90944];
   const { acf, title } = alumni;
@@ -104,6 +121,16 @@ const AlumniPage = ({ state }) => {
   const description = acf.descripcion;
   const bgImage = state.source.url+'/wp-content/uploads/2021/02/background-isae-8.svg';
   const latest_activities = state.source.get('/category/actividades/').items;
+  const [ currentItem, setCurrentItem ] = useState(1);
+  const carouselItems = useCarousel(currentItem, setCurrentItem);
+  const active = { 
+    borderBottomColor: colors.primaryBlueBright,
+    color: colors.primaryBlueBright
+  };
+  const inactive = {
+    borderBottomColor: colors.mediumGray,
+    color: colors.mediumGray
+  };
   return(
     <>
       <SlimHero
@@ -179,29 +206,87 @@ const AlumniPage = ({ state }) => {
       <LatestActivities bgImage={bgImage}>
         <h2>Actividades de los Egresados</h2>
         <MainContainer>
-          <Grid columns="3" gap="30px">
-            {[...latest_activities].reverse().map(activity => {
-              const { id, link, title, author, date } = state.source.post[activity.id];
-              const { name } = state.source.author[author];
-              const postDate = new Date(date);
-              const day = postDate.getDate();
-              const getMonth = postDate.getMonth();
-              const year = postDate.getFullYear();
-              return(
-                <PostCard
-                  key={id}
-                  link={link}
-                  title={title}
-                  name={name}
-                  getMonth={getMonth}
-                  day={day}
-                  year={year}
-                />
-              );
-            })}
-          </Grid>
+          <Carousel height="395px">
+            <Grid columns="3" gap="30px" style={carouselItems.item1}>
+              {[...latest_activities].slice(0, 3).reverse().map(activity => {
+                const { id, link, title, author, date } = state.source.post[activity.id];
+                const { name } = state.source.author[author];
+                const postDate = new Date(date);
+                const day = postDate.getDate();
+                const getMonth = postDate.getMonth();
+                const year = postDate.getFullYear();
+                return(
+                  <PostCard
+                    key={id}
+                    link={link}
+                    title={title}
+                    name={name}
+                    getMonth={getMonth}
+                    day={day}
+                    year={year}
+                  />
+                );
+              })}
+            </Grid>
+            <Grid columns="3" gap="30px" style={carouselItems.item2}>
+              {[...latest_activities].slice(3, 6).reverse().map(activity => {
+                const { id, link, title, author, date } = state.source.post[activity.id];
+                const { name } = state.source.author[author];
+                const postDate = new Date(date);
+                const day = postDate.getDate();
+                const getMonth = postDate.getMonth();
+                const year = postDate.getFullYear();
+                return(
+                  <PostCard
+                    key={id}
+                    link={link}
+                    title={title}
+                    name={name}
+                    getMonth={getMonth}
+                    day={day}
+                    year={year}
+                  />
+                );
+              })}
+            </Grid>
+            <Grid columns="3" gap="30px" style={carouselItems.item3}>
+              {[...latest_activities].slice(6, 9).reverse().map(activity => {
+                const { id, link, title, author, date } = state.source.post[activity.id];
+                const { name } = state.source.author[author];
+                const postDate = new Date(date);
+                const day = postDate.getDate();
+                const getMonth = postDate.getMonth();
+                const year = postDate.getFullYear();
+                return(
+                  <PostCard
+                    key={id}
+                    link={link}
+                    title={title}
+                    name={name}
+                    getMonth={getMonth}
+                    day={day}
+                    year={year}
+                  />
+                );
+              })}
+            </Grid>
+          </Carousel>
         </MainContainer>
       </LatestActivities>
+      <LatestNewsButtons>
+        <button
+          onClick={() => { setCurrentItem(1)}}
+          style={ currentItem === 1 ? active : inactive}
+        >1</button>
+        <button
+          onClick={() => { setCurrentItem(2)}}
+          style={ currentItem === 2 ? active : inactive}
+        >2</button>
+        <button
+          onClick={() => { setCurrentItem(3)}}
+          style={ currentItem === 3 ? active : inactive}
+        >3</button>
+      </LatestNewsButtons>
     </>
   );
 }
