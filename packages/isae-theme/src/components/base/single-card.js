@@ -1,5 +1,5 @@
 import React from 'react';
-import { styled } from 'frontity';
+import { connect, styled } from 'frontity';
 import { effects } from '../../styles/effects';
 import colors from '../../styles/colors';
 import Link from "@frontity/components/link";
@@ -16,7 +16,7 @@ const CardContainer = styled(Link)`
     width: 100%;
     img {
       width: 100%;
-      height: 260px;
+      height: 280px;
       border-radius: 20px;
       object-fit: cover;
       object-position: center;
@@ -37,15 +37,21 @@ const CardContainer = styled(Link)`
   }
 `;
 
-const SingleCard = ({ link, image, title }) => {
+const SingleCard = ({ state, link, image, title }) => {
+  const placeholder = state.source.url+'/wp-content/uploads/2021/03/placeholder.jpg';
   return(
     <CardContainer link={link}>
       <figure>
-        <Image alt={title.rendered} src={image} height="240" />
+        {image ?
+          <Image alt={title.rendered} src={image} height="240" />
+          :
+          <Image alt="" src={placeholder} height="240" />
+        }
+        
       </figure>
       <h3>{title.rendered}</h3>
     </CardContainer>
   );
 }
 
-export default SingleCard;
+export default connect(SingleCard);

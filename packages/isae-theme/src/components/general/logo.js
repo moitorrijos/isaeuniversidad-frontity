@@ -8,6 +8,15 @@ const LogoContainer = styled.div`
   max-width: 360px;
   padding: 20px 20px 0;
   margin-top: -50px;
+
+  @media (max-width: 835px) {
+    margin-top: 0;
+    width: 360px;
+  }
+
+  @media (max-width: 600px) {
+    width: 200px;
+  }
 `;
 
 const SiteLogo = () => (

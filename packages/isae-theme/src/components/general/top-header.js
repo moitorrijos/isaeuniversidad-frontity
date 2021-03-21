@@ -19,6 +19,10 @@ const TopHeaderContainer = styled.div`
   font-weight: 700;
   position: relative;
   z-index: 1;
+
+  @media (max-width: 600px) {
+    display: none;
+  }
 `;
 
 const TopContent = styled.div`
@@ -42,6 +46,7 @@ const TopMenu = styled.nav`
   justify-content: space-between;
   align-items: center;
   list-style: none;
+
 `;
 
 const StyledLink = styled(Link)`

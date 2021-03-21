@@ -11,6 +11,10 @@ const Nav = styled.nav`
   display: flex;
   flex-flow: row nowrap;
   border: none;
+
+  @media (max-width: 835px) {
+    display: none;
+  }
 `;
 
 const MenuLink = styled.button`

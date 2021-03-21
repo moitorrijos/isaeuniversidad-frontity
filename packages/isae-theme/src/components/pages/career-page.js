@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect, styled } from 'frontity';
 import colors from '../../styles/colors';
 import { effects } from '../../styles/effects';
@@ -28,6 +28,7 @@ const CareerPage = ({ state }) => {
     featured_image_src
   } = state.source[career.type][career.id];
   const careers = state.source.get('/carrera').items;
+  const placeholder = state.source.url+'/wp-content/uploads/2021/03/placeholder2.jpg';
   const [ hidden1, setHidden1 ] = useState(true);
   const [ hidden2, setHidden2 ] = useState(false);
   function toggleTab1() {
@@ -158,10 +159,10 @@ const CareerPage = ({ state }) => {
             </ProfileSectionDescription>
             <ProfileSectionImages>
               <ProfileImages>
-                {acf.saber_hacer.saber_hacer_imagen1.url && <Image
+                {acf.saber_hacer.saber_hacer_imagen1.url ? <Image
                   src={acf.saber_hacer.saber_hacer_imagen1.url}
                   alt={acf.saber_hacer.saber_hacer_imagen1.alt} 
-                />}
+                /> : <Image src={placeholder} alt="" />}
                 {acf.saber_hacer.saber_hacer_imagen2.url && <Image
                   src={acf.saber_hacer.saber_hacer_imagen2.url}
                   alt={acf.saber_hacer.saber_hacer_imagen2.alt} 
@@ -172,10 +173,10 @@ const CareerPage = ({ state }) => {
           {acf.saber_ser.saber_ser_descripcion && <ProfileFlexboxContainer>
             <ProfileSectionImages>
               <ProfileImages>
-                {acf.saber_ser.saber_ser_imagen1.url && <Image
+                {acf.saber_ser.saber_ser_imagen1.url ? <Image
                   src={acf.saber_ser.saber_ser_imagen1.url}
                   alt={acf.saber_ser.saber_ser_descripcion} 
-                />}
+                /> : <Image src={placeholder} alt="" />}
                 {acf.saber_ser.saber_ser_imagen2.url && <Image
                   src={acf.saber_ser.saber_ser_imagen2.url}
                   alt={acf.saber_ser.saber_ser_descripcion} 
@@ -189,53 +190,53 @@ const CareerPage = ({ state }) => {
               />
             </ProfileSectionDescription>
           </ProfileFlexboxContainer>}
-          {acf.saber_convivir.saber_convivir_descripcion && <ProfileFlexboxContainer>
-            <ProfileSectionDescription>
-              <h3>Saber Convivir</h3>
-              <div
-                dangerouslySetInnerHTML={createMarkup(acf.saber_convivir.saber_convivir_descripcion)}
-              />
-            </ProfileSectionDescription>
-            <ProfileSectionImages>
-              <ProfileImages>
-                {acf.saber_convivir.saber_convivir_imagen1.url && <Image
-                  src={acf.saber_convivir.saber_convivir_imagen1.url}
-                  alt={acf.saber_convivir.saber_convivir_descripcion} 
-                />}
-                {acf.saber_convivir.saber_convivir_imagen2.url && <Image
-                  src={acf.saber_convivir.saber_convivir_imagen2.url}
-                  alt={acf.saber_convivir.saber_convivir_descripcion} 
-                />}
-              </ProfileImages>
-            </ProfileSectionImages>
-          </ProfileFlexboxContainer>}
           {acf.saber_conocer.saber_conocer_descripcion && <ProfileFlexboxContainer>
-            <ProfileSectionImages>
-              <ProfileImages>
-                {acf.saber_conocer.saber_conocer_imagen1.url && <Image
-                  src={acf.saber_conocer.saber_conocer_imagen1.url}
-                  alt={acf.saber_conocer.saber_conocer_descripcion} 
-                />}
-                {acf.saber_conocer.saber_conocer_imagen2.url && <Image
-                  src={acf.saber_conocer.saber_conocer_imagen2.url}
-                  alt={acf.saber_conocer.saber_conocer_descripcion} 
-                />}
-              </ProfileImages> 
-            </ProfileSectionImages>
             <ProfileSectionDescription>
               <h3>Saber Conocer</h3>
               <div
                 dangerouslySetInnerHTML={createMarkup(acf.saber_conocer.saber_conocer_descripcion)}
               />
             </ProfileSectionDescription>
+            <ProfileSectionImages>
+              <ProfileImages>
+                {acf.saber_conocer.saber_conocer_imagen1.url ? <Image
+                  src={acf.saber_conocer.saber_conocer_imagen1.url}
+                  alt={acf.saber_conocer.saber_conocer_descripcion} 
+                /> : <Image src={placeholder} alt="" />}
+                {acf.saber_conocer.saber_conocer_imagen2.url && <Image
+                  src={acf.saber_conocer.saber_conocer_imagen2.url}
+                  alt={acf.saber_conocer.saber_conocer_descripcion} 
+                />}
+              </ProfileImages> 
+            </ProfileSectionImages>
+          </ProfileFlexboxContainer>}
+          {acf.saber_convivir.saber_convivir_descripcion && <ProfileFlexboxContainer>
+            <ProfileSectionImages>
+              <ProfileImages>
+                {acf.saber_convivir.saber_convivir_imagen1.url ? <Image
+                  src={acf.saber_convivir.saber_convivir_imagen1.url}
+                  alt={acf.saber_convivir.saber_convivir_descripcion} 
+                />: <Image src={placeholder} alt="" />}
+                {acf.saber_convivir.saber_convivir_imagen2.url && <Image
+                  src={acf.saber_convivir.saber_convivir_imagen2.url}
+                  alt={acf.saber_convivir.saber_convivir_descripcion} 
+                />}
+              </ProfileImages>
+            </ProfileSectionImages>
+            <ProfileSectionDescription>
+              <h3>Saber Convivir</h3>
+              <div
+                dangerouslySetInnerHTML={createMarkup(acf.saber_convivir.saber_convivir_descripcion)}
+              />
+            </ProfileSectionDescription>
           </ProfileFlexboxContainer>}
         </MainContainer>
       </ProfileSection>
-      <OtherPrograms>
+      {acf.otros_programas.length && <OtherPrograms>
         <h2>Otros Programas</h2>
         <MainContainer>
           <Grid columns="3" gap="30px">
-            {[...careers].reverse().map(career => {
+          {[...careers].reverse().map(career => {
               const available_career = state.source[career.type][career.id];
               const { id, link, title, featured_image_src } = available_career;
               return(
@@ -244,7 +245,7 @@ const CareerPage = ({ state }) => {
             })}
           </Grid>
         </MainContainer>
-      </OtherPrograms>
+      </OtherPrograms>}
       <ContactForm />
     </>
   );
