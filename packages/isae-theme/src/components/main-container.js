@@ -8,6 +8,11 @@ const Container = styled.div`
   margin-left: auto;
   margin-right: auto;
   overflow-x: hidden;
+
+  @media (max-width: 600px) {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
 `;
 
 const MainContainer = ({ children }) => {

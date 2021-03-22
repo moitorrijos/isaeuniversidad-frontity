@@ -3,6 +3,7 @@ import { styled } from 'frontity';
 import { effects } from '../../styles/effects';
 import TopHeader from './top-header';
 import Navigation from './navigation';
+import MobileMenu from '../mobile-menu';
 import Logo from './logo';
 
 const HeaderContainer = styled.div`
@@ -25,6 +26,7 @@ const Header = () => (
     <HeaderContainer>
       <Logo />
       <Navigation />
+      <MobileMenu />
     </HeaderContainer>
   </>
 );

@@ -34,6 +34,10 @@ const TopContent = styled.div`
   flex-flow: row nowrap;
   align-items: center;
 
+  @media (max-width: 854px) {
+    margin-left: 0;
+  }
+
   svg {
     margin-right: 10px;
   }

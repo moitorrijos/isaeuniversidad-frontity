@@ -50,7 +50,7 @@ const HomeNews = ({ state }) => {
     <LatestNews>
       <Heading>Últimas Noticias</Heading>
       <MainContainer>
-        <Carousel height="720px">
+        <Carousel height="720px" med_height="1460px" large_height="2220px">
           <Grid columns="3" gap="30px" style={carouselItems.item1}>
             {[...news].slice(0, 3).map(post => {
               const {

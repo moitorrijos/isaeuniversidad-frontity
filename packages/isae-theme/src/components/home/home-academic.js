@@ -14,6 +14,10 @@ const Academic = styled.div`
   &:nth-of-type(odd) {
     background-color: ${colors.lightGray};
   }
+
+  @media (max-width: 600) {
+    background: none;
+  }
 `;
 
 const AcademicContainer = styled.div`
@@ -36,6 +40,11 @@ const AcademicInfo = styled.div`
     color: ${colors.primaryText30};
     margin-bottom: 2rem;
   }
+
+  @media (max-width: 600px) {
+    order: 2;
+    width: 100%;
+  }
 `;
 
 const AcademicImage = styled.figure`
@@ -47,6 +56,23 @@ const AcademicImage = styled.figure`
     border-radius: 22px;
     object-fit: cover;
     object-position: center;
+
+    @media (max-width: 834px) {
+      width: 100%;
+    }
+
+    @media (max-width: 600px) {
+      height: 300px;
+    }
+  }
+
+  @media (max-width: 834px) {
+    width: 50%;
+  }
+
+  @media (max-width: 600px) {
+    order: 1;
+    width: 100%;
   }
 `;
 
@@ -66,7 +92,7 @@ const HomeAcademic = ({ state }) => {
           }}
         >
           <MainContainer>
-              <AcademicContainer>
+            <AcademicContainer>
               <AcademicImage>
                 <Image alt={title.rendered} src={featured_image_src} />
               </AcademicImage>

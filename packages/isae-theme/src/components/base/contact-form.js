@@ -15,6 +15,10 @@ const FormGrid = styled.div`
   grid-template-columns: 320px 1fr;
   align-items: center;
   gap: 100px;
+
+  @media (max-width: 834px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const FormInfo = styled.div`
@@ -25,6 +29,10 @@ const Form = styled.form`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 36px;
+
+  @media (max-width: 434px) {
+    grid-template-columns: 1fr;
+  }
 
   input, select, button {
     padding: 10px 1rem;

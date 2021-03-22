@@ -17,17 +17,33 @@ const HeroContainer = styled.div`
 
 
 const Carousel = styled.div`
-  height: 780px;
+  height: 760px;
   position: relative;
   overflow: hidden;
+
+  @media (max-width: 600px) {
+    height: 800px;
+  }
+
+  @media (max-width: 415px) {
+    height: 840px;
+  }
+
+  @media (max-width: 375px) {
+    height: 880px;
+  }
 `;
 
 const CarouselButtons = styled.div`
   position: absolute;
-  top: 650px;
+  bottom: 80px;
   display: flex;
   flex-flow: row nowrap;
   gap: 20px;
+
+  @media (max-width: 600px) {
+    bottom: 40px;
+  }
 
   span {
     display: block;
@@ -53,6 +69,16 @@ const HeroInner = styled.div`
   background-repeat: no-repeat;
   background-position: center center;
   transition: all 0.5s ease-in-out;
+
+  @media (max-width: 834px) {
+    grid-template-columns: 280px 1fr;
+    gap: 40px;
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: 300px 1fr;
+  }
 `;
 
 const HeroInfo = styled.div`
@@ -62,10 +88,18 @@ const HeroInfo = styled.div`
   h1 {
     font-size: 3rem;
     line-height: 1.1;
+
+    @media (max-width: 600px) {
+      margin-top: 0;
+    }
   }
   p {
     font-size: 1.5rem;
     margin-bottom: 2rem;
+  }
+
+  @media (max-width: 600px) {
+    order: 2;
   }
 `;
 
@@ -75,6 +109,14 @@ const HeroImage = styled.div`
     display: block;
     object-fit: cover;
     border-radius: 24px;
+
+    @media (max-width: 600px) {
+      height: 300px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    order: 1;
   }
 `;
 

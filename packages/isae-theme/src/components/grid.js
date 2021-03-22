@@ -7,6 +7,14 @@ const GridContainer = styled.div`
   grid-template-columns: repeat(${props => props.columns}, 1fr);
   gap: ${props => props.gap};
   transition: all 0.5s ease-in-out;
+
+  @media (max-width: 834px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const Grid = ({ columns, rows, gap, style, children }) => (

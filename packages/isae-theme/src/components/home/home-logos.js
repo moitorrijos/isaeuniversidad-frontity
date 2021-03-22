@@ -1,7 +1,16 @@
 import React from 'react';
 import MainContainer from '../main-container';
 import Image from "@frontity/components/image";
-import { connect, styled } from 'frontity';
+import { connect, styled, keyframes } from 'frontity';
+
+const marquee = keyframes`
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+`;
 
 const LogosContainer = styled.div`
   padding: 8rem 0;
@@ -15,8 +24,11 @@ const ImageGrid = styled.div`
   img {
     mix-blend-mode: multiply;
   }
-`;
 
+  @media (max-width: 834px) {
+    animation: ${marquee} 5s linear alternate infinite;
+  }
+`;
 
 const HomeLogos = ({ state }) => {
   const homeLogos = [
