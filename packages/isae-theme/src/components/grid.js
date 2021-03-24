@@ -13,12 +13,19 @@ const GridContainer = styled.div`
   }
 
   @media (max-width: 600px) {
-    grid-template-columns: 1fr;
+    grid-template-columns: ${props => props.small_columns ? props.small_columns : '1fr'};
+    gap: 10px;
   }
 `;
 
-const Grid = ({ columns, rows, gap, style, children }) => (
-  <GridContainer columns={columns} gap={gap} rows={rows} style={style}>
+const Grid = ({ columns, small_columns, rows, gap, style, children }) => (
+  <GridContainer
+    columns={columns}
+    small_columns={small_columns}
+    gap={gap}
+    rows={rows}
+    style={style}
+  >
     {children}
   </GridContainer>
 )

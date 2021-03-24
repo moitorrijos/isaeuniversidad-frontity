@@ -49,6 +49,10 @@ const SlimCardInfo = styled(Link)`
     transform: ${effects.transform};
     box-shadow: ${effects.boxShadow};
   }
+
+  @media (max-width: 600px) {
+    padding: 1rem 1.75rem;
+  }
 `;
 
 const Date = styled.p`

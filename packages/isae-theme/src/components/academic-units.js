@@ -12,6 +12,10 @@ const Units = styled.div`
   h2, h4, p {
     color: ${colors.white};
     text-align: center;
+
+    @media (max-width: 600px)  {
+      margin-bottom: 2rem;
+    }
   }
 
   h2 {
@@ -28,6 +32,11 @@ const Unit = styled.div`
   grid-template-columns: auto 1fr;
   gap: 10px;
   align-items: center;
+
+  @media (max-width: 600px) {
+    grid-template-columns: 120px 1fr;
+    margin-bottom: 3rem;
+  }
 `;
 
 const DepartmentImage = styled.figure`
@@ -37,6 +46,15 @@ const DepartmentImage = styled.figure`
     border-radius: 20px;
     object-fit: cover;
     object-position: center;
+
+    @media (max-width: 600px) {
+      width: 100%;
+      height: 120px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    align-self: start;
   }
 `;
 
@@ -51,6 +69,14 @@ const DepartmentText = styled.div`
   p {
     font-size: 0.8rem;
     margin-bottom: 1rem;
+
+    @media (max-width: 600px) {
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    align-self: start;
   }
 `;
 
@@ -93,7 +119,7 @@ const AcademicUnits = ({ state }) => {
                     <p>
                       { descripcion_corta ?
                         descripcion_corta :
-                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.'
+                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
                       }
                     </p>
                   </DepartmentText>

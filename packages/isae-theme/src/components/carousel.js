@@ -3,6 +3,7 @@ import { styled } from 'frontity';
 
 const CarouselContainer = styled.div`
   position: relative;
+  overflow-x: hidden;
   height: ${props => props.height};
 
   & > div {

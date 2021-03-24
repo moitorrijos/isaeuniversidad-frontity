@@ -7,11 +7,10 @@ const Container = styled.div`
   padding-right: 4rem;
   margin-left: auto;
   margin-right: auto;
-  overflow-x: hidden;
 
   @media (max-width: 600px) {
-    padding-left: 2rem;
-    padding-right: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 `;
 

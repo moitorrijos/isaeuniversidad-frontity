@@ -3,6 +3,7 @@ import { styled, connect } from 'frontity';
 import colors from '../styles/colors';
 import Grid from './grid';
 import SingleCard from './base/single-card';
+import MainContainer from './main-container';
 
 const AvailableCareers = styled.div`
   max-width: 1200px;
@@ -12,23 +13,37 @@ const AvailableCareers = styled.div`
     text-align: center;
     font-weight: 500;
     margin-bottom: 8rem;
+
+    @media (max-width: 600px) {
+      margin-bottom: 4rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    margin: 4rem auto;
   }
 `;
 
-const CareerCards = ({ state, carreras, oferta }) => {
-  // const { type } = state.source.get(state.router.link);
+const CareerCards = ({ state, carreras }) => {
   return(
     <AvailableCareers>
       <h2>Carreras Disponibles</h2>
-      <Grid columns="4" gap="20px">
-        {[...carreras].reverse().map(carrera => {
-          const carrera_disponible = state.source[carrera.type][carrera.id];
-          const { id, link, title, featured_image_src } = carrera_disponible;
-          return(
-            <SingleCard key={id} link={link} image={featured_image_src} title={title} />
-          )
-        })}
-      </Grid>
+      <MainContainer>
+        <Grid columns="4" small_columns="2" gap="20px">
+          {[...carreras].reverse().map(carrera => {
+            const carrera_disponible = state.source[carrera.type][carrera.id];
+            const { id, link, title, featured_image_src } = carrera_disponible;
+            return(
+              <SingleCard
+                key={id}
+                link={link}
+                image={featured_image_src}
+                title={title}
+              />
+            )
+          })}
+        </Grid>
+      </MainContainer>
     </AvailableCareers>
   );
 }

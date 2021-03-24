@@ -49,7 +49,7 @@ const HomeActivities = ({ state }) => {
     <LatestActivities>
       <Heading>Nuestras Actividades</Heading>
       <MainContainer>
-        <Carousel height="720px" med_height="1440px" large_height="2220px">
+        <Carousel height="720px" med_height="1440px" large_height="2090px">
           <Grid columns="3" gap="30px" style={carouselItems.item1}>
             {[...activities].slice(0, 3).map(activity => {
               const { id, date, title, link, featured_image_src } = state.source[activity.type][activity.id];
@@ -111,21 +111,21 @@ const HomeActivities = ({ state }) => {
             })}
           </Grid>
         </Carousel>
+        <LatestActivitiesButtons>
+          <button
+              onClick={() => { setCurrentItem(1)}}
+              style={ currentItem === 1 ? active : inactive}
+            >1</button>
+            <button
+              onClick={() => { setCurrentItem(2)}}
+              style={ currentItem === 2 ? active : inactive}
+            >2</button>
+            <button
+              onClick={() => { setCurrentItem(3)}}
+              style={ currentItem === 3 ? active : inactive}
+            >3</button>
+        </LatestActivitiesButtons>
       </MainContainer>
-      <LatestActivitiesButtons>
-        <button
-            onClick={() => { setCurrentItem(1)}}
-            style={ currentItem === 1 ? active : inactive}
-          >1</button>
-          <button
-            onClick={() => { setCurrentItem(2)}}
-            style={ currentItem === 2 ? active : inactive}
-          >2</button>
-          <button
-            onClick={() => { setCurrentItem(3)}}
-            style={ currentItem === 3 ? active : inactive}
-          >3</button>
-      </LatestActivitiesButtons>
     </LatestActivities>
   );
 }

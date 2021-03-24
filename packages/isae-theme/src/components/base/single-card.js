@@ -9,8 +9,12 @@ const CardContainer = styled(Link)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 10px;
   text-decoration: none;
+  padding: 0 10px;
+
+  @media (max-width: 834px) {
+    padding: 0;
+  }
 
   figure {
     width: 100%;
@@ -21,6 +25,10 @@ const CardContainer = styled(Link)`
       object-fit: cover;
       object-position: center;
       transition: all 0.25s ease-in-out;
+
+      @media (max-width: 600px) {
+        height: 120px;
+      }
     }
   }
 
@@ -29,6 +37,10 @@ const CardContainer = styled(Link)`
     font-size: 22px;
     margin-top: 1rem;
     color: ${colors.primaryBlue};
+
+    @media (max-width: 600px) {
+      font-size: 18px;
+    }
   }
 
   &:hover img {

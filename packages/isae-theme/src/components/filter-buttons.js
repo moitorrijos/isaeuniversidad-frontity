@@ -27,6 +27,10 @@ const FilterContainer = styled.div`
       background-color: ${colors.secondaryBlue};
       color: ${colors.white};
     }
+
+    @media (max-width: 600px) {
+      padding: 16px 20px;
+    }
   }
 `;
 

@@ -50,7 +50,7 @@ const HomeNews = ({ state }) => {
     <LatestNews>
       <Heading>Últimas Noticias</Heading>
       <MainContainer>
-        <Carousel height="720px" med_height="1460px" large_height="2220px">
+        <Carousel height="720px" med_height="1460px" large_height="2090px">
           <Grid columns="3" gap="30px" style={carouselItems.item1}>
             {[...news].slice(0, 3).map(post => {
               const {
@@ -124,21 +124,21 @@ const HomeNews = ({ state }) => {
             })}
           </Grid>
         </Carousel>
+        <LatestNewsButtons> 
+          <button
+            onClick={() => { setCurrentItem(1)}}
+            style={ currentItem === 1 ? active : inactive}
+          >1</button>
+          <button
+            onClick={() => { setCurrentItem(2)}}
+            style={ currentItem === 2 ? active : inactive}
+          >2</button>
+          <button
+            onClick={() => { setCurrentItem(3)}}
+            style={ currentItem === 3 ? active : inactive}
+          >3</button>
+        </LatestNewsButtons>
       </MainContainer>
-      <LatestNewsButtons>
-        <button
-          onClick={() => { setCurrentItem(1)}}
-          style={ currentItem === 1 ? active : inactive}
-        >1</button>
-        <button
-          onClick={() => { setCurrentItem(2)}}
-          style={ currentItem === 2 ? active : inactive}
-        >2</button>
-        <button
-          onClick={() => { setCurrentItem(3)}}
-          style={ currentItem === 3 ? active : inactive}
-        >3</button>
-      </LatestNewsButtons>
     </LatestNews>
   );
 }
