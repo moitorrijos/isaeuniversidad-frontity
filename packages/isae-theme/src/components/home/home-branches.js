@@ -50,7 +50,7 @@ const HomeBranches = ({ state }) => {
     <>
       <Heading>Nuestras Sedes</Heading>
       <MainContainer>
-        <Carousel height="455px" med_height="960px" large_height="1440px">
+        <Carousel height="455px" med_height="960px" large_height="1450px">
           <Grid columns="3" gap="40px" style={carouselItems.item1}>
             {[...branches].reverse().slice(0,3).map(branch => {
               const data = state.source[branch.type][branch.id];

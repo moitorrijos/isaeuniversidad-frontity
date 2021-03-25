@@ -37,9 +37,10 @@ const Carousel = styled.div`
 const CarouselButtons = styled.div`
   position: absolute;
   bottom: 80px;
+  width: 80px;
   display: flex;
   flex-flow: row nowrap;
-  gap: 20px;
+  justify-content: space-between;
 
   @media (max-width: 600px) {
     bottom: 40px;

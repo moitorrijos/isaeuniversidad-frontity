@@ -14,7 +14,6 @@ const GridContainer = styled.div`
 
   @media (max-width: 600px) {
     grid-template-columns: ${props => props.small_columns ? props.small_columns : '1fr'};
-    gap: 10px;
   }
 `;
 
