@@ -13,6 +13,15 @@ const SlimHeroContainer = styled.div`
   background-size: contain;
   background-position: left center;
   background-color: ${props => props.bgColor ? props.bgColor : colors.lightGray};
+
+  @media (max-width: 600px) {
+    padding: 4rem 0;
+    background-position: center top;
+  }
+
+  @media (max-width: 412px) {
+    padding: 2rem 0;
+  }
 `;
 
 const FeaturedImage = styled.figure`
@@ -22,6 +31,18 @@ const FeaturedImage = styled.figure`
     object-fit: cover;
     object-position: center;
     border-radius: 20px;
+
+    @media (max-width: 834px) {
+      width: 100%;
+    }
+
+    @media (max-width: 600px) {
+      height: 480px;
+    }
+
+    @media (max-width: 412px) {
+      height: 380px;
+    }
   }
 `;
 

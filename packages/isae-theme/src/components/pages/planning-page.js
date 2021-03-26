@@ -11,8 +11,12 @@ import createMarkup from '../../helpers/create-markup';
 import Link from "@frontity/components/link";
 
 const PlanningSection = styled.div`
-  padding: 2rem;
+  padding: 8rem 0;
   background-color: ${props=>props.bgColor};
+
+  @media (max-width: 834px) {
+    padding: 4rem 0;
+  }
 `;
 
 const PlanDescription = styled.div`
@@ -22,22 +26,43 @@ const PlanDescription = styled.div`
     font-size: 42px;
     color: ${colors.primaryBlue};
   }
+  @media (max-width: 600px) {
+    order: 2;
+  }
 `;
 
 const PlanImage = styled.figure`
   margin: 0;
-  padding: 6rem 0;
+  align-self: center;
   img {
-    width: 474px;
+    width: 100%;
     height: 528px;
     border-radius: 20px;
     box-shadow: ${effects.boxShadow};
+    object-fit: cover;
+    object-position: center top;
+
+    @media (max-width: 834px) {
+      height: 420px;
+    }
+
+    @media (max-width: 600px) {
+      height: 380px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    order: 1;
   }
 `;
 
 const FunctionsSection = styled.div`
   padding: 8rem 0 12rem;
   background-image: linear-gradient(89.88deg, #FFD539 0.13%, #F1BF07 99.93%);
+
+  @media (max-width: 834px) {
+    padding: 4rem 0 8rem;
+  }
 `;
 
 const CenteredHeading = styled.h2`
@@ -47,17 +72,26 @@ const CenteredHeading = styled.h2`
 `;
 
 const Functions = styled.div`
-  padding: 4rem 6rem;
+  padding: 4rem;
   border-radius: 20px;
   background-color: ${colors.white};
 
+  @media (max-width: 834px) {
+    padding: 2rem;
+    padding-left: 1rem;
+  }
+
   ul {
-    columns: 2;
-    column-gap: 120px;
     padding: 0;
     padding-left: 30px;
     overflow: visible;
     position: relative;
+    columns: 2;
+    column-gap: 120px;
+
+    @media (max-width: 834px) {
+      columns: 1;
+    }
 
     li {
       margin: 2rem 0;
@@ -84,6 +118,10 @@ const MemoryCard = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 4rem;
+
+  @media (max-width: 600px) {
+    padding: 2rem 0rem;
+  }
 
   h3 {
     color: ${colors.primaryBlue};
@@ -120,7 +158,7 @@ const PlanningPage = ({ state }) => {
       />
       <PlanningSection bgColor={colors.lightGray}>
         <MainContainer>
-          <Grid columns="2" gap="100px">
+          <Grid columns="2" gap="200px" med_gap="40px" small_gap="20px">
             <PlanDescription>
               <h2>{acf.planificacion.titulo}</h2>
               <div dangerouslySetInnerHTML={createMarkup(acf.planificacion.descripcion)} />
@@ -136,7 +174,7 @@ const PlanningPage = ({ state }) => {
       </PlanningSection>
       <PlanningSection bgColor={colors.white}>
         <MainContainer>
-          <Grid columns="2" gap="100px">
+          <Grid columns="2" gap="200px" med_gap="40px" small_gap="20px">
             <PlanImage>
               <Image
                 src={acf.objetivos.imagen.url ? acf.objetivos.imagen.url : state.source.url+'/wp-content/uploads/2021/03/Rectangle10.jpg'}
@@ -161,7 +199,7 @@ const PlanningPage = ({ state }) => {
       </FunctionsSection>
       <PlanningSection bgColor={colors.lightGray}>
         <MainContainer>
-          <Grid columns="2" gap="100px">
+          <Grid columns="2" gap="200px" med_gap="40px" small_gap="20px" >
             <PlanDescription>
               <h2>{acf.plan_etrategico.titulo}</h2>
               <div dangerouslySetInnerHTML={createMarkup(acf.plan_etrategico.descripcion)} />
@@ -181,7 +219,7 @@ const PlanningPage = ({ state }) => {
       <MemorySection background={background2}>
         <CenteredHeading color={colors.primaryBlue}>Memorias Institucionales</CenteredHeading>
         <MainContainer>
-          <Grid columns="4" gap="30px">
+          <Grid columns="4" med_columns="2" small_columns="2" gap="30px" small_gap="10px">
             <MemoryCard>
               <Image src={acf.memorias1.icono.url ? acf.memorias1.icono.url : state.source.url+'/wp-content/uploads/2021/03/memorias1.svg'} />
               <h3>{acf.memorias1.ano}</h3>

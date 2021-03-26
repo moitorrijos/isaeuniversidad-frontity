@@ -6,8 +6,7 @@ import SingleCard from './base/single-card';
 import MainContainer from './main-container';
 
 const AvailableCareers = styled.div`
-  max-width: 1200px;
-  margin: 8rem auto;
+  padding: 8rem 0;
   h2 {
     color: ${colors.primaryBlue};
     text-align: center;
@@ -20,7 +19,7 @@ const AvailableCareers = styled.div`
   }
 
   @media (max-width: 600px) {
-    margin: 4rem auto;
+    padding: 4rem 0;
   }
 `;
 

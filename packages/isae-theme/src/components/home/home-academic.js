@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect, styled } from 'frontity';
+import { connect, styled, css } from 'frontity';
 import colors from '../../styles/colors';
 import MainContainer from '../main-container';
 import Image from "@frontity/components/image";
@@ -76,6 +76,15 @@ const AcademicImage = styled.figure`
   }
 `;
 
+const background = (position, backgroundUrl) => css`
+  background-image: url(${backgroundUrl}/wp-content/uploads/2021/01/background-isae-${position}.svg);
+  background-position: ${position % 2 === 0 ? '20% center' : '80% center'};
+
+  @media (max-width: 834px) {
+    background-position: center 10%;
+  }
+`;
+
 const HomeAcademic = ({ state }) => {
   const items = state.source.get('/ofertaacadmica').items;
   const backgroundUrl = state.source.url;
@@ -86,10 +95,7 @@ const HomeAcademic = ({ state }) => {
       return (
         <Academic
           key={id}
-          style={{
-            backgroundImage: `url(${backgroundUrl}/wp-content/uploads/2021/01/background-isae-${position}.svg)`,
-            backgroundPosition: '20% center'
-          }}
+          css={background(position, backgroundUrl)}
         >
           <MainContainer>
             <AcademicContainer>
@@ -115,10 +121,7 @@ const HomeAcademic = ({ state }) => {
       return (
         <Academic
           key={id}
-          style={{
-            backgroundImage: `url(${backgroundUrl}/wp-content/uploads/2021/01/background-isae-${position}.svg)`,
-            backgroundPosition: '80% center'
-          }}
+          css={background(position, backgroundUrl)}
         >
           <MainContainer>
             <AcademicContainer>

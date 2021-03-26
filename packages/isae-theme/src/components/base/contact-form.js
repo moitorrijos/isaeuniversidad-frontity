@@ -8,6 +8,10 @@ import RightArrowCircle from '../icons/right-arrow-circle';
 const FormContainer = styled.div`
   padding: 8rem 0;
   background-color: ${colors.blueBright600};
+
+  @media (max-width: 600px) {
+    padding: 6rem 0;
+  }
 `;
 
 const FormGrid = styled.div`

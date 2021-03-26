@@ -9,6 +9,11 @@ const Container = styled.div`
   margin-right: auto;
 
   @media (max-width: 600px) {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  @media (max-width: 412px) {
     padding-left: 1rem;
     padding-right: 1rem;
   }

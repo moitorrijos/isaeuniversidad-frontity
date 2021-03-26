@@ -14,6 +14,11 @@ const FormGrid = styled.div`
   grid-template-columns: 350px 1fr;
   align-items: center;
   gap: 100px;
+
+  @media (max-width: 834px) {
+    grid-template-columns: 1fr;
+  }
+
 `;
 
 const FormInfo = styled.div`
@@ -31,6 +36,10 @@ const Form = styled.form`
   grid-template-columns: 1fr 1fr;
   column-gap: 30px;
   row-gap: 36px;
+
+  @media (max-width: 412px) {
+    grid-template-columns: 1fr;
+  }
 
   input, select, button {
     flex-grow: 1;

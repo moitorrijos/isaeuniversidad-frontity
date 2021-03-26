@@ -46,7 +46,7 @@ const CareerPage = ({ state }) => {
       </BigHero>
       <DescriptionCards backgroundColor={colors.lightGray}>
         <MainContainer style={{overflow: "visible"}}>
-          <Grid columns="4" gap="20px">
+          <Grid columns="4" small_columns="2" gap="20px">
             <HoursCard>
               <HoursIcon />
               <CountUp start={0} end={+acf.total_horas_academicas}>
@@ -235,7 +235,7 @@ const CareerPage = ({ state }) => {
       {acf.otros_programas.length && <OtherPrograms>
         <h2>Otros Programas</h2>
         <MainContainer>
-          <Grid columns="3" gap="30px">
+          <Grid columns="3" small_columns="2" gap="30px">
           {[...careers].reverse().map(career => {
               const available_career = state.source[career.type][career.id];
               const { id, link, title, featured_image_src } = available_career;
@@ -279,6 +279,10 @@ const BigHero = styled.div`
     margin: 1rem 0;
     font-weight: 400;
   }
+
+  @media (max-width: 600px) {
+    padding: 8rem 2rem;
+  }
 `;
 
 const LinkButton = styled(Link)`
@@ -308,6 +312,10 @@ const DescriptionCards = styled.div`
   padding: 0 0 4rem;
   background-color: ${props => props.backgroundColor ? props.backgroundColor : colors.white};
 
+  @media (max-width: 600px) {
+    padding: 4rem 0;
+  }
+
   ul {
     margin: 0;
     padding: 0;
@@ -335,6 +343,12 @@ const HoursCard = styled.div`
     "description";
   transition: all 0.25s ease-in-out;
 
+  @media (max-width: 600px) {
+    grid-template-rows: 75px 50px auto auto;
+    height: auto;
+    margin: 0;
+  }
+
   &:hover {
     transform: ${effects.transform};
     box-shadow: ${effects.boxShadow};
@@ -347,6 +361,11 @@ const HoursCard = styled.div`
     height: 40px;
     background-color: ${colors.primaryYellow100};
     border-radius: 16px;
+
+    @media (max-width: 600px) {
+      width: 30px;
+      height: 30px;
+    }
   }
 
   h2 {
@@ -354,11 +373,20 @@ const HoursCard = styled.div`
     color: ${colors.secondaryOrange500};
     font-size: 72px;
     margin: 0;
+
+    @media (max-width: 600px) {
+      font-size: 34px;
+      align-self: end;
+    }
   }
 
   p {
     grid-area: description;
     margin: 0;
+
+    @media (max-width: 600px) {
+      font-size: 0.9rem;
+    }
   }
 `;
 
@@ -373,6 +401,11 @@ const DescriptionCard = styled.div`
   grid-template-columns: 1fr;
   justify-content: center;
   transition: all 0.25s ease-in-out;
+
+  @media (max-width: 600px) {
+    padding: 4rem 2rem;
+    margin: 0;
+  }
 
   svg {
     margin: 0 auto;
@@ -455,12 +488,21 @@ const RequirementsHeading = styled.button`
     display: block;
     font-size: 2rem;
   }
+
+  @media (max-width: 600px) {
+    padding: 2rem 1rem;
+    font-size: 1rem;
+  }
 `;
 
 const ProfileSection = styled.div`
   padding: 8rem 0;
   background-image: linear-gradient(270deg, #C67A1D 0%, #F79824 100%);
   color: ${colors.white};
+
+  @media (max-width: 600px) {
+    padding: 2rem 0;
+  }
 `;
 
 const ProfileFlexboxContainer = styled.div`
@@ -473,11 +515,19 @@ const ProfileFlexboxContainer = styled.div`
 
 const ProfileSectionDescription = styled.div`
   max-width: 500px;
+
+  @media (max-width: 600px) {
+    order: 2;
+  }
 `;
 
 const ProfileSectionImages = styled.div`
   max-width: 700px;
   position: relative;
+
+  @media (max-width: 600px) {
+    order: 1;
+  }
 `;
 
 const ProfileImages = styled.div`
@@ -493,16 +543,34 @@ const ProfileImages = styled.div`
     &:nth-of-type(1) {
       grid-column: 1 / 3;
       grid-row: 1 / 3;
+
+      @media (max-width: 600px) {
+        grid-column: 1 / 4;
+        grid-row: 1 / 4;
+      }
     }
     &:nth-of-type(2) {
       grid-column: 2 / 4;
       grid-row: 2 / 4;
+
+      @media (max-width: 600px) {
+        display: none;
+      }
+    }
+
+    @media (max-width: 600px) {
+      width: 100%;
+      height: 280px;
     }
   }
 `;
 
 const OtherPrograms = styled.div`
   padding: 6rem 4rem;
+
+  @media (max-width: 600px) {
+    padding: 4rem 0;
+  }
 
   h2 {
     color: ${colors.primaryBlue};

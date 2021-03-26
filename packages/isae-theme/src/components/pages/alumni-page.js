@@ -28,6 +28,10 @@ const Card = styled.div`
   border-radius: 20px;
   transition: all 0.25s ease-in-out;
 
+  @media (max-width: 600px) {
+    margin: 0;
+  }
+
   h2 {
     text-align: center;
     line-height: 1.1;
@@ -206,7 +210,7 @@ const AlumniPage = ({ state }) => {
       <LatestActivities bgImage={bgImage}>
         <h2>Actividades de los Egresados</h2>
         <MainContainer>
-          <Carousel height="395px">
+          <Carousel height="395px" med_height="820px" large_height="1400px" >
             <Grid columns="3" gap="30px" style={carouselItems.item1}>
               {[...latest_activities].slice(0, 3).reverse().map(activity => {
                 const { id, link, title, author, date } = state.source.post[activity.id];
@@ -275,15 +279,15 @@ const AlumniPage = ({ state }) => {
       </LatestActivities>
       <LatestNewsButtons>
         <button
-          onClick={() => { setCurrentItem(1)}}
+          onClick={() => { setCurrentItem(1) }}
           style={ currentItem === 1 ? active : inactive}
         >1</button>
         <button
-          onClick={() => { setCurrentItem(2)}}
+          onClick={() => { setCurrentItem(2) }}
           style={ currentItem === 2 ? active : inactive}
         >2</button>
         <button
-          onClick={() => { setCurrentItem(3)}}
+          onClick={() => { setCurrentItem(3) }}
           style={ currentItem === 3 ? active : inactive}
         >3</button>
       </LatestNewsButtons>

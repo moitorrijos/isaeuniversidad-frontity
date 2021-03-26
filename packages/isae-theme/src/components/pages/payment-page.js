@@ -14,16 +14,26 @@ const PaymentSection = styled.div`
   background-size: 50%;
   background-color: ${props => props.bgcolor ? props.bgcolor : colors.white};
   padding: 8rem 0;
+  
+  @media (max-width: 834px) {
+    padding: 4rem 0;
+  }
 `;
 
 const PaymentImage = styled.figure`
   margin: 0;
+  align-self: center;
   img {
     border-radius: 20px;
     width: 100%;
     height: 540px;
     object-fit: cover;
     box-shadow: ${effects.boxShadow};
+
+    @media (max-width: 600px) {
+      height: 380px;
+      order: 1
+    }
   }
 `;
 
@@ -32,6 +42,12 @@ const PaymentDescription = styled.div`
   padding: 4rem 0;
   max-width: 475px;
   color: ${colors.primaryText50};
+
+  @media (max-width: 600px) {
+    padding: 1rem 0;
+    order: 2;
+  }
+
   h1 {
     font-size: 42px;
     color: ${colors.primaryBlueBright};
@@ -44,6 +60,14 @@ const CenteredSection = styled.div`
   background-size: cover;
   text-align: center;
 
+  @media (max-width: 600px) {
+    padding: 4rem 2rem;
+  }
+
+  @media (max-width: 412px) {
+    padding: 4rem 1rem;
+  }
+
   div {
     max-width: 615px;
     margin: 0 auto;
@@ -54,6 +78,14 @@ const CenteredSection = styled.div`
       display: block;
       font-size: 1.8rem;
       margin: 2rem 0;
+
+      @media (max-width: 600px) {
+        font-size: 1.4rem;
+      }
+
+      @media (max-width: 412px) {
+        font-size: 1.2rem;
+      }
 
       a {
         color: ${colors.white};
@@ -69,7 +101,7 @@ const PaymentPage = ({ state }) => {
     <>
       <PaymentSection background={background} bgcolor={colors.white}>
         <MainContainer>
-          <Grid columns="2" gap="100px">
+          <Grid columns="2" gap="100px" med_gap="40px" small_gap="20px">
             <PaymentImage>
               <Image src={acf.heroe.imagen.url} alt={acf.heroe.imagen.alt} />
             </PaymentImage>
@@ -83,7 +115,7 @@ const PaymentPage = ({ state }) => {
       </PaymentSection>
       <PaymentSection bgcolor={colors.lightGray}>
         <MainContainer>
-          <Grid columns="2" gap="100px">
+          <Grid columns="2" small_gap="20px" gap="100px">
             <PaymentDescription>
               <h2>{acf.instrucciones.titulo}</h2>
               <div dangerouslySetInnerHTML={createMarkup(acf.instrucciones.descripcion)} />

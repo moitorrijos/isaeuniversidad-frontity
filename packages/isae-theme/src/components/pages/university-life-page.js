@@ -77,8 +77,8 @@ const UniversityLifePage = ({ state }) => {
       <LatestNews>
         <Heading>Últimas {toTitleCase(name)}</Heading>
         <MainContainer>
-          <Carousel height="720px">
-            <Grid columns="3" gap="20px" style={carouselItems.item1}>
+          <Carousel height="720px" med_height="1600px" large_height="2200px">
+            <Grid columns="3" gap="20px" small_gap="10px" style={carouselItems.item1}>
               {
                 [...posts].slice(0, 3).map(post => {
                   const {
@@ -103,7 +103,7 @@ const UniversityLifePage = ({ state }) => {
                 )})
               }
             </Grid>
-            <Grid columns="3" gap="20px" style={carouselItems.item2}>
+            <Grid columns="3" gap="20px" small_gap="10px" style={carouselItems.item2}>
               {
                 [...posts].slice(3, 6).map(post => {
                   const {
@@ -128,7 +128,7 @@ const UniversityLifePage = ({ state }) => {
                 )})
               }
             </Grid>
-            <Grid columns="3" gap="20px" style={carouselItems.item3}>
+            <Grid columns="3" gap="20px" small_gap="10px" style={carouselItems.item3}>
               {
                 [...posts].slice(6, 9).map(post => {
                   const {

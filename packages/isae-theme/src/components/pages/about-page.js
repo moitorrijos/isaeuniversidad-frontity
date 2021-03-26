@@ -14,6 +14,11 @@ const Message = styled.div`
   background-size: contain;
   background-position: left center;
   background-repeat: no-repeat;
+
+  @media (max-width: 600px) {
+    padding: 2rem 0 1rem;
+    background-position: left -20px;
+  }
 `;
 
 const MessageImage = styled.figure`
@@ -24,6 +29,16 @@ const MessageImage = styled.figure`
     object-fit: cover;
     object-position: center;
     border-radius: 20px;
+
+    @media (max-width: 600px) {
+      min-height: auto;
+      height: 420px;
+      object-position: center 20%;
+    }
+
+    @media (max-width: 412px) {
+      height: 380px;
+    }
   }
 `;
 
@@ -42,12 +57,20 @@ const NombreRectora = styled.p`
 const MisionVision = styled.div`
   padding: 8rem 0;
   background-color: ${colors.primaryBlueBright};
+
+  @media (max-width: 600px) {
+    padding: 4rem 0;
+  }
 `;
 
 const Mision = styled.div`
   background-color: ${colors.white};
   padding: 2rem 4rem 4rem;
   border-radius: 20px;
+
+  @media (max-width: 600px) {
+    padding: 2rem;
+  }
 
   h3 {
     color: ${colors.primaryBlueBright};
@@ -56,6 +79,10 @@ const Mision = styled.div`
 
 const Values = styled.div`
   padding: 8rem 0;
+
+  @media (max-width: 600px) {
+    padding: 2rem 0;
+  }
 
   h2 {
     color: ${colors.primaryBlueBright};
@@ -91,6 +118,10 @@ const Icon = styled.figure`
 const Reglamentos = styled.div`
   background-color: ${colors.primaryBlueBright};
   padding: 8rem 0 12rem;
+
+  @media (max-width: 600px) {
+    padding: 4rem 0;
+  }
 
   h2 {
     color: ${colors.white};
@@ -190,7 +221,7 @@ const AboutPage = ({ state }) => {
     <>
       <Message background={background} bgColor={colors.lightGray}>
         <MainContainer>
-          <Grid columns="2" gap="100px">
+          <Grid columns="2" gap="100px" small_gap="20px">
             <MessageImage>
               <Image src={acf.mensaje_de_la_rectora.imagen.url} alt={acf.mensaje_de_la_rectora.alt} />
             </MessageImage>
@@ -217,7 +248,7 @@ const AboutPage = ({ state }) => {
       </Message>
       <MisionVision>
         <MainContainer>
-          <Grid columns="2" gap="100px">
+          <Grid columns="2" gap="40px">
             <Mision>
               <h3>Misión</h3>
               <div dangerouslySetInnerHTML={createMarkup(acf.mision_y_vision.mision)} />
@@ -232,7 +263,7 @@ const AboutPage = ({ state }) => {
       <Values>
         <MainContainer>
           <h2>Nuestros Valores</h2>
-          <Grid columns="4" gap="40px">
+          <Grid columns="4" med_columns="2" gap="40px">
             {valores.map((valor, index) => {
               return(
                 <Value key={valor.icono.id ? valor.icono.ID : valor.icono}>
@@ -250,7 +281,7 @@ const AboutPage = ({ state }) => {
       <Reglamentos>
         <h2>Reglamentos</h2>
         <MainContainer>
-          <Grid columns="5" gap="20px">
+          <Grid columns="5" med_columns="2" gap="20px">
             {reglamentos.map(reglamento => (
               <Reglamento key={reglamento.carrera}>
                 <h4>{reglamento.titulo}</h4>
