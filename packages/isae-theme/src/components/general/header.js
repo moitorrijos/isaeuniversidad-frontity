@@ -20,15 +20,17 @@ const HeaderContainer = styled.div`
   box-shadow: ${effects.boxShadow};
 `
 
-const Header = () => (
-  <>
-    <TopHeader />
-    <HeaderContainer>
-      <Logo />
-      <Navigation />
-      <MobileMenu />
-    </HeaderContainer>
-  </>
-);
+const Header = () => {
+  return (
+    <>
+      <TopHeader />
+      <HeaderContainer>
+        <Logo />
+        <Navigation />
+        <MobileMenu />
+      </HeaderContainer>
+    </>
+  )
+};
 
 export default Header;

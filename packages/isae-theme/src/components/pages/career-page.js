@@ -232,7 +232,7 @@ const CareerPage = ({ state }) => {
           </ProfileFlexboxContainer>}
         </MainContainer>
       </ProfileSection>
-      {acf.otros_programas.length && <OtherPrograms>
+      {acf.otros_programas && <OtherPrograms>
         <h2>Otros Programas</h2>
         <MainContainer>
           <Grid columns="3" small_columns="2" gap="30px">

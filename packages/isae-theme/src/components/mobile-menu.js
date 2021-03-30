@@ -1,7 +1,7 @@
 import React from 'react';
-import { styled } from 'frontity';
+import { styled, connect } from 'frontity';
 import colors from '../styles/colors';
-import HamburgerIcon from './icons/menu-icon';
+import { HamburgerIcon, CloseIcon } from './icons/menu-icon';
 
 const MenuToggle = styled.button`
   border-radius: 50%;
@@ -12,21 +12,24 @@ const MenuToggle = styled.button`
   background-color: ${colors.primaryBlue};
   width: 40px;
   height: 40px;
+  z-index: 3;
 
   @media (min-width: 835px) {
     display: none;
   }
 `;
 
-const MobileMenu = () => {
-  const toggleMenu = () => {
-    console.log('toggle menu');
-  }
+const MobileMenu = ({ state, actions }) => {
+  const { isMobileMenuOpen } = state.theme;
   return(
-    <MenuToggle onClick={toggleMenu}>
-      <HamburgerIcon color={colors.white} size="24px" />
+    <MenuToggle onClick={actions.theme.toggleMobileMenu}>
+      {
+        isMobileMenuOpen ?
+        <CloseIcon color={colors.white} size="24px" /> :
+        <HamburgerIcon color={colors.white} size="24px" />
+      }
     </MenuToggle>
   );
 }
 
-export default MobileMenu;
+export default connect(MobileMenu);

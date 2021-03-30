@@ -10,10 +10,18 @@ export default {
     theme: Theme
   },
   state: {
-    theme: {}
+    theme: {
+      isMobileMenuOpen: false,
+    }
   },
   actions: {
     theme: {
+      toggleMobileMenu: ({ state }) => {
+        state.theme.isMobileMenuOpen = !state.theme.isMobileMenuOpen;
+      },
+      closeMobileMenu: ({ state }) => {
+        state.theme.isMobileMenuOpen = false;
+      },
       beforeSSR: async ({ actions }) => {
         await actions.source.fetch("2");
         await actions.source.fetch("54");
