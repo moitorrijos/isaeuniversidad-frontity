@@ -8,12 +8,21 @@ import ArrowIcon from '../icons/arrow-icon';
 
 const Nav = styled.nav`
   padding: 0 24px;
-  display: flex;
+  display: ${props => props.mobileMenu ? 'none' : 'flex'};
   flex-flow: row nowrap;
   border: none;
 
   @media (max-width: 835px) {
-    display: none;
+    display: ${props => props.mobileMenu ? 'flex' : 'none'};
+    flex-direction: column;
+    justify-content: space-between;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 100%;
+    background-color: ${colors.white};
+    height: 80vh;
+    padding: 1rem 0;
   }
 `;
 
@@ -31,6 +40,12 @@ const MenuLink = styled.button`
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
+
+  @media (max-width: 835px) {
+    display: block;
+    width: 100%;
+    padding: 24px;
+  }
 
   svg {
     margin-left: 10px;
@@ -102,6 +117,7 @@ const SubMenuLink = styled.button`
 `;
 
 const Navigation = ({ state, actions }) => {
+  const { isMobileMenuOpen } = state.theme;
   const items = state.source.get('2').items;
   const [hidden, setHidden] = useState(true);
   const [hidden_submenu, setHiddenSubmenu] = useState(true);
@@ -143,7 +159,7 @@ const Navigation = ({ state, actions }) => {
     setHiddenSubmenu(true);
   }
   return (
-    <Nav>
+    <Nav mobileMenu={isMobileMenuOpen}>
       {items.map(item => {
         const { id, title, type, children } = item;
         const isCurrentMenuItem = (currentTitle === title) && !hidden

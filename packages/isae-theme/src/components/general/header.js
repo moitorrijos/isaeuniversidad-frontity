@@ -18,6 +18,10 @@ const HeaderContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   box-shadow: ${effects.boxShadow};
+
+  @media (max-widht: 834px) {
+    height: 20vh;
+  }
 `
 
 const Header = () => {

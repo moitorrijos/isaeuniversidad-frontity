@@ -1,5 +1,5 @@
 import React from 'react';
-import { styled, connect } from 'frontity';
+import { styled, connect, Global } from 'frontity';
 import colors from '../styles/colors';
 import { HamburgerIcon, CloseIcon } from './icons/menu-icon';
 
@@ -24,8 +24,12 @@ const MobileMenu = ({ state, actions }) => {
   return(
     <MenuToggle onClick={actions.theme.toggleMobileMenu}>
       {
-        isMobileMenuOpen ?
-        <CloseIcon color={colors.white} size="24px" /> :
+        isMobileMenuOpen ? (
+          <>
+            <Global styles={{ body: { overflowY: "hidden" } }} />
+            <CloseIcon color={colors.white} size="24px" />
+          </>
+        ) :
         <HamburgerIcon color={colors.white} size="24px" />
       }
     </MenuToggle>
