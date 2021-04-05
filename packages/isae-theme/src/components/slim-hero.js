@@ -26,7 +26,7 @@ const SlimHeroContainer = styled.div`
 
 const FeaturedImage = styled.figure`
   img {
-    width: 474px;
+    width: 550px;
     height: 528px;
     object-fit: cover;
     object-position: center;

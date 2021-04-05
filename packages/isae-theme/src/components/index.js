@@ -11,6 +11,7 @@ import BranchPage from './branch-page';
 import CareerPage from './pages/career-page';
 import InvestigationsPage from './pages/investigations-page';
 import UniversityLifePage from './pages/university-life-page';
+import PostPage from './pages/post-page';
 import Footer from './general/footer';
 import Page from './page';
 
@@ -85,6 +86,7 @@ const Theme = ({ state }) => {
         <UniversityLifePage when={data.isVidauniversitaria} />
         <InvestigationsPage when={data.isInvestigacion} />
         <Page when={data.isPage} />
+        <PostPage when={data.isPost} />
       </Switch>
       <Footer />
     </>

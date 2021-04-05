@@ -42,8 +42,9 @@ const MenuLink = styled.button`
   flex-flow: row nowrap;
   align-items: center;
 
-  @media (max-width: 835px) {
+  @media (max-width: 834px) {
     display: block;
+    text-align: left;
     width: 100%;
     padding: 24px;
     font-size: 1rem;
@@ -139,6 +140,21 @@ const SubMenuLink = styled.button`
   }
 `;
 
+const BackButton = styled.button`
+  position: absolute;
+  left: 20px;
+  top: 25px;
+  width: 40px;
+  height: 40px;
+  outline: 0;
+  border-radius: 50%;
+  background-color: ${colors.mediumGray};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
 const Navigation = ({ state, actions }) => {
   const { isMobileMenuOpen } = state.theme;
   const items = state.source.get('2').items;
@@ -153,7 +169,7 @@ const Navigation = ({ state, actions }) => {
   const showSubmenu = (item, e) => {
     const { title, type, url, children } = item;
     e.preventDefault();
-    // hideAllMenus();
+    setHiddenSubmenu(true);
     setHidden(false);
     setCurrentMenu(!currentMenu);
     setCurrentType(type);
@@ -175,7 +191,7 @@ const Navigation = ({ state, actions }) => {
       hideAllMenus();
     }
     setCurrentSubmenuTitle(title);
-    setHiddenSubmenu(!hidden_submenu);
+    setHiddenSubmenu(false);
   }
   const hideAllMenus = () => {
     setHidden(true);
@@ -201,6 +217,9 @@ const Navigation = ({ state, actions }) => {
               }
             </MenuLink>
             {children && <Submenu hidden={hidden}>
+              {isMobileMenuOpen && <BackButton onClick={ () => { setHidden(true) }}>
+                  <Chevron color={colors.white} style={{ transform: "rotate(90deg)" }} />
+                </BackButton>}
               <h2>{currentTitle}</h2>
               {(currentType === "custom") &&
                 <SubMenuList>
@@ -223,6 +242,9 @@ const Navigation = ({ state, actions }) => {
                 </SubMenuList>
               }
               {(currentTitle === title) && <SubSubmenu hidden_submenu={hidden_submenu}>
+                {isMobileMenuOpen && <BackButton onClick={ () => { setHiddenSubmenu(true) }}>
+                <Chevron color={colors.white} style={{ transform: "rotate(90deg)" }} />
+                  </BackButton>}
                 {subSubmenuItems && subSubmenuItems.map(subSubmenuItem => {
                   const { id, url, title } = subSubmenuItem;
                   return(
