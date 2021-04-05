@@ -221,7 +221,7 @@ const AboutPage = ({ state }) => {
     <>
       <Message background={background} bgColor={colors.lightGray}>
         <MainContainer>
-          <Grid columns="2" gap="100px" small_gap="20px">
+          <Grid columns="2" gap="100px" med_gap="20px" small_gap="20px">
             <MessageImage>
               <Image src={acf.mensaje_de_la_rectora.imagen.url} alt={acf.mensaje_de_la_rectora.alt} />
             </MessageImage>
@@ -235,7 +235,7 @@ const AboutPage = ({ state }) => {
       </Message>
       <Message bgColor={colors.white}>
         <MainContainer>
-          <Grid columns="2" gap="100px">
+          <Grid columns="2" gap="100px" med_gap="20px">
             <MessageText>
               <h2>Nuestra Historia</h2>
               <div dangerouslySetInnerHTML={createMarkup(acf.nuestra_historia.texto)} />

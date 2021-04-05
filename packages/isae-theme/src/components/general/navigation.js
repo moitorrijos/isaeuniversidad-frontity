@@ -7,12 +7,13 @@ import Chevron from '../icons/chevron';
 import ArrowIcon from '../icons/arrow-icon';
 
 const Nav = styled.nav`
+  display: flex;
   padding: 0 24px;
-  display: ${props => props.mobileMenu ? 'none' : 'flex'};
   flex-flow: row nowrap;
   border: none;
+  transition: all 0.25s ease-in-out;
 
-  @media (max-width: 835px) {
+  @media (max-width: 834px) {
     display: ${props => props.mobileMenu ? 'flex' : 'none'};
     flex-direction: column;
     justify-content: space-between;
@@ -21,7 +22,7 @@ const Nav = styled.nav`
     top: 100%;
     width: 100%;
     background-color: ${colors.white};
-    height: 80vh;
+    height: 85vh;
     padding: 1rem 0;
   }
 `;
@@ -45,6 +46,7 @@ const MenuLink = styled.button`
     display: block;
     width: 100%;
     padding: 24px;
+    font-size: 1rem;
   }
 
   svg {
@@ -68,6 +70,22 @@ const Submenu = styled.div`
     margin: 24px 0 16px;
     font-weight: 500;
   }
+  
+  @media (max-width: 834px) {
+    top: 0;
+    height: 80vh;
+  }
+`;
+
+const SubMenuList = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, minmax(260px, 1fr));
+  border-bottom: 1px solid ${colors.mediumGray};
+  margin-bottom: 18px;
+
+  @media (max-width: 834px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const SubSubmenu = styled.div`
@@ -88,13 +106,13 @@ const SubSubmenu = styled.div`
     font-size: 15px;
     padding: 24px 40px;
   }
-`;
 
-const SubMenuList = styled.div`
-  display: grid;
-  grid-template-columns: repeat(4, minmax(260px, 1fr));
-  border-bottom: 1px solid ${colors.mediumGray};
-  margin-bottom: 18px;
+  @media (max-width: 834px) {
+    top: 0;
+    z-index: 4;
+    grid-template-columns: 1fr;
+    justify-content: space-between;
+  }
 `;
 
 const SubMenuLink = styled.button`
@@ -111,8 +129,13 @@ const SubMenuLink = styled.button`
   transition: all 0.25s ease-in-out;
   font-size: 14px;
   cursor: pointer;
+
   svg {
     margin-right: 10px;
+  }
+
+  @media (max-width: 834px) {
+    font-size: 1rem;
   }
 `;
 
@@ -130,7 +153,7 @@ const Navigation = ({ state, actions }) => {
   const showSubmenu = (item, e) => {
     const { title, type, url, children } = item;
     e.preventDefault();
-    hideAllMenus();
+    // hideAllMenus();
     setHidden(false);
     setCurrentMenu(!currentMenu);
     setCurrentType(type);
@@ -157,6 +180,7 @@ const Navigation = ({ state, actions }) => {
   const hideAllMenus = () => {
     setHidden(true);
     setHiddenSubmenu(true);
+    actions.theme.closeMobileMenu();
   }
   return (
     <Nav mobileMenu={isMobileMenuOpen}>
@@ -172,7 +196,7 @@ const Navigation = ({ state, actions }) => {
               {title}
               {type === 'custom' &&
                 <Chevron
-                  style={isCurrentMenuItem ? {transform: 'rotate(180deg)'} : {transform: 'rotate(0)'}}
+                  style={isCurrentMenuItem ? {transform: 'rotate(180deg)'} : isMobileMenuOpen ? {transform: 'rotate(-90deg)'} : {transform: 'rotate(0deg)'}}
                 />
               }
             </MenuLink>

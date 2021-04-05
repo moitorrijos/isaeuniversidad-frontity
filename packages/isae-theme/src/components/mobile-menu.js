@@ -14,7 +14,7 @@ const MenuToggle = styled.button`
   height: 40px;
   z-index: 3;
 
-  @media (min-width: 835px) {
+  @media (min-width: 834px) {
     display: none;
   }
 `;

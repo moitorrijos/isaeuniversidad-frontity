@@ -19,8 +19,8 @@ const HeaderContainer = styled.div`
   align-items: center;
   box-shadow: ${effects.boxShadow};
 
-  @media (max-widht: 834px) {
-    height: 20vh;
+  @media (max-width: 834px) {
+    height: 10vh;
   }
 `
 
