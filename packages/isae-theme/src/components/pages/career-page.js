@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect, styled } from 'frontity';
 import colors from '../../styles/colors';
 import { effects } from '../../styles/effects';
@@ -20,14 +20,13 @@ import Image from "@frontity/components/image";
 import SingleCard from '../base/single-card';
 import ContactForm from '../base/contact-form';
 
-const CareerPage = ({ state }) => {
+const CareerPage = ({ state, actions }) => {
   const career = state.source.get(state.router.link);
   const { 
     title,
     acf,
     featured_image_src
   } = state.source[career.type][career.id];
-  const careers = state.source.get('/carrera').items;
   const placeholder = state.source.url+'/wp-content/uploads/2021/03/placeholder2.jpg';
   const [ hidden1, setHidden1 ] = useState(true);
   const [ hidden2, setHidden2 ] = useState(false);
@@ -37,12 +36,18 @@ const CareerPage = ({ state }) => {
   function toggleTab2() {
     setHidden2(!hidden2);
   }
+  const nombre_programas = acf.otros_programas.map(programa => '/carrera/' + programa.post_name + '/');
+  nombre_programas.forEach(programa => {
+    useEffect(() => {
+      actions.source.fetch(programa);
+    })
+  });
   return(
     <>
       <BigHero background={featured_image_src}>
         <h1>{title.rendered}</h1>
         <h3>{acf.descripcion}</h3>
-        <LinkButton link={acf.boton_plan_de_estudio} >Ver Plan de Estudio</LinkButton>
+        <LinkButton link={acf.boton_plan_de_estudio}>Ver Plan de Estudio</LinkButton>
       </BigHero>
       <DescriptionCards backgroundColor={colors.lightGray}>
         <MainContainer style={{overflow: "visible"}}>
@@ -236,8 +241,8 @@ const CareerPage = ({ state }) => {
         <h2>Otros Programas</h2>
         <MainContainer>
           <Grid columns="3" small_columns="2" gap="30px">
-          {[...careers].reverse().map(career => {
-              const available_career = state.source[career.type][career.id];
+          {acf.otros_programas.map(career => {
+              const available_career = state.source.carrera[career.ID];
               const { id, link, title, featured_image_src } = available_career;
               return(
                 <SingleCard key={id} link={link} image={featured_image_src} title={title} />
