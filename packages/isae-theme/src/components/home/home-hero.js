@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { styled, connect } from 'frontity';
 import colors from '../../styles/colors';
+import { Motion, spring } from 'react-motion';
 import useCarousel from '../../hooks/use-carousel';
 import MainContainer from '../main-container';
 import MainButton from '../main-button';
@@ -14,7 +15,6 @@ const HeroContainer = styled.div`
   background-position: -160px top;
   background-size: 300px;
 `;
-
 
 const Carousel = styled.div`
   height: 760px;
@@ -121,7 +121,6 @@ const HeroImage = styled.div`
   }
 `;
 
-
 const HomeHero = ({ state }) => {
   const { acf, title } = state.source.sede[36];
   const backgrouldUrl = state.source.url;
@@ -132,28 +131,51 @@ const HomeHero = ({ state }) => {
       <MainContainer>
         <Carousel>
           <HeroInner style={carouselItems.item1}>
-            <HeroInfo>
-              <h1>Carrusel 1</h1>
-              <p>
-                Estudia una carrera con nosotros,
-                matricúlate en cualquiera de nuestras 8 sedes a nivel nacional
-                <em>#estudiaenISAE</em>
-              </p>
-              <MainButton
-                background={colors.primaryYellow}
-                color={colors.primaryBlue}
-                link="#formulario-contacto"
-              >
-                Más Información
-              </MainButton>
-            </HeroInfo>
-            <HeroImage>
-              <Image
-                alt={title.rendered}
-                src={acf.foto.sizes["1536x1536"]}
-                height="620"
-              />
-            </HeroImage>
+            <Motion 
+              defaultStyle={{opacity: 0, translateY: -100}}
+              style={{
+                opacity: spring(1, {stiffness: 120, damping: 17}),
+                translateY: spring(0, {stiffness: 51, damping: 9})
+              }}
+            >
+              {hero_info => <HeroInfo
+                  style={{
+                    opacity: hero_info.opacity,
+                    transform: 'translateY(' + hero_info.translateY + 'px)'
+                  }}
+                >
+                <h1>Carrusel 1</h1>
+                <p>
+                  Estudia una carrera con nosotros,
+                  matricúlate en cualquiera de nuestras 8 sedes a nivel nacional
+                  <em>#estudiaenISAE</em>
+                </p>
+                <MainButton
+                  background={colors.primaryYellow}
+                  color={colors.primaryBlue}
+                  link="#formulario-contacto"
+                >
+                  Más Información
+                </MainButton>
+              </HeroInfo>}
+            </Motion>
+            <Motion 
+              defaultStyle={{opacity: 0, translateX: 100}}
+              style={{
+                opacity: spring(1, {stiffness: 120, damping: 17}),
+                translateX: spring(0, {stiffness: 51, damping: 9})
+              }}>
+              {hero_image =><HeroImage style={{
+                opacity: hero_image.opacity,
+                transform: 'translateX('+ hero_image.translateX + 'px)'
+              }}>
+                <Image
+                  alt={title.rendered}
+                  src={acf.foto.sizes["1536x1536"]}
+                  height="620"
+                />
+              </HeroImage>}
+            </Motion>
           </HeroInner>
           <HeroInner style={carouselItems.item2}>
             <HeroInfo>
