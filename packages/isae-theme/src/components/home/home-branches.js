@@ -66,18 +66,18 @@ const HomeBranches = ({ state }) => {
             })}
           </Grid>
           <Grid columns="3" gap="40px" style={carouselItems.item2}>
-            {[...branches].reverse().slice(3,6).map(branch => {
-              const data = state.source[branch.type][branch.id];
-              const { id, link, acf, title } = data;
-              return (
-                <CardItem
+              {[...branches].reverse().slice(3,6).map(branch => {
+                const data = state.source[branch.type][branch.id];
+                const { id, link, acf, title } = data;
+                return (
+                  <CardItem
                   key={id}
                   link={link}
                   data={acf}
                   title={title}
                 />
-              );
-            })}
+                );
+              })}
           </Grid>
           <Grid columns="3" gap="40px" style={carouselItems.item3}>
             {[...branches].reverse().slice(6,9).map(branch => {

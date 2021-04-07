@@ -134,8 +134,8 @@ const HomeHero = ({ state }) => {
             <Motion 
               defaultStyle={{opacity: 0, translateY: -100}}
               style={{
-                opacity: spring(1, {stiffness: 120, damping: 17}),
-                translateY: spring(0, {stiffness: 51, damping: 9})
+                opacity: spring(1, {stiffness: 120, damping: 10}),
+                translateY: spring(0, {stiffness: 50, damping: 10})
               }}
             >
               {hero_info => <HeroInfo
@@ -162,8 +162,8 @@ const HomeHero = ({ state }) => {
             <Motion 
               defaultStyle={{opacity: 0, translateX: 100}}
               style={{
-                opacity: spring(1, {stiffness: 120, damping: 17}),
-                translateX: spring(0, {stiffness: 51, damping: 9})
+                opacity: spring(1, {stiffness: 120, damping: 10 }),
+                translateX: spring(0, {stiffness: 50, damping: 10})
               }}>
               {hero_image =><HeroImage style={{
                 opacity: hero_image.opacity,
