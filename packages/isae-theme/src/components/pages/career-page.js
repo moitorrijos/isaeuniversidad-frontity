@@ -36,12 +36,14 @@ const CareerPage = ({ state, actions }) => {
   function toggleTab2() {
     setHidden2(!hidden2);
   }
-  const nombre_programas = acf.otros_programas.map(programa => '/carrera/' + programa.post_name + '/');
-  nombre_programas.forEach(programa => {
-    useEffect(() => {
-      actions.source.fetch(programa);
-    })
-  });
+  const nombre_programas = acf.otros_programas ?  acf.otros_programas.map(programa => '/carrera/' + programa.post_name + '/') : null;
+  if ( nombre_programas ) {
+    nombre_programas.forEach(programa => {
+      useEffect(() => {
+        actions.source.fetch(programa);
+      })
+    });
+  }
   return(
     <>
       <BigHero background={featured_image_src}>
