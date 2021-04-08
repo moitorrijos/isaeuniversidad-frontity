@@ -37,6 +37,7 @@ const CareerPage = ({ state, actions }) => {
     setHidden2(!hidden2);
   }
   const nombre_programas = acf.otros_programas ?  acf.otros_programas.map(programa => '/carrera/' + programa.post_name + '/') : null;
+  
   if ( nombre_programas ) {
     nombre_programas.forEach(programa => {
       useEffect(() => {
@@ -244,11 +245,14 @@ const CareerPage = ({ state, actions }) => {
         <MainContainer>
           <Grid columns="3" small_columns="2" gap="30px">
           {acf.otros_programas.map(career => {
-              const available_career = state.source.carrera[career.ID];
-              const { id, link, title, featured_image_src } = available_career;
-              return(
+            const { id, link, title, featured_image_src } = state.source.carrera[career.ID] || {};
+            if (id) {
+              return (
                 <SingleCard key={id} link={link} image={featured_image_src} title={title} />
               );
+            } else {
+              return null;
+            }
             })}
           </Grid>
         </MainContainer>
