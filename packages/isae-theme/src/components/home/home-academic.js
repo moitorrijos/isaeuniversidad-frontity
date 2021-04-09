@@ -7,7 +7,7 @@ import MainButton from '../main-button';
 import createMarkup from '../../helpers/create-markup';
 
 const Academic = styled.div`
-  padding: 8rem 0;
+  padding: 6rem 0;
   background-repeat: no-repeat;
   background-position: center center;
 
@@ -28,7 +28,7 @@ const AcademicContainer = styled.div`
 `;
 
 const AcademicInfo = styled.div`
-  width: 275px;
+  width: 320px;
 
   h2 {
     color: ${colors.primaryBlue};
@@ -36,7 +36,8 @@ const AcademicInfo = styled.div`
   }
 
   p {
-    font-size: 18px;
+    font-size: 20px;
+    line-height: 1.5;
     color: ${colors.primaryText50};
     margin-bottom: 2rem;
   }
@@ -52,7 +53,7 @@ const AcademicImage = styled.figure`
 
   img {
     height: 528px;
-    width: 575px;
+    width: 600px;
     border-radius: 22px;
     object-fit: cover;
     object-position: center;

@@ -3,7 +3,6 @@ import { connect, styled } from 'frontity';
 import colors from '../../styles/colors';
 import useCarousel from '../../hooks/use-carousel';
 import CardItem from '../card-item';
-// import MainContainer from '../main-container';
 import Carousel from '../carousel';
 import Grid from '../grid';
 

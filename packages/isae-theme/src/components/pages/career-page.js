@@ -520,7 +520,7 @@ const ProfileFlexboxContainer = styled.div`
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
-  gap: 40px;
+  gap: 20px;
   padding: 4rem 0;
 `;
 

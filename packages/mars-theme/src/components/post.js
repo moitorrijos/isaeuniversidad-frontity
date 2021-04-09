@@ -86,7 +86,7 @@ const StyledLink = styled(Link)`
 
 const Author = styled.p`
   color: rgba(12, 17, 43, 0.9);
-  font-size: 0.9em;
+  font-size: 1em;
   display: inline;
 `;
 

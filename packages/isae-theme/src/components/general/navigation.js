@@ -36,7 +36,7 @@ const MenuLink = styled.button`
   text-decoration: none;
   color: ${colors.primaryText100};
   transition: all 0.25s ease-in-out;
-  font-size: 15px;
+  font-size: 16px;
   font-size: clamp(13px, 0.9vw, 1rem);
   display: flex;
   flex-flow: row nowrap;
