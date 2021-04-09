@@ -20,9 +20,14 @@ const CarouselContainer = styled.div`
   }
 `;
 
-const Carousel = ({ height, med_height, large_height, children }) => {
+const Carousel = ({ height, med_height, large_height, style, children }) => {
   return(
-    <CarouselContainer height={height} med_height={med_height} large_height={large_height}>
+    <CarouselContainer
+      height={height}
+      med_height={med_height}
+      large_height={large_height}
+      style={style}
+    >
       {children}
     </CarouselContainer>
   );

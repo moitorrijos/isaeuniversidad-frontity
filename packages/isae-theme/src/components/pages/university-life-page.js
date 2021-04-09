@@ -77,7 +77,7 @@ const UniversityLifePage = ({ state }) => {
       <LatestNews>
         <Heading>Últimas {toTitleCase(name)}</Heading>
         <MainContainer>
-          <Carousel height="720px" med_height="1600px" large_height="2200px">
+          <Carousel height="740px" med_height="1600px" large_height="2200px">
             <Grid columns="3" gap="20px" small_gap="10px" style={carouselItems.item1}>
               {
                 [...posts].slice(0, 3).map(post => {

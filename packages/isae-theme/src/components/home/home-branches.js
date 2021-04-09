@@ -3,7 +3,7 @@ import { connect, styled } from 'frontity';
 import colors from '../../styles/colors';
 import useCarousel from '../../hooks/use-carousel';
 import CardItem from '../card-item';
-import MainContainer from '../main-container';
+// import MainContainer from '../main-container';
 import Carousel from '../carousel';
 import Grid from '../grid';
 
@@ -14,6 +14,11 @@ const Heading = styled.h1`
   color: ${colors.primaryBlue};
   max-width: 677px;
   margin: 6rem auto;
+`;
+
+const Container = styled.div`
+  max-width: 1440px;
+  margin: 0 auto;
 `;
 
 const CarouselButtons = styled.div`
@@ -49,9 +54,17 @@ const HomeBranches = ({ state }) => {
   return (
     <>
       <Heading>Nuestras Sedes</Heading>
-      <MainContainer>
-        <Carousel height="550px" med_height="960px" large_height="1450px">
-          <Grid columns="3" gap="40px" style={carouselItems.item1}>
+      <Container>
+        <Carousel
+          height="550px"
+          med_height="960px"
+          large_height="1450px"
+        >
+          <Grid
+            columns="3"
+            gap="40px"
+            style={{...carouselItems.item1, padding: "0 4rem"}}
+          >
             {[...branches].reverse().slice(0,3).map(branch => {
               const data = state.source[branch.type][branch.id];
               const { id, link, acf, title } = data;
@@ -65,7 +78,11 @@ const HomeBranches = ({ state }) => {
               );
             })}
           </Grid>
-          <Grid columns="3" gap="40px" style={carouselItems.item2}>
+          <Grid
+            columns="3"
+            gap="40px"
+            style={{ ...carouselItems.item2, padding: "0 4rem" }}
+          >
               {[...branches].reverse().slice(3,6).map(branch => {
                 const data = state.source[branch.type][branch.id];
                 const { id, link, acf, title } = data;
@@ -79,7 +96,11 @@ const HomeBranches = ({ state }) => {
                 );
               })}
           </Grid>
-          <Grid columns="3" gap="40px" style={carouselItems.item3}>
+          <Grid
+            columns="3"
+            gap="40px"
+            style={{ ...carouselItems.item3, padding: "0 4rem" }}
+          >
             {[...branches].reverse().slice(6,9).map(branch => {
               const data = state.source[branch.type][branch.id];
               const { id, link, acf, title } = data;
@@ -108,7 +129,7 @@ const HomeBranches = ({ state }) => {
             style={ currentItem === 3 ? { borderColor: colors.primaryBlue } : { borderColor: colors.white }}
           />
         </CarouselButtons>
-      </MainContainer>
+      </Container>
     </>
   );
 };
