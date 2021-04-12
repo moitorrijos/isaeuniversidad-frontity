@@ -18,7 +18,7 @@ import Page from './page';
 const globalStyles = css`
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", 'DM Sans', sans-serif;
-    font-size: 20px;
+    font-size: 18px;
     line-height: 1.6;
     padding: 0;
     margin: 0;

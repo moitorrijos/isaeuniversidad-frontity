@@ -11,6 +11,7 @@ const FooterContainer = styled.footer`
   padding-bottom: 4rem;
   background-color: ${colors.primaryBlue};
   color: ${colors.white};
+  font-size: 15px;
 `;
 
 const FooterItem = styled.div`
