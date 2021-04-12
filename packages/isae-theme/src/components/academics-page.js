@@ -8,7 +8,7 @@ import BranchFilterButtons from './branch-filter-buttons';
 
 const FilterParagraph = styled.p`
   max-width: 500px;
-  margin: 8rem auto 2rem;
+  margin: 6rem auto 2rem;
   text-align: center;
   color: ${colors.primaryText50};
   font-size: 18px;

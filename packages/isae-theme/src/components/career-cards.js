@@ -6,12 +6,12 @@ import SingleCard from './base/single-card';
 import MainContainer from './main-container';
 
 const AvailableCareers = styled.div`
-  padding: 8rem 0;
+  padding: 6rem 0;
   h2 {
     color: ${colors.primaryBlue};
     text-align: center;
     font-weight: 500;
-    margin-bottom: 8rem;
+    margin-bottom: 6rem;
 
     @media (max-width: 600px) {
       margin-bottom: 4rem;
