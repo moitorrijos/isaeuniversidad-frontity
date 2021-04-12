@@ -87,6 +87,7 @@ const Theme = ({ state }) => {
         <InvestigationsPage when={data.isInvestigacion} />
         <Page when={data.isPage} />
         <PostPage when={data.isPost} />
+        <ErrorPage when={data.isError} />
       </Switch>
       <Footer />
     </>
