@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { styled, connect } from 'frontity';
 import colors from '../../styles/colors';
 import useCarousel from '../../hooks/use-carousel';
-import MainContainer from '../main-container';
 import Carousel from '../carousel';
 import Grid from '../grid';
 import BoldCardItem from '../bold-card-item';
@@ -10,6 +9,11 @@ import BoldCardItem from '../bold-card-item';
 const LatestActivities = styled.div`
   padding: 4rem 0 8rem;
   background-color: ${colors.lightGray};
+`;
+
+const Container = styled.div`
+  max-width: 1440px;
+  margin: 0 auto;
 `;
 
 const Heading = styled.h2`
@@ -48,9 +52,12 @@ const HomeActivities = ({ state }) => {
   return (
     <LatestActivities>
       <Heading>Nuestras Actividades</Heading>
-      <MainContainer>
+      <Container>
         <Carousel height="740px" med_height="1450px" large_height="2220px">
-          <Grid columns="3" gap="30px" style={carouselItems.item1}>
+          <Grid
+            columns="3"
+            gap="30px"
+            style={{...carouselItems.item1, padding: "0 4rem"}}>
             {[...activities].slice(0, 3).map(activity => {
               const { id, date, title, link, featured_image_src } = state.source[activity.type][activity.id];
               const activityDate = new Date(date);
@@ -70,7 +77,10 @@ const HomeActivities = ({ state }) => {
               )
             })}
           </Grid>
-          <Grid columns="3" gap="30px" style={carouselItems.item2}>
+          <Grid
+            columns="3"
+            gap="30px"
+            style={{...carouselItems.item2, padding: "0 4rem"}}>
             {[...activities].slice(3, 6).map(activity => {
               const { id, date, title, link, featured_image_src } = state.source[activity.type][activity.id];
               const activityDate = new Date(date);
@@ -90,7 +100,10 @@ const HomeActivities = ({ state }) => {
               )
             })}
           </Grid>
-          <Grid columns="3" gap="30px" style={carouselItems.item3}>
+          <Grid
+            columns="3"
+            gap="30px"
+            style={{...carouselItems.item3, padding: "0 4rem"}}>
             {[...activities].slice(6, 9).map(activity => {
               const { id, date, title, link, featured_image_src } = state.source[activity.type][activity.id];
               const activityDate = new Date(date);
@@ -125,7 +138,7 @@ const HomeActivities = ({ state }) => {
               style={ currentItem === 3 ? active : inactive}
             >3</button>
         </LatestActivitiesButtons>
-      </MainContainer>
+      </Container>
     </LatestActivities>
   );
 }

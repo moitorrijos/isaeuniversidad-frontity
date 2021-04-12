@@ -2,13 +2,17 @@ import React, { useState } from 'react';
 import { styled, connect } from 'frontity';
 import colors from '../../styles/colors';
 import useCarousel from '../../hooks/use-carousel';
-import MainContainer from '../main-container';
 import Grid from '../grid';
 import Carousel from '../carousel';
 import SlimCardItem from '../slim-card-item';
 
 const LatestNews = styled.div`
   padding: 4rem 0 0;
+`;
+
+const Container = styled.div`
+  max-width: 1440px;
+  margin: 0 auto;
 `;
 
 const Heading = styled.h2`
@@ -49,9 +53,13 @@ const HomeNews = ({ state }) => {
   return (
     <LatestNews>
       <Heading>Últimas Noticias</Heading>
-      <MainContainer>
+      <Container>
         <Carousel height="740px" med_height="1460px" large_height="2220px">
-          <Grid columns="3" gap="30px" style={carouselItems.item1}>
+          <Grid
+            columns="3"
+            gap="30px"
+            style={{...carouselItems.item1, padding: "0 4rem"}}
+          >
             {[...news].slice(0, 3).map(post => {
               const {
                 id,
@@ -75,7 +83,11 @@ const HomeNews = ({ state }) => {
               )
             })}
           </Grid>
-          <Grid columns="3" gap="30px" style={carouselItems.item2}>
+          <Grid
+            columns="3"
+            gap="30px"
+            style={{...carouselItems.item2, padding: "0 4rem"}}
+          >
             {[...news].slice(3, 6).map(post => {
               const {
                 id,
@@ -99,7 +111,11 @@ const HomeNews = ({ state }) => {
               )
             })}
           </Grid>
-          <Grid columns="3" gap="30px" style={carouselItems.item3}>
+          <Grid
+            columns="3"
+            gap="30px"
+            style={{...carouselItems.item3, padding: "0 4rem"}}
+          >
             {[...news].slice(6, 9).map(post => {
               const {
                 id,
@@ -138,7 +154,7 @@ const HomeNews = ({ state }) => {
             style={ currentItem === 3 ? active : inactive}
           >3</button>
         </LatestNewsButtons>
-      </MainContainer>
+      </Container>
     </LatestNews>
   );
 }

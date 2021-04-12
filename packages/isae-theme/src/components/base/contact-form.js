@@ -83,7 +83,7 @@ const ContactForm = ({ state }) => {
             <p>
               Campus Central:<br />
               (+507) 278-1432 / 278-1444<br />
-              info@correo.com
+              info@isaeuniversidad.ac.pa
             </p>
           </FormInfo>
           <Form onSubmit={handleSubmit(onSubmit)}>

@@ -14,6 +14,7 @@ import UniversityLifePage from './pages/university-life-page';
 import PostPage from './pages/post-page';
 import Footer from './general/footer';
 import Page from './page';
+import ErrorPage from './pages/error-page';
 
 const globalStyles = css`
   body {

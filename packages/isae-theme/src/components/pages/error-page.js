@@ -1,18 +1,10 @@
 import React from "react";
 import { connect } from "frontity";
-import PostHero from "./post-hero";
+import PostHero from "../post-hero";
 
-const description404 = (
-  <>
-    La página que estás buscando ya no está disponible.
-  </>
-);
-
-const description = (
-  <>
-    Oh no! Al parecer hay un error en el sitio. Si necesitas una información urgente por favor comunícate con nosotros al <a href="mailto:info@isaeuniversidad.ac.pa">info@isaeuniversidad.ac.pa</a>.
-  </>
-);
+const contact = `Si necesitas una información urgente por favor comunícate con nosotros al <a href="mailto:info@isaeuniversidad.ac.pa">info@isaeuniversidad.ac.pa</a>.`;
+const description404 = `<p>La página que estás buscando ya no está disponible.</p> <p>${contact}</p>`;
+const description = `<p>Estamos teniendo problemas con nuestro sitio web.</p> <p>${contact}</p>`;
 
 const ErrorPage = ({ state }) => {
   const data = state.source.get(state.router.link);
