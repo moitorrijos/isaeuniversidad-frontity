@@ -32,7 +32,7 @@ const CareerCards = ({ state, carreras }) => {
         <Grid columns="4" small_columns="2" gap="20px">
           {[...carreras].reverse().map(carrera => {
             const carrera_disponible = state.source[carrera.type][carrera.id];
-            const { id, link, title, featured_image_src } = carrera_disponible;
+            const { id, link, title, featured_image_src, acf } = carrera_disponible;
             return(
               <SingleCard
                 key={id}
