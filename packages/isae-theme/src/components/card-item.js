@@ -5,13 +5,14 @@ import Image from "@frontity/components/image";
 import Link from "@frontity/components/link";
 import { effects } from '../styles/effects';
 
+
 const CardContainer = styled(Link)`
   display: block;
   padding: 1rem 1rem 2rem;
   border-radius: 22px;
   background-color: ${colors.lightGray};
-  transition: all 0.25s ease-in-out;
   text-decoration: none;
+  transition: all 0.25s ease-in-out;
 
   &:hover {
     transform: ${effects.transform};
@@ -45,9 +46,9 @@ const CardInfo = styled.div`
   }
 `;
 
-const CardItem = ({ link, data, title }) => {
+const CardItem = ({ link, data, title, style }) => {
   return (
-    <CardContainer link={link}>
+    <CardContainer link={link} style={style}>
       <CardImage>
         <Image
           alt={title.rendered}

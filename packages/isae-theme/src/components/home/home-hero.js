@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { styled, connect } from 'frontity';
 import colors from '../../styles/colors';
-import { Motion, spring } from 'react-motion';
+import { Spring, config } from 'react-spring/renderprops'
 import useCarousel from '../../hooks/use-carousel';
 import MainContainer from '../main-container';
 import MainButton from '../main-button';
@@ -131,19 +131,13 @@ const HomeHero = ({ state }) => {
       <MainContainer>
         <Carousel>
           <HeroInner style={carouselItems.item1}>
-            <Motion 
-              defaultStyle={{opacity: 0, translateY: -100}}
-              style={{
-                opacity: spring(1, {stiffness: 120, damping: 10}),
-                translateY: spring(0, {stiffness: 50, damping: 10})
-              }}
+            <Spring
+              from={{ opacity: 0, transform: 'translateY(-100px)' }}
+              to={{ opacity: 1, transform: 'translateY(0)' }}
+              config={config.gentle}
+              immediate={true}
             >
-              {hero_info => <HeroInfo
-                  style={{
-                    opacity: hero_info.opacity,
-                    transform: 'translateY(' + hero_info.translateY + 'px)'
-                  }}
-                >
+              {props => <HeroInfo style={props}>
                 <h1>Carrusel 1</h1>
                 <p>
                   Estudia una carrera con nosotros,
@@ -158,24 +152,20 @@ const HomeHero = ({ state }) => {
                   Más Información
                 </MainButton>
               </HeroInfo>}
-            </Motion>
-            <Motion 
-              defaultStyle={{opacity: 0, translateX: 100}}
-              style={{
-                opacity: spring(1, {stiffness: 120, damping: 10 }),
-                translateX: spring(0, {stiffness: 50, damping: 10})
-              }}>
-              {hero_image =><HeroImage style={{
-                opacity: hero_image.opacity,
-                transform: 'translateX('+ hero_image.translateX + 'px)'
-              }}>
+            </Spring>
+            <Spring 
+              from={{ opacity: 0, transform: 'translateX(100px)' }}
+              to={{ opacity: 1, transform: 'translateY(0)' }}
+              config={config.gentle}
+            >
+              {props => <HeroImage style={props}>
                 <Image
                   alt={title.rendered}
                   src={acf.foto.sizes["1536x1536"]}
                   height="620"
                 />
               </HeroImage>}
-            </Motion>
+            </Spring>
           </HeroInner>
           <HeroInner style={carouselItems.item2}>
             <HeroInfo>

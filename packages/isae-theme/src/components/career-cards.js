@@ -7,6 +7,7 @@ import MainContainer from './main-container';
 
 const AvailableCareers = styled.div`
   padding: 6rem 0;
+  
   h2 {
     color: ${colors.primaryBlue};
     text-align: center;

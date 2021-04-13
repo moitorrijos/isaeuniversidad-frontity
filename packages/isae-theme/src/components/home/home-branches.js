@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { connect, styled } from 'frontity';
+import { Spring, config } from 'react-spring/renderprops'
+import { InView } from 'react-intersection-observer';
 import colors from '../../styles/colors';
 import useCarousel from '../../hooks/use-carousel';
 import CardItem from '../card-item';
@@ -43,13 +45,14 @@ const Button = styled.button`
   box-sizing: content-box;
   border-width: 6px;
   border-style: solid;
-  transition: all 0.25s ease-in-out;
+  transition: all 0.5s ease-in-out;
 `;
 
 const HomeBranches = ({ state }) => {
   const branches = state.source.get('/sede').items;
   const [ currentItem, setCurrentItem ] = useState(1);
   const carouselItems = useCarousel(currentItem, setCurrentItem);
+  const [ visible, setVisible ] = useState(false);
   return (
     <>
       <Heading>Nuestras Sedes</Heading>
@@ -59,24 +62,31 @@ const HomeBranches = ({ state }) => {
           med_height="960px"
           large_height="1450px"
         >
-          <Grid
-            columns="3"
-            gap="40px"
-            style={{...carouselItems.item1, padding: "0 4rem"}}
-          >
-            {[...branches].reverse().slice(0,3).map(branch => {
-              const data = state.source[branch.type][branch.id];
-              const { id, link, acf, title } = data;
-              return (
-                <CardItem
-                  key={id}
-                  link={link}
-                  data={acf}
-                  title={title}
-                />
-              );
-            })}
-          </Grid>
+          <InView onChange={(inView) => { setVisible(inView) }} >
+            <Grid
+              columns="3"
+              gap="40px"
+              style={{...carouselItems.item1, padding: "0 4rem"}}
+            >
+              {[...branches].reverse().slice(0,3).map((branch, index) => {
+                const data = state.source[branch.type][branch.id];
+                const { id, link, acf, title } = data;
+                return (
+                  <CardItem
+                    key={id}
+                    link={link}
+                    data={acf}
+                    style={{
+                      opacity: visible ? 1 : 0,
+                      transform: visible ? "translateY(0)" : "translateY(100px)",
+                      transitionDelay: (+index * 0.5) + 's'
+                    }}
+                    title={title}
+                  />
+                );
+              })}
+            </Grid>
+          </InView>
           <Grid
             columns="3"
             gap="40px"

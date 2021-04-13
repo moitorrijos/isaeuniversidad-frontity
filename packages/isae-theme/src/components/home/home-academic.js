@@ -7,7 +7,7 @@ import MainButton from '../main-button';
 import createMarkup from '../../helpers/create-markup';
 
 const Academic = styled.div`
-  padding: 6rem 0;
+  padding: 8rem 0;
   background-repeat: no-repeat;
   background-position: center center;
 
@@ -21,10 +21,16 @@ const Academic = styled.div`
 `;
 
 const AcademicContainer = styled.div`
-  display: flex;
-  flex-flow: row wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
   justify-content: space-around;
   align-items: center;
+
+  @media (max-width: 834px) {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
 `;
 
 const AcademicInfo = styled.div`
@@ -53,7 +59,7 @@ const AcademicImage = styled.figure`
 
   img {
     height: 528px;
-    width: 600px;
+    width: 100%;
     border-radius: 22px;
     object-fit: cover;
     object-position: center;

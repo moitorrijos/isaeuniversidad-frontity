@@ -13,7 +13,7 @@ const Nav = styled.nav`
   border: none;
   transition: all 0.25s ease-in-out;
 
-  @media (max-width: 834px) {
+  @media (max-width: 1320px) {
     display: ${props => props.mobileMenu ? 'flex' : 'none'};
     flex-direction: column;
     justify-content: space-between;
@@ -37,12 +37,19 @@ const MenuLink = styled.button`
   color: ${colors.primaryText100};
   transition: all 0.25s ease-in-out;
   font-size: 16px;
-  font-size: clamp(13px, 0.9vw, 1rem);
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
 
-  @media (max-width: 834px) {
+  @media (max-width: 1520px) {
+    font-size: 15px;
+  }
+
+  @media (max-width: 1490px) {
+    font-size: 14px;
+  }
+
+  @media (max-width: 1320px) {
     display: block;
     text-align: left;
     width: 100%;
@@ -72,7 +79,7 @@ const Submenu = styled.div`
     font-weight: 500;
   }
   
-  @media (max-width: 834px) {
+  @media (max-width: 1320px) {
     top: 0;
     height: 80vh;
   }
@@ -84,7 +91,7 @@ const SubMenuList = styled.div`
   border-bottom: 1px solid ${colors.mediumGray};
   margin-bottom: 18px;
 
-  @media (max-width: 834px) {
+  @media (max-width: 1320px) {
     grid-template-columns: 1fr;
   }
 `;
@@ -108,7 +115,7 @@ const SubSubmenu = styled.div`
     padding: 24px 40px;
   }
 
-  @media (max-width: 834px) {
+  @media (max-width: 1320px) {
     top: 0;
     z-index: 4;
     grid-template-columns: 1fr;
@@ -135,7 +142,7 @@ const SubMenuLink = styled.button`
     margin-right: 10px;
   }
 
-  @media (max-width: 834px) {
+  @media (max-width: 1320px) {
     font-size: 1rem;
   }
 `;
