@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect, styled, css } from 'frontity';
 import colors from '../../styles/colors';
 import MainContainer from '../main-container';
+import { InView } from 'react-intersection-observer';
 import Image from "@frontity/components/image";
 import MainButton from '../main-button';
 import createMarkup from '../../helpers/create-markup';
@@ -35,6 +36,7 @@ const AcademicContainer = styled.div`
 
 const AcademicInfo = styled.div`
   width: 320px;
+  transition: all 0.75s 1s ease-in-out;
 
   h2 {
     color: ${colors.primaryBlue};
@@ -56,6 +58,7 @@ const AcademicInfo = styled.div`
 
 const AcademicImage = styled.figure`
   margin: 0;
+  transition: all 0.75s 0.5s ease-in-out;
 
   img {
     height: 528px;
@@ -98,30 +101,45 @@ const HomeAcademic = ({ state }) => {
   return ([...items].reverse().map((item, index) => {
     const { id, title, featured_image_src, acf, link } = state.source[item.type][item.id];
     const position = +index + 1;
+    const [ visible, setVisible ] = useState(false);
+    const [ visible2, setVisible2 ] = useState(false);
     if (index % 2 !== 0) {
       return (
+        
         <Academic
           key={id}
           css={background(position, backgroundUrl)}
         >
-          <MainContainer>
-            <AcademicContainer>
-              <AcademicImage>
-                <Image alt={title.rendered} src={featured_image_src} />
-              </AcademicImage>
-              <AcademicInfo>
-                <h2>{title.rendered}</h2>
-                <div dangerouslySetInnerHTML={createMarkup(acf.descripcion)} />
-                <MainButton
-                  background={colors.primaryBlue}
-                  color={colors.white}
-                  link={link}
+          <InView onChange={(inView) => { setVisible(inView) }} >
+            <MainContainer>
+              <AcademicContainer>
+                <AcademicImage
+                  style={{
+                    opacity: visible ? 1 : 0,
+                    transform: visible ? "translateX(0)" : "translateX(-100px)",
+                  }}
                 >
-                  Ver Ofertas
-                </MainButton>
-              </AcademicInfo>
-            </AcademicContainer>
-          </MainContainer>
+                  <Image alt={title.rendered} src={featured_image_src} />
+                </AcademicImage>
+                <AcademicInfo
+                  style={{
+                    opacity: visible ? 1 : 0,
+                    transform: visible ? "translateY(0)" : "translateY(-100px)",
+                  }}
+                >
+                  <h2>{title.rendered}</h2>
+                  <div dangerouslySetInnerHTML={createMarkup(acf.descripcion)} />
+                  <MainButton
+                    background={colors.primaryBlue}
+                    color={colors.white}
+                    link={link}
+                  >
+                    Ver Ofertas
+                  </MainButton>
+                </AcademicInfo>
+              </AcademicContainer>
+            </MainContainer>
+          </InView>
         </Academic>
       );
     } else {
@@ -130,24 +148,36 @@ const HomeAcademic = ({ state }) => {
           key={id}
           css={background(position, backgroundUrl)}
         >
-          <MainContainer>
-            <AcademicContainer>
-              <AcademicInfo>
-                <h2>{title.rendered}</h2>
-                <div dangerouslySetInnerHTML={createMarkup(acf.descripcion)} />
-                <MainButton
-                  background={colors.primaryBlue}
-                  color={colors.white}
-                  link={link}
+          <InView onChange={(inView) => { setVisible2(inView) }} >
+            <MainContainer>
+              <AcademicContainer>
+                <AcademicInfo
+                  style={{
+                    opacity: visible2 ? 1 : 0,
+                    transform: visible2 ? "translateY(0)" : "translateY(-100px)",
+                  }}
                 >
-                  Ver Ofertas
-                </MainButton>
-              </AcademicInfo>
-              <AcademicImage>
-                <Image alt={title.rendered} src={featured_image_src} height="529" />
-              </AcademicImage>
-            </AcademicContainer>
-          </MainContainer>
+                  <h2>{title.rendered}</h2>
+                  <div dangerouslySetInnerHTML={createMarkup(acf.descripcion)} />
+                  <MainButton
+                    background={colors.primaryBlue}
+                    color={colors.white}
+                    link={link}
+                  >
+                    Ver Ofertas
+                  </MainButton>
+                </AcademicInfo>
+                <AcademicImage
+                  style={{
+                    opacity: visible2 ? 1 : 0,
+                    transform: visible2 ? "translateX(0)" : "translateX(100px)",
+                  }}
+                >
+                  <Image alt={title.rendered} src={featured_image_src} height="529" />
+                </AcademicImage>
+              </AcademicContainer>
+            </MainContainer>
+          </InView>
         </Academic>
       );
     };

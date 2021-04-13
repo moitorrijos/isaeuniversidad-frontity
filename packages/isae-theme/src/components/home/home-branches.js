@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { connect, styled } from 'frontity';
-import { Spring, config } from 'react-spring/renderprops'
 import { InView } from 'react-intersection-observer';
 import colors from '../../styles/colors';
 import useCarousel from '../../hooks/use-carousel';
@@ -79,7 +78,7 @@ const HomeBranches = ({ state }) => {
                     style={{
                       opacity: visible ? 1 : 0,
                       transform: visible ? "translateY(0)" : "translateY(100px)",
-                      transitionDelay: (+index * 0.5) + 's'
+                      transitionDelay: (+index * 0.25) + 's'
                     }}
                     title={title}
                   />
