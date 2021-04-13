@@ -70,12 +70,12 @@ const AuthorName = styled.p`
   color: ${colors.primaryBlueBright};
 `;
 
-const SlimCardItem = ({ title, link, source_url, postDate, name }) => {
+const SlimCardItem = ({ title, link, source_url, postDate, name, style }) => {
   const day = postDate.getDate();
   const getMonth = postDate.getMonth();
   const year = postDate.getFullYear();
   return (
-    <SlimCardContainer>
+    <SlimCardContainer style={style}>
       <SlimCardImage>
         {source_url ? (
           <Image src={source_url} alt={title.rendered} height="330" />

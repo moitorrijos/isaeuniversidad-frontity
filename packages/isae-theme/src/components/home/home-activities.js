@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { styled, connect } from 'frontity';
 import colors from '../../styles/colors';
+import { InView } from 'react-intersection-observer';
 import useCarousel from '../../hooks/use-carousel';
 import Carousel from '../carousel';
 import Grid from '../grid';
@@ -49,34 +50,42 @@ const HomeActivities = ({ state }) => {
     borderBottomColor: colors.mediumGray,
     color: colors.mediumGray
   };
+  const [ visible, setVisible ] = useState(false);
   return (
     <LatestActivities>
       <Heading>Nuestras Actividades</Heading>
       <Container>
         <Carousel height="740px" med_height="1450px" large_height="2220px">
-          <Grid
-            columns="3"
-            gap="30px"
-            style={{...carouselItems.item1, padding: "0 4rem"}}>
-            {[...activities].slice(0, 3).map(activity => {
-              const { id, date, title, link, featured_image_src } = state.source[activity.type][activity.id];
-              const activityDate = new Date(date);
-              if (featured_image_src) {
-                var source_url = featured_image_src
-              } else {
-                source_url = null;
-              }
-              return (
-                <BoldCardItem
-                  key={id}
-                  activityDate={activityDate}
-                  title={title}
-                  link={link}
-                  source_url={source_url}
-                />
-              )
-            })}
-          </Grid>
+          <InView onChange={(inView) => { setVisible(inView) }} >
+            <Grid
+              columns="3"
+              gap="30px"
+              style={{...carouselItems.item1, padding: "0 4rem"}}>
+              {[...activities].slice(0, 3).map((activity, index) => {
+                const { id, date, title, link, featured_image_src } = state.source[activity.type][activity.id];
+                const activityDate = new Date(date);
+                if (featured_image_src) {
+                  var source_url = featured_image_src
+                } else {
+                  source_url = null;
+                }
+                return (
+                  <BoldCardItem
+                    key={id}
+                    activityDate={activityDate}
+                    title={title}
+                    link={link}
+                    source_url={source_url}
+                    style={{
+                      opacity: visible ? 1 : 0,
+                      transform: visible ? "translateY(0)" : "translateY(100px)",
+                      transitionDelay: (+index * 0.25) + 's'
+                    }}
+                  />
+                )
+              })}
+            </Grid>
+          </InView>
           <Grid
             columns="3"
             gap="30px"

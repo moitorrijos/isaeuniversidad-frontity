@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { styled, connect } from 'frontity';
 import colors from '../styles/colors';
 import PostHero from './post-hero';
 import ContactForm from './base/contact-form';
-import CareerCards from './career-cards';
-import BranchFilterButtons from './branch-filter-buttons';
+import MainContainer from './main-container';
+import Grid from './grid';
+import SingleCard from './base/single-card';
 
 const FilterParagraph = styled.p`
   max-width: 500px;
@@ -14,12 +15,69 @@ const FilterParagraph = styled.p`
   font-size: 18px;
 `;
 
+const FilterContainer = styled.div`
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  gap: 10px;
 
-const AcademicsPage = ({ state }) => {
+  a, button {
+    font-size: 1rem;
+    appearance: none;
+    padding: 16px 40px;
+    border-radius: 8px;
+    border: 1px solid ${colors.secondaryBlue};
+    outline: none;
+    color: ${colors.secondaryBlue};
+    background-color: ${colors.white};
+    text-decoration: none;
+    transition: all 0.25s ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+      background-color: ${colors.secondaryBlue};
+      color: ${colors.white};
+    }
+  }
+`;
+
+const AvailableCareers = styled.div`
+  padding: 6rem 0;
+  
+  h2 {
+    color: ${colors.primaryBlue};
+    text-align: center;
+    font-weight: 500;
+    margin-bottom: 6rem;
+
+    @media (max-width: 600px) {
+      margin-bottom: 4rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    padding: 4rem 0;
+  }
+`;
+
+const AcademicsPage = ({ state, actions }) => {
   const academics = state.source.get(state.router.link);
   const { acf, title, featured_image_src, slug } = state.source[academics.type][academics.id];
-  const { descripcion } = acf;
-  const carreras = state.source.get('/carrera').items;
+  const { descripcion, carreras } = acf;
+  const nombre_carreras = carreras ? carreras.map(carrera => `/carrera/${carrera.post_name}/`) : null;
+  if (nombre_carreras) {
+    nombre_carreras.forEach(carrera => {
+      useEffect(() => {
+        actions.source.fetch(carrera);
+      })
+    })
+  }
+  const [ currentItem, setCurrentItem ] = useState('campus-central');
+  function filterButton(slug) {
+    setCurrentItem(slug);
+  }
   return(
     <>
       <PostHero
@@ -29,8 +87,51 @@ const AcademicsPage = ({ state }) => {
         imageUrl={featured_image_src}
       />
       <FilterParagraph>Filtrar {title.rendered} según sede</FilterParagraph>
-      {acf.sedes && <BranchFilterButtons branches={acf.sedes} />}
-      <CareerCards carreras={carreras} oferta={slug} />
+        {acf.sedes && <FilterContainer>
+          {acf.sedes.map(branch => {
+            const { id, slug, acf } = branch.ID ? state.source.sede[branch.ID] : state.source.sede[branch.id];
+            return(
+              <button
+                key={id}
+                onClick={ () => { filterButton(slug) }}
+                style={ currentItem === slug ? {
+                  backgroundColor: colors.secondaryBlue,
+                  color: colors.white
+                } : {
+                  backgroundColor: colors.white,
+                  color: colors.secondaryBlue
+                } }
+              >
+                  {acf.ciudad}
+              </button>
+            )
+          })}
+      </FilterContainer>}
+      {carreras && <AvailableCareers>
+        <h2>Carreras Disponibles</h2>
+        <MainContainer>
+          <Grid columns="4" small_columns="2" gap="20px">
+            {[...carreras].reverse().map(carrera => {
+              const carrera_disponible = state.source.carrera[carrera.ID];
+              const { id, link, title, featured_image_src, acf } = carrera_disponible;
+              const sedes = acf.sedes;
+              const branch_names = sedes ? sedes.map(sede => sede.post_name) : null;
+              if ( branch_names && branch_names.includes(currentItem) ) {
+                return(
+                  <SingleCard
+                    key={id}
+                    link={link}
+                    image={featured_image_src}
+                    title={title}
+                  />
+                )
+              } else {
+                return null;
+              }
+            })}
+          </Grid>
+        </MainContainer>
+      </AvailableCareers>}
       <ContactForm />
     </>
   );

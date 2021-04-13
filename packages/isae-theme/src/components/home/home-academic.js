@@ -36,7 +36,7 @@ const AcademicContainer = styled.div`
 
 const AcademicInfo = styled.div`
   width: 320px;
-  transition: all 0.75s 1s ease-in-out;
+  transition: all 0.75s 0.25s ease-in-out;
 
   h2 {
     color: ${colors.primaryBlue};
@@ -58,7 +58,7 @@ const AcademicInfo = styled.div`
 
 const AcademicImage = styled.figure`
   margin: 0;
-  transition: all 0.75s 0.5s ease-in-out;
+  transition: all 0.75s 0.15s ease-in-out;
 
   img {
     height: 528px;

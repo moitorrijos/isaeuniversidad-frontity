@@ -37,7 +37,6 @@ const CareerPage = ({ state, actions }) => {
     setHidden2(!hidden2);
   }
   const nombre_programas = acf.otros_programas ?  acf.otros_programas.map(programa => '/carrera/' + programa.post_name + '/') : null;
-  
   if ( nombre_programas ) {
     nombre_programas.forEach(programa => {
       useEffect(() => {

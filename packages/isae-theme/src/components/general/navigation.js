@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { styled, connect } from 'frontity';
 import colors from '../../styles/colors';
 import { effects } from '../../styles/effects';
@@ -165,6 +165,7 @@ const BackButton = styled.button`
 const Navigation = ({ state, actions }) => {
   const { isMobileMenuOpen } = state.theme;
   const items = state.source.get('2').items;
+  const navigation = useRef();
   const [hidden, setHidden] = useState(true);
   const [hidden_submenu, setHiddenSubmenu] = useState(true);
   const [currentMenu, setCurrentMenu] = useState(false);
@@ -205,8 +206,21 @@ const Navigation = ({ state, actions }) => {
     setHiddenSubmenu(true);
     actions.theme.closeMobileMenu();
   }
+  useEffect(() => {
+    document.addEventListener("mousedown", clickOutside);
+    return () => {
+      document.removeEventListener("mousedown", clickOutside);
+    };
+  }, []);
+  const clickOutside = event => {
+    if (navigation.current.contains(event.target)) {
+      return;
+    } else {
+      hideAllMenus();
+    }
+  }
   return (
-    <Nav mobileMenu={isMobileMenuOpen}>
+    <Nav mobileMenu={isMobileMenuOpen} ref={navigation}>
       {items.map(item => {
         const { id, title, type, children } = item;
         const isCurrentMenuItem = (currentTitle === title) && !hidden

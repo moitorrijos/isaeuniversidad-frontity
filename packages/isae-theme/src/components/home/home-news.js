@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { styled, connect } from 'frontity';
 import colors from '../../styles/colors';
+import { InView } from 'react-intersection-observer';
 import useCarousel from '../../hooks/use-carousel';
 import Grid from '../grid';
 import Carousel from '../carousel';
@@ -50,39 +51,47 @@ const HomeNews = ({ state }) => {
     borderBottomColor: colors.mediumGray,
     color: colors.mediumGray
   };
+  const [ visible, setVisible ] = useState(false);
   return (
     <LatestNews>
       <Heading>Últimas Noticias</Heading>
       <Container>
         <Carousel height="740px" med_height="1460px" large_height="2220px">
-          <Grid
-            columns="3"
-            gap="30px"
-            style={{...carouselItems.item1, padding: "0 4rem"}}
-          >
-            {[...news].slice(0, 3).map(post => {
-              const {
-                id,
-                title,
-                link,
-                featured_image_src,
-                date,
-                author
-              } = state.source[post.type][post.id];
-              const { name } = state.source.author[author];
-              const postDate = new Date(date);
-              return(
-                <SlimCardItem
-                  key={id}
-                  postDate={postDate}
-                  title={title}
-                  link={link}
-                  name={name}
-                  source_url={featured_image_src}
-                />
-              )
-            })}
-          </Grid>
+          <InView onChange={(inView) => { setVisible(inView) }} >
+            <Grid
+              columns="3"
+              gap="30px"
+              style={{...carouselItems.item1, padding: "0 4rem"}}
+            >
+              {[...news].slice(0, 3).map((post, index) => {
+                const {
+                  id,
+                  title,
+                  link,
+                  featured_image_src,
+                  date,
+                  author
+                } = state.source[post.type][post.id];
+                const { name } = state.source.author[author];
+                const postDate = new Date(date);
+                return(
+                  <SlimCardItem
+                    key={id}
+                    postDate={postDate}
+                    title={title}
+                    link={link}
+                    name={name}
+                    source_url={featured_image_src}
+                    style={{
+                      opacity: visible ? 1 : 0,
+                      transform: visible ? "translateY(0)" : "translateY(100px)",
+                      transitionDelay: (+index * 0.25) + 's'
+                    }}
+                  />
+                )
+              })}
+            </Grid>
+          </InView>
           <Grid
             columns="3"
             gap="30px"

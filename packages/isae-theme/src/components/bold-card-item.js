@@ -45,12 +45,12 @@ const BoldCardInfo = styled.div`
   }
 `;
 
-const BoldCardItem = ({ activityDate, link, title, source_url }) => {
+const BoldCardItem = ({ activityDate, link, title, source_url, style }) => {
   const day = activityDate.getDate();
   const getMonth = activityDate.getMonth();
   const year = activityDate.getFullYear();
   return (
-    <BoldCardContainer link={link}>
+    <BoldCardContainer link={link} style={style}>
       <BoldCardImage>
         <Image alt={title.rendered} src={source_url} height="300" />
       </BoldCardImage>
