@@ -12,7 +12,7 @@ const CardContainer = styled(Link)`
   border-radius: 22px;
   background-color: ${colors.lightGray};
   text-decoration: none;
-  transition: all 0.25s ease-in-out;
+  transition: all 0.5s ease-in-out;
 
   &:hover {
     transform: ${effects.transform};

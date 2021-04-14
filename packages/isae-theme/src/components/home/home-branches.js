@@ -44,7 +44,7 @@ const Button = styled.button`
   box-sizing: content-box;
   border-width: 6px;
   border-style: solid;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.75s ease-in-out;
 `;
 
 const HomeBranches = ({ state }) => {

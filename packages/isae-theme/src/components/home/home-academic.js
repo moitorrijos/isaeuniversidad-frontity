@@ -124,7 +124,7 @@ const HomeAcademic = ({ state }) => {
                 <AcademicInfo
                   style={{
                     opacity: visible ? 1 : 0,
-                    transform: visible ? "translateY(0)" : "translateY(-100px)",
+                    transform: visible ? "translateY(0)" : "translateY(100px)",
                   }}
                 >
                   <h2>{title.rendered}</h2>
@@ -154,7 +154,7 @@ const HomeAcademic = ({ state }) => {
                 <AcademicInfo
                   style={{
                     opacity: visible2 ? 1 : 0,
-                    transform: visible2 ? "translateY(0)" : "translateY(-100px)",
+                    transform: visible2 ? "translateY(0)" : "translateY(100px)",
                   }}
                 >
                   <h2>{title.rendered}</h2>
