@@ -18,6 +18,7 @@ const FilterParagraph = styled.p`
 const FilterContainer = styled.div`
   max-width: 800px;
   margin: 0 auto;
+  padding-bottom: 4rem;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -44,7 +45,7 @@ const FilterContainer = styled.div`
 `;
 
 const AvailableCareers = styled.div`
-  padding: 6rem 0;
+  padding-bottom: 4rem;
   
   h2 {
     color: ${colors.primaryBlue};
@@ -64,7 +65,7 @@ const AvailableCareers = styled.div`
 
 const AcademicsPage = ({ state, actions }) => {
   const academics = state.source.get(state.router.link);
-  const { acf, title, featured_image_src, slug } = state.source[academics.type][academics.id];
+  const { acf, title, featured_image_src } = state.source[academics.type][academics.id];
   const { descripcion, carreras } = acf;
   const nombre_carreras = carreras ? carreras.map(carrera => `/carrera/${carrera.post_name}/`) : null;
   if (nombre_carreras) {
@@ -86,40 +87,43 @@ const AcademicsPage = ({ state, actions }) => {
         description={descripcion}
         imageUrl={featured_image_src}
       />
-      <FilterParagraph>Filtrar {title.rendered} según sede</FilterParagraph>
-        {acf.sedes && <FilterContainer>
-          {acf.sedes.map(branch => {
-            const { id, slug, acf } = branch.ID ? state.source.sede[branch.ID] : state.source.sede[branch.id];
-            return(
-              <button
-                key={id}
-                onClick={ () => { filterButton(slug) }}
-                style={ currentItem === slug ? {
-                  backgroundColor: colors.secondaryBlue,
-                  color: colors.white
-                } : {
-                  backgroundColor: colors.white,
-                  color: colors.secondaryBlue
-                } }
-              >
-                  {acf.ciudad}
-              </button>
-            )
-          })}
-      </FilterContainer>}
+      
+        {carreras && acf.sedes && <>
+          <FilterParagraph>Filtrar {title.rendered} según sede</FilterParagraph>
+          <FilterContainer>
+            {acf.sedes.map(branch => {
+              const { id, slug, acf } = branch.ID ? state.source.sede[branch.ID] : state.source.sede[branch.id];
+              return(
+                <button
+                  key={id}
+                  onClick={ () => { filterButton(slug) }}
+                  style={ currentItem === slug ? {
+                    backgroundColor: colors.secondaryBlue,
+                    color: colors.white
+                  } : {
+                    backgroundColor: colors.white,
+                    color: colors.secondaryBlue
+                  } }
+                >
+                    {acf.ciudad}
+                </button>
+              )
+            })}
+        </FilterContainer>
+      </>}
       {carreras && <AvailableCareers>
         <h2>Carreras Disponibles</h2>
         <MainContainer>
           <Grid columns="4" small_columns="2" gap="20px">
-            {[...carreras].reverse().map(carrera => {
-              const carrera_disponible = state.source.carrera[carrera.ID];
-              const { id, link, title, featured_image_src, acf } = carrera_disponible;
+            {[...carreras].reverse().map(career => {
+              const carrera_disponible = state.source.carrera[career.ID];
+              const { ID, link, title, featured_image_src, acf } = carrera_disponible;
               const sedes = acf.sedes;
               const branch_names = sedes ? sedes.map(sede => sede.post_name) : null;
-              if ( branch_names && branch_names.includes(currentItem) ) {
+              if ( branch_names && branch_names.includes(currentItem) && carrera_disponible ) {
                 return(
                   <SingleCard
-                    key={id}
+                    key={ID}
                     link={link}
                     image={featured_image_src}
                     title={title}
