@@ -8,7 +8,7 @@ import MainButton from '../main-button';
 import Image from "@frontity/components/image";
 
 const HeroContainer = styled.div`
-  background-color: ${colors.primaryBlueBright};
+  background-color: ${colors.primaryBlue300};
   position: relative;
   background-image: url(${props => props.url}/wp-content/uploads/2021/01/background-isae-home-hero-full.svg);
   background-repeat: no-repeat;

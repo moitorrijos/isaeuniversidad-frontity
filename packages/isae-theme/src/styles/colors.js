@@ -4,6 +4,7 @@ const colors = {
   mediumGray: '#C4C4C4',
   darkGray: '#525252',
   primaryBlue: '#04256C',
+  primaryBlue300: '#073B8B',
   primaryBlue600: '#031E56',
   primaryBlueBright: '#0C63E7',
   blueBright600: '#003990',
