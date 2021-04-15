@@ -117,16 +117,15 @@ const AcademicsPage = ({ state, actions }) => {
           <Grid columns="4" small_columns="2" gap="20px">
             {[...carreras].reverse().map(career => {
               const carrera_disponible = state.source.carrera[career.ID];
-              const { ID, link, title, featured_image_src, acf } = carrera_disponible;
               const sedes = acf.sedes;
               const branch_names = sedes ? sedes.map(sede => sede.post_name) : null;
-              if ( branch_names && branch_names.includes(currentItem) && carrera_disponible ) {
+              if ( carrera_disponible && branch_names.includes(currentItem) ) {
                 return(
                   <SingleCard
-                    key={ID}
-                    link={link}
-                    image={featured_image_src}
-                    title={title}
+                    key={carrera_disponible.ID}
+                    link={carrera_disponible.link}
+                    image={carrera_disponible.featured_image_src}
+                    title={carrera_disponible.title}
                   />
                 )
               } else {
