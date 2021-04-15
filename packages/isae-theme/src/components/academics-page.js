@@ -119,7 +119,7 @@ const AcademicsPage = ({ state, actions }) => {
               const carrera_disponible = state.source.carrera[career.ID];
               const sedes = acf.sedes;
               const branch_names = sedes ? sedes.map(sede => sede.post_name) : null;
-              if ( carrera_disponible && branch_names.includes(currentItem) ) {
+              if ( carrera_disponible && branch_names && branch_names.includes(currentItem) ) {
                 return(
                   <SingleCard
                     key={carrera_disponible.ID}

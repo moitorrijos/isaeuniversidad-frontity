@@ -61,6 +61,8 @@ const UniversityLifePage = ({ state }) => {
   const description = state.source.vidauniversitaria[university_life.id].acf.descripcion;
   const posts = state.source.get(`/category/${name}`).items;
   const latest_post = state.source.post[posts[0].id];
+  const default_image = `${state.source.url}/wp-content/uploads/2021/03/placeholder.jpg`;
+  const { featured_image_src } = latest_post;
   const branches = state.source.get('/sede').items;
   return(
     <>
@@ -68,7 +70,7 @@ const UniversityLifePage = ({ state }) => {
         background={`${state.source.url}/wp-content/uploads/2021/02/news-background.svg`}
         title={toTitleCase(name)}
         description={description}
-        imageUrl={latest_post.featured_image_src}
+        imageUrl={featured_image_src ? featured_image_src : default_image}
       />
       <Filter>
         <h4>Filtrar {toTitleCase(name)} Según Sede</h4>
@@ -98,7 +100,7 @@ const UniversityLifePage = ({ state }) => {
                       title={title}
                       link={link}
                       name={name}
-                      source_url={featured_image_src}
+                      source_url={featured_image_src ? featured_image_src : default_image}
                     />
                 )})
               }

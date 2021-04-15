@@ -43,6 +43,7 @@ const MenuLink = styled.button`
 
   @media (max-width: 1520px) {
     font-size: 15px;
+    padding: 46px 16px;
   }
 
   @media (max-width: 1490px) {
