@@ -16,7 +16,7 @@ const Nav = styled.nav`
   @media (max-width: 1320px) {
     display: ${props => props.mobileMenu ? 'flex' : 'none'};
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     position: absolute;
     left: 0;
     top: 100%;
@@ -48,6 +48,7 @@ const MenuLink = styled.button`
 
   @media (max-width: 1490px) {
     font-size: 14px;
+    padding: 46px 13px;
   }
 
   @media (max-width: 1320px) {

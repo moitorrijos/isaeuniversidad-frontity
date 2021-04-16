@@ -25,8 +25,16 @@ const ImageGrid = styled.div`
     mix-blend-mode: multiply;
   }
 
+  @media (max-width: 1400px) {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
   @media (max-width: 834px) {
-    animation: ${marquee} 5s linear alternate infinite;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: repeat(2, 1fr);
   }
 `;
 

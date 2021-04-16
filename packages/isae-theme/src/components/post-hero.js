@@ -4,7 +4,6 @@ import colors from '../styles/colors';
 import { effects } from '../styles/effects';
 import Image from "@frontity/components/image";
 import createMarkup from '../helpers/create-markup';
-// import MainContainer from './main-container';
 
 const Hero = styled.div`
   background-image: url(${props => props.background});
@@ -12,10 +11,9 @@ const Hero = styled.div`
   background-position: left top;
   background-size: 30%;
   background-repeat: no-repeat;
-  min-height: 95vh;
   position: relative;
 
-  @media (max-width: 834px) {
+  @media (max-width: 1490px) {
     min-height: auto;
   }
 `;

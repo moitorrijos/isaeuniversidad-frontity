@@ -12,7 +12,9 @@ const Page = ({ state }) => {
   } else if (page.id === 90944) {
     return(<AlumniPage />);
   } else if (page.id === 91148) {
-    return(<PlanningPage />);
+    return(<PlanningPage page={91148} />);
+  } else if (page.id === 109104) {
+    return(<PlanningPage page={109104} />);
   } else if (page.id === 91204) {
     return(<PaymentPage />);
   }

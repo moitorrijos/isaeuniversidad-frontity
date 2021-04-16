@@ -39,6 +39,10 @@ const SlimCardInfo = styled(Link)`
   transition: all 0.25s ease-in-out;
   padding: 1rem 3rem;
 
+  @media (max-width: 1490px) {
+    padding: 1rem 2rem;
+  }
+
   h4 {
     font-size: 22px;
     line-height: 1.4;

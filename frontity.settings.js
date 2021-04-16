@@ -25,6 +25,10 @@ const settings = {
       "state": {
         "source": {
           "url": process.env.WP_SOURCE_URL,
+          "params": {
+            "per_page": 9,
+            "type": ["vidauniversitaria"]
+          },
           "postTypes": [
             {
               type: "media",

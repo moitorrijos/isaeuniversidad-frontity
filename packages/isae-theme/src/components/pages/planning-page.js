@@ -83,7 +83,7 @@ const Functions = styled.div`
 
   ul {
     padding: 0;
-    padding-left: 30px;
+    padding-left: 33px;
     overflow: visible;
     position: relative;
     columns: 2;
@@ -95,10 +95,17 @@ const Functions = styled.div`
 
     li {
       margin: 2rem 0;
-      list-style-image: url("${props=>props.stateSource}");
+      padding-left: 1rem;
+      line-height: 1.3;
 
       &:first-of-type {
         margin-top: 0;
+      }
+
+      &::marker {
+        color: ${colors.primaryYellow};
+        content: url("${props => props.listStyle}");
+        font-size: 2rem;
       }
     }
   }
@@ -140,13 +147,14 @@ const MemoryCard = styled.div`
   }
 `;
 
-const PlanningPage = ({ state }) => {
-  const plan = state.source.page[91148];
+const PlanningPage = ({ state, page }) => {
+  const plan = state.source.page[page];
   const { acf, title, featured_image_src } = plan;
   const background = state.source.url+'/wp-content/uploads/2021/03/background-isae-11.svg';
   const background2 = state.source.url+'/wp-content/uploads/2021/03/background-isae-12.svg';
   const imageUrl = featured_image_src;
-  const listStyle = state.source.url+'/wp-content/uploads/2021/03/check.svg';
+  const listStyle = state.source.url+'/wp-content/uploads/2021/04/check3.svg';
+  const nombre = (page === 91148) ? 'Memorias' : 'Estadísticas';
   return(
     <>
       <PostHero
@@ -192,12 +200,12 @@ const PlanningPage = ({ state }) => {
         <CenteredHeading color={colors.white}>{acf.funciones.titulo}</CenteredHeading>
         <MainContainer>
           <Functions
-            stateSource={listStyle}
+            listStyle={listStyle}
             dangerouslySetInnerHTML={createMarkup(acf.funciones.descripcion)}
           />
         </MainContainer>
       </FunctionsSection>
-      <PlanningSection bgColor={colors.lightGray}>
+      {acf.plan_etrategico.imagen && <PlanningSection bgColor={colors.lightGray}>
         <MainContainer>
           <Grid columns="2" gap="200px" med_gap="40px" small_gap="20px" >
             <PlanDescription>
@@ -215,30 +223,30 @@ const PlanningPage = ({ state }) => {
             </PlanImage>
           </Grid>
         </MainContainer>
-      </PlanningSection>
+      </PlanningSection>}
       <MemorySection background={background2}>
-        <CenteredHeading color={colors.primaryBlue}>Memorias Institucionales</CenteredHeading>
+        <CenteredHeading color={colors.primaryBlue}>{nombre} Institucionales</CenteredHeading>
         <MainContainer>
           <Grid columns="4" med_columns="2" small_columns="2" gap="30px" small_gap="10px">
             <MemoryCard>
               <Image src={acf.memorias1.icono.url ? acf.memorias1.icono.url : state.source.url+'/wp-content/uploads/2021/03/memorias1.svg'} />
               <h3>{acf.memorias1.ano}</h3>
-              <Link link={acf.memorias1.url}>Descargar Memoria Institucional</Link>
+              <Link link={acf.memorias1.url}>Descargar {nombre} Institucional</Link>
             </MemoryCard>
             <MemoryCard>
               <Image src={acf.memorias2.icono.url ? acf.memorias2.icono.url : state.source.url+'/wp-content/uploads/2021/03/memorias2.svg'} />
               <h3>{acf.memorias2.ano}</h3>
-              <Link link={acf.memorias2.url}>Descargar Memoria Institucional</Link>
+              <Link link={acf.memorias2.url}>Descargar {nombre} Institucional</Link>
             </MemoryCard>
             <MemoryCard>
               <Image src={acf.memorias3.icono.url ? acf.memorias3.icono.url : state.source.url+'/wp-content/uploads/2021/03/memorias3.svg'} />
               <h3>{acf.memorias3.ano}</h3>
-              <Link link={acf.memorias3.url}>Descargar Memoria Institucional</Link>
+              <Link link={acf.memorias3.url}>Descargar {nombre} Institucional</Link>
             </MemoryCard>
             <MemoryCard>
               <Image src={acf.memorias4.icono.url ? acf.memorias4.icono.url : state.source.url+'/wp-content/uploads/2021/03/memorias4.svg'} />
               <h3>{acf.memorias4.ano}</h3>
-              <Link link={acf.memorias4.url}>Descargar Memoria Institucional</Link>
+              <Link link={acf.memorias4.url}>Descargar {nombre} Institucional</Link>
             </MemoryCard>
           </Grid>
         </MainContainer>
