@@ -95,6 +95,7 @@ const CenteredSection = styled.div`
 `;
 
 const PaymentPage = ({ state }) => {
+  console.log(state.source.page);
   const { acf } = state.source.page[91204];
   const background = state.source.url+'/wp-content/uploads/2021/02/background-isae-7.svg';
   return(
