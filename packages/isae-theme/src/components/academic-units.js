@@ -80,7 +80,7 @@ const DepartmentText = styled.div`
   }
 `;
 
-const AcademicUnits = ({ state, actions }) => {
+const AcademicUnits = ({ campus, state, actions }) => {
   const paginas = state.source.get('/departamento').totalPages;
   for (let i = 0; i <= paginas; i++) {
     useEffect(() => {
@@ -88,7 +88,6 @@ const AcademicUnits = ({ state, actions }) => {
     }, [])
   }
   const departamentos = Object.values(state.source.departamento);
-  const campus = state.router.link.split('/').filter(el => el)[1];
   return(
     <Units>
       <MainContainer>

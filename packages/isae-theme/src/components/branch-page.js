@@ -26,6 +26,7 @@ const BranchPage = ({ state, actions }) => {
   const branches = state.source.get(state.router.link);
   const { acf } = state.source[branches.type][branches.id];
   const [ currentItem, setCurrentItem ] = useState('all');
+  const campus = state.router.link.split('/').filter(el => el)[1];
   const currentItemStyle = {
     backgroundColor: colors.secondaryBlue,
     color: colors.white
@@ -35,6 +36,7 @@ const BranchPage = ({ state, actions }) => {
     backgroundColor: colors.white
   };
   function filterButton(slug) {
+    console.log(slug)
     setCurrentItem(slug);
   }
   const paginas_carrera = state.source.get('/carrera').totalPages;
@@ -85,8 +87,8 @@ const BranchPage = ({ state, actions }) => {
             )
           })}
         </FilterButtons>}
-        <CareerCards carreras={carreras} />
-        <AcademicUnits />
+        <CareerCards carreras={carreras} campus={campus} />
+        <AcademicUnits campus={campus} />
         <HomeNews />
     </>
   );

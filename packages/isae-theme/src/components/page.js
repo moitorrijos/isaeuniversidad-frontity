@@ -4,6 +4,7 @@ import AboutPage from './pages/about-page';
 import AlumniPage from './pages/alumni-page';
 import PlanningPage from './pages/planning-page';
 import PaymentPage from './pages/payment-page';
+import GeneralPage from './pages/general-page';
 
 const Page = ({ state }) => {
   const page = state.source.get(state.router.link);
@@ -17,6 +18,8 @@ const Page = ({ state }) => {
     return(<PlanningPage page={109103} />);
   } else if (page.id === 91204) {
     return(<PaymentPage />);
+  } else if (page.id === 109111) {
+    return(<GeneralPage page={109111} />);
   } else {
     return null;
   }

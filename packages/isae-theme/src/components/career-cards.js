@@ -24,7 +24,7 @@ const AvailableCareers = styled.div`
   }
 `;
 
-const CareerCards = ({ state, carreras }) => {
+const CareerCards = ({ state, carreras, campus }) => {
   return(
     <AvailableCareers>
       <h2>Carreras Disponibles</h2>
@@ -33,14 +33,19 @@ const CareerCards = ({ state, carreras }) => {
           {[...carreras].reverse().map(carrera => {
             const carrera_disponible = state.source[carrera.type][carrera.id];
             const { id, link, title, featured_image_src, acf } = carrera_disponible;
-            return(
-              <SingleCard
-                key={id}
-                link={link}
-                image={featured_image_src}
-                title={title}
-              />
-            )
+            const sedes = acf.sedes ? acf.sedes.filter( sede => sede.post_name === campus ) : null;
+            if (sedes && sedes.length) {
+              return(
+                <SingleCard
+                  key={id}
+                  link={link}
+                  image={featured_image_src}
+                  title={title}
+                />
+              )
+            } else {
+              return null;
+            }
           })}
         </Grid>
       </MainContainer>

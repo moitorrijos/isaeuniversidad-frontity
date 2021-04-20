@@ -69,6 +69,10 @@ const MainButton = styled(Link)`
   padding: 12px 24px;
 `;
 
+const TerciaryButton = styled(Link)`
+  color: ${colors.primaryYellow100};
+`;
+
 const TopHeader = ({ state }) => {
   const items = state.source.get('47').items;
   return (
@@ -80,7 +84,12 @@ const TopHeader = ({ state }) => {
       <TopMenu>
         {items.map(item => {
           const { id, title, url, classes } = item;
-          if (classes === 'primary-button') {
+          if ( classes === 'boton-terciario') {
+            return (
+              <TerciaryButton key={id} link={url}>{title}</TerciaryButton>
+            )
+          }
+          else if (classes === 'primary-button') {
             return (
               <MainButton key={id} link={url}>{title}</MainButton>
             ) 

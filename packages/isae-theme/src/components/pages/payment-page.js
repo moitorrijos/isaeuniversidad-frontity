@@ -7,6 +7,7 @@ import MainContainer from '../main-container';
 import Grid from '../grid';
 import createMarkup from '../../helpers/create-markup';
 import Image from '@frontity/components/image';
+import CenteredSection from '../general/centered-section';
 
 const PaymentSection = styled.div`
   background-image: url(${props => props.background ? props.background : ''});
@@ -51,46 +52,6 @@ const PaymentDescription = styled.div`
   h1 {
     font-size: 42px;
     color: ${colors.primaryBlueBright};
-  }
-`;
-
-const CenteredSection = styled.div`
-  padding: 6rem;
-  background-image: url(${props => props.background ? props.background : ''});
-  background-size: cover;
-  text-align: center;
-
-  @media (max-width: 600px) {
-    padding: 4rem 2rem;
-  }
-
-  @media (max-width: 412px) {
-    padding: 4rem 1rem;
-  }
-
-  div {
-    max-width: 615px;
-    margin: 0 auto;
-    color: ${colors.white};
-    font-size: 1.4rem;
-
-    span {
-      display: block;
-      font-size: 1.8rem;
-      margin: 2rem 0;
-
-      @media (max-width: 600px) {
-        font-size: 1.4rem;
-      }
-
-      @media (max-width: 412px) {
-        font-size: 1.2rem;
-      }
-
-      a {
-        color: ${colors.white};
-      }
-    }
   }
 `;
 
