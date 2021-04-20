@@ -22,7 +22,7 @@ const HeroSection = styled.div`
 const HeroDescription = styled.div`
   align-self: center;
   padding: 6rem 0;
-  max-width: 475px;
+  max-width: 425px;
   color: ${colors.primaryText50};
 
   @media (max-width: 600px) {
@@ -58,7 +58,7 @@ const GeneralPage = ({ state }) => {
   const pageData = state.source.page[data.id];
   const background = state.source.url+'/wp-content/uploads/2021/02/background-isae-7.svg';
   const { acf, title } = pageData;
-  const { imagen, correo, descripcion, video, boton_conoce_mas, imagen_fondo } = acf;
+  const { imagen, correo, descripcion, video, boton_conoce_mas, mas_info, imagen_fondo } = acf;
 
   return (
     <>
@@ -80,8 +80,8 @@ const GeneralPage = ({ state }) => {
       </HeroSection>
       <CenteredSection background={imagen_fondo.url}>
         <div>
-          <p>Para mayor información e inscripción :</p>
-          <a>{correo}</a>
+          <p>{mas_info}</p>
+          <a href={"mailto:"+correo}>{correo}</a>
         </div>
       </CenteredSection>
     </>

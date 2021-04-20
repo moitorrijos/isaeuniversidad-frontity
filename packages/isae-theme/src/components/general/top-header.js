@@ -70,7 +70,8 @@ const MainButton = styled(Link)`
 `;
 
 const TerciaryButton = styled(Link)`
-  color: ${colors.primaryYellow100};
+  color: ${colors.primaryYellow};
+  padding: 12px 24px;
 `;
 
 const TopHeader = ({ state }) => {
