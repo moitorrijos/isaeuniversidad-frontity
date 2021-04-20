@@ -19,7 +19,7 @@ const Title = ({ state }) => {
   } else if (data.isAuthor) {
     // Add titles to authors, like "Author: Jon Snow - Blog Name".
     // 1. Get the author entity from the state to get its name.
-    const { name } = state.source.author[data.id];
+    const { name } = state.source.author[data.id] || {};
     // 2. Render the proper title.
     title = `Author: ${decode(name)} - ${state.frontity.title}`;
   } else if (data.isPostType) {

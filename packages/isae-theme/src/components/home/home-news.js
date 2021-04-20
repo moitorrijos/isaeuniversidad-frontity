@@ -72,7 +72,7 @@ const HomeNews = ({ state }) => {
                   date,
                   author
                 } = state.source[post.type][post.id];
-                const { name } = state.source.author[author];
+                const { name } = state.source.author[author] || {};
                 const postDate = new Date(date);
                 return(
                   <SlimCardItem
@@ -106,7 +106,7 @@ const HomeNews = ({ state }) => {
                 date,
                 author
               } = state.source[post.type][post.id];
-              const { name } = state.source.author[author];
+              const { name } = state.source.author[author] || {};
               const postDate = new Date(date);
               return(
                 <SlimCardItem
@@ -134,7 +134,7 @@ const HomeNews = ({ state }) => {
                 date,
                 author
               } = state.source[post.type][post.id];
-              const { name } = state.source.author[author];
+              const { name } = state.source.author[author] || {};
               const postDate = new Date(date);
               return(
                 <SlimCardItem

@@ -85,7 +85,7 @@ const TopHeader = ({ state }) => {
       <TopMenu>
         {items.map(item => {
           const { id, title, url, classes } = item;
-          if ( classes === 'boton-terciario') {
+          if ( classes === 'terciary-button') {
             return (
               <TerciaryButton key={id} link={url}>{title}</TerciaryButton>
             )
