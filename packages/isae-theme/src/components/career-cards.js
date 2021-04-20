@@ -30,7 +30,7 @@ const CareerCards = ({ state, carreras, campus }) => {
       <h2>Carreras Disponibles</h2>
       <MainContainer>
         <Grid columns="4" small_columns="2" gap="20px">
-          {[...carreras].reverse().map(carrera => {
+          {carreras.map(carrera => {
             const carrera_disponible = state.source[carrera.type][carrera.id];
             const { id, link, title, featured_image_src, acf } = carrera_disponible;
             const sedes = acf.sedes ? acf.sedes.filter( sede => sede.post_name === campus ) : null;
