@@ -3,6 +3,7 @@ import image from "@frontity/html2react/processors/image";
 import iframe from "@frontity/html2react/processors/iframe";
 import link from "@frontity/html2react/processors/link";
 import menuHandler from "./handlers/menu-handler";
+import academicHandler from "./handlers/academic-handler";
 
 export default {
   name: "isae-theme",
@@ -42,7 +43,7 @@ export default {
   },
   libraries: {
     source: {
-      handlers: [menuHandler],
+      handlers: [menuHandler, academicHandler],
       html2react: {
         processors: [image, iframe, link],
       },

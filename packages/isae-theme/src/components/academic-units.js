@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { styled, connect } from 'frontity';
 import colors from '../styles/colors';
 import MainContainer from './main-container';
@@ -80,8 +80,14 @@ const DepartmentText = styled.div`
   }
 `;
 
-const AcademicUnits = ({ state }) => {
-  const departamentos = state.source.get('/departamento').items;
+const AcademicUnits = ({ state, actions }) => {
+  const paginas = state.source.get('/departamento').totalPages;
+  for (let i = 0; i <= paginas; i++) {
+    useEffect(() => {
+      actions.source.fetch('/departamento/page/' + i);
+    }, [])
+  }
+  const departamentos = Object.values(state.source.departamento);
   const campus = state.router.link.split('/').filter(el => el)[1];
   return(
     <Units>
@@ -95,10 +101,12 @@ const AcademicUnits = ({ state }) => {
               acf,
               title,
               featured_image_src,
+            } = depto;
+            const {
               correo_electronico,
               descripcion_corta,
               numero_de_telefono
-            } = state.source.departamento[depto.id];
+            } = acf;
             if ( acf.sede.post_name && acf.sede.post_name === campus ) {
               return(
                 <Unit key={id}>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { styled, connect } from 'frontity';
 import colors from '../styles/colors';
 import PostHero from './post-hero';
@@ -22,10 +22,9 @@ const BranchParagraph = styled.p`
   text-align: center;
 `;
 
-const BranchPage = ({ state }) => {
+const BranchPage = ({ state, actions }) => {
   const branches = state.source.get(state.router.link);
   const { acf } = state.source[branches.type][branches.id];
-  const carreras = state.source.get('/carrera').items;
   const [ currentItem, setCurrentItem ] = useState('all');
   const currentItemStyle = {
     backgroundColor: colors.secondaryBlue,
@@ -38,6 +37,15 @@ const BranchPage = ({ state }) => {
   function filterButton(slug) {
     setCurrentItem(slug);
   }
+  const paginas_carrera = state.source.get('/carrera').totalPages;
+  for (let i = 0; i <= paginas_carrera; i++) {
+    useEffect(() => {
+      actions.source.fetch('/carrera/page/' + i);
+    }, [])
+  }
+  // const carreras = Object.values(state.source.carrera);
+  const carreras = state.source.get('/carrera').items;
+
   return(
     <>
       <PostHero

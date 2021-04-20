@@ -44,6 +44,7 @@ const CareerPage = ({ state, actions }) => {
       })
     });
   }
+  console.log(programa);
   return(
     <>
       <BigHero background={featured_image_src}>
