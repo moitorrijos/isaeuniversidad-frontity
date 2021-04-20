@@ -4,6 +4,7 @@ import AboutPage from './pages/about-page';
 import AlumniPage from './pages/alumni-page';
 import PlanningPage from './pages/planning-page';
 import PaymentPage from './pages/payment-page';
+import AWSPage from './pages/aws-page';
 import GeneralPage from './pages/general-page';
 
 const Page = ({ state }) => {
@@ -19,9 +20,9 @@ const Page = ({ state }) => {
   } else if (page.id === 91204) {
     return(<PaymentPage />);
   } else if (page.id === 109114) {
-    return(<GeneralPage page={109114} />);
+    return(<AWSPage page={109114} />);
   } else {
-    return null;
+    return <GeneralPage />;
   }
 }
 
