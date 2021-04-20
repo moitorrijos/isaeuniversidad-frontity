@@ -70,7 +70,7 @@ const InvesgitationsPage = ({ state }) => {
             <Grid columns="3" gap="30px" style={carouselItems.item1}>
               {[...latest_activities].slice(0,3).map(activity => {
                 const { id, link, title, author, date } = state.source.post[activity.id];
-                const { name } = state.source.author[author];
+                const { name } = state.source.author[author] || {};
                 const postDate = new Date(date);
                 const day = postDate.getDate();
                 const getMonth = postDate.getMonth();
@@ -91,7 +91,7 @@ const InvesgitationsPage = ({ state }) => {
             <Grid columns="3" gap="30px" style={carouselItems.item2}>
               {[...latest_activities].slice(3,6).map(activity => {
                 const { id, link, title, author, date } = state.source.post[activity.id];
-                const { name } = state.source.author[author];
+                const { name } = state.source.author[author] || {};
                 const postDate = new Date(date);
                 const day = postDate.getDate();
                 const getMonth = postDate.getMonth();
@@ -112,7 +112,7 @@ const InvesgitationsPage = ({ state }) => {
             <Grid columns="3" gap="30px" style={carouselItems.item3}>
               {[...latest_activities].slice(6,9).map(activity => {
                 const { id, link, title, author, date } = state.source.post[activity.id];
-                const { name } = state.source.author[author];
+                const { name } = state.source.author[author] || {};
                 const postDate = new Date(date);
                 const day = postDate.getDate();
                 const getMonth = postDate.getMonth();

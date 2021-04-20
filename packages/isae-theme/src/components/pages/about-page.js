@@ -283,9 +283,9 @@ const AboutPage = ({ state }) => {
         <MainContainer>
           <Grid columns="5" med_columns="2" gap="20px">
             {reglamentos.map(reglamento => (
-              <Reglamento key={reglamento.carrera}>
+              <Reglamento key={reglamento.titulo}>
                 <h4>{reglamento.titulo}</h4>
-                {reglamento.url && <Link src={reglamento.url}>Ver aquí</Link>}
+                {reglamento.url && <Link link={reglamento.url}>Ver aquí</Link>}
                 {reglamento.carreras && <button onClick={verCarreras}>Ver reglamentos</button>}
               </Reglamento>
             ))}
