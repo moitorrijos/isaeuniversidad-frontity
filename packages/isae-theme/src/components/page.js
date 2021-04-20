@@ -18,8 +18,8 @@ const Page = ({ state }) => {
     return(<PlanningPage page={109103} />);
   } else if (page.id === 91204) {
     return(<PaymentPage />);
-  } else if (page.id === 109111) {
-    return(<GeneralPage page={109111} />);
+  } else if (page.id === 109114) {
+    return(<GeneralPage page={109114} />);
   } else {
     return null;
   }
