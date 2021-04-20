@@ -44,6 +44,7 @@ const HeroImage = styled.figure`
     width: 100%;
     height: 520px;
     object-fit: cover;
+    object-position: left center;
     box-shadow: ${effects.boxShadow};
 
     @media (max-width: 600px) {
