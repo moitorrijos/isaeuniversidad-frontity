@@ -47,11 +47,11 @@ const UniversityLifePage = ({ state }) => {
   const university_life_link = university_life.link;
   const name = university_life_link.split('/').filter(string => string)[1];
   const description = state.source.vidauniversitaria[university_life.id].acf.descripcion;
-  const posts = state.source.get(`/category/${name}/`).items;
-  const [ currentPage, setCurrentPage ] = useState(1);
-  const latest_post = state.source.post[posts[0].id];
   const default_image = `${state.source.url}/wp-content/uploads/2021/03/placeholder.jpg`;
-  const { featured_image_src } = latest_post;
+  const posts = state.source.get(`/category/${name}/`).items || [];
+  const [ currentPage, setCurrentPage ] = useState(1);
+  const latest_post = posts ? state.source.post[posts[0].id] : null;
+  const { featured_image_src } = latest_post || '';
   const branches = state.source.get('/sede').items;
   const active = { 
     borderBottomColor: colors.primaryBlueBright,
@@ -73,6 +73,7 @@ const UniversityLifePage = ({ state }) => {
         <h4>Filtrar {toTitleCase(name)} Según Sede</h4>
         <BranchFilterButtons branches={branches} />
       </Filter>
+      {posts && 
       <LatestNews>
         <Heading>Últimas {toTitleCase(name)}</Heading>
         <MainContainer>
@@ -116,7 +117,7 @@ const UniversityLifePage = ({ state }) => {
             >3</button>
           </CarouselButtons>
         </MainContainer>
-      </LatestNews>
+      </LatestNews>}
     </>
   );
 }
