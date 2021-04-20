@@ -43,9 +43,7 @@ const BranchPage = ({ state, actions }) => {
       actions.source.fetch('/carrera/page/' + i);
     }, [])
   }
-  // const carreras = Object.values(state.source.carrera);
-  const carreras = state.source.get('/carrera').items;
-
+  const carreras = Object.values(state.source.carrera);
   return(
     <>
       <PostHero
@@ -87,7 +85,7 @@ const BranchPage = ({ state, actions }) => {
             )
           })}
         </FilterButtons>}
-        <CareerCards carreras={carreras} oferta={currentItem} />
+        <CareerCards carreras={carreras} />
         <AcademicUnits />
         <HomeNews />
     </>
