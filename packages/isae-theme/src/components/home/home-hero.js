@@ -161,7 +161,8 @@ const HomeHero = ({ state }) => {
                 <Image
                   alt={title.rendered}
                   src={acf.foto.sizes["1536x1536"]}
-                  height="620"
+                  height={620}
+                  width={812}
                 />
               </HeroImage>}
             </Spring>

@@ -82,7 +82,7 @@ const SlimCardItem = ({ title, link, source_url, postDate, name, style }) => {
     <SlimCardContainer style={style}>
       <SlimCardImage>
         {source_url ? (
-          <Image src={source_url} alt={title.rendered} height="330" />
+          <Image src={source_url} alt={title.rendered} width={406} height={330} />
           ) : (<EmptyImage />)}
       </SlimCardImage>
       <SlimCardInfo link={link}>

@@ -58,7 +58,7 @@ const AcademicInfo = styled.div`
 
 const AcademicImage = styled.figure`
   margin: 0;
-  transition: all 0.75s 0.15s ease-in-out;
+  transition: all 0.25s 0.15s ease-in-out;
 
   img {
     height: 528px;
@@ -119,7 +119,7 @@ const HomeAcademic = ({ state }) => {
                     transform: visible ? "translateX(0)" : "translateX(-100px)",
                   }}
                 >
-                  <Image alt={title.rendered} src={featured_image_src} />
+                  <Image alt={title.rendered} src={featured_image_src} width={590} height={528} />
                 </AcademicImage>
                 <AcademicInfo
                   style={{

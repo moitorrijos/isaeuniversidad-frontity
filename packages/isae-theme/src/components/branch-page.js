@@ -36,7 +36,6 @@ const BranchPage = ({ state, actions }) => {
     backgroundColor: colors.white
   };
   function filterButton(slug) {
-    console.log(slug)
     setCurrentItem(slug);
   }
   const paginas_carrera = state.source.get('/carrera').totalPages;
@@ -87,7 +86,7 @@ const BranchPage = ({ state, actions }) => {
             )
           })}
         </FilterButtons>}
-        <CareerCards carreras={carreras} campus={campus} />
+        <CareerCards carreras={carreras} campus={campus} slug={currentItem} />
         <AcademicUnits campus={campus} />
         <HomeNews />
     </>

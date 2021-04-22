@@ -115,6 +115,8 @@ const AcademicUnits = ({ campus, state, actions }) => {
                       <Image
                         alt={title.rendered}
                         src={`${state.source.url}/wp-content/uploads/2021/02/humphrey-muleba-9MoQKZW0nGU-unsplash.jpg`} 
+                        width={170}
+                        height={180}
                       />
                     }
                   </DepartmentImage>

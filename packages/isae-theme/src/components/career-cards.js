@@ -6,7 +6,7 @@ import SingleCard from './base/single-card';
 import MainContainer from './main-container';
 
 const AvailableCareers = styled.div`
-  padding: 6rem 0;
+  padding: 2rem 0 8rem;
   
   h2 {
     color: ${colors.primaryBlue};
@@ -24,7 +24,7 @@ const AvailableCareers = styled.div`
   }
 `;
 
-const CareerCards = ({ state, carreras, campus }) => {
+const CareerCards = ({ state, carreras, campus, slug }) => {
   return(
     <AvailableCareers>
       <h2>Carreras Disponibles</h2>
@@ -34,7 +34,11 @@ const CareerCards = ({ state, carreras, campus }) => {
             const carrera_disponible = state.source[carrera.type][carrera.id];
             const { id, link, title, featured_image_src, acf } = carrera_disponible;
             const sedes = acf.sedes ? acf.sedes.filter( sede => sede.post_name === campus ) : null;
-            if (sedes && sedes.length) {
+            const oferta_academica = acf.oferta_academica ? acf.oferta_academica.post_name : '';
+            if (
+              sedes &&
+              sedes.length &&
+              ((slug === 'all') || (slug === oferta_academica))) {
               return(
                 <SingleCard
                   key={id}

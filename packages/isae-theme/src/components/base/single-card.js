@@ -55,9 +55,9 @@ const SingleCard = ({ state, link, image, title }) => {
     <CardContainer link={link}>
       <figure>
         {image ?
-          <Image alt={title.rendered} src={image} height="240" />
+          <Image alt={title.rendered} src={image} width={285} height={280} />
           :
-          <Image alt="" src={placeholder} height="240" />
+          <Image alt="" src={placeholder} width={285} height={280} />
         }
         
       </figure>

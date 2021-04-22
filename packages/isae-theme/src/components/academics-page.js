@@ -92,10 +92,10 @@ const AcademicsPage = ({ state, actions }) => {
           <FilterParagraph>Filtrar {title.rendered} según sede</FilterParagraph>
           <FilterContainer>
             {acf.sedes.map(branch => {
-              const { id, slug, acf } = branch.ID ? state.source.sede[branch.ID] : state.source.sede[branch.id];
+              const { ID, id, slug, acf } = branch.ID ? state.source.sede[branch.ID] : state.source.sede[branch.id];
               return(
                 <button
-                  key={id}
+                  key={ID ? ID : id}
                   onClick={ () => { filterButton(slug) }}
                   style={ currentItem === slug ? {
                     backgroundColor: colors.secondaryBlue,

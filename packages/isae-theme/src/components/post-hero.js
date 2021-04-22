@@ -148,7 +148,7 @@ const PostHero = ({ background, bgColor, title, provincia, description, imageUrl
             {celular && <p><strong>WhatsApp:</strong>{" "}{celular}</p>}
           </InfoCard>
           <InfoImage>
-            <Image alt={title} src={imageUrl} height="622" />
+            <Image alt={title} src={imageUrl} height={641} width={960} />
           </InfoImage>
         </HeroContainer>
       </MainContainer>
