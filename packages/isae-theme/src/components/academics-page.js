@@ -111,7 +111,7 @@ const AcademicsPage = ({ state, actions }) => {
             })}
         </FilterContainer>
       </>}
-      {academics.isReady && <AvailableCareers>
+      {academics.isReady && carreras && <AvailableCareers>
         <h2>Carreras Disponibles</h2>
         <MainContainer>
           <Grid columns="4" small_columns="2" gap="20px">
