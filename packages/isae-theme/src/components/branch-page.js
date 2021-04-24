@@ -57,8 +57,6 @@ const BranchPage = ({ state, actions }) => {
         telefono={acf.telefono}
         celular={acf.celular}
       />
-      <BranchHeader>Oferta Académica</BranchHeader>
-      <BranchParagraph>Disponible en {acf.ciudad === 'Campus Central' ? 'el' : 'la'} { acf.ciudad}</BranchParagraph>
       {acf.ofertas_academicas && <FilterButtons>
           {acf.ofertas_academicas.map((oferta, index) => {
             let { id, title, slug } = state.source[oferta.post_type][oferta.ID];
@@ -86,7 +84,7 @@ const BranchPage = ({ state, actions }) => {
             )
           })}
         </FilterButtons>}
-        <CareerCards carreras={carreras} campus={campus} slug={currentItem} />
+        <CareerCards carreras={carreras} ciudad={acf.ciudad} campus={campus} slug={currentItem} />
         <AcademicUnits campus={campus} />
         <HomeNews />
     </>

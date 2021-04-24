@@ -123,13 +123,10 @@ const AcademicUnits = ({ campus, state, actions }) => {
                   <DepartmentText>
                     <h4>{title.rendered}</h4>
                     <p>
-                      { correo_electronico ? correo_electronico : 'departamento@isae.ac.pa' }<br />
-                      { numero_de_telefono ? numero_de_telefono : '+507 333 4456' }</p>
+                      { correo_electronico }<br />
+                      { numero_de_telefono  }</p>
                     <p>
-                      { descripcion_corta ?
-                        descripcion_corta :
-                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
-                      }
+                      { descripcion_corta }
                     </p>
                   </DepartmentText>
                 </Unit>
