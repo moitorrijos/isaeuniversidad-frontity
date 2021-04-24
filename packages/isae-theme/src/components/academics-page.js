@@ -7,12 +7,19 @@ import MainContainer from './main-container';
 import Grid from './grid';
 import SingleCard from './base/single-card';
 
-const FilterParagraph = styled.p`
-  max-width: 500px;
+const AcademicHeading = styled.p`
+  max-width: 420px;
   margin: 6rem auto 2rem;
+  color: ${colors.primaryBlue};
+  font-size: 2rem;
+  line-height: 1.1;
   text-align: center;
-  color: ${colors.primaryText50};
-  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 6rem;
+
+  @media (max-width: 600px) {
+    margin-bottom: 4rem;
+  }
 `;
 
 const FilterContainer = styled.div`
@@ -46,17 +53,6 @@ const FilterContainer = styled.div`
 
 const AvailableCareers = styled.div`
   padding-bottom: 4rem;
-  
-  h2 {
-    color: ${colors.primaryBlue};
-    text-align: center;
-    font-weight: 500;
-    margin-bottom: 6rem;
-
-    @media (max-width: 600px) {
-      margin-bottom: 4rem;
-    }
-  }
 
   @media (max-width: 600px) {
     padding: 4rem 0;
@@ -89,7 +85,7 @@ const AcademicsPage = ({ state, actions }) => {
       />
       
         {carreras && acf.sedes && <>
-          <FilterParagraph>Filtrar {title.rendered} según sede</FilterParagraph>
+          <AcademicHeading>Filtrar {title.rendered} según Sede</AcademicHeading>
           <FilterContainer>
             {acf.sedes.map(branch => {
               const { ID, slug, acf } = branch.ID ? state.source.sede[branch.ID] : state.source.sede[branch.id];
@@ -112,7 +108,7 @@ const AcademicsPage = ({ state, actions }) => {
         </FilterContainer>
       </>}
       {academics.isReady && carreras && <AvailableCareers>
-        <h2>Carreras Disponibles</h2>
+        <AcademicHeading>Carreras Disponibles</AcademicHeading>
         <MainContainer>
           <Grid columns="4" small_columns="2" gap="20px">
             {[...carreras].reverse().map(career => {
@@ -122,7 +118,7 @@ const AcademicsPage = ({ state, actions }) => {
               if ( carrera_disponible && branch_names && branch_names.includes(currentItem) ) {
                 return(
                   <SingleCard
-                    key={carrera_disponible.ID}
+                    key={carrera_disponible.id}
                     link={carrera_disponible.link}
                     image={carrera_disponible.featured_image_src}
                     title={carrera_disponible.title}
