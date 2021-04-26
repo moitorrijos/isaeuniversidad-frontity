@@ -112,10 +112,12 @@ const AcademicsPage = ({ state, actions }) => {
         <MainContainer>
           <Grid columns="4" small_columns="2" gap="20px">
             {carreras.map(carrera => {
-              const { id, link, featured_image_src, acf } = carrera;
+              const { id, link, featured_image_src, title, acf } = carrera;
               const sedes = acf.sedes ? acf.sedes.map(sede => sede.post_name) : [];
               const oferta_academica = acf.oferta_academica ? acf.oferta_academica.post_name : '';
-              if ((oferta_academica ===  academic_slug) && (sedes.includes(currentItem))) {
+              if (
+                (oferta_academica ===  academic_slug) &&
+                (sedes.includes(currentItem))) {
                 return(
                   <SingleCard
                     key={id}
