@@ -61,16 +61,16 @@ const AvailableCareers = styled.div`
 
 const AcademicsPage = ({ state, actions }) => {
   const academics = state.source.get(state.router.link);
+  const academic_slug = academics.link.split('/').filter(el => el)[1];
   const { acf, title, featured_image_src } = state.source[academics.type][academics.id];
-  const { descripcion, carreras } = acf;
-  const nombre_carreras = carreras ? carreras.map(carrera => `/carrera/${carrera.post_name}/`) : null;
-  if (nombre_carreras) {
-    nombre_carreras.forEach(carrera => {
-      useEffect(() => {
-        actions.source.fetch(carrera);
-      })
-    })
+  const paginas_carrera = state.source.get('/carrera').totalPages;
+  for (let i = 1; i <= paginas_carrera; i++) {
+    useEffect(() => {
+      actions.source.fetch('/carrera/page/' + i);
+    }, [])
   }
+  const carreras = Object.values(state.source.carrera);
+  const { descripcion } = acf;
   const [ currentItem, setCurrentItem ] = useState('campus-central');
   function filterButton(slug) {
     setCurrentItem(slug);
@@ -84,7 +84,7 @@ const AcademicsPage = ({ state, actions }) => {
         imageUrl={featured_image_src}
       />
       
-        {carreras && acf.sedes && <>
+        {acf.sedes && <>
           <AcademicHeading>Filtrar {title.rendered} según Sede</AcademicHeading>
           <FilterContainer>
             {acf.sedes.map(branch => {
@@ -107,21 +107,21 @@ const AcademicsPage = ({ state, actions }) => {
             })}
         </FilterContainer>
       </>}
-      {academics.isReady && carreras && <AvailableCareers>
+      {carreras && <AvailableCareers>
         <AcademicHeading>Carreras Disponibles</AcademicHeading>
         <MainContainer>
           <Grid columns="4" small_columns="2" gap="20px">
-            {[...carreras].reverse().map(career => {
-              const carrera_disponible = state.source.carrera[career.ID];
-              const sedes = acf.sedes;
-              const branch_names = sedes ? sedes.map(sede => sede.post_name) : null;
-              if ( carrera_disponible && branch_names && branch_names.includes(currentItem) ) {
+            {carreras.map(carrera => {
+              const { id, link, featured_image_src, acf } = carrera;
+              const sedes = acf.sedes ? acf.sedes.map(sede => sede.post_name) : [];
+              const oferta_academica = acf.oferta_academica ? acf.oferta_academica.post_name : '';
+              if ((oferta_academica ===  academic_slug) && (sedes.includes(currentItem))) {
                 return(
                   <SingleCard
-                    key={carrera_disponible.id}
-                    link={carrera_disponible.link}
-                    image={carrera_disponible.featured_image_src}
-                    title={carrera_disponible.title}
+                    key={id}
+                    link={link}
+                    image={featured_image_src}
+                    title={title}
                   />
                 )
               } else {

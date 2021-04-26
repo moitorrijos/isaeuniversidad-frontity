@@ -24,7 +24,7 @@ const BranchPage = ({ state, actions }) => {
     setCurrentItem(slug);
   }
   const paginas_carrera = state.source.get('/carrera').totalPages;
-  for (let i = 0; i <= paginas_carrera; i++) {
+  for (let i = 1; i <= paginas_carrera; i++) {
     useEffect(() => {
       actions.source.fetch('/carrera/page/' + i);
     }, [])
