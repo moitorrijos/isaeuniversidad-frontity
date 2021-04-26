@@ -7,21 +7,6 @@ import CareerCards from './career-cards';
 import AcademicUnits from './academic-units';
 import HomeNews from './home/home-news';
 
-const BranchHeader = styled.h2`
-  max-width: 700px;
-  margin: 8rem auto 1rem;
-  text-align: center;
-  color: ${colors.primaryBlue};
-`;
-
-const BranchParagraph = styled.p`
-  max-width: 600px;
-  margin: 0 auto 6rem;
-  font-size: 18px;
-  color: ${colors.primaryText50};
-  text-align: center;
-`;
-
 const BranchPage = ({ state, actions }) => {
   const branches = state.source.get(state.router.link);
   const { acf } = state.source[branches.type][branches.id];

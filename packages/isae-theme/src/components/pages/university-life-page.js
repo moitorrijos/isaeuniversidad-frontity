@@ -50,7 +50,7 @@ const UniversityLifePage = ({ state }) => {
   const default_image = `${state.source.url}/wp-content/uploads/2021/03/placeholder.jpg`;
   const posts = state.source.get(`/category/${name}/`).items || [];
   const [ currentPage, setCurrentPage ] = useState(1);
-  const latest_post = posts ? state.source.post[posts[0].id] : null;
+  const latest_post = posts.length ? state.source.post[posts[0].id] : null;
   const { featured_image_src } = latest_post || '';
   const branches = state.source.get('/sede').items;
   const active = { 
@@ -73,8 +73,7 @@ const UniversityLifePage = ({ state }) => {
         <h4>Filtrar {toTitleCase(name)} Según Sede</h4>
         <BranchFilterButtons branches={branches} />
       </Filter>
-      {posts && 
-      <LatestNews>
+      {posts.length && <LatestNews>
         <Heading>Últimas {toTitleCase(name)}</Heading>
         <MainContainer>
           <Grid columns="3" rows="4" gap="20px" small_gap="10px">
