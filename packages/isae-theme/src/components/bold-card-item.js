@@ -1,5 +1,5 @@
 import React from 'react';
-import { styled } from 'frontity';
+import { connect, styled } from 'frontity';
 import colors from '../styles/colors';
 import { effects } from '../styles/effects';
 import { months } from '../helpers/months';
@@ -45,14 +45,18 @@ const BoldCardInfo = styled.div`
   }
 `;
 
-const BoldCardItem = ({ activityDate, link, title, source_url, style }) => {
+const BoldCardItem = ({ state, activityDate, link, title, source_url, style }) => {
   const day = activityDate.getDate();
   const getMonth = activityDate.getMonth();
   const year = activityDate.getFullYear();
+  const placeholder = state.source.url+'/wp-content/uploads/2021/03/placeholder.jpg';
   return (
     <BoldCardContainer link={link} style={style}>
       <BoldCardImage>
-        <Image alt={title.rendered} src={source_url} height="300" />
+        {source_url ?
+          <Image alt={title.rendered} src={source_url} height="300" /> :
+          <Image alt={title.rendered} src={placeholder} height="300" />
+        }
       </BoldCardImage>
       <BoldCardInfo>
         <p>{day} de {months[parseInt(getMonth)]} de {year}</p>
@@ -62,4 +66,4 @@ const BoldCardItem = ({ activityDate, link, title, source_url, style }) => {
   );
 }
 
-export default BoldCardItem;
+export default connect(BoldCardItem);

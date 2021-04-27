@@ -40,7 +40,7 @@ const LatestNewsButtons = styled.div`
 `;
 
 const HomeNews = ({ state }) => {
-  const news = state.source.get("/category/destacada/").items;
+  const news = state.source.get("/category/noticias/").items;
   const [ currentItem, setCurrentItem ] = useState(1);
   const carouselItems = useCarousel(currentItem, setCurrentItem);
   const active = { 
