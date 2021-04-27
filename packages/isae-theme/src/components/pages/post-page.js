@@ -8,7 +8,8 @@ const PostContent = styled.div`
   padding: 4rem 0 8rem;
   max-width: 80ch;
   font-size: 1.1rem;
-  line-height: 1.6;
+  line-height: 1.85;
+  margin: 0 auto;
 `;
 
 const PostPage = ({ state }) => {
