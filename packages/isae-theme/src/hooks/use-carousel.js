@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-export default function useCarousel(currentItem, setCurrentItem) {
+export default function useCarousel(currentItem, setCurrentItem, autoplay = true) {
   let item1, item2, item3;
   if (currentItem === 1) {
     item1 = { transform: "translateX(0)", };
@@ -16,11 +16,11 @@ export default function useCarousel(currentItem, setCurrentItem) {
     item3 = { transform: "translateX(0)" };
   }
   useEffect(() => {
-    const autoplay = setInterval(() => {
+    const play = autoplay ? setInterval(() => {
       if (currentItem === 3) setCurrentItem(1);
       else if (currentItem >= 1) setCurrentItem(currentItem + 1);
-    }, 7200);
-    return () => { clearInterval(autoplay) };
+    }, 7200) : null;
+    return () => { clearInterval(play) };
   });
   const carouselItems = {
     item1,

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect, styled } from 'frontity';
 import colors from '../../styles/colors';
 import toTitleCase from '../../helpers/to-title-case';
@@ -6,7 +6,13 @@ import PostHero from '../post-hero';
 import BranchFilterButtons from '../branch-filter-buttons';
 import Grid from '../grid';
 import SlimCardItem from '../slim-card-item';
-import MainContainer from '../main-container';
+import useCarousel from '../../hooks/use-carousel';
+import Carousel from '../carousel';
+
+const MainContainer = styled.div`
+  max-width: 1440px;
+  margin: 0 auto;
+`;
 
 const Filter = styled.div`
   h4 {
@@ -42,17 +48,26 @@ const CarouselButtons = styled.div`
   }
 `;
 
-const UniversityLifePage = ({ state }) => {
+const UniversityLifePage = ({ state, actions }) => {
   const university_life = state.source.get(state.router.link);
   const university_life_link = university_life.link;
   const name = university_life_link.split('/').filter(string => string)[1];
   const description = state.source.vidauniversitaria[university_life.id].acf.descripcion;
   const default_image = `${state.source.url}/wp-content/uploads/2021/03/placeholder.jpg`;
-  const posts = state.source.get(`/category/${name}/`).items || [];
-  const [ currentPage, setCurrentPage ] = useState(1);
+  const branches = state.source.get('/sede').items;
+
+  for (let i = 1; i <= 7; i++) {
+    useEffect(() => {
+      actions.source.fetch(`/category/${name}/page/${i}`);
+    }, [])
+  }
+
+  const posts = Object.values(state.source.post);
   const latest_post = posts.length ? state.source.post[posts[0].id] : null;
   const { featured_image_src } = latest_post || '';
-  const branches = state.source.get('/sede').items;
+
+  const [ currentItem, setCurrentItem ] = useState(1);
+  const carouselItems = useCarousel(currentItem, setCurrentItem, false);
   const active = { 
     borderBottomColor: colors.primaryBlueBright,
     color: colors.primaryBlueBright
@@ -76,43 +91,113 @@ const UniversityLifePage = ({ state }) => {
       {posts.length && <LatestNews>
         <Heading>Últimas {toTitleCase(name)}</Heading>
         <MainContainer>
-          <Grid columns="3" rows="4" gap="20px" small_gap="10px">
-            {
-              posts.map(post => {
-                const {
-                  id,
-                  title,
-                  link,
-                  featured_image_src,
-                  date,
-                  author
-                } = state.source[post.type][post.id];
-                const { name } = state.source.author[author] || {};
-                const postDate = new Date(date);
-                return(
-                  <SlimCardItem
-                    key={id}
-                    postDate={postDate}
-                    title={title}
-                    link={link}
-                    name={name}
-                    source_url={featured_image_src ? featured_image_src : default_image}
-                  />
-              )})
-            }
-          </Grid>
+          <Carousel height="5680px">
+            <Grid
+              columns="3"
+              rows="4"
+              gap="20px"
+              small_gap="10px"
+              style={{...carouselItems.item1, padding: "0 4rem"}}
+            >
+              {
+                [...posts].slice(0,24).map(post => {
+                  const {
+                    id,
+                    title,
+                    link,
+                    featured_image_src,
+                    date,
+                    author
+                  } = state.source[post.type][post.id];
+                  const { name } = state.source.author[author] || {};
+                  const postDate = new Date(date);
+                  return(
+                    <SlimCardItem
+                      key={id}
+                      postDate={postDate}
+                      title={title}
+                      link={link}
+                      name={name}
+                      source_url={featured_image_src ? featured_image_src : default_image}
+                    />
+                )})
+              }
+            </Grid>
+            <Grid
+              columns="3"
+              rows="4"
+              gap="20px"
+              small_gap="10px"
+              style={{...carouselItems.item2, padding: "0 4rem"}}
+            >
+              {
+                [...posts].slice(24,48).map(post => {
+                  const {
+                    id,
+                    title,
+                    link,
+                    featured_image_src,
+                    date,
+                    author
+                  } = state.source[post.type][post.id];
+                  const { name } = state.source.author[author] || {};
+                  const postDate = new Date(date);
+                  return(
+                    <SlimCardItem
+                      key={id}
+                      postDate={postDate}
+                      title={title}
+                      link={link}
+                      name={name}
+                      source_url={featured_image_src ? featured_image_src : default_image}
+                    />
+                )})
+              }
+            </Grid>
+            <Grid
+              columns="3"
+              rows="4"
+              gap="20px"
+              small_gap="10px"
+              style={{...carouselItems.item3, padding: "0 4rem"}}
+            >
+              {
+                [...posts].slice(48,72).map(post => {
+                  const {
+                    id,
+                    title,
+                    link,
+                    featured_image_src,
+                    date,
+                    author
+                  } = state.source[post.type][post.id];
+                  const { name } = state.source.author[author] || {};
+                  const postDate = new Date(date);
+                  return(
+                    <SlimCardItem
+                      key={id}
+                      postDate={postDate}
+                      title={title}
+                      link={link}
+                      name={name}
+                      source_url={featured_image_src ? featured_image_src : default_image}
+                    />
+                )})
+              }
+            </Grid>
+          </Carousel>
           <CarouselButtons>
             <button
-              onClick={() => { setCurrentPage(1); }}
-              style={ currentPage === 1 ? active : inactive }
+              onClick={() => { setCurrentItem(1); }}
+              style={ currentItem === 1 ? active : inactive }
             >1</button>
             <button
-              onClick={() => { setCurrentPage(2);  }}
-              style={ currentPage === 2 ? active : inactive }
+              onClick={() => { setCurrentItem(2);  }}
+              style={ currentItem === 2 ? active : inactive }
             >2</button>
             <button
-              onClick={() => { setCurrentPage(3); }}
-              style={ currentPage === 3 ? active : inactive }
+              onClick={() => { setCurrentItem(3); }}
+              style={ currentItem === 3 ? active : inactive }
             >3</button>
           </CarouselButtons>
         </MainContainer>
