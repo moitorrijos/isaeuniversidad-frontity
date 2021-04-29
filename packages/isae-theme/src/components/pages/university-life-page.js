@@ -3,11 +3,11 @@ import { connect, styled } from 'frontity';
 import colors from '../../styles/colors';
 import toTitleCase from '../../helpers/to-title-case';
 import PostHero from '../post-hero';
-import BranchFilterButtons from '../branch-filter-buttons';
 import Grid from '../grid';
 import SlimCardItem from '../slim-card-item';
 import useCarousel from '../../hooks/use-carousel';
 import Carousel from '../carousel';
+import FilterButtons from '../filter-buttons';
 
 const MainContainer = styled.div`
   max-width: 1440px;
@@ -61,7 +61,7 @@ const UniversityLifePage = ({ state, actions }) => {
       actions.source.fetch(`/category/${name}/page/${i}`);
     }, [])
   }
-
+  
   const posts = Object.values(state.source.post);
   const latest_post = posts.length ? state.source.post[posts[0].id] : null;
   const { featured_image_src } = latest_post || '';
@@ -76,6 +76,20 @@ const UniversityLifePage = ({ state, actions }) => {
     borderBottomColor: colors.mediumGray,
     color: colors.mediumGray
   };
+  const categories = Object.values(state.source.category).map(category => {
+    return {
+      id: category.id,
+      slug: category.slug
+    }
+  });
+  const [ currentCategory, setCurrentCategory ] = useState(0);
+  const [ currentButton, setCurrentButton ] = useState('');
+  function filterButton(slug) {
+    const category = categories.filter(category => slug === category.slug);
+    const categoryId = category[0].id
+    setCurrentCategory(categoryId);
+    setCurrentButton(slug);
+  }
   return(
     <>
       <PostHero
@@ -86,7 +100,26 @@ const UniversityLifePage = ({ state, actions }) => {
       />
       <Filter>
         <h4>Filtrar {toTitleCase(name)} Según Sede</h4>
-        <BranchFilterButtons branches={branches} />
+        <FilterButtons>
+          {[...branches].reverse().map(branch => {
+                let { id, slug, acf } = branch.ID ? state.source.sede[branch.ID] : state.source.sede[branch.id];
+                return(
+                  <button
+                    key={id}
+                    onClick={ () => { filterButton(slug) }}
+                    style={ currentButton === slug ? {
+                      backgroundColor: colors.secondaryBlue,
+                      color: colors.white
+                    } : {
+                      backgroundColor: colors.white,
+                      color: colors.secondaryBlue
+                    } }
+                  >
+                    {acf.ciudad}
+                  </button>
+                )
+              })}
+        </FilterButtons>
       </Filter>
       {posts.length && <LatestNews>
         <Heading>Últimas {toTitleCase(name)}</Heading>
@@ -107,20 +140,28 @@ const UniversityLifePage = ({ state, actions }) => {
                     link,
                     featured_image_src,
                     date,
-                    author
+                    author,
+                    categories
                   } = state.source[post.type][post.id];
                   const { name } = state.source.author[author] || {};
                   const postDate = new Date(date);
-                  return(
-                    <SlimCardItem
-                      key={id}
-                      postDate={postDate}
-                      title={title}
-                      link={link}
-                      name={name}
-                      source_url={featured_image_src ? featured_image_src : default_image}
-                    />
-                )})
+                  if (
+                      currentCategory === 0 ||
+                      (categories.length && categories.includes(currentCategory))
+                    ) {
+                    return(
+                      <SlimCardItem
+                        key={id}
+                        postDate={postDate}
+                        title={title}
+                        link={link}
+                        name={name}
+                        source_url={featured_image_src ? featured_image_src : default_image}
+                      />)
+                  } else {
+                    return null;
+                  }
+                })
               }
             </Grid>
             <Grid
