@@ -175,6 +175,7 @@ const AlumniPage = ({ state }) => {
         <MainContainer>
           <h2>Valores</h2>
           <Grid columns="4" gap="30px">
+            
             <ValuesCard>
               <ValuesImage>
                 <Image src={state.source.url+'/wp-content/uploads/2021/03/Rectangle5.jpg'} />
