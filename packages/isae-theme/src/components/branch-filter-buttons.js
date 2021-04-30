@@ -37,7 +37,7 @@ const BranchFilterButtons = ({ state, branches }) => {
     console.log(slug);
   }
   return (
-    <FilterBut>
+    <FilterContainer>
       {branches.map(branch => {
             const { id, slug, acf } = branch.ID ? state.source.sede[branch.ID] : state.source.sede[branch.id];
             return(
@@ -56,7 +56,7 @@ const BranchFilterButtons = ({ state, branches }) => {
               </button>
             )
           })}
-    </FilterBut>
+    </FilterContainer>
   )
 }
 
