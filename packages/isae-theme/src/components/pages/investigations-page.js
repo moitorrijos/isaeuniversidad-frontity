@@ -114,28 +114,16 @@ const InvesgitationsPage = ({ state }) => {
                 image_source={acf.otras_publicaciones_1.icono}
                 title={acf.otras_publicaciones_1.titulo}
                 description={acf.otras_publicaciones_1.listado}
-                style={{
-                  padding: "4rem 2rem",
-                  fontSize: "0.9rem"
-                }}
               />
               <Card
                 image_source={acf.otras_publicaciones_2.icono}
                 title={acf.otras_publicaciones_2.titulo}
                 description={acf.otras_publicaciones_2.listado}
-                style={{
-                  padding: "4rem 2rem",
-                  fontSize: "0.9rem"
-                }}
               />
               <Card
                 image_source={acf.otras_publicaciones_3.icono}
                 title={acf.otras_publicaciones_3.titulo}
                 description={acf.otras_publicaciones_3.listado}
-                style={{
-                  padding: "4rem 2rem",
-                  fontSize: "0.9rem"
-                }}
               />
             </Grid>
           </MainContainer>
