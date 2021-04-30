@@ -179,20 +179,28 @@ const UniversityLifePage = ({ state, actions }) => {
                     link,
                     featured_image_src,
                     date,
-                    author
+                    author,
+                    categories
                   } = state.source[post.type][post.id];
                   const { name } = state.source.author[author] || {};
                   const postDate = new Date(date);
-                  return(
-                    <SlimCardItem
-                      key={id}
-                      postDate={postDate}
-                      title={title}
-                      link={link}
-                      name={name}
-                      source_url={featured_image_src ? featured_image_src : default_image}
-                    />
-                )})
+                  if (
+                      currentCategory === 0 ||
+                      (categories.length && categories.includes(currentCategory))
+                    ) {
+                    return(
+                      <SlimCardItem
+                        key={id}
+                        postDate={postDate}
+                        title={title}
+                        link={link}
+                        name={name}
+                        source_url={featured_image_src ? featured_image_src : default_image}
+                      />)
+                  } else {
+                    return null;
+                  }
+                })
               }
             </Grid>
             <Grid
@@ -210,20 +218,28 @@ const UniversityLifePage = ({ state, actions }) => {
                     link,
                     featured_image_src,
                     date,
-                    author
+                    author,
+                    categories
                   } = state.source[post.type][post.id];
                   const { name } = state.source.author[author] || {};
                   const postDate = new Date(date);
-                  return(
-                    <SlimCardItem
-                      key={id}
-                      postDate={postDate}
-                      title={title}
-                      link={link}
-                      name={name}
-                      source_url={featured_image_src ? featured_image_src : default_image}
-                    />
-                )})
+                  if (
+                      currentCategory === 0 ||
+                      (categories.length && categories.includes(currentCategory))
+                    ) {
+                    return(
+                      <SlimCardItem
+                        key={id}
+                        postDate={postDate}
+                        title={title}
+                        link={link}
+                        name={name}
+                        source_url={featured_image_src ? featured_image_src : default_image}
+                      />)
+                  } else {
+                    return null;
+                  }
+                })
               }
             </Grid>
           </Carousel>

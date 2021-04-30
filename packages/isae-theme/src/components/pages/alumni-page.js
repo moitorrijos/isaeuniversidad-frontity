@@ -11,6 +11,7 @@ import Image from "@frontity/components/image";
 import createMarkup from '../../helpers/create-markup';
 import RegisterForm from '../base/register-form';
 import PostCard from '../post-card';
+import ValuesCard from '../values-card';
 
 const MisionVision = styled.div`
   padding: 8rem 0;
@@ -71,21 +72,6 @@ const Values = styled.div`
     margin: 1rem 0 8rem;
     color: ${colors.primaryBlue};
     text-align: center;
-  }
-`;
-
-const ValuesCard = styled.div`
-  h3 {
-    color: ${colors.primaryBlueBright};
-  }
-`;
-
-const ValuesImage = styled.figure`
-  img {
-    width: 100%;
-    height: 176px;
-    object-fit: cover;
-    border-radius: 18px;
   }
 `;
 
@@ -175,35 +161,26 @@ const AlumniPage = ({ state }) => {
         <MainContainer>
           <h2>Valores</h2>
           <Grid columns="4" gap="30px">
-            
-            <ValuesCard>
-              <ValuesImage>
-                <Image src={state.source.url+'/wp-content/uploads/2021/03/Rectangle5.jpg'} />
-              </ValuesImage>
-              <h3>{acf.compromiso_social.titulo}</h3>
-              <p>{acf.compromiso_social.descripcion}</p>
-            </ValuesCard>
-            <ValuesCard>
-              <ValuesImage>
-                <Image src={state.source.url+'/wp-content/uploads/2021/03/Rectangle6.jpg'} />
-              </ValuesImage>
-              <h3>{acf.pluralidad.titulo}</h3>
-              <p>{acf.pluralidad.descripcion}</p>
-            </ValuesCard>
-            <ValuesCard>
-              <ValuesImage>
-                <Image src={state.source.url+'/wp-content/uploads/2021/03/Rectangle7.jpg'} />
-              </ValuesImage>
-              <h3>{acf.excelencia.titulo}</h3>
-              <p>{acf.excelencia.descripcion}</p>
-            </ValuesCard>
-            <ValuesCard>
-              <ValuesImage>
-                <Image src={state.source.url+'/wp-content/uploads/2021/03/Rectangle8.jpg'} />
-              </ValuesImage>
-              <h3>{acf.ciudadania.titulo}</h3>
-              <p>{acf.ciudadania.descripcion}</p>
-            </ValuesCard>
+            <ValuesCard
+              image_source={state.source.url+'/wp-content/uploads/2021/03/Rectangle5.jpg'}
+              title={acf.compromiso_social.titulo}
+              description={acf.compromiso_social.descripcion}
+            />
+            <ValuesCard
+              image_source={state.source.url+'/wp-content/uploads/2021/03/Rectangle6.jpg'}
+              title={acf.pluralidad.titulo}
+              description={acf.pluralidad.descripcion}
+            />
+            <ValuesCard
+              image_source={state.source.url+'/wp-content/uploads/2021/03/Rectangle7.jpg'}
+              title={acf.excelencia.titulo}
+              description={acf.excelencia.descripcion}
+            />
+            <ValuesCard
+              image_source={state.source.url+'/wp-content/uploads/2021/03/Rectangle8.jpg'}
+              title={acf.ciudadania.titulo}
+              description={acf.ciudadania.descripcion}
+            />
           </Grid>
         </MainContainer>
       </Values>
