@@ -24,10 +24,10 @@ const AvailableCareers = styled.div`
   }
 `;
 
-const CareerCards = ({ state, carreras, campus, slug }) => {
+const CareerCards = ({ state, carreras, ciudad, campus, slug }) => {
   return(
     <AvailableCareers>
-      <h2>Carreras Disponibles</h2>
+      <h2>Carreras Disponibles en la {ciudad}</h2>
       <MainContainer>
         <Grid columns="4" small_columns="2" gap="20px">
           {carreras.map(carrera => {

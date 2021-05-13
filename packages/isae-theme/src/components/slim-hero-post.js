@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { styled, connect } from 'frontity';
 import colors from '../styles/colors';
+import { months } from '../helpers/months';
 import MainContainer from './main-container';
 import Grid from './grid';
 import Image from '@frontity/components/image';
@@ -59,9 +60,32 @@ const DescriptionContainer = styled.div`
   }
 `;
 
+const PostInfo = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  gap: 20px;
+`;
 
-const SlimHero = ({ state, background, bgColor, featured_image, title, description }) => {
+const Author = styled.p`
+  color: ${colors.primaryBlueBright};
+  font-size: 0.9rem;
+`;
+
+const Date = styled.p`
+  color: ${colors.primaryBlue300};
+`;
+
+const SlimHeroPost = ({ state, background, bgColor, featured_image, title, description, date, author }) => {
   const placeholder = state.source.url+'/wp-content/uploads/2021/03/placeholder.jpg';
+  const name = state.source.author[author] || '';
+  let postDate, day, getMonth, year;
+  useEffect(() => {
+    postDate = new window.Date(date);
+    day = postDate.getDate();
+    getMonth = postDate.getMonth();
+    year = postDate.getFullYear();
+    console.log(day, getMonth, year);
+  });
   return(
     <SlimHeroContainer background={background} bgColor={bgColor}>
       <MainContainer>
@@ -71,6 +95,12 @@ const SlimHero = ({ state, background, bgColor, featured_image, title, descripti
           </FeaturedImage>
           <DescriptionContainer>
             <h1>{title}</h1>
+            {name && date && <PostInfo>
+              <Author>Escrito por: {name}</Author>
+              <Date>
+                {day} de {months[parseInt(getMonth)]} de {year}
+              </Date>
+            </PostInfo>}
             <div dangerouslySetInnerHTML={createMarkup(description)} />
           </DescriptionContainer>
         </Grid>
@@ -79,4 +109,4 @@ const SlimHero = ({ state, background, bgColor, featured_image, title, descripti
   );
 }
 
-export default connect(SlimHero);
+export default connect(SlimHeroPost);

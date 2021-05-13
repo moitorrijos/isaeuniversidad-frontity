@@ -170,6 +170,7 @@ const PlanningPage = ({ state, page }) => {
               <Image
                 src={acf.planificacion.imagen.url ? acf.planificacion.imagen.url : ''}
                 alt={acf.planificacion.imagen.alt ? acf.planificacion.imagen.alt : ''}
+                height={528}
               />
             </PlanImage>
           </Grid>
@@ -182,6 +183,7 @@ const PlanningPage = ({ state, page }) => {
               <Image
                 src={acf.objetivos.imagen.url ? acf.objetivos.imagen.url : state.source.url+'/wp-content/uploads/2021/03/Rectangle10.jpg'}
                 alt={acf.objetivos.imagen.alt ? acf.objetivos.imagen.alt : ''}
+                height={528}
               />
             </PlanImage>
             <PlanDescription>
@@ -214,6 +216,7 @@ const PlanningPage = ({ state, page }) => {
               <Image
                 src={acf.plan_etrategico.imagen.url ? acf.plan_etrategico.imagen.url : ''}
                 alt={acf.plan_etrategico.imagen.alt ? acf.plan_etrategico.imagen.alt : ''}
+                height={528}
               />
             </PlanImage>
           </Grid>
@@ -224,22 +227,22 @@ const PlanningPage = ({ state, page }) => {
         <MainContainer>
           <Grid columns="4" med_columns="2" small_columns="2" gap="30px" small_gap="10px">
             <MemoryCard>
-              <Image src={acf.memorias1.icono.url ? acf.memorias1.icono.url : state.source.url+'/wp-content/uploads/2021/03/memorias1.svg'} />
+              <Image src={acf.memorias1.icono.url ? acf.memorias1.icono.url : state.source.url+'/wp-content/uploads/2021/03/memorias1.svg'} height={80} />
               <h3>{acf.memorias1.ano}</h3>
               <Link link={acf.memorias1.url}>Descargar {nombre} Institucional</Link>
             </MemoryCard>
             <MemoryCard>
-              <Image src={acf.memorias2.icono.url ? acf.memorias2.icono.url : state.source.url+'/wp-content/uploads/2021/03/memorias2.svg'} />
+              <Image src={acf.memorias2.icono.url ? acf.memorias2.icono.url : state.source.url+'/wp-content/uploads/2021/03/memorias2.svg'} height={80} />
               <h3>{acf.memorias2.ano}</h3>
               <Link link={acf.memorias2.url}>Descargar {nombre} Institucional</Link>
             </MemoryCard>
             <MemoryCard>
-              <Image src={acf.memorias3.icono.url ? acf.memorias3.icono.url : state.source.url+'/wp-content/uploads/2021/03/memorias3.svg'} />
+              <Image src={acf.memorias3.icono.url ? acf.memorias3.icono.url : state.source.url+'/wp-content/uploads/2021/03/memorias3.svg'} height={80} />
               <h3>{acf.memorias3.ano}</h3>
               <Link link={acf.memorias3.url}>Descargar {nombre} Institucional</Link>
             </MemoryCard>
             <MemoryCard>
-              <Image src={acf.memorias4.icono.url ? acf.memorias4.icono.url : state.source.url+'/wp-content/uploads/2021/03/memorias4.svg'} />
+              <Image src={acf.memorias4.icono.url ? acf.memorias4.icono.url : state.source.url+'/wp-content/uploads/2021/03/memorias4.svg'} height={80} />
               <h3>{acf.memorias4.ano}</h3>
               <Link link={acf.memorias4.url}>Descargar {nombre} Institucional</Link>
             </MemoryCard>

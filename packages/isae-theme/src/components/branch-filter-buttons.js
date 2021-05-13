@@ -33,7 +33,8 @@ const FilterContainer = styled.div`
 const BranchFilterButtons = ({ state, branches }) => {
   const [ currentItem, setCurrentItem ] = useState('campus-central');
   function filterButton(slug) {
-    setCurrentItem(slug);
+    setCurrentItem(slug); 
+    console.log(slug);
   }
   return (
     <FilterContainer>

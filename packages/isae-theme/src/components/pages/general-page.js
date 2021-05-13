@@ -9,8 +9,9 @@ import createMarkup from '../../helpers/create-markup';
 const PageContent = styled.div`
   padding: 4rem 0 8rem;
   max-width: 80ch;
+  margin: 0 auto;
   font-size: 1.1rem;
-  line-height: 1.6;
+  line-height: 1.85;
 `;
 
 const GeneralPage = ({ state }) => {

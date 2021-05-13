@@ -7,21 +7,6 @@ import CareerCards from './career-cards';
 import AcademicUnits from './academic-units';
 import HomeNews from './home/home-news';
 
-const BranchHeader = styled.h2`
-  max-width: 700px;
-  margin: 8rem auto 1rem;
-  text-align: center;
-  color: ${colors.primaryBlue};
-`;
-
-const BranchParagraph = styled.p`
-  max-width: 600px;
-  margin: 0 auto 6rem;
-  font-size: 18px;
-  color: ${colors.primaryText50};
-  text-align: center;
-`;
-
 const BranchPage = ({ state, actions }) => {
   const branches = state.source.get(state.router.link);
   const { acf } = state.source[branches.type][branches.id];
@@ -39,7 +24,7 @@ const BranchPage = ({ state, actions }) => {
     setCurrentItem(slug);
   }
   const paginas_carrera = state.source.get('/carrera').totalPages;
-  for (let i = 0; i <= paginas_carrera; i++) {
+  for (let i = 1; i <= paginas_carrera; i++) {
     useEffect(() => {
       actions.source.fetch('/carrera/page/' + i);
     }, [])
@@ -57,8 +42,6 @@ const BranchPage = ({ state, actions }) => {
         telefono={acf.telefono}
         celular={acf.celular}
       />
-      <BranchHeader>Oferta Académica</BranchHeader>
-      <BranchParagraph>Disponible en {acf.ciudad === 'Campus Central' ? 'el' : 'la'} { acf.ciudad}</BranchParagraph>
       {acf.ofertas_academicas && <FilterButtons>
           {acf.ofertas_academicas.map((oferta, index) => {
             let { id, title, slug } = state.source[oferta.post_type][oferta.ID];
@@ -86,7 +69,7 @@ const BranchPage = ({ state, actions }) => {
             )
           })}
         </FilterButtons>}
-        <CareerCards carreras={carreras} campus={campus} slug={currentItem} />
+        <CareerCards carreras={carreras} ciudad={acf.ciudad} campus={campus} slug={currentItem} />
         <AcademicUnits campus={campus} />
         <HomeNews />
     </>

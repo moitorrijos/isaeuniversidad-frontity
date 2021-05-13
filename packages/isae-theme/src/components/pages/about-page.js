@@ -223,7 +223,7 @@ const AboutPage = ({ state }) => {
         <MainContainer>
           <Grid columns="2" gap="100px" med_gap="20px" small_gap="20px">
             <MessageImage>
-              <Image src={acf.mensaje_de_la_rectora.imagen.url} alt={acf.mensaje_de_la_rectora.alt} />
+              <Image src={acf.mensaje_de_la_rectora.imagen.url} alt={acf.mensaje_de_la_rectora.alt} width={650} height={975} />
             </MessageImage>
             <MessageText>
               <h1>Mensaje de la Rectora</h1>
@@ -241,7 +241,7 @@ const AboutPage = ({ state }) => {
               <div dangerouslySetInnerHTML={createMarkup(acf.nuestra_historia.texto)} />
             </MessageText>
             <MessageImage>
-              <Image src={acf.nuestra_historia.imagen.url} alt={acf.nuestra_historia.imagen.alt} />
+              <Image src={acf.nuestra_historia.imagen.url} alt={acf.nuestra_historia.imagen.alt} width={650} height={580}/>
             </MessageImage>
           </Grid>
         </MainContainer>
@@ -268,7 +268,7 @@ const AboutPage = ({ state }) => {
               return(
                 <Value key={valor.icono.id ? valor.icono.ID : valor.icono}>
                   <Icon>
-                    <Image src={valor.icono.url ? valor.icono.url : `${sourceUrl}/wp-content/uploads/2021/03/${iconos[index]}.svg`} />
+                    <Image src={valor.icono.url ? valor.icono.url : `${sourceUrl}/wp-content/uploads/2021/03/${iconos[index]}.svg`} width={80} height={80} />
                   </Icon>
                   <h3>{valor.titulo}</h3>
                   <p>{valor.texto}</p>

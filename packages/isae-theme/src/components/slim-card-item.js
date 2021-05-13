@@ -1,5 +1,5 @@
 import React from 'react';
-import { styled } from 'frontity';
+import { connect, styled } from 'frontity';
 import colors from '../styles/colors';
 import { months } from '../helpers/months';
 import { effects } from '../styles/effects';
@@ -74,7 +74,8 @@ const AuthorName = styled.p`
   color: ${colors.primaryBlueBright};
 `;
 
-const SlimCardItem = ({ title, link, source_url, postDate, name, style }) => {
+const SlimCardItem = ({ state, title, link, source_url, postDate, name, style }) => {
+  const placeholder = state.source.url+'/wp-content/uploads/2021/03/placeholder.jpg';
   const day = postDate.getDate();
   const getMonth = postDate.getMonth();
   const year = postDate.getFullYear();
@@ -83,7 +84,7 @@ const SlimCardItem = ({ title, link, source_url, postDate, name, style }) => {
       <SlimCardImage>
         {source_url ? (
           <Image src={source_url} alt={title.rendered} width={406} height={330} />
-          ) : (<EmptyImage />)}
+          ) : (<Image src={placeholder} alt={title.rendered} />)}
       </SlimCardImage>
       <SlimCardInfo link={link}>
         <Date>{day} de {months[parseInt(getMonth)]} de {year}</Date>
@@ -94,4 +95,4 @@ const SlimCardItem = ({ title, link, source_url, postDate, name, style }) => {
   );
 }
 
-export default SlimCardItem;
+export default connect(SlimCardItem);
