@@ -97,15 +97,10 @@ const Functions = styled.div`
       margin: 2rem 0;
       padding-left: 1rem;
       line-height: 1.3;
+      list-style-image: url("${props => props.listStyle}");
 
       &:first-of-type {
         margin-top: 0;
-      }
-
-      &::marker {
-        color: ${colors.primaryYellow};
-        content: url("${props => props.listStyle}");
-        font-size: 2rem;
       }
     }
   }
