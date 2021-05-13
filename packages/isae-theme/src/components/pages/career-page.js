@@ -182,11 +182,11 @@ const CareerPage = ({ state, actions }) => {
               <ProfileImages>
                 {acf.saber_ser.saber_ser_imagen1.url ? <Image
                   src={acf.saber_ser.saber_ser_imagen1.url}
-                  alt={acf.saber_ser.saber_ser_descripcion} 
+                  alt={acf.saber_ser.saber_ser_imagen1.alt} 
                 /> : <Image src={placeholder} alt="" />}
                 {acf.saber_ser.saber_ser_imagen2.url && <Image
                   src={acf.saber_ser.saber_ser_imagen2.url}
-                  alt={acf.saber_ser.saber_ser_descripcion} 
+                  alt={acf.saber_ser.saber_ser_imagen1.alt} 
                 />}
               </ProfileImages>
             </ProfileSectionImages>
@@ -208,11 +208,11 @@ const CareerPage = ({ state, actions }) => {
               <ProfileImages>
                 {acf.saber_conocer.saber_conocer_imagen1.url ? <Image
                   src={acf.saber_conocer.saber_conocer_imagen1.url}
-                  alt={acf.saber_conocer.saber_conocer_descripcion} 
+                  alt={acf.saber_conocer.saber_conocer_imagen1.alt} 
                 /> : <Image src={placeholder} alt="" />}
                 {acf.saber_conocer.saber_conocer_imagen2.url && <Image
                   src={acf.saber_conocer.saber_conocer_imagen2.url}
-                  alt={acf.saber_conocer.saber_conocer_descripcion} 
+                  alt={acf.saber_conocer.saber_conocer_imagen2.alt} 
                 />}
               </ProfileImages> 
             </ProfileSectionImages>
@@ -222,11 +222,11 @@ const CareerPage = ({ state, actions }) => {
               <ProfileImages>
                 {acf.saber_convivir.saber_convivir_imagen1.url ? <Image
                   src={acf.saber_convivir.saber_convivir_imagen1.url}
-                  alt={acf.saber_convivir.saber_convivir_descripcion} 
+                  alt={acf.saber_convivir.saber_convivir_imagen1.alt} 
                 />: <Image src={placeholder} alt="" />}
                 {acf.saber_convivir.saber_convivir_imagen2.url && <Image
                   src={acf.saber_convivir.saber_convivir_imagen2.url}
-                  alt={acf.saber_convivir.saber_convivir_descripcion} 
+                  alt={acf.saber_convivir.saber_convivir_imagen2.alt} 
                 />}
               </ProfileImages>
             </ProfileSectionImages>
