@@ -48,7 +48,7 @@ const FeaturedImage = styled.figure`
 
 const DescriptionContainer = styled.div`
   max-width: 575px;
-  color: ${colors.primaryText50};
+  color: ${colors.primaryText80};
   font-size: 18px;
   display: flex;
   flex-direction: column;

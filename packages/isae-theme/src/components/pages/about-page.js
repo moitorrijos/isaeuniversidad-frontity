@@ -135,7 +135,7 @@ const Reglamento = styled.div`
   padding: 40px 30px;
   border-radius: 20px;
   background-color: ${colors.white};
-  color: ${colors.primaryText50};
+  color: ${colors.primaryText80};
 
   button {
     cursor: pointer;

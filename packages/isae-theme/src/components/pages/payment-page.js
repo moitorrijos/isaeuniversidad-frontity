@@ -42,7 +42,7 @@ const PaymentDescription = styled.div`
   align-self: center;
   padding: 4rem 0;
   max-width: 475px;
-  color: ${colors.primaryText50};
+  color: ${colors.primaryText80};
 
   @media (max-width: 600px) {
     padding: 1rem 0;

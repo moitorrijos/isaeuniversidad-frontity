@@ -10,7 +10,7 @@ const colors = {
   blueBright600: '#003990',
   secondaryBlue: '#0076FF',
   primaryText100: '#1E1F22',
-  primaryText80: '#3C3F45',
+  primaryText80: '#41444A',
   primaryText50: '#797E8A',
   primaryText30: '#979DAC',
   primaryYellow: '#FFCA07',

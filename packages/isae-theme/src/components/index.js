@@ -23,7 +23,7 @@ const globalStyles = css`
     line-height: 1.6;
     padding: 0;
     margin: 0;
-    color: ${colors.primaryText50};
+    color: ${colors.primaryText80};
   }
 
   h1, h2, h3, h4 {

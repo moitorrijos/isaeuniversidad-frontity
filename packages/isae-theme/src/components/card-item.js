@@ -41,7 +41,7 @@ const CardInfo = styled.div`
 
   p {
     margin: 4px 0;
-    color: ${colors.primaryText50};
+    color: ${colors.primaryText80};
     font-size: 18px;
   }
 `;

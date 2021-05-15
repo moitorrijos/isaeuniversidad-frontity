@@ -46,7 +46,7 @@ const AcademicInfo = styled.div`
   p {
     font-size: 20px;
     line-height: 1.5;
-    color: ${colors.primaryText50};
+    color: ${colors.primaryText80};
     margin-bottom: 2rem;
   }
 

@@ -16,7 +16,7 @@ const MainContainer = styled.div`
 
 const Filter = styled.div`
   h4 {
-    color: ${colors.primaryText50};
+    color: ${colors.primaryText80};
     text-align: center;
     padding: 4rem 0 2rem;
   }

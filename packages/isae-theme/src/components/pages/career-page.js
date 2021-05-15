@@ -333,7 +333,7 @@ const DescriptionCards = styled.div`
   }
 
   p, ul, ol {
-    color: ${colors.primaryText50}
+    color: ${colors.primaryText80}
   }
 `;
 
@@ -460,7 +460,7 @@ const GeneralRequirementes = styled.div`
     margin-bottom: 1rem;
   }
   p, ul, ol {
-    color: ${colors.primaryText50};
+    color: ${colors.primaryText80};
   }
 `;
 
@@ -476,7 +476,7 @@ const Requirements = styled.div`
 
 const RequirementsInfo = styled.div`
   padding: 0 4rem 2rem;
-  color: ${colors.primaryText50};
+  color: ${colors.primaryText80};
 `;
 
 const RequirementsHeading = styled.button`
