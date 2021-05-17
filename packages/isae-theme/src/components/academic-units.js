@@ -1,16 +1,21 @@
 import React, { useEffect } from 'react';
 import { styled, connect } from 'frontity';
 import colors from '../styles/colors';
+import { effects } from '../styles/effects';
 import MainContainer from './main-container';
 import Grid from './grid';
 import Image from "@frontity/components/image";
 
 const Units = styled.div`
-  background-color: ${colors.primaryBlueBright};
+  background-color: ${colors.lightGray};
+  background-image: url(${props => props.background});
+  background-size: 25%;
+  background-position: left top;
+  background-repeat: no-repeat;
   padding: 6rem 0;
 
   h2, h4, p {
-    color: ${colors.white};
+    color: ${colors.primaryBlue};
     text-align: center;
 
     @media (max-width: 600px)  {
@@ -30,7 +35,7 @@ const Units = styled.div`
 const Unit = styled.div`
   display: grid;
   grid-template-columns: auto 1fr;
-  gap: 10px;
+  gap: 30px;
   align-items: center;
 
   @media (max-width: 600px) {
@@ -46,6 +51,7 @@ const DepartmentImage = styled.figure`
     border-radius: 20px;
     object-fit: cover;
     object-position: center;
+    box-shadow: ${effects.darkerBoxShadow};
 
     @media (max-width: 600px) {
       width: 100%;
@@ -59,9 +65,11 @@ const DepartmentImage = styled.figure`
 `;
 
 const DepartmentText = styled.div`
+max-width: 360px;
   h4, p {
     text-align: left;
     margin-top: 0;
+    color: ${colors.primaryText80};
   }
   h4 {
     margin-bottom: 1rem;
@@ -82,6 +90,7 @@ const DepartmentText = styled.div`
 
 const AcademicUnits = ({ campus, state, actions }) => {
   const paginas = state.source.get('/departamento').totalPages;
+  const background = state.source.url+'/wp-content/uploads/2021/03/background-isae-11.svg';
   for (let i = 0; i <= paginas; i++) {
     useEffect(() => {
       actions.source.fetch('/departamento/page/' + i);
@@ -89,7 +98,7 @@ const AcademicUnits = ({ campus, state, actions }) => {
   }
   const departamentos = Object.values(state.source.departamento);
   return(
-    <Units>
+    <Units background={background}>
       <MainContainer>
         <h2>Unidades Académicas</h2>
         <p>Dentro de las sedes de Campus Central</p>

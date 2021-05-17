@@ -59,7 +59,6 @@ const PlanImage = styled.figure`
 const FunctionsSection = styled.div`
   padding: 6rem 0 8rem;
   background-image: linear-gradient(20deg, ${colors.lightGray}, ${colors.mediumGray});
-  box-shadow: ${effects.boxShadow};
 
   @media (max-width: 834px) {
     padding: 4rem 0 8rem;
@@ -76,6 +75,7 @@ const Functions = styled.div`
   padding: 4rem;
   border-radius: 20px;
   background-color: ${colors.white};
+  box-shadow: ${effects.boxShadow};
 
   @media (max-width: 834px) {
     padding: 2rem;
