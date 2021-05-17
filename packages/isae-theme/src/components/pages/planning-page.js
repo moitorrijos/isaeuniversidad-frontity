@@ -57,8 +57,9 @@ const PlanImage = styled.figure`
 `;
 
 const FunctionsSection = styled.div`
-  padding: 8rem 0 12rem;
-  background-image: linear-gradient(89.88deg, #FFD539 0.13%, #F1BF07 99.93%);
+  padding: 6rem 0 8rem;
+  background-image: linear-gradient(20deg, ${colors.lightGray}, ${colors.mediumGray});
+  box-shadow: ${effects.boxShadow};
 
   @media (max-width: 834px) {
     padding: 4rem 0 8rem;
@@ -194,7 +195,7 @@ const PlanningPage = ({ state, page }) => {
         </MainContainer>
       </PlanningSection>
       <FunctionsSection>
-        <CenteredHeading color={colors.white}>{acf.funciones.titulo}</CenteredHeading>
+        <CenteredHeading color={colors.primaryText50}>{acf.funciones.titulo}</CenteredHeading>
         <MainContainer>
           <Functions
             listStyle={listStyle}
