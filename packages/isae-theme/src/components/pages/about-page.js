@@ -22,6 +22,8 @@ const Message = styled.div`
 `;
 
 const MessageImage = styled.figure`
+  align-self: center;
+  
   img {
     width: 100%;
     height: auto;
