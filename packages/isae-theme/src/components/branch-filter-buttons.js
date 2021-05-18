@@ -10,7 +10,7 @@ const FilterContainer = styled.div`
   justify-content: center;
   gap: 10px;
 
-  a, button {
+  p {
     font-size: 1rem;
     appearance: none;
     padding: 16px 40px;
@@ -21,7 +21,6 @@ const FilterContainer = styled.div`
     background-color: ${colors.white};
     text-decoration: none;
     transition: all 0.25s ease-in-out;
-    cursor: pointer;
 
     &:hover {
       background-color: ${colors.secondaryBlue};
@@ -39,23 +38,15 @@ const BranchFilterButtons = ({ state, branches }) => {
   return (
     <FilterContainer>
       {branches.map(branch => {
-            const { id, slug, acf } = branch.ID ? state.source.sede[branch.ID] : state.source.sede[branch.id];
-            return(
-              <button
-                key={id}
-                onClick={ () => { filterButton(slug) }}
-                style={ currentItem === slug ? {
-                  backgroundColor: colors.secondaryBlue,
-                  color: colors.white
-                 } : {
-                  backgroundColor: colors.white,
-                  color: colors.secondaryBlue
-                 } }
-              >
-                  {acf.ciudad}
-              </button>
-            )
-          })}
+        const { id, slug, acf } = branch.ID ? state.source.sede[branch.ID] : state.source.sede[branch.id];
+        return(
+          <p
+            key={id}
+          >
+              {acf.ciudad}
+          </p>
+        )
+      })}
     </FilterContainer>
   )
 }
