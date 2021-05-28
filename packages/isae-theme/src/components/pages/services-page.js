@@ -35,6 +35,31 @@ const ServicesPage = ({ state }) => {
         title={acf.seccion_4.titulo}
         description={acf.seccion_4.descripcion}
       />
+      <MainMessage
+        bgColor={colors.lightGray}
+        imageUrl={acf.seccion_5.imagen.url}
+        title={acf.seccion_5.titulo}
+        description={acf.seccion_5.descripcion}
+      />
+      <SecondaryMessage
+        bgColor={colors.white}
+        imageUrl={acf.seccion_6.imagen.url}
+        title={acf.seccion_6.titulo}
+        description={acf.seccion_6.descripcion}
+      />
+      <MainMessage
+        bgColor={colors.lightGray}
+        imageUrl={acf.seccion_7.imagen.url}
+        title={acf.seccion_7.titulo}
+        description={acf.seccion_7.descripcion}
+      />
+      <SecondaryMessage
+        bgColor={colors.white}
+        imageUrl={acf.seccion_8.imagen.url}
+        title={acf.seccion_8.titulo}
+        description={acf.seccion_8.descripcion}
+        button_url={acf.seccion_8.url}
+      />
     </>
   )
 }
