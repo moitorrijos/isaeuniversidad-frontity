@@ -5,6 +5,7 @@ import { effects } from '../../styles/effects';
 import MainContainer from "../main-container";
 import createMarkup from '../../helpers/create-markup';
 import Grid from "../grid";
+import Image from "@frontity/components/image";
 import PrimaryButton from '../primary-button';
 import CenteredSection from "../general/centered-section";
 
@@ -59,8 +60,8 @@ const AWSPage = ({ state }) => {
   const pageData = state.source.page[data.id];
   const background = state.source.url+'/wp-content/uploads/2021/02/background-isae-7.svg';
   const { acf, title } = pageData;
-  const { imagen, correo, descripcion, video, boton_conoce_mas, mas_info, imagen_fondo } = acf;
-
+  const { imagen, logo_proyecto_aws, descripcion, video, boton_conoce_mas, imagen_fondo } = acf;
+  console.log(logo_proyecto_aws)
   return (
     <>
       <HeroSection background={background}>
@@ -72,18 +73,15 @@ const AWSPage = ({ state }) => {
               </video>
             </HeroImage>
             <HeroDescription>
-              <h1>{title.rendered}</h1>
-              <div dangerouslySetInnerHTML={createMarkup(descripcion)} />
+              <Image src={logo_proyecto_aws.url} alt={logo_proyecto_aws.alt} width="200" />
+              <div style={{ marginBottom: '20px' }} dangerouslySetInnerHTML={createMarkup(descripcion)} />
               <PrimaryButton link={boton_conoce_mas.url}>{boton_conoce_mas.texto}</PrimaryButton>
             </HeroDescription>
           </Grid>
         </MainContainer>
       </HeroSection>
       <CenteredSection background={imagen_fondo.url}>
-        <div>
-          <p>{mas_info}</p>
-          <a href={"mailto:"+correo}>{correo}</a>
-        </div>
+        <div dangerouslySetInnerHTML={createMarkup(acf.informacion_adicional_aws)} />
       </CenteredSection>
     </>
   );

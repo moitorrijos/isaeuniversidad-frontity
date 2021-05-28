@@ -6,6 +6,9 @@ import PlanningPage from './pages/planning-page';
 import PaymentPage from './pages/payment-page';
 import AWSPage from './pages/aws-page';
 import GeneralPage from './pages/general-page';
+import ZigZagPage from './pages/zig-zag-page';
+import LegalPage from './pages/legal-page';
+import ServicesPage from './pages/services-page';
 
 const Page = ({ state }) => {
   const page = state.source.get(state.router.link);
@@ -21,6 +24,12 @@ const Page = ({ state }) => {
     return(<PaymentPage />);
   } else if (page.id === 109114) {
     return(<AWSPage page={109114} />);
+  } else if (page.id === 90536) {
+    return(<ZigZagPage page={90536} />);
+  } else if (page.id === 90553) {
+    return(<LegalPage />);
+  } else if (page.id === 109632) {
+    return(<ServicesPage />);
   } else {
     return <GeneralPage />;
   }

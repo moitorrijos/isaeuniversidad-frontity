@@ -10,7 +10,7 @@ const Button = styled(Link)`
   color: ${colors.white};
   display: inline-block;
   margin-top: 1rem;
-  border-radius: 8px;
+  border-radius: 12px;
   text-decoration: none;
   transition: all 0.25s ease-in-out;
 
@@ -20,9 +20,9 @@ const Button = styled(Link)`
   }
 `;
 
-const PrimaryButton = ({link, children}) => {
+const PrimaryButton = ({link, children, style}) => {
   return(
-    <Button link={link}>
+    <Button link={link} style={style}>
       {children}
     </Button>
   );

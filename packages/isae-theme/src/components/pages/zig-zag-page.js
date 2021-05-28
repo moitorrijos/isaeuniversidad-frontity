@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import { connect, styled } from 'frontity';
 import colors from '../../styles/colors';
 import { effects } from '../../styles/effects';
@@ -6,9 +6,9 @@ import MainMessage from '../main-message';
 import MainContainer from '../main-container';
 import Grid from '../grid';
 import Image from "@frontity/components/image";
-import PrimaryButton from '../primary-button';
 import createMarkup from '../../helpers/create-markup';
-import MemoryCard from '../memory-card';
+import ContactForm from '../base/contact-form';
+import HomeNews from '../home/home-news';
 
 const PlanningSection = styled.div`
   padding: 8rem 0;
@@ -106,22 +106,13 @@ const Functions = styled.div`
   }
 `;
 
-const MemorySection = styled.div`
-  padding: 10rem 0;
-  background-image: url(${props => props.background});
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center top;
-`;
 
-const PlanningPage = ({ state, page }) => {
+const ZigZagPage = ({ state, page }) => {
   const plan = state.source.page[page];
   const { acf, title, featured_image_src } = plan;
-  const background = state.source.url+'/wp-content/uploads/2021/03/background-isae-11.svg';
-  const background2 = state.source.url+'/wp-content/uploads/2021/03/background-isae-12.svg';
   const imageUrl = featured_image_src;
-  const nombre = (page === 91148) ? 'Memorias' : 'Estadísticas';
-  return(
+  const background = state.source.url+'/wp-content/uploads/2021/03/background-isae-11.svg';
+  return (
     <>
       <MainMessage
         background={background}
@@ -172,50 +163,10 @@ const PlanningPage = ({ state, page }) => {
           />
         </MainContainer>
       </FunctionsSection>
-      {acf.plan_etrategico.imagen && <PlanningSection bgColor={colors.lightGray}>
-        <MainContainer>
-          <Grid columns="2" gap="200px" med_gap="40px" small_gap="20px" >
-            <PlanDescription>
-              <h2>{acf.plan_etrategico.titulo}</h2>
-              <div dangerouslySetInnerHTML={createMarkup(acf.plan_etrategico.descripcion)} />
-              <PrimaryButton link={acf.plan_etrategico.descarga ? acf.plan_etrategico.descarga : '#0'} style={{ marginRight: '20px' }}>
-                Descargar Políticas
-              </PrimaryButton>
-              <PrimaryButton link={acf.plan_etrategico.url_plan_estrategico ? acf.plan_etrategico.url_plan_estrategico : '#0'}>
-                Plan Estratégico
-              </PrimaryButton>
-            </PlanDescription>
-            <PlanImage>
-              <Image
-                src={acf.plan_etrategico.imagen.url ? acf.plan_etrategico.imagen.url : ''}
-                alt={acf.plan_etrategico.imagen.alt ? acf.plan_etrategico.imagen.alt : ''}
-                height={528}
-              />
-            </PlanImage>
-          </Grid>
-        </MainContainer>
-      </PlanningSection>}
-      <MemorySection background={background2}>
-        <CenteredHeading color={colors.primaryBlue}>{nombre} Institucionales</CenteredHeading>
-        <MainContainer>
-          <Grid columns="6" med_columns="2" small_columns="2" gap="15px" small_gap="10px">
-            {acf.memorias1.icono && <MemoryCard memory={acf.memorias1} nombre={nombre} />}
-            {acf.memorias2.icono && <MemoryCard memory={acf.memorias2} nombre={nombre} />}
-            {acf.memorias3.icono && <MemoryCard memory={acf.memorias3} nombre={nombre} />}
-            {acf.memorias4.icono && <MemoryCard memory={acf.memorias4} nombre={nombre} />}
-            {acf.memorias5.icono && <MemoryCard memory={acf.memorias5} nombre={nombre} />}
-            {acf.memorias6.icono && <MemoryCard memory={acf.memorias6} nombre={nombre} />}
-            {acf.memorias7.icono && <MemoryCard memory={acf.memorias7} nombre={nombre} />}
-            {acf.memorias8.icono && <MemoryCard memory={acf.memorias8} nombre={nombre} />}
-            {acf.memorias9.icono && <MemoryCard memory={acf.memorias9} nombre={nombre} />}
-            {acf.memorias10.icono && <MemoryCard memory={acf.memorias10} nombre={nombre} />}
-            {acf.memorias11.icono && <MemoryCard memory={acf.memorias11} nombre={nombre} />}
-            {acf.memorias12.icono && <MemoryCard memory={acf.memorias12} nombre={nombre} />}
-          </Grid>
-        </MainContainer>
-      </MemorySection>
+      <ContactForm />
+      <HomeNews />
     </>
-  );
+  )
 }
 
-export default connect(PlanningPage);
+export default connect(ZigZagPage);
