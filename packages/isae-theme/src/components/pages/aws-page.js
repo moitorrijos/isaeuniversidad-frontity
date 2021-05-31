@@ -61,7 +61,6 @@ const AWSPage = ({ state }) => {
   const background = state.source.url+'/wp-content/uploads/2021/02/background-isae-7.svg';
   const { acf, title } = pageData;
   const { imagen, logo_proyecto_aws, descripcion, video, boton_conoce_mas, imagen_fondo } = acf;
-  console.log(logo_proyecto_aws)
   return (
     <>
       <HeroSection background={background}>

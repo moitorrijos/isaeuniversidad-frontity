@@ -84,7 +84,6 @@ const SlimHeroPost = ({ state, background, bgColor, featured_image, title, descr
     day = postDate.getDate();
     getMonth = postDate.getMonth();
     year = postDate.getFullYear();
-    console.log(day, getMonth, year);
   });
   return(
     <SlimHeroContainer background={background} bgColor={bgColor}>

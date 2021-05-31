@@ -52,7 +52,6 @@ const InvesgitationsPage = ({ state }) => {
   const post = state.source[investigation.type][investigation.id];
   const background = state.source.url+'/wp-content/uploads/2021/02/background-isae-8.svg';
   const { title, featured_image_src, acf } = post;
-  console.log(acf);
   const latest_activities = state.source.get('/category/actividades/').items;
   const [ currentItem, setCurrentItem ] = useState(1);
   const carouselItems = useCarousel(currentItem, setCurrentItem);

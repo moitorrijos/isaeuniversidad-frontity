@@ -9,6 +9,7 @@ import GeneralPage from './pages/general-page';
 import ZigZagPage from './pages/zig-zag-page';
 import LegalPage from './pages/legal-page';
 import ServicesPage from './pages/services-page';
+import JobSearchPage from './pages/job-search-page';
 
 const Page = ({ state }) => {
   const page = state.source.get(state.router.link);
@@ -30,6 +31,10 @@ const Page = ({ state }) => {
     return(<LegalPage />);
   } else if (page.id === 109632) {
     return(<ServicesPage />);
+  } else if (page.id === 109692) {
+    return(<JobSearchPage page={109692} />);
+  } else if (page.id === 109704) {
+    return(<JobSearchPage page={109704} />);
   } else {
     return <GeneralPage />;
   }

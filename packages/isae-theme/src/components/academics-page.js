@@ -75,6 +75,7 @@ const AcademicsPage = ({ state, actions }) => {
   function filterButton(slug) {
     setCurrentItem(slug);
   }
+  console.log(currentItem, acf.sedes);
   return(
     <>
       <PostHero
