@@ -52,7 +52,9 @@ const MessageText = styled.div`
   }
 `;
 
-const SecondaryMessage = ({ background, bgColor, imageUrl, title, description, button_url}) => {
+const SecondaryMessage = ({
+  background, bgColor, imageUrl, title, description, button_text, button_url
+}) => {
   return (
     <Message background={background} bgColor={bgColor}>
       <MainContainer>
@@ -60,7 +62,10 @@ const SecondaryMessage = ({ background, bgColor, imageUrl, title, description, b
           <MessageText>
             <h1>{title}</h1>
             <div dangerouslySetInnerHTML={createMarkup(description)} />
-            {button_url && <PrimaryButton link={button_url}>{title}</PrimaryButton>}
+            {button_url &&
+              <PrimaryButton link={button_url}>
+                {title ? title : button_text}
+              </PrimaryButton>}
           </MessageText>
           <MessageImage>
             <Image src={imageUrl} alt="" width={650} height={975} />

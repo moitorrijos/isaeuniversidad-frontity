@@ -5,6 +5,7 @@ import MainContainer from './main-container';
 import Grid from './grid';
 import Image from "@frontity/components/image";
 import createMarkup from '../helpers/create-markup';
+import PrimaryButton from './primary-button';
 
 const Message = styled.div`
   padding: 8rem 0;
@@ -51,7 +52,17 @@ const MessageText = styled.div`
   }
 `;
 
-const MainMessage = ({ background, bgColor, imageUrl, title, description}) => {
+const MainMessage = ({
+    background,
+    bgColor,
+    imageUrl,
+    title,
+    description,
+    button_1_text,
+    button_1_url,
+    button_2_text,
+    button_2_url
+  }) => {
   return (
     <Message background={background} bgColor={bgColor}>
       <MainContainer>
@@ -62,6 +73,14 @@ const MainMessage = ({ background, bgColor, imageUrl, title, description}) => {
           <MessageText>
             <h1>{title}</h1>
             <div dangerouslySetInnerHTML={createMarkup(description)} />
+            {button_1_text && button_1_url &&
+              <PrimaryButton link={button_1_url} style={{marginRight: 20}}>
+                {button_1_text}
+              </PrimaryButton>}
+            {button_2_text && button_2_url &&
+              <PrimaryButton link={button_2_url}>
+                {button_2_text}
+              </PrimaryButton>}
           </MessageText>
         </Grid>
       </MainContainer>
