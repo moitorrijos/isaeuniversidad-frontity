@@ -132,7 +132,7 @@ const InfoImage = styled.figure`
 const MainButton = styled.a`
   background-color: ${colors.primaryBlue};
   color: ${colors.white};
-  padding: 14px 32px;
+  padding: 8px 16px;
   border-radius: 8px;
   text-decoration: none;
   display: inline-flex;

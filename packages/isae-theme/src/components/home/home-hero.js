@@ -169,7 +169,7 @@ const HomeHero = ({ state }) => {
                 <MainButton
                   href="#formulario-contacto"
                 >
-                  <RightArrowCircle color={color.primaryBlue} />
+                  <RightArrowCircle color={colors.primaryBlue} />
                   Más Información
                 </MainButton>
               </HeroInfo>}
@@ -200,7 +200,7 @@ const HomeHero = ({ state }) => {
               <MainButton
                 href="#formulario-contacto"
               >
-                <RightArrowCircle color={color.primaryBlue} />
+                <RightArrowCircle color={colors.primaryBlue} />
                 Más Información
               </MainButton>
             </HeroInfo>
@@ -223,7 +223,7 @@ const HomeHero = ({ state }) => {
               <MainButton
                 href="#formulario-contacto"
               >
-                <RightArrowCircle color={color.primaryBlue} />
+                <RightArrowCircle color={colors.primaryBlue} />
                 Más Información
               </MainButton>
             </HeroInfo>
