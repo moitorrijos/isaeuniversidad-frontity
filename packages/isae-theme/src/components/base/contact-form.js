@@ -66,7 +66,7 @@ const Form = styled.form`
   }
 `;
 
-const ContactForm = ({ state }) => {
+const ContactForm = ({ state, branch, phone }) => {
   const academics = state.source.get('/ofertaacadmica').items;
   const branches = state.source.get('/sede').items;
   const { register, handleSubmit } = useForm();
@@ -81,8 +81,8 @@ const ContactForm = ({ state }) => {
             <p>Ponte en contacto con nosotros y obtén información sobre la oferta académica de tu interés.</p>
             <h3>Contacto</h3>
             <p>
-              Campus Central:<br />
-              (+507) 278-1432 / 278-1444<br />
+              {branch ? branch : 'Campus Central:'}<br />
+              {phone ? phone : '(+507) 278-1432 / 278-1444'}<br />
               info@isaeuniversidad.ac.pa
             </p>
           </FormInfo>

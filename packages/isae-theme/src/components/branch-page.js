@@ -10,7 +10,7 @@ import ContactForm from './base/contact-form';
 
 const BranchPage = ({ state, actions }) => {
   const branch = state.source.get(state.router.link);
-  const { acf } = state.source[branch.type][branch.id];
+  const { title, acf } = state.source[branch.type][branch.id];
   const [ currentItem, setCurrentItem ] = useState('all');
   const campus = state.router.link.split('/').filter(el => el)[1];
   const currentItemStyle = {
@@ -72,7 +72,7 @@ const BranchPage = ({ state, actions }) => {
         </FilterButtons>}
         <CareerCards carreras={carreras} ciudad={acf.ciudad} campus={campus} slug={currentItem} />
         <AcademicUnits campus={campus} />
-        <ContactForm />
+        <ContactForm branch={title.rendered} phone={acf.telefono} />
         <HomeNews />
     </>
   );
