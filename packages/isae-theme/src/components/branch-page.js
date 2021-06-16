@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { styled, connect } from 'frontity';
+import { connect } from 'frontity';
 import colors from '../styles/colors';
 import PostHero from './post-hero';
 import FilterButtons from './filter-buttons';
 import CareerCards from './career-cards';
 import AcademicUnits from './academic-units';
 import HomeNews from './home/home-news';
+import ContactForm from './base/contact-form';
 
 const BranchPage = ({ state, actions }) => {
-  const branches = state.source.get(state.router.link);
-  const { acf } = state.source[branches.type][branches.id];
+  const branch = state.source.get(state.router.link);
+  const { acf } = state.source[branch.type][branch.id];
   const [ currentItem, setCurrentItem ] = useState('all');
   const campus = state.router.link.split('/').filter(el => el)[1];
   const currentItemStyle = {
@@ -71,6 +72,7 @@ const BranchPage = ({ state, actions }) => {
         </FilterButtons>}
         <CareerCards carreras={carreras} ciudad={acf.ciudad} campus={campus} slug={currentItem} />
         <AcademicUnits campus={campus} />
+        <ContactForm />
         <HomeNews />
     </>
   );

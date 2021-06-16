@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { styled, connect } from 'frontity';
 import colors from '../../styles/colors';
+import { effects } from '../../styles/effects';
 import { Spring, config } from 'react-spring/renderprops'
+import RightArrowCircle from '../icons/right-arrow-circle';
 import useCarousel from '../../hooks/use-carousel';
 import MainContainer from '../main-container';
-import MainButton from '../main-button';
 import Image from "@frontity/components/image";
 
 const HeroContainer = styled.div`
@@ -82,6 +83,27 @@ const HeroInner = styled.div`
   }
 `;
 
+const MainButton = styled.a`
+  background-color: ${colors.primaryYellow};
+  color: ${colors.primaryBlue};
+  padding: 14px 32px;
+  border-radius: 8px;
+  text-decoration: none;
+  display: inline-flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  transition: all 0.25s ease-in-out;
+
+  svg {
+    margin-left: 12px;
+  }
+
+  &:hover {
+    transform: ${effects.transform};
+    box-shadow: ${effects.boxShadow};
+  }
+`;
+
 const HeroInfo = styled.div`
   p, h1 {
     color: ${colors.white};
@@ -126,6 +148,7 @@ const HomeHero = ({ state }) => {
   const backgrouldUrl = state.source.url;
   const [ currentItem, setCurrentItem ] = useState(1);
   const carouselItems = useCarousel(currentItem, setCurrentItem);
+  
   return (
     <HeroContainer url={backgrouldUrl}>
       <MainContainer>
@@ -144,10 +167,9 @@ const HomeHero = ({ state }) => {
                   <em>#estudiaenISAE</em>
                 </p>
                 <MainButton
-                  background={colors.primaryYellow}
-                  color={colors.primaryBlue}
-                  link="#formulario-contacto"
+                  href="#formulario-contacto"
                 >
+                  <RightArrowCircle color={color.primaryBlue} />
                   Más Información
                 </MainButton>
               </HeroInfo>}
@@ -176,10 +198,9 @@ const HomeHero = ({ state }) => {
                 <em>#estudiaenISAE</em>
               </p>
               <MainButton
-                background={colors.primaryYellow}
-                color={colors.primaryBlue}
-                link="#formulario-contacto"
+                href="#formulario-contacto"
               >
+                <RightArrowCircle color={color.primaryBlue} />
                 Más Información
               </MainButton>
             </HeroInfo>
@@ -200,10 +221,9 @@ const HomeHero = ({ state }) => {
                 <em>#estudiaenISAE</em>
               </p>
               <MainButton
-                background={colors.primaryYellow}
-                color={colors.primaryBlue}
-                link="#formulario-contacto"
+                href="#formulario-contacto"
               >
+                <RightArrowCircle color={color.primaryBlue} />
                 Más Información
               </MainButton>
             </HeroInfo>

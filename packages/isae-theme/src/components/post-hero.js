@@ -4,6 +4,7 @@ import colors from '../styles/colors';
 import { effects } from '../styles/effects';
 import Image from "@frontity/components/image";
 import createMarkup from '../helpers/create-markup';
+import RightArrowCircle from './icons/right-arrow-circle';
 
 const Hero = styled.div`
   background-image: url(${props => props.background});
@@ -128,6 +129,27 @@ const InfoImage = styled.figure`
   }
 `;
 
+const MainButton = styled.a`
+  background-color: ${colors.primaryBlue};
+  color: ${colors.white};
+  padding: 14px 32px;
+  border-radius: 8px;
+  text-decoration: none;
+  display: inline-flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  transition: all 0.25s ease-in-out;
+
+  svg {
+    margin-left: 12px;
+  }
+
+  &:hover {
+    transform: ${effects.transform};
+    box-shadow: ${effects.boxShadow};
+  }
+`;
+
 const PostHero = ({ background, bgColor, title, provincia, description, imageUrl, direccion, telefono, celular }) => {
   return(
     <Hero background={background} bgColor={bgColor}>
@@ -146,6 +168,10 @@ const PostHero = ({ background, bgColor, title, provincia, description, imageUrl
             }
             {telefono && <p><strong>Teléfono:</strong>{" "}{telefono}</p>}
             {celular && <p><strong>WhatsApp:</strong>{" "}{celular}</p>}
+            {celular && <MainButton href="#formulario-contacto">
+              <RightArrowCircle color={colors.white} />
+              Más Información
+            </MainButton>}
           </InfoCard>
           <InfoImage>
             <Image alt={title} src={imageUrl} height={1080} width={875} />

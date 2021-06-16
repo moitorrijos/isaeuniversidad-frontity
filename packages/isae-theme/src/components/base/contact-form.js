@@ -72,7 +72,7 @@ const ContactForm = ({ state }) => {
   const { register, handleSubmit } = useForm();
   const onSubmit = data => console.log(data);
 
-  return(
+  return (
     <FormContainer id="formulario-contacto">
       <MainContainer>
         <FormGrid>
