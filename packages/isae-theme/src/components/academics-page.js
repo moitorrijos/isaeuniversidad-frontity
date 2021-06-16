@@ -6,6 +6,7 @@ import ContactForm from './base/contact-form';
 import MainContainer from './main-container';
 import Grid from './grid';
 import SingleCard from './base/single-card';
+import createMarkup from '../helpers/create-markup';
 
 const AcademicHeading = styled.p`
   max-width: 420px;
@@ -59,6 +60,14 @@ const AvailableCareers = styled.div`
   }
 `;
 
+const PageContent = styled.div`
+  padding: 4rem 0 8rem;
+  max-width: 80ch;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  line-height: 1.85;
+`;
+
 const AcademicsPage = ({ state, actions }) => {
   const academics = state.source.get(state.router.link);
   const academic_slug = academics.link.split('/').filter(el => el)[1];
@@ -84,31 +93,30 @@ const AcademicsPage = ({ state, actions }) => {
         description={descripcion}
         imageUrl={featured_image_src}
       />
-      
-        {acf.sedes && <>
-          <AcademicHeading>Filtrar {title.rendered} según Sede</AcademicHeading>
-          <FilterContainer>
-            {acf.sedes.map(branch => {
-              const { ID, slug, acf } = branch.ID ? state.source.sede[branch.ID] : state.source.sede[branch.id];
-              return(
-                <button
-                  key={ID}
-                  onClick={ () => { filterButton(slug) }}
-                  style={ currentItem === slug ? {
-                    backgroundColor: colors.secondaryBlue,
-                    color: colors.white
-                  } : {
-                    backgroundColor: colors.white,
-                    color: colors.secondaryBlue
-                  } }
-                >
-                    {acf.ciudad}
-                </button>
-              )
-            })}
+      {acf.sedes && <>
+        <AcademicHeading>Filtrar {title.rendered} según Sede</AcademicHeading>
+        <FilterContainer>
+          {acf.sedes.map(branch => {
+            const { ID, slug, acf } = branch.ID ? state.source.sede[branch.ID] : state.source.sede[branch.id];
+            return(
+              <button
+                key={ID}
+                onClick={ () => { filterButton(slug) }}
+                style={ currentItem === slug ? {
+                  backgroundColor: colors.secondaryBlue,
+                  color: colors.white
+                } : {
+                  backgroundColor: colors.white,
+                  color: colors.secondaryBlue
+                } }
+              >
+                  {acf.ciudad}
+              </button>
+            )
+          })}
         </FilterContainer>
       </>}
-      {carreras && <AvailableCareers>
+      {carreras && academic_slug !== 'educacion-continua' && <AvailableCareers>
         <AcademicHeading>Carreras Disponibles</AcademicHeading>
         <MainContainer>
           <Grid columns="4" small_columns="2" gap="20px">
@@ -134,6 +142,9 @@ const AcademicsPage = ({ state, actions }) => {
           </Grid>
         </MainContainer>
       </AvailableCareers>}
+      {acf.contenido && <MainContainer>
+        <PageContent dangerouslySetInnerHTML={createMarkup(acf.contenido)} />
+      </MainContainer>}
       <ContactForm />
     </>
   );
