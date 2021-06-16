@@ -120,7 +120,6 @@ const PlanningPage = ({ state, page }) => {
   const background = state.source.url+'/wp-content/uploads/2021/03/background-isae-11.svg';
   const background2 = state.source.url+'/wp-content/uploads/2021/03/background-isae-12.svg';
   const imageUrl = featured_image_src;
-  const nombre = (page === 91148) ? 'Memorias' : 'Estadísticas';
   return(
     <>
       <MainMessage
@@ -196,21 +195,21 @@ const PlanningPage = ({ state, page }) => {
         </MainContainer>
       </PlanningSection>}
       <MemorySection background={background2}>
-        <CenteredHeading color={colors.primaryBlue}>{nombre} Institucionales</CenteredHeading>
+        <CenteredHeading color={colors.primaryBlue}>{acf.nombre}</CenteredHeading>
         <MainContainer>
           <Grid columns="6" med_columns="2" small_columns="2" gap="15px" small_gap="10px">
-            {acf.memorias1.icono && <MemoryCard memory={acf.memorias1} nombre={nombre} />}
-            {acf.memorias2.icono && <MemoryCard memory={acf.memorias2} nombre={nombre} />}
-            {acf.memorias3.icono && <MemoryCard memory={acf.memorias3} nombre={nombre} />}
-            {acf.memorias4.icono && <MemoryCard memory={acf.memorias4} nombre={nombre} />}
-            {acf.memorias5.icono && <MemoryCard memory={acf.memorias5} nombre={nombre} />}
-            {acf.memorias6.icono && <MemoryCard memory={acf.memorias6} nombre={nombre} />}
-            {acf.memorias7.icono && <MemoryCard memory={acf.memorias7} nombre={nombre} />}
-            {acf.memorias8.icono && <MemoryCard memory={acf.memorias8} nombre={nombre} />}
-            {acf.memorias9.icono && <MemoryCard memory={acf.memorias9} nombre={nombre} />}
-            {acf.memorias10.icono && <MemoryCard memory={acf.memorias10} nombre={nombre} />}
-            {acf.memorias11.icono && <MemoryCard memory={acf.memorias11} nombre={nombre} />}
-            {acf.memorias12.icono && <MemoryCard memory={acf.memorias12} nombre={nombre} />}
+            {acf.memorias1.icono && <MemoryCard memory={acf.memorias1} nombre={acf.nombre} />}
+            {acf.memorias2.icono && <MemoryCard memory={acf.memorias2} nombre={acf.nombre} />}
+            {acf.memorias3.icono && <MemoryCard memory={acf.memorias3} nombre={acf.nombre} />}
+            {acf.memorias4.icono && <MemoryCard memory={acf.memorias4} nombre={acf.nombre} />}
+            {acf.memorias5.icono && <MemoryCard memory={acf.memorias5} nombre={acf.nombre} />}
+            {acf.memorias6.icono && <MemoryCard memory={acf.memorias6} nombre={acf.nombre} />}
+            {acf.memorias7.icono && <MemoryCard memory={acf.memorias7} nombre={acf.nombre} />}
+            {acf.memorias8.icono && <MemoryCard memory={acf.memorias8} nombre={acf.nombre} />}
+            {acf.memorias9.icono && <MemoryCard memory={acf.memorias9} nombre={acf.nombre} />}
+            {acf.memorias10.icono && <MemoryCard memory={acf.memorias10} nombre={acf.nombre} />}
+            {acf.memorias11.icono && <MemoryCard memory={acf.memorias11} nombre={acf.nombre} />}
+            {acf.memorias12.icono && <MemoryCard memory={acf.memorias12} nombre={acf.nombre} />}
           </Grid>
         </MainContainer>
       </MemorySection>

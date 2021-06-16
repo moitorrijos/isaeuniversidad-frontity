@@ -37,7 +37,7 @@ const MemoryCard = ({ memory, nombre }) => {
     <MemoryCardSection>
       <Image src={memory.icono.url} height={80} />
       <h3>{memory.ano}</h3>
-      <Link link={memory.url}>Descargar {nombre} Institucional</Link>
+      <Link link={memory.url}>Descargar {nombre}</Link>
     </MemoryCardSection>
   )
 }

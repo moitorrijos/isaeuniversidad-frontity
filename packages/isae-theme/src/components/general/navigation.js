@@ -192,8 +192,10 @@ const Navigation = ({ state, actions }) => {
     setSubMenuItems(children);
   };
   const showSubSubmenu = (subItem, e) => {
-    const { children, url, title } = subItem;
-    e.preventDefault();
+    const { children, url, title, type } = subItem;
+    if (type === 'custom') {
+      window.location.href = url;
+    }
     if (children) {
       setSubSubmenuItems(children);
     } else {
