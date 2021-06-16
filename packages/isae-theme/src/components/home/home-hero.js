@@ -95,7 +95,7 @@ const MainButton = styled.a`
   transition: all 0.25s ease-in-out;
 
   svg {
-    margin-left: 12px;
+    margin-right: 12px;
   }
 
   &:hover {
