@@ -31,11 +31,13 @@ const Page = ({ state }) => {
   } else if (page.id === 90553) {
     return(<LegalPage />);
   } else if (page.id === 109632) {
-    return(<ServicesPage />);
+    return(<ServicesPage page={109632} />);
   } else if (page.id === 109692) {
     return(<JobSearchPage page={109692} />);
   } else if (page.id === 109704) {
     return(<JobSearchPage page={109704} />);
+  } else if (page.id === 109148) {
+    return(<ServicesPage page={109148} />);
   } else if (page.id === 90519) {
     return(<VirtualPage />);
   } else {
