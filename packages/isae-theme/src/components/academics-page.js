@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { styled, connect } from 'frontity';
 import colors from '../styles/colors';
+import { effects } from '../styles/effects';
 import PostHero from './post-hero';
 import ContactForm from './base/contact-form';
 import MainContainer from './main-container';
 import Grid from './grid';
 import SingleCard from './base/single-card';
 import createMarkup from '../helpers/create-markup';
+import Image from "@frontity/components/image";
 
 const AcademicHeading = styled.p`
   max-width: 420px;
@@ -68,6 +70,99 @@ const PageContent = styled.div`
   line-height: 1.85;
 `;
 
+const ContactInformation = styled.div`
+  background-color: ${colors.lightGray};
+  background-size: 25%;
+  background-position: left top;
+  background-repeat: no-repeat;
+  padding: 6rem 0;
+
+  h2 {
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    margin-bottom: 4rem;
+  }
+`;
+
+const ContactInformationTitle = styled.h2`
+  color: ${colors.darkGray};
+  text-align: center;
+
+  @media (max-width: 600px)  {
+    margin-bottom: 2rem;
+  }
+`;
+
+const ContactInformationDescription = styled.p`
+  color: ${colors.darkGray};
+  text-align: center;
+
+  @media (max-width: 600px)  {
+    margin-bottom: 2rem;
+  }
+`;
+
+const Contact = styled.div`
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 30px;
+  align-items: center;
+  
+  @media (max-width: 600px) {
+    grid-template-columns: 120px 1fr;
+    margin-bottom: 3rem;
+  }
+`;
+
+const ContactImage = styled.div`
+  img {
+    width: 120px;
+    height: 120px;
+    border-radius: 2rem;
+    object-fit: cover;
+    object-position: center;
+    box-shadow: ${effects.darkerBoxShadow};
+
+    @media (max-width: 600px) {
+      width: 100%;
+      height: 120px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    align-self: start;
+  }
+`;
+
+const ContactDescription = styled.div`
+  max-width: 360px;
+  h4, p {
+    text-align: left;
+    margin-top: 0;
+    color: ${colors.primaryText80};
+  }
+  h4 {
+    margin-bottom: 1rem;
+  }
+  h5 {
+    margin: 0.25rem 0;
+  }
+  p {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+
+    @media (max-width: 600px) {
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    align-self: start;
+  }
+`;
+
 const AcademicsPage = ({ state, actions }) => {
   const academics = state.source.get(state.router.link);
   const academic_slug = academics.link.split('/').filter(el => el)[1];
@@ -84,7 +179,6 @@ const AcademicsPage = ({ state, actions }) => {
   function filterButton(slug) {
     setCurrentItem(slug);
   }
-  console.log(currentItem, acf.sedes);
   return(
     <>
       <PostHero
@@ -145,6 +239,32 @@ const AcademicsPage = ({ state, actions }) => {
       {acf.contenido && <MainContainer>
         <PageContent dangerouslySetInnerHTML={createMarkup(acf.contenido)} />
       </MainContainer>}
+      { acf.contacto && <ContactInformation>
+        <MainContainer>
+        <ContactInformationTitle>Información de Contacto:</ContactInformationTitle>
+        <ContactInformationDescription>Solicita información sobre nuestra variada oferta de talleres, cursos, seminarios y diplomados.</ContactInformationDescription>
+          <Grid columns="2" gap="40px">
+            {Object.values(acf.contacto).map( contacto => {
+              return(
+                <Contact key={contacto.icono.id}>
+                  <ContactImage>
+                    <Image alt={contacto.icono.alt} src={contacto.icono.url} width={80} />
+                  </ContactImage>
+                  <ContactDescription>
+                    <h4>{contacto.sede}</h4>
+                    <h5>{ contacto.nombre }</h5>
+                    <p>
+                      <a href={`mailto:${contacto.correo}`}>{contacto.correo}</a><br />
+                      { contacto.telefono_1 }<br />
+                      { contacto.telefono_2 }
+                    </p>
+                  </ContactDescription>
+                </Contact>
+              )
+            })}
+          </Grid>  
+        </MainContainer>  
+      </ContactInformation>}
       <ContactForm />
     </>
   );

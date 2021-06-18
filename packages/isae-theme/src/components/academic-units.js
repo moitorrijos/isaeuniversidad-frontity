@@ -46,9 +46,9 @@ const Unit = styled.div`
 
 const DepartmentImage = styled.figure`
   img {
-    width: 170px;
-    height: 180px;
-    border-radius: 20px;
+    width: 120px;
+    height: 120px;
+    border-radius: 2rem;
     object-fit: cover;
     object-position: center;
     box-shadow: ${effects.darkerBoxShadow};
@@ -65,7 +65,7 @@ const DepartmentImage = styled.figure`
 `;
 
 const DepartmentText = styled.div`
-max-width: 360px;
+  max-width: 360px;
   h4, p {
     text-align: left;
     margin-top: 0;
@@ -104,6 +104,9 @@ const AcademicUnits = ({ campus, state, actions }) => {
         <p>Dentro de las sedes de Campus Central</p>
         <Grid columns="2" gap="40px">
           {[...departamentos].reverse().map(depto => {
+            const randomNumber = () => {
+              return Math.floor(Math.random() * 4) + 1;
+            }
             const {
               id,
               acf,
@@ -123,7 +126,7 @@ const AcademicUnits = ({ campus, state, actions }) => {
                       <Image alt={title.rendered} src={featured_image_src} /> :
                       <Image
                         alt={title.rendered}
-                        src={`${state.source.url}/wp-content/uploads/2021/02/humphrey-muleba-9MoQKZW0nGU-unsplash.jpg`} 
+                        src={`${state.source.url}/wp-content/uploads/2021/06/organigrama${randomNumber()}.svg`} 
                         width={170}
                         height={180}
                       />
