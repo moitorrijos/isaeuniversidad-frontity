@@ -11,7 +11,6 @@ import ContactForm from './base/contact-form';
 const BranchPage = ({ state, actions }) => {
   const branch = state.source.get(state.router.link);
   const { title, acf } = state.source[branch.type][branch.id];
-  let { slug: branch_name } = state.source[branch.type][branch.id];
   const [ currentItem, setCurrentItem ] = useState('all');
   const campus = state.router.link.split('/').filter(el => el)[1];
   const currentItemStyle = {
