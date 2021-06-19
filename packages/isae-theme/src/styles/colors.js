@@ -15,7 +15,8 @@ const colors = {
   primaryText30: '#979DAC',
   primaryYellow: '#FFCA07',
   primaryYellow100: '#FFFDF6',
-  secondaryOrange500: '#F79824'
+  secondaryOrange500: '#F79824',
+  VerdeEco: '#172b21'
 };
 
 export default colors;

@@ -11,6 +11,7 @@ import LegalPage from './pages/legal-page';
 import ServicesPage from './pages/services-page';
 import JobSearchPage from './pages/job-search-page';
 import VirtualPage from './pages/virtual-page';
+import servicesPage from './pages/services-page';
 
 const Page = ({ state }) => {
   const page = state.source.get(state.router.link);
@@ -38,7 +39,17 @@ const Page = ({ state }) => {
     return(<JobSearchPage page={109704} />);
   } else if (page.id === 109148) {
     return(<ServicesPage page={109148} />);
-  } else if (page.id === 90519) {
+  } 
+  
+  else if (page.id === 109856 ) {
+    return(<ServicesPage page={109856} />);
+  } 
+  
+  else if (page.id === 109854) {
+    return(<ServicesPage page={109854}/>);  
+  } 
+  
+  else if (page.id === 90519){
     return(<VirtualPage />);
   } else {
     return <GeneralPage />;
