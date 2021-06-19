@@ -66,12 +66,11 @@ const Form = styled.form`
   }
 `;
 
-const ContactForm = ({ state, branch, phone }) => {
+const ContactForm = ({ state, branch, phone, selected_branch }) => {
   const academics = state.source.get('/ofertaacadmica').items;
   const branches = state.source.get('/sede').items;
   const { register, handleSubmit } = useForm();
   const onSubmit = data => console.log(data);
-
   return (
     <FormContainer id="formulario-contacto">
       <MainContainer>
@@ -100,7 +99,7 @@ const ContactForm = ({ state, branch, phone }) => {
                 }
               )}
             </select>
-            <select name="sede" ref={register}>
+            <select name="sede" ref={register} value={selected_branch}>
               {branches.map(branch => {
                 const { id, title } = state.source[branch.type][branch.id];
                 return(
