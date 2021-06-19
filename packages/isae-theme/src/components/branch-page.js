@@ -72,7 +72,7 @@ const BranchPage = ({ state, actions }) => {
         </FilterButtons>}
         <CareerCards carreras={carreras} ciudad={acf.ciudad} campus={campus} slug={currentItem} />
         <AcademicUnits campus={campus} />
-        <ContactForm branch={title.rendered} phone={acf.telefono} />
+        <ContactForm branch={title.rendered} phone={acf.telefono} selected_branch={title.rendered} />
         <HomeNews />
     </>
   );

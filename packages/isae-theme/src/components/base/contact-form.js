@@ -66,12 +66,12 @@ const Form = styled.form`
   }
 `;
 
-const ContactForm = ({ state, branch, phone }) => {
+const ContactForm = ({ state, branch, phone, selected_branch, selected_academic }) => {
   const academics = state.source.get('/ofertaacadmica').items;
   const branches = state.source.get('/sede').items;
   const { register, handleSubmit } = useForm();
   const onSubmit = data => console.log(data);
-
+  console.log(selected_academic);
   return (
     <FormContainer id="formulario-contacto">
       <MainContainer>
@@ -91,7 +91,7 @@ const ContactForm = ({ state, branch, phone }) => {
             <input name="apellido" placeholder="Apellido" ref={register} />
             <input name="correo" placeholder="Correo" ref={register} />
             <input name="telefono" placeholder="Teléfono" ref={register} />
-            <select name="oferta" ref={register}>
+            <select name="oferta" ref={register} value={selected_academic}>
               {academics.map(academic => {
                   const { id, title } = state.source[academic.type][academic.id]
                   return(
@@ -100,7 +100,7 @@ const ContactForm = ({ state, branch, phone }) => {
                 }
               )}
             </select>
-            <select name="sede" ref={register}>
+            <select name="sede" ref={register} value={selected_branch}>
               {branches.map(branch => {
                 const { id, title } = state.source[branch.type][branch.id];
                 return(

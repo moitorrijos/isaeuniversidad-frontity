@@ -11,7 +11,6 @@ import LegalPage from './pages/legal-page';
 import ServicesPage from './pages/services-page';
 import JobSearchPage from './pages/job-search-page';
 import VirtualPage from './pages/virtual-page';
-import servicesPage from './pages/services-page';
 
 const Page = ({ state }) => {
   const page = state.source.get(state.router.link);
