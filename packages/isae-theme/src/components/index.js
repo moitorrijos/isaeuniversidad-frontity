@@ -66,6 +66,7 @@ const globalStyles = css`
 `
 
 const Theme = ({ state }) => {
+  //NoTocar
   const data = state.source.get(state.router.link);
   return (
     <>
