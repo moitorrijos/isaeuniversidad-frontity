@@ -211,7 +211,7 @@ const AcademicsPage = ({ state, actions }) => {
         </FilterContainer>
       </>}
       {carreras && academic_slug !== 'educacion-continua' && <AvailableCareers>
-        <AcademicHeading>Carreras Disponibles 22</AcademicHeading>
+        <AcademicHeading>Carreras Disponibles</AcademicHeading>
         <MainContainer>
           <Grid columns="4" small_columns="2" gap="20px">
             {carreras.map(carrera => {
