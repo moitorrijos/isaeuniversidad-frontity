@@ -228,8 +228,8 @@ const AboutPage = ({ state }) => {
               <Image src={acf.mensaje_de_la_rectora.imagen.url} alt={acf.mensaje_de_la_rectora.alt} width={650} height={975} />
             </MessageImage>
             <MessageText>
-              <h1>Mensaje de la Rectora</h1>
-              <NombreRectora>Dra. Xiomara de Arrocha</NombreRectora>
+              <h1>{acf.mensaje_de_la_rectora.titulo}</h1>
+              <NombreRectora>{acf.mensaje_de_la_rectora.sub_titulo}</NombreRectora>
               <div dangerouslySetInnerHTML={createMarkup(acf.mensaje_de_la_rectora.mensaje)} />
             </MessageText>
           </Grid>
@@ -239,7 +239,7 @@ const AboutPage = ({ state }) => {
         <MainContainer>
           <Grid columns="2" gap="100px" med_gap="20px">
             <MessageText>
-              <h2>Nuestra Historia</h2>
+              <h2>{acf.nuestra_historia.titulo}</h2>
               <div dangerouslySetInnerHTML={createMarkup(acf.nuestra_historia.texto)} />
             </MessageText>
             <MessageImage>
