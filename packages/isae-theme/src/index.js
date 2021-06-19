@@ -24,10 +24,12 @@ export default {
         state.theme.isMobileMenuOpen = false;
       },
       beforeSSR: async ({ actions }) => {
+        //Menus
         await actions.source.fetch("2");
         await actions.source.fetch("54");
         await actions.source.fetch("47");
         await actions.source.fetch("48");
+        //Menus
         await actions.source.fetch("/media");
         await actions.source.fetch("/sede");
         await actions.source.fetch("/ofertaacadmica");

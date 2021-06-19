@@ -252,11 +252,11 @@ const AboutPage = ({ state }) => {
         <MainContainer>
           <Grid columns="2" gap="40px">
             <Mision>
-              <h3>Misión</h3>
+              <h3>{acf.mision_y_vision.titulo_mision}</h3>
               <div dangerouslySetInnerHTML={createMarkup(acf.mision_y_vision.mision)} />
             </Mision>
             <Mision>
-              <h3>Visión</h3>
+              <h3>{acf.mision_y_vision.titulo_vision}</h3>
               <div dangerouslySetInnerHTML={createMarkup(acf.mision_y_vision.vision)} />
             </Mision>
           </Grid>
