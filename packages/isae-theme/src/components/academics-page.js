@@ -9,6 +9,7 @@ import Grid from './grid';
 import SingleCard from './base/single-card';
 import createMarkup from '../helpers/create-markup';
 import Image from "@frontity/components/image";
+import SecondaryMessage from "./secondary-message";
 
 const AcademicHeading = styled.p`
   max-width: 420px;
@@ -163,11 +164,15 @@ const ContactDescription = styled.div`
   }
 `;
 
+
+
 const AcademicsPage = ({ state, actions }) => {
+
   const academics = state.source.get(state.router.link);
   const academic_slug = academics.link.split('/').filter(el => el)[1];
   const { acf, title, featured_image_src } = state.source[academics.type][academics.id];
   const paginas_carrera = state.source.get('/carrera').totalPages;
+
   for (let i = 1; i <= paginas_carrera; i++) {
     useEffect(() => {
       actions.source.fetch('/carrera/page/' + i);
@@ -179,6 +184,7 @@ const AcademicsPage = ({ state, actions }) => {
   function filterButton(slug) {
     setCurrentItem(slug);
   }
+  {console.log(acf.contenido)}
   return(
     <>
       <PostHero
@@ -237,7 +243,13 @@ const AcademicsPage = ({ state, actions }) => {
         </MainContainer>
       </AvailableCareers>}
       {acf.contenido && <MainContainer>
-        <PageContent dangerouslySetInnerHTML={createMarkup(acf.contenido)} />
+        {/*<PageContent dangerouslySetInnerHTML={createMarkup(acf.contenido)} />*/}
+        {acf.contenido && <SecondaryMessage
+        bgColor={colors.white}
+        imageUrl={acf.contenido.imagen.url}
+        title={acf.contenido.titulo}
+        description={acf.contenido.texto}
+      />}
       </MainContainer>}
       { acf.contacto && <ContactInformation>
         <MainContainer>
