@@ -8,6 +8,11 @@ import RightArrowCircle from '../icons/right-arrow-circle';
 const FormContainer = styled.div`
   padding: 8rem 0;
   background-color: ${colors.VerdeEco};
+  
+  background-image: url("/wp-content/uploads/2021/07/eco-isae3.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 
   @media (max-width: 600px) {
     padding: 6rem 0;
@@ -63,8 +68,11 @@ const Form = styled.form`
     svg {
       margin-left: 12px;
     }
-  }
+  }  
+}
 `;
+
+
 
 const CfecoIsae = ({ state, branch, phone }) => {
   const academics = state.source.get('/ofertaacadmica').items;
@@ -73,7 +81,7 @@ const CfecoIsae = ({ state, branch, phone }) => {
   const onSubmit = data => console.log(data);
 
   return (
-    <FormContainer id="formulario-contacto">
+    <FormContainer id="formulario-contacto" className="">
       <MainContainer>
         <FormGrid>
           <FormInfo>
