@@ -7,9 +7,8 @@ import RightArrowCircle from '../icons/right-arrow-circle';
 
 const FormContainer = styled.div`
   padding: 8rem 0;
-  background-color: ${colors.VerdeEco};
-  
-  background-image: url("/wp-content/uploads/2021/07/eco-isae3.jpg");
+  background-color: ${colors.VerdeEco};  
+  background-image: url("https://isae.prontoaqui.com/wp-content/uploads/2021/07/eco-isae3.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -81,7 +80,7 @@ const CfecoIsae = ({ state, branch, phone }) => {
   const onSubmit = data => console.log(data);
 
   return (
-    <FormContainer id="formulario-contacto" className="">
+    <FormContainer id="formulario-contacto" className="Fondo-Formulario">
       <MainContainer>
         <FormGrid>
           <FormInfo>
