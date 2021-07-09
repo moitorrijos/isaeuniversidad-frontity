@@ -184,7 +184,8 @@ const AcademicsPage = ({ state, actions }) => {
   function filterButton(slug) {
     setCurrentItem(slug);
   }
-  {console.log(acf.contenido)}
+  {//console.log(acf.contenido) 
+  }
   return(
     <>
       <PostHero
