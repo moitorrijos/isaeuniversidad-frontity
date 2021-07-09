@@ -53,6 +53,8 @@ const UniversityLifePage = ({ state, actions }) => {
   const university_life_link = university_life.link;
   const name = university_life_link.split('/').filter(string => string)[1];
   const description = state.source.vidauniversitaria[university_life.id].acf.descripcion;
+  const { featured_image_src } = state.source.vidauniversitaria[university_life.id]
+  console.log(featured_image_src)
   const default_image = `${state.source.url}/wp-content/uploads/2021/03/placeholder.jpg`;
   const branches = state.source.get('/sede').items;
 
@@ -63,8 +65,6 @@ const UniversityLifePage = ({ state, actions }) => {
   }
   
   const posts = Object.values(state.source.post);
-  const latest_post = posts.length ? state.source.post[posts[0].id] : null;
-  const { featured_image_src } = latest_post || '';
 
   const [ currentItem, setCurrentItem ] = useState(1);
   const carouselItems = useCarousel(currentItem, setCurrentItem, false);
