@@ -160,11 +160,10 @@ const HomeHero = ({ state }) => {
               config={config.gentle}
             >
               {props => <HeroInfo style={props}>
-                <h1>Carrusel 1</h1>
+                <h1>Inscripciones abiertas</h1>
                 <p>
-                  Estudia una carrera con nosotros,
-                  matricúlate en cualquiera de nuestras 8 sedes a nivel nacional
-                  <em>#estudiaenISAE</em>
+                Estudia en ISAE Universidad y conviértete en el profesional que Panamá necesita. ¡Inscríbete ya!  
+                  
                 </p>
                 <MainButton
                   href="#formulario-contacto"
@@ -191,11 +190,10 @@ const HomeHero = ({ state }) => {
           </HeroInner>
           <HeroInner style={carouselItems.item2}>
             <HeroInfo>
-              <h1>Carrusel 2</h1>
+              <h1>ISAE Universidad General</h1>
               <p>
-                Estudia una carrera con nosotros,
-                matricúlate en cualquiera de nuestras 8 sedes a nivel nacional
-                <em>#estudiaenISAE</em>
+              Contamos con 8 sedes a nivel nacional, modalidad semipresencial y horarios flexibles adaptados a tus necesidades.  ¡El futuro está en tus manos! 
+               
               </p>
               <MainButton
                 href="#formulario-contacto"
@@ -214,11 +212,10 @@ const HomeHero = ({ state }) => {
           </HeroInner>
           <HeroInner style={carouselItems.item3}>
             <HeroInfo>
-              <h1>Carrusel 3</h1>
+              <h1>Educación continua</h1>
               <p>
-                Estudia una carrera con nosotros,
-                matricúlate en cualquiera de nuestras 8 sedes a nivel nacional
-                <em>#estudiaenISAE</em>
+              Actualiza tus conocimientos o adquiere nuevas habilidades y destrezas con nuestros programas de Educación Continua, ¡El futuro está en tus manos!
+              
               </p>
               <MainButton
                 href="#formulario-contacto"
@@ -234,7 +231,7 @@ const HomeHero = ({ state }) => {
                 height="620"
               />
             </HeroImage>
-          </HeroInner>
+          </HeroInner>          
         </Carousel>
         <CarouselButtons>
           <span
@@ -248,7 +245,7 @@ const HomeHero = ({ state }) => {
           <span 
             onClick={() => { setCurrentItem(3) }}
             style={currentItem === 3 ? { backgroundColor: colors.lightGray } : { backgroundColor: colors.mediumGray }}
-          ></span>
+          ></span>          
         </CarouselButtons>
       </MainContainer>
     </HeroContainer>

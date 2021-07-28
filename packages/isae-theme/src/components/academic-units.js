@@ -88,7 +88,7 @@ const DepartmentText = styled.div`
   }
 `;
 
-const AcademicUnits = ({ campus, state, actions }) => {
+const AcademicUnits = ({ campus, state, actions,ciudad }) => {
   const paginas = state.source.get('/departamento').totalPages;
   const background = state.source.url+'/wp-content/uploads/2021/03/background-isae-11.svg';
   for (let i = 0; i <= paginas; i++) {
@@ -99,9 +99,10 @@ const AcademicUnits = ({ campus, state, actions }) => {
   const departamentos = Object.values(state.source.departamento);
   return(
     <Units background={background}>
-      <MainContainer>
+        
+      <MainContainer>        
         <h2>Unidades Académicas</h2>
-        <p>Dentro de las sedes de Campus Central</p>
+        <p>Dentro de las sedes de {ciudad}</p>
         <Grid columns="2" gap="40px">
           {[...departamentos].reverse().map(depto => {
             const randomNumber = () => {

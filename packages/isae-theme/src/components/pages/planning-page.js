@@ -135,6 +135,12 @@ const PlanningPage = ({ state, page }) => {
             <PlanDescription>
               <h2>{acf.planificacion.titulo}</h2>
               <div dangerouslySetInnerHTML={createMarkup(acf.planificacion.descripcion)} />
+              <PrimaryButton link={acf.plan_etrategico.descarga ? acf.plan_etrategico.descarga : '#0'} style={{ marginRight: '20px' }}>
+                Descargar Políticas
+              </PrimaryButton>
+              <PrimaryButton link={acf.plan_etrategico.url_plan_estrategico ? acf.plan_etrategico.url_plan_estrategico : '#0'}>
+                Plan Estratégico
+              </PrimaryButton>
             </PlanDescription>
             <PlanImage>
               <Image
@@ -157,7 +163,7 @@ const PlanningPage = ({ state, page }) => {
               />
             </PlanImage>
             <PlanDescription>
-              <h2>{acf.objetivos.titulo}</h2>
+              <h2 >{acf.objetivos.titulo}</h2>
               <div dangerouslySetInnerHTML={createMarkup(acf.objetivos.descripcion)} />
             </PlanDescription>
           </Grid>

@@ -57,8 +57,12 @@ const SecondaryMessage = ({
 }) => {
   return (
     <Message background={background} bgColor={bgColor}>
+      
       <MainContainer>
         <Grid columns="2" gap="100px" med_gap="20px" small_gap="20px">
+        <MessageImage>
+            <Image src={imageUrl} alt="" width={650} height={975} />
+          </MessageImage>
           <MessageText>
             <h1>{title}</h1>
             <div dangerouslySetInnerHTML={createMarkup(description)} />
@@ -67,9 +71,7 @@ const SecondaryMessage = ({
                 {button_text ? button_text : title}
               </PrimaryButton>}
           </MessageText>
-          <MessageImage>
-            <Image src={imageUrl} alt="" width={650} height={975} />
-          </MessageImage>
+          
         </Grid>
       </MainContainer>
     </Message>
