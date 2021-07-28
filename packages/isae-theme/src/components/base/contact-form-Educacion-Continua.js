@@ -7,11 +7,7 @@ import RightArrowCircle from '../icons/right-arrow-circle';
 
 const FormContainer = styled.div`
   padding: 8rem 0;
-  background-color: ${colors.VerdeEco};  
-  background-image: url("https://isae.prontoaqui.com/wp-content/uploads/2021/07/eco-isae3.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
+  background-color: ${colors.blueBright600};
 
   @media (max-width: 600px) {
     padding: 6rem 0;
@@ -67,46 +63,35 @@ const Form = styled.form`
     svg {
       margin-left: 12px;
     }
-  }  
-}
+  }
 `;
 
-
-
-const CfecoIsae = ({ state, branch, phone }) => {
+const ContactForm = ({ state, branch, phone, selected_branch, selected_academic, email }) => {
   const academics = state.source.get('/ofertaacadmica').items;
   const branches = state.source.get('/sede').items;
   const { register, handleSubmit } = useForm();
   const onSubmit = data => console.log(data);
-
+  console.log(selected_academic);
   return (
-    <FormContainer id="formulario-contacto" className="Fondo-Formulario">
+    <FormContainer id="formulario-contacto">
       <MainContainer>
         <FormGrid>
           <FormInfo>
-            <h3>Solicitud de información Eco ISAE</h3>
-            <p>Participa de nuestras actividades, inscríbete en nuestro formulario: </p>
+            <h3>Solicitud de información</h3>
+            <p>Gracias por capacitarte con nosotros, <br></br>¡El futuro está en tus manos!</p>
             <h3>Contacto</h3>
             <p>
               {branch ? branch : ''}<br />
               {phone ? phone : '(+507) 278-1432 / 278-1444'}<br />
-              mercadeo@isaeuniversidad.ac.pa 
+              {email ? email : 'educación.continua@isaeuniversidad.ac.pa '}
             </p>
           </FormInfo>
           <Form onSubmit={handleSubmit(onSubmit)}>
-            <input name="nombre_completo" placeholder="Nombre Completo" ref={register} />
-            <input name="direccion" placeholder="Dirección" ref={register} />
-            <input name="telefono" placeholder="Teléfono" ref={register} />
+            <input name="nombre" placeholder="Nombre" ref={register} />
+            <input name="apellido" placeholder="Apellido" ref={register} />
             <input name="correo" placeholder="Correo" ref={register} />
-            <select name="sede" ref={register}>
-              {branches.map(branch => {
-                const { id, title } = state.source[branch.type][branch.id];
-                return(
-                  <option key={id} value={title.rendered}>{title.rendered}</option>
-                )
-              })}
-            </select>
-            <select name="oferta" ref={register}>
+            <input name="telefono" placeholder="Teléfono" ref={register} />
+            <select name="oferta" ref={register} value={selected_academic}>
               {academics.map(academic => {
                   const { id, title } = state.source[academic.type][academic.id]
                   return(
@@ -114,7 +99,15 @@ const CfecoIsae = ({ state, branch, phone }) => {
                   )
                 }
               )}
-            </select>            
+            </select>
+            <select name="sede" ref={register} value={selected_branch}>
+              {branches.map(branch => {
+                const { id, title } = state.source[branch.type][branch.id];
+                return(
+                  <option key={id} value={title.rendered}>{title.rendered}</option>
+                )
+              })}
+            </select>
             <button type="button">
               Enviar
               <RightArrowCircle color={colors.white} />
@@ -126,4 +119,4 @@ const CfecoIsae = ({ state, branch, phone }) => {
   )
 }
 
-export default connect(CfecoIsae);
+export default connect(ContactForm);

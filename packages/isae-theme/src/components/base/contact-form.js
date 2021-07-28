@@ -71,7 +71,7 @@ const ContactForm = ({ state, branch, phone, selected_branch, selected_academic 
   const branches = state.source.get('/sede').items;
   const { register, handleSubmit } = useForm();
   const onSubmit = data => console.log(data);
-  console.log(selected_academic);
+  
   return (
     <FormContainer id="formulario-contacto">
       <MainContainer>
@@ -81,9 +81,9 @@ const ContactForm = ({ state, branch, phone, selected_branch, selected_academic 
             <p>Ponte en contacto con nosotros y obtén información sobre la oferta académica de tu interés.</p>
             <h3>Contacto</h3>
             <p>
-              {branch ? branch : 'Campus Central:'}<br />
+              {branch ? branch : ''}<br />
               {phone ? phone : '(+507) 278-1432 / 278-1444'}<br />
-              info@isaeuniversidad.ac.pa
+              mercadeo@isaeuniversidad.ac.pa 
             </p>
           </FormInfo>
           <Form onSubmit={handleSubmit(onSubmit)}>

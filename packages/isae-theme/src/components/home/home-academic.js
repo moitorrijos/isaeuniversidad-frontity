@@ -146,8 +146,7 @@ const HomeAcademic = ({ state }) => {
       return (
         <Academic
           key={id}
-          css={background(position, backgroundUrl)}
-        >
+          css={background(position, backgroundUrl)}        >
           <InView onChange={(inView) => { setVisible2(inView) }} >
             <MainContainer>
               <AcademicContainer>

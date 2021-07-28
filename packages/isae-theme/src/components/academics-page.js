@@ -4,12 +4,14 @@ import colors from '../styles/colors';
 import { effects } from '../styles/effects';
 import PostHero from './post-hero';
 import ContactForm from './base/contact-form';
+import ContactFormTwo from './base/contact-form-Educacion-Continua';
 import MainContainer from './main-container';
 import Grid from './grid';
 import SingleCard from './base/single-card';
 import createMarkup from '../helpers/create-markup';
 import Image from "@frontity/components/image";
 import SecondaryMessage from "./secondary-message";
+import SecondaryMessageBtn from "./secondary-message-one-btn";
 
 const AcademicHeading = styled.p`
   max-width: 420px;
@@ -193,7 +195,8 @@ const AcademicsPage = ({ state, actions }) => {
         title={title.rendered}
         description={descripcion}
         imageUrl={featured_image_src}
-      />
+        
+      />     
       {acf.sedes && <>
         <AcademicHeading>Filtrar {title.rendered} según Sede</AcademicHeading>
         <FilterContainer>
@@ -227,9 +230,9 @@ const AcademicsPage = ({ state, actions }) => {
               const oferta_academica = acf.oferta_academica ? acf.oferta_academica.post_name : '';
               if (
                 (oferta_academica ===  academic_slug) &&
-                (sedes.includes(currentItem))) {
+                (sedes.includes(currentItem))) {                  
                 return(
-                  <SingleCard
+                  <SingleCard                  
                     key={id}
                     link={link}
                     image={featured_image_src}
@@ -243,13 +246,15 @@ const AcademicsPage = ({ state, actions }) => {
           </Grid>
         </MainContainer>
       </AvailableCareers>}
-      {acf.contenido && <MainContainer>
+      {acf.contenido && <MainContainer>        
         {/*<PageContent dangerouslySetInnerHTML={createMarkup(acf.contenido)} />*/}
-        {acf.contenido && <SecondaryMessage
+        {acf.contenido && <SecondaryMessageBtn
         bgColor={colors.white}
         imageUrl={acf.contenido.imagen.url}
         title={acf.contenido.titulo}
         description={acf.contenido.texto}
+        button_text={acf.contenido.texto_boton}
+        button_url={acf.contenido.btn_01}
       />}
       </MainContainer>}
       { acf.contacto && <ContactInformation>
@@ -278,7 +283,11 @@ const AcademicsPage = ({ state, actions }) => {
           </Grid>  
         </MainContainer>  
       </ContactInformation>}
-      <ContactForm selected_academic={title.rendered} />
+      {/* <ContactForm selected_academic={title.rendered}  /> */}
+      {carreras && academic_slug !== 'educacion-continua' ?      
+      <ContactForm selected_academic={title.rendered} /> :      
+      <ContactFormTwo selected_academic={title.rendered} phone="+507 278-1432" email="educación.continua@isaeuniversidad.ac.pa" />
+      }
     </>
   );
 

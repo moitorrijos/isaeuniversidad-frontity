@@ -64,7 +64,7 @@ const SecondaryMessage = ({
             <div dangerouslySetInnerHTML={createMarkup(description)} />
             {button_url &&
               <PrimaryButton link={button_url}>
-                {button_text ? button_text : title}
+                {title ? title : button_text}
               </PrimaryButton>}
           </MessageText>
           <MessageImage>

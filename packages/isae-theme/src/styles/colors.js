@@ -16,7 +16,8 @@ const colors = {
   primaryYellow: '#FFCA07',
   primaryYellow100: '#FFFDF6',
   secondaryOrange500: '#F79824',
-  VerdeEco: '#172b21'
+  VerdeEco: '#172b21',
+  AzulFondo: '#cee0fa'
 };
 
 
