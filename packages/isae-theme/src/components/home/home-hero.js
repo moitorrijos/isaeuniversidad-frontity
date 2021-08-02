@@ -8,6 +8,7 @@ import useCarousel from '../../hooks/use-carousel';
 import MainContainer from '../main-container';
 import Image from "@frontity/components/image";
 
+
 const HeroContainer = styled.div`
   background-color: ${colors.primaryBlue300};
   position: relative;
