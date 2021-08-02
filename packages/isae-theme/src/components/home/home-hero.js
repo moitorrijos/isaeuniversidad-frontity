@@ -147,7 +147,7 @@ const HomeHero = ({ state }) => {
   const { acf, title } = state.source.sede[36];
   const backgrouldUrl = state.source.url;
   const [ currentItem, setCurrentItem ] = useState(1);
-  const carouselItems = useCarousel(currentItem, setCurrentItem);
+  const carouselItems = useCarousel(currentItem, setCurrentItem, true, 4);
   
   return (
     <HeroContainer url={backgrouldUrl}>
@@ -231,7 +231,29 @@ const HomeHero = ({ state }) => {
                 height="620"
               />
             </HeroImage>
-          </HeroInner>          
+          </HeroInner>
+          <HeroInner style={carouselItems.item4}>
+            <HeroInfo>
+              <h1>Educación continua</h1>
+              <p>
+              Actualiza tus conocimientos o adquiere nuevas habilidades y destrezas con nuestros programas de Educación Continua, ¡El futuro está en tus manos!
+              
+              </p>
+              <MainButton
+                href="#formulario-contacto"
+              >
+                <RightArrowCircle color={colors.primaryBlue} />
+                Más Información
+              </MainButton>
+            </HeroInfo>
+            <HeroImage>
+              <Image
+                alt={title.rendered}
+                src={acf.foto.sizes["1536x1536"]}
+                height="620"
+              />
+            </HeroImage>
+          </HeroInner>
         </Carousel>
         <CarouselButtons>
           <span
@@ -245,7 +267,11 @@ const HomeHero = ({ state }) => {
           <span 
             onClick={() => { setCurrentItem(3) }}
             style={currentItem === 3 ? { backgroundColor: colors.lightGray } : { backgroundColor: colors.mediumGray }}
-          ></span>          
+          ></span>
+          <span 
+            onClick={() => { setCurrentItem(4) }}
+            style={currentItem === 4 ? { backgroundColor: colors.lightGray } : { backgroundColor: colors.mediumGray }}
+          ></span>
         </CarouselButtons>
       </MainContainer>
     </HeroContainer>
