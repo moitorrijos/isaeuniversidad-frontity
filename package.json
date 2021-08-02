@@ -25,6 +25,8 @@
     "@frontity/wp-source": "^1.11.5",
     "dotenv": "^8.6.0",
     "frontity": "^1.16.1",
-    "isae-theme": "file:packages/isae-theme"
+    "isae-theme": "file:packages/isae-theme",
+    "particles-bg": "^2.5.5",
+    "react-modal-video": "^1.2.8"
   }
 }

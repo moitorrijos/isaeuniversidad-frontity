@@ -8,6 +8,7 @@ import useCarousel from '../../hooks/use-carousel';
 import MainContainer from '../main-container';
 import Image from "@frontity/components/image";
 
+
 const HeroContainer = styled.div`
   background-color: ${colors.primaryBlue300};
   position: relative;
@@ -231,7 +232,8 @@ const HomeHero = ({ state }) => {
                 height="620"
               />
             </HeroImage>
-          </HeroInner>          
+          </HeroInner>
+          
         </Carousel>
         <CarouselButtons>
           <span
@@ -245,7 +247,8 @@ const HomeHero = ({ state }) => {
           <span 
             onClick={() => { setCurrentItem(3) }}
             style={currentItem === 3 ? { backgroundColor: colors.lightGray } : { backgroundColor: colors.mediumGray }}
-          ></span>          
+          ></span>
+          
         </CarouselButtons>
       </MainContainer>
     </HeroContainer>
