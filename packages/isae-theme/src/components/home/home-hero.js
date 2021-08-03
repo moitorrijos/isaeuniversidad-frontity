@@ -235,10 +235,10 @@ const HomeHero = ({ state }) => {
           </HeroInner>
           <HeroInner style={carouselItems.item4}>
             <HeroInfo>
-              <h1>Educación continua</h1>
+              <h1>Eco ISAE</h1>
               <p>
-              Actualiza tus conocimientos o adquiere nuevas habilidades y destrezas con nuestros programas de Educación Continua, ¡El futuro está en tus manos!
-              
+              El planeta te necesita, una pequeña acción es el primer paso para generar grandes cambios. Únete y forma parte de este programa. 
+Botón de Más información: Formulario de solicitud de información.
               </p>
               <MainButton
                 href="#formulario-contacto"
