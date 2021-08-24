@@ -13,6 +13,7 @@ const Button = styled(Link)`
   border-radius: 12px;
   text-decoration: none;
   transition: all 0.25s ease-in-out;
+  text-align: center;
 
   &:hover {
     transform: ${effects.transform};

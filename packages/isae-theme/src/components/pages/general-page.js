@@ -29,7 +29,7 @@ const GeneralPage = ({ state }) => {
       />
       <ContactForm />
       <MainContainer>
-        <PageContent dangerouslySetInnerHTML={createMarkup(content.rendered)} />
+        <PageContent dangerouslySetInnerHTML={createMarkup(content.rendered)} />        
       </MainContainer>
       <HomeNews />
     </>
