@@ -3,10 +3,8 @@ import { styled } from "frontity";
 import colors from "../styles/colors";
 import MainContainer from "./main-container";
 import Grid from "./grid";
-import Image from "@frontity/components/image";
 import createMarkup from "../helpers/create-markup";
 import PrimaryButton from "./primary-button";
-import ModalVideo from "react-modal-video";
 
 const Message = styled.div`
   padding: 8rem 0;
@@ -58,20 +56,11 @@ const MessageText = styled.div`
 const SecondaryMessageVid = ({
   background,
   bgColor,
-  imageUrl,
   description,
   button_text,
   button_url,
   title,
-  YouTubeId,
-  title2,
-  YouTubeId2,
-  title3,
-  YouTubeId3,
-  title4,
-  YouTubeId4,
-  title5,
-  YouTubeId5,
+  YouTubeId
 }) => {
   return (
     <Message background={background} bgColor={bgColor}>

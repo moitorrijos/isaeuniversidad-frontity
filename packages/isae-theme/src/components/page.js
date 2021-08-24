@@ -11,8 +11,8 @@ import LegalPage from './pages/legal-page';
 import ServicesPage from './pages/services-page';
 import JobSearchPage from './pages/job-search-page';
 import VirtualPage from './pages/virtual-page';
-import Tutoriales from './pages/Tutoriales'
 import Congresos from './pages/Congresos';
+import TutorialsPage from './pages/tutorials-page';
 
 const Page = ({ state }) => {
   const page = state.source.get(state.router.link);
@@ -50,19 +50,17 @@ const Page = ({ state }) => {
     return(<ServicesPage page={109854}/>);  
   }
   
-  else if (page.id === 110069) {
-    return(<Tutoriales page={110069}/>);  
-  }
-  
   else if (page.id === 90519){
     return(<VirtualPage />);
   }
   else if (page.id === 109151){
     return(<Congresos page={109151} />);
   } 
-  else if (page.id === 110069){
-    return(<VirtualPage />);
-  }else {
+
+  else if (page.id === 110069 ){
+    return(<TutorialsPage />);
+
+  } else {
     return <GeneralPage />;
   }
 }
