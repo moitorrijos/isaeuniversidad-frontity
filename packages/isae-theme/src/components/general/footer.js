@@ -71,10 +71,10 @@ const Footer = ({ state }) => {
                 WhatsApp: +507 6548-7314<br />
                 Correo: mercadeo@isaeuniversidad.ac.pa
               </Paragraph>
-              <Paragraph>
+              {/* <Paragraph>
                 (+507) 278-1432 / 278-1444
                 info@isaeuniversidad.ac.pa
-              </Paragraph>
+              </Paragraph> */}
             </FooterItem>
             <FooterItem>
               <FooterTitle>Vida Unviersitaria</FooterTitle>

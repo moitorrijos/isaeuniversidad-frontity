@@ -12,6 +12,7 @@ import ServicesPage from './pages/services-page';
 import JobSearchPage from './pages/job-search-page';
 import VirtualPage from './pages/virtual-page';
 import Tutoriales from './pages/Tutoriales'
+import Congresos from './pages/Congresos';
 
 const Page = ({ state }) => {
   const page = state.source.get(state.router.link);
@@ -55,6 +56,9 @@ const Page = ({ state }) => {
   
   else if (page.id === 90519){
     return(<VirtualPage />);
+  }
+  else if (page.id === 109151){
+    return(<Congresos page={109151} />);
   } 
   else if (page.id === 110069){
     return(<VirtualPage />);

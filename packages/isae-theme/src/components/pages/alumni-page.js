@@ -3,7 +3,7 @@ import { connect, styled } from 'frontity';
 import colors from '../../styles/colors';
 import { effects } from '../../styles/effects';
 import useCarousel from '../../hooks/use-carousel';
-import SlimHero from '../slim-hero';
+import SlimHero from '../slim-hero-btn';
 import MainContainer from '../main-container';
 import Carousel from '../carousel';
 import Grid from '../grid';
@@ -113,14 +113,14 @@ const AlumniPage = ({ state }) => {
   const latest_activities = state.source.get('/category/actividades/').items;
   const [ currentItem, setCurrentItem ] = useState(1);
   const carouselItems = useCarousel(currentItem, setCurrentItem);
-  const active = { 
+  const active = {
     borderBottomColor: colors.primaryBlueBright,
     color: colors.primaryBlueBright
   };
   const inactive = {
     borderBottomColor: colors.mediumGray,
     color: colors.mediumGray
-  };
+  };  
   return(
     <>
       <SlimHero
@@ -129,6 +129,8 @@ const AlumniPage = ({ state }) => {
         featured_image={featured_image}
         title={title.rendered}
         description={description}
+        // texto_btn={Texto_boton_oferta_academica}
+        enlace={alumni.acf.boton_oferta_academica}
       />
       <MisionVision>
         <MainContainer>

@@ -86,12 +86,12 @@ const RegisterForm = ({ state, egresado }) => {
           <FormInfo>
             <h3>Soy {egresado ? 'Egresado' : 'Estudiante'} de ISAE UNIVERSIDAD</h3>
             <p>Si eres {egresado ? 'egresado' : 'estudiante'} de ISAE UNIVERSIDAD, completa el formulario y disfruta de actividades y beneficios exclusivos para ustedes.</p>
-            Si eres {egresado ? 'egresado' : 'estudiante'} de ISAE UNIVERSIDAD, completa el formulario y disfruta de actividades y beneficios exclusivos para ustedes.
+            {/* Si eres {egresado ? 'egresado' : 'estudiante'} de ISAE UNIVERSIDAD, completa el formulario y disfruta de actividades y beneficios exclusivos para ustedes. */}
             <h3>Contáctenos</h3>
             <p>
-              (+507) 2781432 Ext. 8094:<br />
-              dir.extension@isaeuniversidad.ac.pa<br />
-              Dirección de extensión y asuntos estudiantiles.
+              Dirección de Extensión y Asuntos Estudiantiles <br />
+              (+507) 2781432 Ext. 8094<br />
+              dir.extension@isaeuniversidad.ac.pa              
             </p>
           </FormInfo>
           <Form onSubmit={handleSubmit(onSubmit)}>
