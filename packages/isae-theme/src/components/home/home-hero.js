@@ -191,7 +191,7 @@ const HomeHero = ({ state }) => {
           </HeroInner>
           <HeroInner style={carouselItems.item2}>
             <HeroInfo>
-              <h1>ISAE Universidad General</h1>
+              <h1>ISAE Universidad</h1>
               <p>
               Contamos con 8 sedes a nivel nacional, modalidad semipresencial y horarios flexibles adaptados a tus necesidades.  ¡El futuro está en tus manos! 
                
@@ -237,8 +237,7 @@ const HomeHero = ({ state }) => {
             <HeroInfo>
               <h1>Eco ISAE</h1>
               <p>
-              El planeta te necesita, una pequeña acción es el primer paso para generar grandes cambios. Únete y forma parte de este programa. 
-Botón de Más información: Formulario de solicitud de información.
+              El planeta te necesita, una pequeña acción es el primer paso para generar grandes cambios. Únete y forma parte de este programa.  
               </p>
               <MainButton
                 href="#formulario-contacto"
