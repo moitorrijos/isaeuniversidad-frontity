@@ -1,66 +1,75 @@
-import React, { useState, useEffect } from 'react';
-import { connect, styled } from 'frontity';
-import colors from '../../styles/colors';
-import { effects } from '../../styles/effects';
+import React, { useState, useEffect } from "react";
+import { connect, styled } from "frontity";
+import colors from "../../styles/colors";
+import { effects } from "../../styles/effects";
 import Link from "@frontity/components/link";
-import MainContainer from '../main-container';
-import Grid from '../grid';
-import HoursIcon from '../icons/hours-icon';
-import CountUp from 'react-countup';
-import { InView } from 'react-intersection-observer';
-import PracticeHoursIcon from '../icons/practice-hours-icon';
-import CreditsIcon from '../icons/credits-icon';
-import FolderIcon from '../icons/folder-icon';
-import BranchFilterButtons from '../branch-filter-buttons';
-import ResolutionIcon from '../icons/resolution-icon';
-import ScheduleIcon from '../icons/schedule-icon';
-import BookIcon from '../icons/book-icon';
-import createMarkup from '../../helpers/create-markup';
+import MainContainer from "../main-container";
+import Grid from "../grid";
+import HoursIcon from "../icons/hours-icon";
+import CountUp from "react-countup";
+import { InView } from "react-intersection-observer";
+import PracticeHoursIcon from "../icons/practice-hours-icon";
+import CreditsIcon from "../icons/credits-icon";
+import FolderIcon from "../icons/folder-icon";
+import BranchFilterButtons from "../branch-filter-buttons";
+import ResolutionIcon from "../icons/resolution-icon";
+import ScheduleIcon from "../icons/schedule-icon";
+import BookIcon from "../icons/book-icon";
+import createMarkup from "../../helpers/create-markup";
 import Image from "@frontity/components/image";
-import SingleCard from '../base/single-card';
-import ContactForm from '../base/contact-form';
+import SingleCard from "../base/single-card";
+import ContactForm from "../base/contact-form";
 
 const CareerPage = ({ state, actions }) => {
   const career = state.source.get(state.router.link);
-  const { 
-    title,
-    acf,
-    featured_image_src
-  } = state.source[career.type][career.id];
-  const placeholder = state.source.url+'/wp-content/uploads/2021/03/placeholder2.jpg';
-  const [ hidden1, setHidden1 ] = useState(true);
-  const [ hidden2, setHidden2 ] = useState(false);
+  const { title, acf, featured_image_src } =
+    state.source[career.type][career.id];
+  const placeholder =
+    state.source.url + "/wp-content/uploads/2021/03/placeholder2.jpg";
+  const [hidden1, setHidden1] = useState(true);
+  const [hidden2, setHidden2] = useState(false);
+  const [hidden3, setHidden3] = useState(false);
+
   function toggleTab1() {
     setHidden1(!hidden1);
   }
   function toggleTab2() {
     setHidden2(!hidden2);
   }
-  const nombre_programas = acf.otros_programas ?  acf.otros_programas.map(programa => '/carrera/' + programa.post_name + '/') : null;
-  if ( nombre_programas ) {
-    nombre_programas.forEach(programa => {
+  function toggleTab3() {
+    setHidden2(!hidden3);
+  }
+  const nombre_programas = acf.otros_programas
+    ? acf.otros_programas.map(
+        (programa) => "/carrera/" + programa.post_name + "/"
+      )
+    : null;
+  if (nombre_programas) {
+    nombre_programas.forEach((programa) => {
       useEffect(() => {
         actions.source.fetch(programa);
-      })
+      });
     });
   }
-  return(
+  return (
     <>
       <BigHero background={featured_image_src}>
         <h1>{title.rendered}</h1>
         <h3>{acf.descripcion}</h3>
-        <LinkButton link={acf.boton_plan_de_estudio}>Ver Plan de Estudio</LinkButton>
+        <LinkButton link={acf.boton_plan_de_estudio}>
+          Ver Plan de Estudio
+        </LinkButton>
       </BigHero>
       <DescriptionCards backgroundColor={colors.lightGray}>
-        <MainContainer style={{overflow: "visible"}}>
+        <MainContainer style={{ overflow: "visible" }}>
           <Grid columns="4" small_columns="2" gap="20px">
             <HoursCard>
               <HoursIcon />
               <CountUp start={0} end={+acf.total_horas_academicas}>
                 {({ countUpRef, start }) => (
-                    <InView as="h2" onChange={start}>
-                      <span ref={countUpRef} />
-                    </InView>
+                  <InView as="h2" onChange={start}>
+                    <span ref={countUpRef} />
+                  </InView>
                 )}
               </CountUp>
               <p>Total de Horas Teóricas</p>
@@ -69,9 +78,9 @@ const CareerPage = ({ state, actions }) => {
               <PracticeHoursIcon />
               <CountUp start={0} end={+acf.total_horas_practicas}>
                 {({ countUpRef, start }) => (
-                    <InView as="h2" onChange={start}>
-                      <span ref={countUpRef} />
-                    </InView>
+                  <InView as="h2" onChange={start}>
+                    <span ref={countUpRef} />
+                  </InView>
                 )}
               </CountUp>
               <p>Total de Horas Prácticas</p>
@@ -80,9 +89,9 @@ const CareerPage = ({ state, actions }) => {
               <CreditsIcon />
               <CountUp start={0} end={+acf.total_creditos}>
                 {({ countUpRef, start }) => (
-                    <InView as="h2" onChange={start}>
-                      <span ref={countUpRef} />
-                    </InView>
+                  <InView as="h2" onChange={start}>
+                    <span ref={countUpRef} />
+                  </InView>
                 )}
               </CountUp>
               <p>Total de Créditos</p>
@@ -91,9 +100,9 @@ const CareerPage = ({ state, actions }) => {
               <FolderIcon />
               <CountUp start={0} end={+acf.total_de_asignaturas}>
                 {({ countUpRef, start }) => (
-                    <InView as="h2" onChange={start}>
-                      <span ref={countUpRef} />
-                    </InView>
+                  <InView as="h2" onChange={start}>
+                    <span ref={countUpRef} />
+                  </InView>
                 )}
               </CountUp>
               <p>Total de Asignaturas</p>
@@ -101,8 +110,9 @@ const CareerPage = ({ state, actions }) => {
           </Grid>
         </MainContainer>
       </DescriptionCards>
-      <FilterHeading>Disponible en Sedes</FilterHeading>
+      <FilterHeading>Disponible en las siguientes Sedes</FilterHeading>
       {acf.sedes && <BranchFilterButtons branches={acf.sedes} />}
+      
       <DescriptionCards backgroundColor={colors.white}>
         <MainContainer>
           <Grid columns="3" gap="20px">
@@ -126,29 +136,51 @@ const CareerPage = ({ state, actions }) => {
       </DescriptionCards>
       <RequirementsSection>
         <MainContainer>
+          <h2>Requisitos</h2>
           <FlexboxContainer>
-            <GeneralRequirementes>
-              <h2>Requisitos</h2>
+            {/* <GeneralRequirementes>
               <div dangerouslySetInnerHTML={createMarkup(acf.requisitos_generales)} />
-            </GeneralRequirementes>
+            </GeneralRequirementes> */}
             <RequirementTabs>
               <Requirements>
                 <RequirementsHeading onClick={toggleTab1}>
-                  Requisitos para estudiantes nacionales
-                  <span>{ hidden1 ? "-" : "+"}</span>
+                  <h4>Requisitos de Ingreso</h4>
+                  <span>{hidden1 ? "-" : "+"}</span>
                 </RequirementsHeading>
-                {hidden1 && <RequirementsInfo
-                  dangerouslySetInnerHTML={createMarkup(acf.requisitos_nacionales)} 
-                />}
+                {hidden1 && (
+                  <RequirementsInfo
+                    dangerouslySetInnerHTML={createMarkup(
+                      acf.requisitos_nacionales
+                    )}
+                  />
+                )}
               </Requirements>
               <Requirements>
-              <RequirementsHeading onClick={toggleTab2}>
-                  Requisitos para estudiantes extranjeros
-                  <span>{ hidden2 ? "-" : "+"}</span>
+                <RequirementsHeading onClick={toggleTab2}>
+                  <h4>Requisitos de Permanencia</h4>
+                  <span>{hidden2 ? "-" : "+"}</span>
                 </RequirementsHeading>
-                {hidden2 && <RequirementsInfo
-                  dangerouslySetInnerHTML={createMarkup(acf.requisitos_extranjeros)} 
-                />}
+                {hidden2 && (
+                  <RequirementsInfo
+                    dangerouslySetInnerHTML={createMarkup(
+                      acf.requisitos_extranjeros
+                    )}
+                  />
+                )}
+              </Requirements>
+
+              <Requirements>
+                <RequirementsHeading onClick={toggleTab3}>
+                  <h4>Requisitos de Egreso</h4>
+                  <span>{hidden3 ? "-" : "+"}</span>
+                </RequirementsHeading>
+                {hidden2 && (
+                  <RequirementsInfo
+                    dangerouslySetInnerHTML={createMarkup(
+                      acf.requisitos_de_egreso
+                    )}
+                  />
+                )}
               </Requirements>
             </RequirementTabs>
           </FlexboxContainer>
@@ -156,113 +188,160 @@ const CareerPage = ({ state, actions }) => {
       </RequirementsSection>
       <ProfileSection>
         <MainContainer>
-          {acf.saber_hacer.saber_hacer_descripcion && <ProfileFlexboxContainer>
-            <ProfileSectionDescription>
-              <h2>Perfil del Egresado</h2>
-              <h3>Saber Hacer</h3>
-              <div
-                dangerouslySetInnerHTML={createMarkup(acf.saber_hacer.saber_hacer_descripcion)}
-              />
-            </ProfileSectionDescription>
-            <ProfileSectionImages>
-              <ProfileImages>
-                {acf.saber_hacer.saber_hacer_imagen1.url ? <Image
-                  src={acf.saber_hacer.saber_hacer_imagen1.url}
-                  alt={acf.saber_hacer.saber_hacer_imagen1.alt} 
-                /> : <Image src={placeholder} alt="" />}
-                {acf.saber_hacer.saber_hacer_imagen2.url && <Image
-                  src={acf.saber_hacer.saber_hacer_imagen2.url}
-                  alt={acf.saber_hacer.saber_hacer_imagen2.alt} 
-                />}
-              </ProfileImages>
-            </ProfileSectionImages>
-          </ProfileFlexboxContainer>}
-          {acf.saber_ser.saber_ser_descripcion && <ProfileFlexboxContainer>
-            <ProfileSectionImages>
-              <ProfileImages>
-                {acf.saber_ser.saber_ser_imagen1.url ? <Image
-                  src={acf.saber_ser.saber_ser_imagen1.url}
-                  alt={acf.saber_ser.saber_ser_imagen1.alt} 
-                /> : <Image src={placeholder} alt="" />}
-                {acf.saber_ser.saber_ser_imagen2.url && <Image
-                  src={acf.saber_ser.saber_ser_imagen2.url}
-                  alt={acf.saber_ser.saber_ser_imagen1.alt} 
-                />}
-              </ProfileImages>
-            </ProfileSectionImages>
-            <ProfileSectionDescription>
-              <h3>Saber Ser</h3>
-              <div
-                dangerouslySetInnerHTML={createMarkup(acf.saber_ser.saber_ser_descripcion)}
-              />
-            </ProfileSectionDescription>
-          </ProfileFlexboxContainer>}
-          {acf.saber_conocer.saber_conocer_descripcion && <ProfileFlexboxContainer>
-            <ProfileSectionDescription>
-              <h3>Saber Conocer</h3>
-              <div
-                dangerouslySetInnerHTML={createMarkup(acf.saber_conocer.saber_conocer_descripcion)}
-              />
-            </ProfileSectionDescription>
-            <ProfileSectionImages>
-              <ProfileImages>
-                {acf.saber_conocer.saber_conocer_imagen1.url ? <Image
-                  src={acf.saber_conocer.saber_conocer_imagen1.url}
-                  alt={acf.saber_conocer.saber_conocer_imagen1.alt} 
-                /> : <Image src={placeholder} alt="" />}
-                {acf.saber_conocer.saber_conocer_imagen2.url && <Image
-                  src={acf.saber_conocer.saber_conocer_imagen2.url}
-                  alt={acf.saber_conocer.saber_conocer_imagen2.alt} 
-                />}
-              </ProfileImages> 
-            </ProfileSectionImages>
-          </ProfileFlexboxContainer>}
-          {acf.saber_convivir.saber_convivir_descripcion && <ProfileFlexboxContainer>
-            <ProfileSectionImages>
-              <ProfileImages>
-                {acf.saber_convivir.saber_convivir_imagen1.url ? <Image
-                  src={acf.saber_convivir.saber_convivir_imagen1.url}
-                  alt={acf.saber_convivir.saber_convivir_imagen1.alt} 
-                />: <Image src={placeholder} alt="" />}
-                {acf.saber_convivir.saber_convivir_imagen2.url && <Image
-                  src={acf.saber_convivir.saber_convivir_imagen2.url}
-                  alt={acf.saber_convivir.saber_convivir_imagen2.alt} 
-                />}
-              </ProfileImages>
-            </ProfileSectionImages>
-            <ProfileSectionDescription>
-              <h3>Saber Convivir</h3>
-              <div
-                dangerouslySetInnerHTML={createMarkup(acf.saber_convivir.saber_convivir_descripcion)}
-              />
-            </ProfileSectionDescription>
-          </ProfileFlexboxContainer>}
+          {acf.saber_hacer.saber_hacer_descripcion && (
+            <ProfileFlexboxContainer>
+              <ProfileSectionDescription>
+                <h2>Perfil del Egresado</h2>
+                <h3>Saber Hacer</h3>
+                <div
+                  dangerouslySetInnerHTML={createMarkup(
+                    acf.saber_hacer.saber_hacer_descripcion
+                  )}
+                />
+              </ProfileSectionDescription>
+              <ProfileSectionImages>
+                <ProfileImages>
+                  {acf.saber_hacer.saber_hacer_imagen1.url ? (
+                    <Image
+                      src={acf.saber_hacer.saber_hacer_imagen1.url}
+                      alt={acf.saber_hacer.saber_hacer_imagen1.alt}
+                    />
+                  ) : (
+                    <Image src={placeholder} alt="" />
+                  )}
+                  {acf.saber_hacer.saber_hacer_imagen2.url && (
+                    <Image
+                      src={acf.saber_hacer.saber_hacer_imagen2.url}
+                      alt={acf.saber_hacer.saber_hacer_imagen2.alt}
+                    />
+                  )}
+                </ProfileImages>
+              </ProfileSectionImages>
+            </ProfileFlexboxContainer>
+          )}
+          {acf.saber_ser.saber_ser_descripcion && (
+            <ProfileFlexboxContainer>
+              <ProfileSectionImages>
+                <ProfileImages>
+                  {acf.saber_ser.saber_ser_imagen1.url ? (
+                    <Image
+                      src={acf.saber_ser.saber_ser_imagen1.url}
+                      alt={acf.saber_ser.saber_ser_imagen1.alt}
+                    />
+                  ) : (
+                    <Image src={placeholder} alt="" />
+                  )}
+                  {acf.saber_ser.saber_ser_imagen2.url && (
+                    <Image
+                      src={acf.saber_ser.saber_ser_imagen2.url}
+                      alt={acf.saber_ser.saber_ser_imagen1.alt}
+                    />
+                  )}
+                </ProfileImages>
+              </ProfileSectionImages>
+              <ProfileSectionDescription>
+                <h3>Saber Ser</h3>
+                <div
+                  dangerouslySetInnerHTML={createMarkup(
+                    acf.saber_ser.saber_ser_descripcion
+                  )}
+                />
+              </ProfileSectionDescription>
+            </ProfileFlexboxContainer>
+          )}
+          {acf.saber_conocer.saber_conocer_descripcion && (
+            <ProfileFlexboxContainer>
+              <ProfileSectionDescription>
+                <h3>Saber Conocer</h3>
+                <div
+                  dangerouslySetInnerHTML={createMarkup(
+                    acf.saber_conocer.saber_conocer_descripcion
+                  )}
+                />
+              </ProfileSectionDescription>
+              <ProfileSectionImages>
+                <ProfileImages>
+                  {acf.saber_conocer.saber_conocer_imagen1.url ? (
+                    <Image
+                      src={acf.saber_conocer.saber_conocer_imagen1.url}
+                      alt={acf.saber_conocer.saber_conocer_imagen1.alt}
+                    />
+                  ) : (
+                    <Image src={placeholder} alt="" />
+                  )}
+                  {acf.saber_conocer.saber_conocer_imagen2.url && (
+                    <Image
+                      src={acf.saber_conocer.saber_conocer_imagen2.url}
+                      alt={acf.saber_conocer.saber_conocer_imagen2.alt}
+                    />
+                  )}
+                </ProfileImages>
+              </ProfileSectionImages>
+            </ProfileFlexboxContainer>
+          )}
+          {acf.saber_convivir.saber_convivir_descripcion && (
+            <ProfileFlexboxContainer>
+              <ProfileSectionImages>
+                <ProfileImages>
+                  {acf.saber_convivir.saber_convivir_imagen1.url ? (
+                    <Image
+                      src={acf.saber_convivir.saber_convivir_imagen1.url}
+                      alt={acf.saber_convivir.saber_convivir_imagen1.alt}
+                    />
+                  ) : (
+                    <Image src={placeholder} alt="" />
+                  )}
+                  {acf.saber_convivir.saber_convivir_imagen2.url && (
+                    <Image
+                      src={acf.saber_convivir.saber_convivir_imagen2.url}
+                      alt={acf.saber_convivir.saber_convivir_imagen2.alt}
+                    />
+                  )}
+                </ProfileImages>
+              </ProfileSectionImages>
+              <ProfileSectionDescription>
+                <h3>Saber Convivir</h3>
+                <div
+                  dangerouslySetInnerHTML={createMarkup(
+                    acf.saber_convivir.saber_convivir_descripcion
+                  )}
+                />
+              </ProfileSectionDescription>
+            </ProfileFlexboxContainer>
+          )}
         </MainContainer>
       </ProfileSection>
-      {acf.otros_programas && <OtherPrograms>
-        <h2>Otros Programas</h2>
-        <MainContainer>
-          <Grid columns="3" small_columns="2" gap="30px">
-          {acf.otros_programas.map(career => {
-            const { id, link, title, featured_image_src } = state.source.carrera[career.ID] || {};
-            if (id) {
-              return (
-                <SingleCard key={id} link={link} image={featured_image_src} title={title} />
-              );
-            } else {
-              return null;
-            }
-            })}
-          </Grid>
-        </MainContainer>
-      </OtherPrograms>}
+      {acf.otros_programas && (
+        <OtherPrograms>
+          <h2>Otros Programas</h2>
+          <MainContainer>
+            <Grid columns="3" small_columns="2" gap="30px">
+              {acf.otros_programas.map((career) => {
+                const { id, link, title, featured_image_src } =
+                  state.source.carrera[career.ID] || {};
+                if (id) {
+                  return (
+                    <SingleCard
+                      key={id}
+                      link={link}
+                      image={featured_image_src}
+                      title={title}
+                    />
+                  );
+                } else {
+                  return null;
+                }
+              })}
+            </Grid>
+          </MainContainer>
+        </OtherPrograms>
+      )}
       <ContactForm />
     </>
   );
-}
+};
 
-export default connect(CareerPage)
-
+export default connect(CareerPage);
 
 const BigHero = styled.div`
   padding: 16rem 4rem;
@@ -271,12 +350,15 @@ const BigHero = styled.div`
   justify-content: center;
   align-items: center;
   background-color: ${colors.darkGray};
-  background-image: url(${props => props.background ? props.background : ''});
+  background-image: url(${(props) =>
+    props.background ? props.background : ""});
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   background-blend-mode: multiply;
-  h1, h3, a {
+  h1,
+  h3,
+  a {
     text-align: center;
     color: ${colors.white};
   }
@@ -320,7 +402,8 @@ const FilterHeading = styled.h2`
 
 const DescriptionCards = styled.div`
   padding: 0 0 4rem;
-  background-color: ${props => props.backgroundColor ? props.backgroundColor : colors.white};
+  background-color: ${(props) =>
+    props.backgroundColor ? props.backgroundColor : colors.white};
 
   @media (max-width: 600px) {
     padding: 4rem 0;
@@ -332,8 +415,10 @@ const DescriptionCards = styled.div`
     list-style-position: inside;
   }
 
-  p, ul, ol {
-    color: ${colors.primaryText80}
+  p,
+  ul,
+  ol {
+    color: ${colors.primaryText80};
   }
 `;
 
@@ -433,7 +518,6 @@ const DescriptionCard = styled.div`
     align-self: end;
   }
 
-
   &:hover {
     transform: ${effects.transform};
     box-shadow: ${effects.boxShadow};
@@ -459,7 +543,9 @@ const GeneralRequirementes = styled.div`
     margin-top: 0;
     margin-bottom: 1rem;
   }
-  p, ul, ol {
+  p,
+  ul,
+  ol {
     color: ${colors.primaryText80};
   }
 `;
@@ -507,7 +593,7 @@ const RequirementsHeading = styled.button`
 
 const ProfileSection = styled.div`
   padding: 8rem 0;
-  background-image: linear-gradient(270deg, #C67A1D 0%, #F79824 100%);
+  background-image: linear-gradient(270deg, #c67a1d 0%, #f79824 100%);
   color: ${colors.white};
 
   @media (max-width: 600px) {
