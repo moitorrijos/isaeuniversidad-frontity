@@ -21,10 +21,10 @@
     "@frontity/core": "^1.14.3",
     "@frontity/html2react": "^1.7.0",
     "@frontity/mars-theme": "./packages/mars-theme",
-    "@frontity/tiny-router": "^1.4.3",
-    "@frontity/wp-source": "^1.11.5",
+    "@frontity/tiny-router": "^1.4.4",
+    "@frontity/wp-source": "^1.11.6",
     "dotenv": "^8.6.0",
-    "frontity": "^1.16.1",
+    "frontity": "^1.17.1",
     "isae-theme": "file:packages/isae-theme",
     "particles-bg": "^2.5.5",
     "react-modal-video": "^1.2.8"

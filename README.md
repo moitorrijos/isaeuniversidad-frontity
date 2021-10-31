@@ -11,13 +11,7 @@ Este sitio está creado usando Frontity para el _frontend_ y _WordPress_ como el
 
 ### Cómo conectar tu proyecto Frontity con WordPress
 
-Para conectar abre el archivo frontity.settings.js y cambiar la línea 27:
-
-```
-"url": "http://isae.test",
-```
-
-por el url de tu WordPress Local.
+Para conectar Frontity con WordPress debes copiar el .env.sample a un nuevo archivo .env y cambiar la variable WP_SOURCE_URL al nombre de dominio donde está alojado el WordPress:
 
 ### Instalar todas las dependencias
 
