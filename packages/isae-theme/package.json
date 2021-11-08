@@ -8,8 +8,8 @@
   ],
   "license": "Apache-2.0",
   "dependencies": {
-    "react-countup": "^4.3.3",
-    "react-hook-form": "^6.15.4",
-    "react-spring": "^8.0.8"
+    "react-countup": "^6.0.0",
+    "react-hook-form": "^7.18.0",
+    "react-spring": "^9.3.0"
   }
 }

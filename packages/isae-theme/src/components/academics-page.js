@@ -188,106 +188,148 @@ const AcademicsPage = ({ state, actions }) => {
   }
   {//console.log(acf.contenido) 
   }
-  return(
+  return (
     <>
       <PostHero
-        background={state.source.url + "/wp-content/uploads/2021/02/background-isae-6.svg"}
+        background={
+          state.source.url + "/wp-content/uploads/2021/02/background-isae-6.svg"
+        }
         title={title.rendered}
         description={descripcion}
         imageUrl={featured_image_src}
-        
-      />     
-      {acf.sedes && <>
-        <AcademicHeading>Filtrar {title.rendered} según Sede</AcademicHeading>
-        <FilterContainer>
-          {acf.sedes.map(branch => {
-            const { ID, slug, acf } = branch.ID ? state.source.sede[branch.ID] : state.source.sede[branch.id];
-            return(
-              <button
-                key={ID}
-                onClick={ () => { filterButton(slug) }}
-                style={ currentItem === slug ? {
-                  backgroundColor: colors.secondaryBlue,
-                  color: colors.white
-                } : {
-                  backgroundColor: colors.white,
-                  color: colors.secondaryBlue
-                } }
-              >
+      />
+      {acf.sedes.length && (
+        <>
+          <AcademicHeading>Filtrar {title.rendered} según Sede</AcademicHeading>
+          <FilterContainer>
+            {acf.sedes.map((branch) => {
+              const { ID, slug, acf } = branch.ID
+                ? state.source.sede[branch.ID]
+                : state.source.sede[branch.id];
+              return (
+                <button
+                  key={ID}
+                  onClick={() => {
+                    filterButton(slug);
+                  }}
+                  style={
+                    currentItem === slug
+                      ? {
+                          backgroundColor: colors.secondaryBlue,
+                          color: colors.white,
+                        }
+                      : {
+                          backgroundColor: colors.white,
+                          color: colors.secondaryBlue,
+                        }
+                  }
+                >
                   {acf.ciudad}
-              </button>
-            )
-          })}
-        </FilterContainer>
-      </>}
-      {carreras && academic_slug !== 'educacion-continua' && <AvailableCareers>
-        <AcademicHeading>Carreras Disponibles</AcademicHeading>
-        <MainContainer>
-          <Grid columns="4" small_columns="2" gap="20px">
-            {carreras.map(carrera => {
-              const { id, link, featured_image_src, title, acf } = carrera;
-              const sedes = acf.sedes ? acf.sedes.map(sede => sede.post_name) : [];
-              const oferta_academica = acf.oferta_academica ? acf.oferta_academica.post_name : '';
-              if (
-                (oferta_academica ===  academic_slug) &&
-                (sedes.includes(currentItem))) {                  
-                return(
-                  <SingleCard                  
-                    key={id}
-                    link={link}
-                    image={featured_image_src}
-                    title={title}
-                  />
-                )
-              } else {
-                return null;
-              }
+                </button>
+              );
             })}
-          </Grid>
+          </FilterContainer>
+        </>
+      )}
+      {carreras && academic_slug !== "educacion-continua" && (
+        <AvailableCareers>
+          <AcademicHeading>Carreras Disponibles</AcademicHeading>
+          <MainContainer>
+            <Grid columns="4" small_columns="2" gap="20px">
+              {carreras.map((carrera) => {
+                const { id, link, featured_image_src, title, acf } = carrera;
+                const sedes = acf.sedes
+                  ? acf.sedes.map((sede) => sede.post_name)
+                  : [];
+                const oferta_academica = acf.oferta_academica
+                  ? acf.oferta_academica.post_name
+                  : "";
+                if (
+                  oferta_academica === academic_slug &&
+                  sedes.includes(currentItem)
+                ) {
+                  return (
+                    <SingleCard
+                      key={id}
+                      link={link}
+                      image={featured_image_src}
+                      title={title}
+                    />
+                  );
+                } else {
+                  return null;
+                }
+              })}
+            </Grid>
+          </MainContainer>
+        </AvailableCareers>
+      )}
+      {acf.contenido && (
+        <MainContainer>
+          {/*<PageContent dangerouslySetInnerHTML={createMarkup(acf.contenido)} />*/}
+          {acf.contenido && (
+            <SecondaryMessageBtn
+              bgColor={colors.white}
+              imageUrl={acf.contenido.imagen.url}
+              title={acf.contenido.titulo}
+              description={acf.contenido.texto}
+              button_text={acf.contenido.texto_boton}
+              button_url={acf.contenido.btn_01}
+            />
+          )}
         </MainContainer>
-      </AvailableCareers>}
-      {acf.contenido && <MainContainer>        
-        {/*<PageContent dangerouslySetInnerHTML={createMarkup(acf.contenido)} />*/}
-        {acf.contenido && <SecondaryMessageBtn
-        bgColor={colors.white}
-        imageUrl={acf.contenido.imagen.url}
-        title={acf.contenido.titulo}
-        description={acf.contenido.texto}
-        button_text={acf.contenido.texto_boton}
-        button_url={acf.contenido.btn_01}
-      />}
-      </MainContainer>}
-      { acf.contacto && <ContactInformation>
-        <MainContainer>
-        <ContactInformationTitle>Información de Contacto:</ContactInformationTitle>
-        <ContactInformationDescription>Solicita información sobre nuestra variada oferta de talleres, cursos, seminarios y diplomados.</ContactInformationDescription>
-          <Grid columns="2" gap="40px">
-            {Object.values(acf.contacto).map( contacto => {
-              return(
-                <Contact key={contacto.icono.id}>
-                  <ContactImage>
-                    <Image alt={contacto.icono.alt} src={contacto.icono.url} width={80} />
-                  </ContactImage>
-                  <ContactDescription>
-                    <h4>{contacto.sede}</h4>
-                    <h5>{ contacto.nombre }</h5>
-                    <p>
-                      <a href={`mailto:${contacto.correo}`}>{contacto.correo}</a><br />
-                      { contacto.telefono_1 }<br />
-                      { contacto.telefono_2 }
-                    </p>
-                  </ContactDescription>
-                </Contact>
-              )
-            })}
-          </Grid>  
-        </MainContainer>  
-      </ContactInformation>}
+      )}
+      {acf.contacto && (
+        <ContactInformation>
+          <MainContainer>
+            <ContactInformationTitle>
+              Información de Contacto:
+            </ContactInformationTitle>
+            <ContactInformationDescription>
+              Solicita información sobre nuestra variada oferta de talleres,
+              cursos, seminarios y diplomados.
+            </ContactInformationDescription>
+            <Grid columns="2" gap="40px">
+              {Object.values(acf.contacto).map((contacto) => {
+                return (
+                  <Contact key={contacto.icono.id}>
+                    <ContactImage>
+                      <Image
+                        alt={contacto.icono.alt}
+                        src={contacto.icono.url}
+                        width={80}
+                      />
+                    </ContactImage>
+                    <ContactDescription>
+                      <h4>{contacto.sede}</h4>
+                      <h5>{contacto.nombre}</h5>
+                      <p>
+                        <a href={`mailto:${contacto.correo}`}>
+                          {contacto.correo}
+                        </a>
+                        <br />
+                        {contacto.telefono_1}
+                        <br />
+                        {contacto.telefono_2}
+                      </p>
+                    </ContactDescription>
+                  </Contact>
+                );
+              })}
+            </Grid>
+          </MainContainer>
+        </ContactInformation>
+      )}
       {/* <ContactForm selected_academic={title.rendered}  /> */}
-      {carreras && academic_slug !== 'educacion-continua' ?      
-      <ContactForm selected_academic={title.rendered} /> :      
-      <ContactFormTwo selected_academic={title.rendered} phone="+507 278-1432" email="educación.continua@isaeuniversidad.ac.pa" />
-      }
+      {carreras && academic_slug !== "educacion-continua" ? (
+        <ContactForm selected_academic={title.rendered} />
+      ) : (
+        <ContactFormTwo
+          selected_academic={title.rendered}
+          phone="+507 278-1432"
+          email="educación.continua@isaeuniversidad.ac.pa"
+        />
+      )}
     </>
   );
 
