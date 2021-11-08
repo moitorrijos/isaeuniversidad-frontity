@@ -78,12 +78,17 @@ const ContactForm = ({ state, branch, phone, selected_branch, selected_academic 
         <FormGrid>
           <FormInfo>
             <h3>Solicitud de información</h3>
-            <p>Ponte en contacto con nosotros y obtén información sobre la oferta académica de tu interés.</p>
+            <p>
+              Ponte en contacto con nosotros y obtén información sobre la oferta
+              académica de tu interés.
+            </p>
             <h3>Contacto</h3>
             <p>
-              {branch ? branch : ''}<br />
-              {phone ? phone : '(+507) 278-1432 / 278-1444'}<br />
-              mercadeo@isaeuniversidad.ac.pa 
+              {branch ? branch : ""}
+              <br />
+              {phone ? phone : "(+507) 278-1432 / 278-1444"}
+              <br />
+              mercadeo@isaeuniversidad.ac.pa
             </p>
           </FormInfo>
           <Form onSubmit={handleSubmit(onSubmit)}>
@@ -91,21 +96,28 @@ const ContactForm = ({ state, branch, phone, selected_branch, selected_academic 
             <input name="apellido" placeholder="Apellido" ref={register} />
             <input name="correo" placeholder="Correo" ref={register} />
             <input name="telefono" placeholder="Teléfono" ref={register} />
-            <select name="oferta" ref={register} value={selected_academic}>
-              {academics.map(academic => {
-                  const { id, title } = state.source[academic.type][academic.id]
-                  return(
-                    <option key={id} value={title.rendered}>{title.rendered}</option>
-                  )
-                }
-              )}
+            <select
+              name="oferta"
+              ref={register}
+              defaultValue={selected_academic}
+            >
+              {academics.map((academic) => {
+                const { id, title } = state.source[academic.type][academic.id];
+                return (
+                  <option key={id} defaultValue={title.rendered}>
+                    {title.rendered}
+                  </option>
+                );
+              })}
             </select>
-            <select name="sede" ref={register} value={selected_branch}>
-              {branches.map(branch => {
+            <select name="sede" ref={register} defaultValue={selected_branch}>
+              {branches.map((branch) => {
                 const { id, title } = state.source[branch.type][branch.id];
-                return(
-                  <option key={id} value={title.rendered}>{title.rendered}</option>
-                )
+                return (
+                  <option key={id} defaultValue={title.rendered}>
+                    {title.rendered}
+                  </option>
+                );
               })}
             </select>
             <button type="button">
@@ -116,7 +128,7 @@ const ContactForm = ({ state, branch, phone, selected_branch, selected_academic 
         </FormGrid>
       </MainContainer>
     </FormContainer>
-  )
+  );
 }
 
 export default connect(ContactForm);

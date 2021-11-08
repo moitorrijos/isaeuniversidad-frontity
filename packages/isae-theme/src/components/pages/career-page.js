@@ -37,7 +37,7 @@ const CareerPage = ({ state, actions }) => {
     setHidden2(!hidden2);
   }
   function toggleTab3() {
-    setHidden2(!hidden3);
+    setHidden3(!hidden3);
   }
   const nombre_programas = acf.otros_programas
     ? acf.otros_programas.map(
@@ -112,7 +112,7 @@ const CareerPage = ({ state, actions }) => {
       </DescriptionCards>
       <FilterHeading>Disponible en las siguientes Sedes</FilterHeading>
       {acf.sedes && <BranchFilterButtons branches={acf.sedes} />}
-      
+
       <DescriptionCards backgroundColor={colors.white}>
         <MainContainer>
           <Grid columns="3" gap="20px">
@@ -174,7 +174,7 @@ const CareerPage = ({ state, actions }) => {
                   <h4>Requisitos de Egreso</h4>
                   <span>{hidden3 ? "-" : "+"}</span>
                 </RequirementsHeading>
-                {hidden2 && (
+                {hidden3 && (
                   <RequirementsInfo
                     dangerouslySetInnerHTML={createMarkup(
                       acf.requisitos_de_egreso
@@ -350,8 +350,7 @@ const BigHero = styled.div`
   justify-content: center;
   align-items: center;
   background-color: ${colors.darkGray};
-  background-image: url(${(props) =>
-    props.background ? props.background : ""});
+  background-image: url(${(props) => props.background ? props.background : ""});
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
