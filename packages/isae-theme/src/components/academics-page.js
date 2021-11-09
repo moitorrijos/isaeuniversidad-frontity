@@ -198,7 +198,7 @@ const AcademicsPage = ({ state, actions }) => {
         description={descripcion}
         imageUrl={featured_image_src}
       />
-      {acf.sedes.length && (
+      {acf.sedes?.length && (
         <>
           <AcademicHeading>Filtrar {title.rendered} según Sede</AcademicHeading>
           <FilterContainer>
