@@ -91,20 +91,20 @@ const ContactForm = ({ state, branch, phone, selected_branch, selected_academic,
             <input name="apellido" placeholder="Apellido" ref={register} />
             <input name="correo" placeholder="Correo" ref={register} />
             <input name="telefono" placeholder="Teléfono" ref={register} />
-            <select name="oferta" ref={register} value={selected_academic}>
+            <select name="oferta" ref={register} defaultValue={selected_academic}>
               {academics.map(academic => {
                   const { id, title } = state.source[academic.type][academic.id]
                   return(
-                    <option key={id} value={title.rendered}>{title.rendered}</option>
+                    <option key={id} defaultValue={title.rendered}>{title.rendered}</option>
                   )
                 }
               )}
             </select>
-            <select name="sede" ref={register} value={selected_branch}>
+            <select name="sede" ref={register} defaultValue={selected_branch}>
               {branches.map(branch => {
                 const { id, title } = state.source[branch.type][branch.id];
                 return(
-                  <option key={id} value={title.rendered}>{title.rendered}</option>
+                  <option key={id} defaultValue={title.rendered}>{title.rendered}</option>
                 )
               })}
             </select>

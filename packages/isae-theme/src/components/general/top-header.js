@@ -80,7 +80,7 @@ const TopHeader = ({ state }) => {
     <TopHeaderContainer>
       <TopContent>
         <Placeholder />
-        Ciudad de Panamá
+        República de Panamá
       </TopContent>
       <TopMenu>
         {items.map(item => {

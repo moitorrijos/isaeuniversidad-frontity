@@ -145,7 +145,7 @@ const HeroImage = styled.div`
 `;
 
 const HomeHero = ({ state }) => {
-  const { acf, title } = state.source.sede[36];
+  const { acf } = state.source.page[90585];
   const backgrouldUrl = state.source.url;
   const [ currentItem, setCurrentItem ] = useState(1);
   const carouselItems = useCarousel(currentItem, setCurrentItem, true, 4);
@@ -161,16 +161,15 @@ const HomeHero = ({ state }) => {
               config={config.gentle}
             >
               {props => <HeroInfo style={props}>
-                <h1>Inscripciones abiertas</h1>
+                <h1>{acf.carrusel_1.titulo}</h1>
                 <p>
-                Estudia en ISAE Universidad y conviértete en el profesional que Panamá necesita. ¡Inscríbete ya!  
-                  
+                  {acf.carrusel_1.descripcion}
                 </p>
                 <MainButton
-                  href="#formulario-contacto"
+                  href={acf.carrusel_1.url_de_boton}
                 >
                   <RightArrowCircle color={colors.primaryBlue} />
-                  Más Información
+                  {acf.carrusel_1.titulo_boton}
                 </MainButton>
               </HeroInfo>}
             </Spring>
@@ -181,8 +180,8 @@ const HomeHero = ({ state }) => {
             >
               {props => <HeroImage style={props}>
                 <Image
-                  alt={title.rendered}
-                  src={acf.foto.sizes["1536x1536"]}
+                  alt={acf.carrusel_1.imagen.alt}
+                  src={acf.carrusel_1.imagen.sizes["1536x1536"]}
                   height={620}
                   width={812}
                 />
@@ -191,65 +190,63 @@ const HomeHero = ({ state }) => {
           </HeroInner>
           <HeroInner style={carouselItems.item2}>
             <HeroInfo>
-              <h1>ISAE Universidad</h1>
+              <h1>{acf.carrusel_2.titulo}</h1>
               <p>
-              Contamos con 8 sedes a nivel nacional, modalidad semipresencial y horarios flexibles adaptados a tus necesidades.  ¡El futuro está en tus manos! 
-               
+                {acf.carrusel_2.descripcion}
               </p>
               <MainButton
-                href="#formulario-contacto"
+                href={acf.carrusel_2.url_de_boton}
               >
                 <RightArrowCircle color={colors.primaryBlue} />
-                Más Información
+                {acf.carrusel_2.titulo_boton}
               </MainButton>
             </HeroInfo>
             <HeroImage>
               <Image
-                alt={title.rendered}
-                src={acf.foto.sizes["1536x1536"]}
+                alt={acf.carrusel_2.imagen.alt}
+                src={acf.carrusel_2.imagen.sizes["1536x1536"]}
                 height="620"
               />
             </HeroImage>
           </HeroInner>
           <HeroInner style={carouselItems.item3}>
             <HeroInfo>
-              <h1>Educación continua</h1>
+              <h1>{acf.carrusel_3.titulo}</h1>
               <p>
-              Actualiza tus conocimientos o adquiere nuevas habilidades y destrezas con nuestros programas de Educación Continua, ¡El futuro está en tus manos!
-              
+                {acf.carrusel_3.descripcion}
               </p>
               <MainButton
-                href="#formulario-contacto"
+                href={acf.carrusel_3.url_de_boton}
               >
                 <RightArrowCircle color={colors.primaryBlue} />
-                Más Información
+                {acf.carrusel_3.titulo_boton}
               </MainButton>
             </HeroInfo>
             <HeroImage>
               <Image
-                alt={title.rendered}
-                src={acf.foto.sizes["1536x1536"]}
+                alt={acf.carrusel_3.imagen.alt}
+                src={acf.carrusel_3.imagen.sizes["1536x1536"]}
                 height="620"
               />
             </HeroImage>
           </HeroInner>
           <HeroInner style={carouselItems.item4}>
             <HeroInfo>
-              <h1>Eco ISAE</h1>
+              <h1>{acf.carrusel_4.titulo}</h1>
               <p>
-              El planeta te necesita, una pequeña acción es el primer paso para generar grandes cambios. Únete y forma parte de este programa.  
+                {acf.carrusel_4.descripcion}
               </p>
               <MainButton
-                href="#formulario-contacto"
+                href={acf.carrusel_4.url_de_boton}
               >
                 <RightArrowCircle color={colors.primaryBlue} />
-                Más Información
+                {acf.carrusel_4.titulo_boton}
               </MainButton>
             </HeroInfo>
             <HeroImage>
               <Image
-                alt={title.rendered}
-                src={acf.foto.sizes["1536x1536"]}
+                alt={acf.carrusel_4.imagen.alt}
+                src={acf.carrusel_4.imagen.sizes["1536x1536"]}
                 height="620"
               />
             </HeroImage>
