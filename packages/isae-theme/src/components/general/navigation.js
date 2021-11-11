@@ -178,11 +178,18 @@ const SearchLink = styled(MenuLink)`
 `;
 
 const SearchForm = styled(Submenu)`
-  input {
-    margin: 3rem 0;
-    padding: 1rem;
+  form {
+    margin: 2rem auto 3rem;
     width: 100%;
     max-width: 600px;
+
+    @media (max-width: 1320px) {
+      margin-top: 4rem;
+    }
+  }
+  input {
+    padding: 1rem;
+    width: 100%;
     border: 0;
     border-bottom: 2px solid ${colors.primaryText80};
     background: transparent;
@@ -206,6 +213,7 @@ const Navigation = ({ state, actions }) => {
     const { title, type, url, children } = item;
     e.preventDefault();
     setHiddenSubmenu(true);
+    setHiddenSearch(true);
     setHidden(false);
     setCurrentMenu(!currentMenu);
     setCurrentType(type);
@@ -238,6 +246,8 @@ const Navigation = ({ state, actions }) => {
     actions.theme.closeMobileMenu();
   }
   const toggleSearchForm = () => {
+    setHidden(true);
+    setHiddenSubmenu(true);
     setHiddenSearch(!hidden_search);
   }
   useEffect(() => {
@@ -315,8 +325,14 @@ const Navigation = ({ state, actions }) => {
         <Search />
         {isMobileMenuOpen && ' Buscar'}
       </SearchLink>
-      {!hidden_search && <SearchForm>
-          Buscar: <input type="search" autoFocus={!hidden_search} name="search" id="search" />
+      {!hidden_search &&
+        <SearchForm>
+        {isMobileMenuOpen && <BackButton onClick={() => { setHiddenSearch(true) }}>
+          <Chevron color={colors.white} style={{ transform: "rotate(90deg)" }} />
+        </BackButton>}
+          <form>
+            Buscar: <input type="search" autoFocus={!hidden_search} name="search" id="search" />
+          </form>
         </SearchForm>}
     </Nav>
   );
