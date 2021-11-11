@@ -5,6 +5,7 @@ import { effects } from '../../styles/effects';
 import Link from '@frontity/components/link';
 import Chevron from '../icons/chevron';
 import ArrowIcon from '../icons/arrow-icon';
+import Search from '../icons/search-icon';
 
 const Nav = styled.nav`
   display: flex;
@@ -164,12 +165,37 @@ const BackButton = styled.button`
   justify-content: center;
 `;
 
+const SearchLink = styled(MenuLink)`
+  @media (max-width: 1320px) {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+
+    svg {
+      margin-right: 10px;
+    }
+  }
+`;
+
+const SearchForm = styled(Submenu)`
+  input {
+    margin: 3rem 0;
+    padding: 1rem;
+    width: 100%;
+    max-width: 600px;
+    border: 0;
+    border-bottom: 2px solid ${colors.primaryText80};
+    background: transparent;
+  }
+`;
+
 const Navigation = ({ state, actions }) => {
   const { isMobileMenuOpen } = state.theme;
   const items = state.source.get('2').items;
   const navigation = useRef();
   const [hidden, setHidden] = useState(true);
   const [hidden_submenu, setHiddenSubmenu] = useState(true);
+  const [hidden_search, setHiddenSearch] = useState(true);
   const [currentMenu, setCurrentMenu] = useState(false);
   const [currentTitle, setCurrentTitle] = useState('');
   const [currentType, setCurrentType] = useState('');
@@ -208,7 +234,11 @@ const Navigation = ({ state, actions }) => {
   const hideAllMenus = () => {
     setHidden(true);
     setHiddenSubmenu(true);
+    setHiddenSearch(true);
     actions.theme.closeMobileMenu();
+  }
+  const toggleSearchForm = () => {
+    setHiddenSearch(!hidden_search);
   }
   useEffect(() => {
     document.addEventListener("mousedown", clickOutside);
@@ -281,6 +311,13 @@ const Navigation = ({ state, actions }) => {
           </React.Fragment>
         )
       })}
+      <SearchLink onClick={ toggleSearchForm }>
+        <Search />
+        {isMobileMenuOpen && ' Buscar'}
+      </SearchLink>
+      {!hidden_search && <SearchForm>
+          Buscar: <input type="search" autoFocus={!hidden_search} name="search" id="search" />
+        </SearchForm>}
     </Nav>
   );
 };
