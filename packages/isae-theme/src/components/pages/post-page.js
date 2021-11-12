@@ -4,14 +4,6 @@ import SlimHeroPost from '../slim-hero-post';
 import MainContainer from '../main-container';
 import createMarkup from '../../helpers/create-markup';
 
-const PostContent = styled.div`
-  padding: 4rem 0 8rem;
-  max-width: 80ch;
-  font-size: 1.1rem;
-  line-height: 1.85;
-  margin: 0 auto;
-`;
-
 const PostPage = ({ state }) => {
   const single = state.source.get(state.router.link);
   const post = state.source.post[single.id];
@@ -35,3 +27,11 @@ const PostPage = ({ state }) => {
 }
 
 export default connect(PostPage);
+
+const PostContent = styled.div`
+  padding: 4rem 0 8rem;
+  max-width: 80ch;
+  font-size: 1.1rem;
+  line-height: 1.85;
+  margin: 0 auto;
+`;

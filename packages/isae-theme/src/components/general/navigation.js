@@ -7,6 +7,168 @@ import Chevron from '../icons/chevron';
 import ArrowIcon from '../icons/arrow-icon';
 import Search from '../icons/search-icon';
 
+const Navigation = ({ state, actions, libraries }) => {
+  const { isMobileMenuOpen } = state.theme;
+  const items = state.source.get('2').items;
+  const navigation = useRef();
+  const inputRef = useRef();
+  const parse = libraries.source.parse(state.router.link);
+  const searchQuery = parse.query["q"];
+  const [hidden, setHidden] = useState(true);
+  const [hidden_submenu, setHiddenSubmenu] = useState(true);
+  const [hidden_search, setHiddenSearch] = useState(true);
+  const [currentMenu, setCurrentMenu] = useState(false);
+  const [currentTitle, setCurrentTitle] = useState('');
+  const [currentType, setCurrentType] = useState('');
+  const [subMenuItems, setSubMenuItems] = useState([]);
+  const [subSubmenuItems, setSubSubmenuItems] = useState([]);
+  const [currentSubmenuTitle, setCurrentSubmenuTitle] = useState('');
+  const showSubmenu = (item, e) => {
+    const { title, type, url, children } = item;
+    e.preventDefault();
+    setHiddenSubmenu(true);
+    setHiddenSearch(true);
+    setHidden(false);
+    setCurrentMenu(!currentMenu);
+    setCurrentType(type);
+    if (type !== 'custom') {
+      actions.router.set(url);
+      hideAllMenus();
+    }
+    if (title === currentTitle) setHidden(!hidden);
+    setCurrentTitle(title);
+    setSubMenuItems(children);
+  };
+  const showSubSubmenu = (subItem, e) => {
+    const { children, url, title, type } = subItem;
+    if (type === 'custom') {
+      window.location.href = url;
+    }
+    if (children) {
+      setSubSubmenuItems(children);
+    } else {
+      actions.router.set(url);
+      hideAllMenus();
+    }
+    setCurrentSubmenuTitle(title);
+    setHiddenSubmenu(false);
+  }
+  const hideAllMenus = () => {
+    setHidden(true);
+    setHiddenSubmenu(true);
+    setHiddenSearch(true);
+    actions.theme.closeMobileMenu();
+  }
+  const toggleSearchForm = () => {
+    setHidden(true);
+    setHiddenSubmenu(true);
+    setHiddenSearch(!hidden_search);
+  }
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const searchString = inputRef.current.value;
+    if (searchString.trim().length > 0) {
+      actions.router.set(`/busqueda?q=${searchString.toLowerCase().replace(/\_/g, '_')}`);
+      hideAllMenus();
+    }
+  }
+  useEffect(() => {
+    document.addEventListener("mousedown", clickOutside);
+    return () => {
+      document.removeEventListener("mousedown", clickOutside);
+    };
+  }, []);
+  const clickOutside = event => {
+    if (navigation.current.contains(event.target)) {
+      return;
+    } else {
+      hideAllMenus();
+    }
+  }
+  return (
+    <Nav mobileMenu={isMobileMenuOpen} ref={navigation}>
+      {items.map(item => {
+        const { id, title, type, children } = item;
+        const isCurrentMenuItem = (currentTitle === title) && !hidden
+        return(
+          <React.Fragment key={id}>
+            <MenuLink
+              onClick={e => showSubmenu(item, e)}
+              style={isCurrentMenuItem ? {backgroundColor: colors.lightGray} : {backgroundColor: colors.white}}
+            >
+              {title}
+              {type === 'custom' &&
+                <Chevron
+                  style={isCurrentMenuItem ? {transform: 'rotate(180deg)'} : isMobileMenuOpen ? {transform: 'rotate(-90deg)'} : {transform: 'rotate(0deg)'}}
+                />
+              }
+            </MenuLink>
+            {children && <Submenu hidden={hidden}>
+              {isMobileMenuOpen && <BackButton onClick={ () => { setHidden(true) }}>
+                  <Chevron color={colors.white} style={{ transform: "rotate(90deg)" }} />
+                </BackButton>}
+              <h2>{currentTitle}</h2>
+              {(currentType === "custom") &&
+                <SubMenuList>
+                  {subMenuItems && subMenuItems.map(subItem => {
+                    const { id, title } = subItem;
+                    const isCurrentSubmenuItem = (title === currentSubmenuTitle);
+                    return(
+                      <SubMenuLink
+                        key={id}
+                        onClick={e => showSubSubmenu(subItem, e)}
+                        style={isCurrentSubmenuItem ? { color: colors.primaryBlueBright } : { color: colors.primaryText100 }}
+                      >
+                        <ArrowIcon
+                          style={isCurrentSubmenuItem ? { display: 'inline-block' } : { display: 'none' }}
+                        />
+                        {title}
+                      </SubMenuLink>
+                    )
+                  })}
+                </SubMenuList>
+              }
+              {(currentTitle === title) && <SubSubmenu hidden_submenu={hidden_submenu}>
+                {isMobileMenuOpen && <BackButton onClick={ () => { setHiddenSubmenu(true) }}>
+                <Chevron color={colors.white} style={{ transform: "rotate(90deg)" }} />
+                  </BackButton>}
+                {subSubmenuItems && subSubmenuItems.map(subSubmenuItem => {
+                  const { id, url, title } = subSubmenuItem;
+                  return(
+                    <Link key={id} link={url} onClick={ hideAllMenus }>{title}</Link>
+                  );
+                })}
+              </SubSubmenu>}
+            </Submenu>}
+          </React.Fragment>
+        )
+      })}
+      <SearchLink onClick={ toggleSearchForm }>
+        <Search />
+        {isMobileMenuOpen && ' Buscar'}
+      </SearchLink>
+      {!hidden_search &&
+        <SearchForm>
+        {isMobileMenuOpen && <BackButton onClick={() => { setHiddenSearch(true) }}>
+          <Chevron color={colors.white} style={{ transform: "rotate(90deg)" }} />
+        </BackButton>}
+          <form role="search" aria-label="404 not found" onSubmit={handleSubmit}>
+            Buscar:
+            <input
+              type="search"
+              autoFocus={!hidden_search}
+              defaultValue={searchQuery ? searchQuery?.replaceAll('_', ' '): ''}
+              ref={inputRef}
+            />
+          </form>
+        </SearchForm>}
+    </Nav>
+  );
+};
+
+export default connect(Navigation);
+
+
 const Nav = styled.nav`
   display: flex;
   padding: 0 24px;
@@ -195,147 +357,3 @@ const SearchForm = styled(Submenu)`
     background: transparent;
   }
 `;
-
-const Navigation = ({ state, actions }) => {
-  const { isMobileMenuOpen } = state.theme;
-  const items = state.source.get('2').items;
-  const navigation = useRef();
-  const [hidden, setHidden] = useState(true);
-  const [hidden_submenu, setHiddenSubmenu] = useState(true);
-  const [hidden_search, setHiddenSearch] = useState(true);
-  const [currentMenu, setCurrentMenu] = useState(false);
-  const [currentTitle, setCurrentTitle] = useState('');
-  const [currentType, setCurrentType] = useState('');
-  const [subMenuItems, setSubMenuItems] = useState([]);
-  const [subSubmenuItems, setSubSubmenuItems] = useState([]);
-  const [currentSubmenuTitle, setCurrentSubmenuTitle] = useState('');
-  const showSubmenu = (item, e) => {
-    const { title, type, url, children } = item;
-    e.preventDefault();
-    setHiddenSubmenu(true);
-    setHiddenSearch(true);
-    setHidden(false);
-    setCurrentMenu(!currentMenu);
-    setCurrentType(type);
-    if (type !== 'custom') {
-      actions.router.set(url);
-      hideAllMenus();
-    }
-    if (title === currentTitle) setHidden(!hidden);
-    setCurrentTitle(title);
-    setSubMenuItems(children);
-  };
-  const showSubSubmenu = (subItem, e) => {
-    const { children, url, title, type } = subItem;
-    if (type === 'custom') {
-      window.location.href = url;
-    }
-    if (children) {
-      setSubSubmenuItems(children);
-    } else {
-      actions.router.set(url);
-      hideAllMenus();
-    }
-    setCurrentSubmenuTitle(title);
-    setHiddenSubmenu(false);
-  }
-  const hideAllMenus = () => {
-    setHidden(true);
-    setHiddenSubmenu(true);
-    setHiddenSearch(true);
-    actions.theme.closeMobileMenu();
-  }
-  const toggleSearchForm = () => {
-    setHidden(true);
-    setHiddenSubmenu(true);
-    setHiddenSearch(!hidden_search);
-  }
-  useEffect(() => {
-    document.addEventListener("mousedown", clickOutside);
-    return () => {
-      document.removeEventListener("mousedown", clickOutside);
-    };
-  }, []);
-  const clickOutside = event => {
-    if (navigation.current.contains(event.target)) {
-      return;
-    } else {
-      hideAllMenus();
-    }
-  }
-  return (
-    <Nav mobileMenu={isMobileMenuOpen} ref={navigation}>
-      {items.map(item => {
-        const { id, title, type, children } = item;
-        const isCurrentMenuItem = (currentTitle === title) && !hidden
-        return(
-          <React.Fragment key={id}>
-            <MenuLink
-              onClick={e => showSubmenu(item, e)}
-              style={isCurrentMenuItem ? {backgroundColor: colors.lightGray} : {backgroundColor: colors.white}}
-            >
-              {title}
-              {type === 'custom' &&
-                <Chevron
-                  style={isCurrentMenuItem ? {transform: 'rotate(180deg)'} : isMobileMenuOpen ? {transform: 'rotate(-90deg)'} : {transform: 'rotate(0deg)'}}
-                />
-              }
-            </MenuLink>
-            {children && <Submenu hidden={hidden}>
-              {isMobileMenuOpen && <BackButton onClick={ () => { setHidden(true) }}>
-                  <Chevron color={colors.white} style={{ transform: "rotate(90deg)" }} />
-                </BackButton>}
-              <h2>{currentTitle}</h2>
-              {(currentType === "custom") &&
-                <SubMenuList>
-                  {subMenuItems && subMenuItems.map(subItem => {
-                    const { id, title } = subItem;
-                    const isCurrentSubmenuItem = (title === currentSubmenuTitle);
-                    return(
-                      <SubMenuLink
-                        key={id}
-                        onClick={e => showSubSubmenu(subItem, e)}
-                        style={isCurrentSubmenuItem ? { color: colors.primaryBlueBright } : { color: colors.primaryText100 }}
-                      >
-                        <ArrowIcon
-                          style={isCurrentSubmenuItem ? { display: 'inline-block' } : { display: 'none' }}
-                        />
-                        {title}
-                      </SubMenuLink>
-                    )
-                  })}
-                </SubMenuList>
-              }
-              {(currentTitle === title) && <SubSubmenu hidden_submenu={hidden_submenu}>
-                {isMobileMenuOpen && <BackButton onClick={ () => { setHiddenSubmenu(true) }}>
-                <Chevron color={colors.white} style={{ transform: "rotate(90deg)" }} />
-                  </BackButton>}
-                {subSubmenuItems && subSubmenuItems.map(subSubmenuItem => {
-                  const { id, url, title } = subSubmenuItem;
-                  return(
-                    <Link key={id} link={url} onClick={ hideAllMenus }>{title}</Link>
-                  );
-                })}
-              </SubSubmenu>}
-            </Submenu>}
-          </React.Fragment>
-        )
-      })}
-      <SearchLink onClick={ toggleSearchForm }>
-        <Search />
-        {isMobileMenuOpen && ' Buscar'}
-      </SearchLink>
-      {!hidden_search &&
-        <SearchForm>
-        {isMobileMenuOpen && <BackButton onClick={() => { setHiddenSearch(true) }}>
-          <Chevron color={colors.white} style={{ transform: "rotate(90deg)" }} />
-        </BackButton>}
-          <form>
-            Buscar: <input type="search" autoFocus={!hidden_search} name="search" id="search" />
-          </form>
-        </SearchForm>}
-    </Nav>
-  );
-};
-
-export default connect(Navigation);

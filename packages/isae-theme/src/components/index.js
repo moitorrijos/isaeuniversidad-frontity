@@ -16,6 +16,38 @@ import Footer from './general/footer';
 import Page from './page';
 import ErrorPage from './pages/error-page';
 
+const Theme = ({ state }) => {
+  const data = state.source.get(state.router.link);
+  return (
+    <>
+      <Title />
+      <Head>
+        <meta name="description" content={state.frontity.description} />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet" />
+        <html lang="es" />
+      </Head>
+      <Global styles={globalStyles} />
+      <Header />
+      <Switch>
+        <Loading when={data.isFetching} />
+        <HomePage when={data.isHome} />
+        <AcademicsPage when={data.isOfertaacadmica} />
+        <BranchPage when={data.isSede} />
+        <CareerPage when={data.isCarrera} />
+        <UniversityLifePage when={data.isVidauniversitaria} />
+        <InvestigationsPage when={data.isInvestigacion} />
+        <Page when={data.isPage} />
+        <PostPage when={data.isPost} />
+        <ErrorPage when={data.isError} />
+      </Switch>
+      <Footer />
+    </>
+  )
+}
+
+export default connect(Theme)
+
 const globalStyles = css`
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", 'DM Sans', sans-serif;
@@ -64,36 +96,3 @@ const globalStyles = css`
     margin: 0;
   }
 `
-
-const Theme = ({ state }) => {
-  //NoTocar
-  const data = state.source.get(state.router.link);
-  return (
-    <>
-      <Title />
-      <Head>
-        <meta name="description" content={state.frontity.description} />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet" />
-        <html lang="es" />
-      </Head>
-      <Global styles={globalStyles} />
-      <Header />
-      <Switch>
-        <Loading when={data.isFetching} />
-        <HomePage when={data.isHome} />
-        <AcademicsPage when={data.isOfertaacadmica} />
-        <BranchPage when={data.isSede} />
-        <CareerPage when={data.isCarrera} />
-        <UniversityLifePage when={data.isVidauniversitaria} />
-        <InvestigationsPage when={data.isInvestigacion} />
-        <Page when={data.isPage} />
-        <PostPage when={data.isPost} />
-        <ErrorPage when={data.isError} />
-      </Switch>
-      <Footer />
-    </>
-  )
-}
-
-export default connect(Theme)

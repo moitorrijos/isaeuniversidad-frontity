@@ -129,7 +129,6 @@ const AlumniPage = ({ state }) => {
         featured_image={featured_image}
         title={title.rendered}
         description={description}
-        // texto_btn={Texto_boton_oferta_academica}
         enlace={alumni.acf.boton_oferta_academica}
       />
       <MisionVision>

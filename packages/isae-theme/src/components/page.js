@@ -12,6 +12,7 @@ import ServicesPage from './pages/services-page';
 import JobSearchPage from './pages/job-search-page';
 import VirtualPage from './pages/virtual-page';
 import Congresos from './pages/Congresos';
+import SearchPage from './pages/search-page';
 import TutorialsPage from './pages/tutorials-page';
 
 const Page = ({ state }) => {
@@ -40,26 +41,18 @@ const Page = ({ state }) => {
     return(<JobSearchPage page={109704} />);
   } else if (page.id === 109148) {
     return(<ServicesPage page={109148} />);
-  } 
-  
-  else if (page.id === 109856 ) {
+  } else if (page.id === 109856 ) {
     return(<ServicesPage page={109856} />);
-  } 
-  
-  else if (page.id === 109854) {
+  } else if (page.id === 109854) {
     return(<ServicesPage page={109854}/>);  
-  }
-  
-  else if (page.id === 90519){
+  } else if (page.id === 90519){
     return(<VirtualPage />);
-  }
-  else if (page.id === 109151){
+  } else if (page.id === 109151){
     return(<Congresos page={109151} />);
-  } 
-
-  else if (page.id === 110069 ){
+  } else if (page.id === 110069 ){
     return(<TutorialsPage />);
-
+  } else if (page.id === 110602) {
+    return(<SearchPage />);
   } else {
     return <GeneralPage />;
   }
