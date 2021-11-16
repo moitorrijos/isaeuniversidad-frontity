@@ -37,6 +37,7 @@ const ServicesPage = ({ state, page }) => {
         imageUrl={acf.seccion_4.imagen.url}
         title={acf.seccion_4.titulo}
         description={acf.seccion_4.descripcion}
+        button_url={acf.seccion_4.url}
       />}
       {acf.seccion_5.imagen && <MainMessage
         bgColor={colors.lightGray}

@@ -84,8 +84,8 @@ const RegisterForm = ({ state, egresado }) => {
       <MainContainer>
         <FormGrid>
           <FormInfo>
-            <h3>Soy {egresado ? 'Egresado' : 'Estudiante'} de ISAE UNIVERSIDAD</h3>
-            <p>Si eres {egresado ? 'egresado' : 'estudiante'} de ISAE UNIVERSIDAD, completa el formulario y disfruta de actividades y beneficios exclusivos para ustedes.</p>
+            <h3>Soy {egresado ? 'Egresado' : 'Estudiante'}</h3>
+            <p>Si eres {egresado ? 'egresado' : 'estudiante'} de ISAE Universidad, completa este formulario. Participa de actividades y beneficios que tenemos diseñados exclusivamente para ti.</p>
             {/* Si eres {egresado ? 'egresado' : 'estudiante'} de ISAE UNIVERSIDAD, completa el formulario y disfruta de actividades y beneficios exclusivos para ustedes. */}
             <h3>Contáctenos</h3>
             <p>

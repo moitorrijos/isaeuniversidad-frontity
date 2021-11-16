@@ -114,7 +114,8 @@ const ZigZagPage = ({ state, page }) => {
   const background = state.source.url+'/wp-content/uploads/2021/03/background-isae-11.svg';
   return (
     <>
-      <MainMessage
+    
+    <MainMessage
         background={background}
         bgColor={colors.white}
         imageUrl={imageUrl}
