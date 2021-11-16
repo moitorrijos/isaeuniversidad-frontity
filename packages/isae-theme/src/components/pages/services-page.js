@@ -3,7 +3,7 @@ import { connect } from 'frontity';
 import colors from '../../styles/colors';
 import MainMessage from '../main-message';
 import SecondaryMessage from '../secondary-message';
-import ContactForm from '../base/contact-form-responsabilidad-social';
+import ContactForm from '../base/contact-form-ecoIsae';
 
 
 const ServicesPage = ({ state, page }) => {
@@ -20,14 +20,22 @@ const ServicesPage = ({ state, page }) => {
         title={acf.seccion_1.titulo}
         description={acf.seccion_1.descripcion}
       />}
-      {acf.seccion_2.imagen && <SecondaryMessage
+      {acf.seccion_2.imagen && page !== 109148 && <SecondaryMessage
+        bgColor={colors.white}
+        imageUrl={acf.seccion_2.imagen.url}
+        title={acf.seccion_2.titulo}
+        description={acf.seccion_2.descripcion}        
+      />}
+        
+      {acf.seccion_2.imagen && page === 109148 && <SecondaryMessage
         bgColor={colors.white}
         imageUrl={acf.seccion_2.imagen.url}
         title={acf.seccion_2.titulo}
         description={acf.seccion_2.descripcion}
-        button_text ="Solicitar más información"
+        button_text ="Solicitar más información" 
         button_url ="/formulario-eco-isae/"
-      />}
+        />}        
+
       {acf.seccion_3.imagen && <MainMessage
         bgColor={colors.lightGray}
         imageUrl={acf.seccion_3.imagen.url}
