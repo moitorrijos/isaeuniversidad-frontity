@@ -3,7 +3,7 @@ import { connect } from 'frontity';
 import colors from '../../styles/colors';
 import MainMessage from '../main-message';
 import SecondaryMessage from '../secondary-message';
-import ContactForm from '../base/contact-form-ecoIsae';
+import ContactForm from '../base/contact-form-responsabilidad-social';
 
 
 const ServicesPage = ({ state, page }) => {
@@ -25,6 +25,8 @@ const ServicesPage = ({ state, page }) => {
         imageUrl={acf.seccion_2.imagen.url}
         title={acf.seccion_2.titulo}
         description={acf.seccion_2.descripcion}
+        button_text ="Solicitar más información"
+        button_url ="/formulario-eco-isae/"
       />}
       {acf.seccion_3.imagen && <MainMessage
         bgColor={colors.lightGray}
@@ -37,6 +39,7 @@ const ServicesPage = ({ state, page }) => {
         imageUrl={acf.seccion_4.imagen.url}
         title={acf.seccion_4.titulo}
         description={acf.seccion_4.descripcion}
+        button_url={acf.seccion_4.url}
       />}
       {acf.seccion_5.imagen && <MainMessage
         bgColor={colors.lightGray}

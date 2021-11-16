@@ -1,8 +1,8 @@
 import React from "react";
 import { styled, connect } from "frontity";
 import SlimHero from '../slim-hero';
-import ContactForm from '../base/contact-form';
-import HomeNews from '../home/home-news';
+import ContactForm from '../base/contact-form-ecoIsae';
+import HomeNews from '../home/home-news-eco';
 import MainContainer from '../main-container';
 import createMarkup from '../../helpers/create-markup';
 
@@ -22,15 +22,12 @@ const GeneralPage = ({ state }) => {
   return(
     <>
       <SlimHero
-        title = {title.rendered}
+        title = "Formulario ECO ISAE"
         background={background}
         featured_image={featured_image_src}
         description={excerpt.rendered}
       />
-      <ContactForm />
-      <MainContainer>
-      <PageContent dangerouslySetInnerHTML={createMarkup(content.rendered)} />        
-      </MainContainer>
+      <ContactForm />      
       <HomeNews />
     </>
   )

@@ -23,7 +23,7 @@ const Button = styled(Link)`
 
 const PrimaryButton = ({link, children, style}) => {
   return(
-    <Button link={link} style={style} target="_blank">
+    <Button link={link} style={style}>
       {children} 
     </Button>
   );
