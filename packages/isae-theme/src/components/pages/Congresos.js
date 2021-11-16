@@ -122,7 +122,8 @@ const ZigZagPage = ({ state, page }) => {
         title={title.rendered}
         description={acf.descripcion}
       />
-      <PlanningSection bgColor={colors.lightGray}>
+      {/* Eliminado en informe 8 */}
+      {/* <PlanningSection bgColor={colors.lightGray}>
         <MainContainer>
           <Grid columns="2" gap="200px" med_gap="40px" small_gap="20px">
             <PlanDescription>
@@ -138,7 +139,8 @@ const ZigZagPage = ({ state, page }) => {
             </PlanImage>
           </Grid>
         </MainContainer>
-      </PlanningSection>
+      </PlanningSection> */}
+
       {acf.objetivos.titulo && <PlanningSection bgColor={colors.white}>
         <MainContainer>
           <Grid columns="2" gap="200px" med_gap="40px" small_gap="20px">
