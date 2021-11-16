@@ -20,6 +20,8 @@ const ServicesPage = ({ state, page }) => {
         title={acf.seccion_1.titulo}
         description={acf.seccion_1.descripcion}
       />}
+
+      {/* PARCHE:Corregir Error de despliege entre pagina de servicios y paginas de Responsabilida Social */}
       {acf.seccion_2.imagen && page !== 109148 && <SecondaryMessage
         bgColor={colors.white}
         imageUrl={acf.seccion_2.imagen.url}
