@@ -5,7 +5,7 @@ import MainContainer from './main-container';
 import Grid from './grid';
 import Image from "@frontity/components/image";
 import createMarkup from '../helpers/create-markup';
-import PrimaryButton from './primary-button';
+import PrimaryButton from './primary-button-no-blank';
 
 const Message = styled.div`
   padding: 8rem 0;

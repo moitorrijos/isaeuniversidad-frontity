@@ -41,6 +41,7 @@ export default {
         await actions.source.fetch("/category/destacada/");
         await actions.source.fetch("/category/actividades/");
         await actions.source.fetch("/category/noticias/");
+        await actions.source.fetch("/category/eco-isae/");
       }
     }
   },
