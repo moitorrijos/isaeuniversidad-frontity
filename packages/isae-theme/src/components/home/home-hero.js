@@ -14,6 +14,7 @@ const HeroContainer = styled.div`
   position: relative;
   background-image: url(${props => props.url}/wp-content/uploads/2021/01/background-isae-home-hero-full.svg);
   background-repeat: no-repeat;
+  text-align: left;
   background-position: -160px top;
   background-size: 300px;
 `;
