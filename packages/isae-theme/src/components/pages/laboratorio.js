@@ -1,22 +1,14 @@
-import React from "react";
-import { styled, connect } from "frontity";
-import SlimHero from '../slim-hero';
-import ContactForm from '../base/contact-form-ecoIsae';
-import HomeNews from '../home/home-news-eco';
+import React from 'react'
+import { connect, styled } from 'frontity';
 import colors from '../../styles/colors';
+import { effects } from '../../styles/effects';
+import MainMessage from '../main-message';
 import MainContainer from '../main-container';
-import createMarkup from '../../helpers/create-markup';
 import Grid from '../grid';
 import Image from "@frontity/components/image";
-import { effects } from '../../styles/effects';
-
-const PageContent = styled.div`
-  padding: 4rem 0 8rem;
-  max-width: 80ch;
-  margin: 0 auto;
-  font-size: 1.1rem;
-  line-height: 1.85;
-`;
+import createMarkup from '../../helpers/create-markup';
+import ContactForm from '../base/contact-form';
+import HomeNews from '../home/home-news';
 
 const PlanningSection = styled.div`
   padding: 8rem 0;
@@ -26,6 +18,7 @@ const PlanningSection = styled.div`
     padding: 4rem 0;
   }
 `;
+
 const PlanDescription = styled.div`
   align-self: center;
   max-width: 480px;
@@ -63,23 +56,74 @@ const PlanImage = styled.figure`
   }
 `;
 
+const FunctionsSection = styled.div`
+  padding: 6rem 0 8rem;
+  background-image: linear-gradient(20deg, ${colors.lightGray}, ${colors.mediumGray});
 
-const GeneralPage = ({ state, page }) => {
-  const data = state.source.get(state.router.link);
-  const pageData = state.source.page[data.id];
-  const { featured_image_src, title, excerpt, content, acf } = pageData;
-  const background = state.source.url+'/wp-content/uploads/2021/02/background-isae-8.svg';
-  return(
+  @media (max-width: 834px) {
+    padding: 4rem 0 8rem;
+  }
+`;
+
+const CenteredHeading = styled.h2`
+  padding: 0 4rem;
+  text-align: center;
+  color: ${props => props.color};
+`;
+
+const Functions = styled.div`
+  padding: 4rem;
+  border-radius: 20px;
+  background-color: ${colors.white};
+  box-shadow: ${effects.boxShadow};
+
+  @media (max-width: 834px) {
+    padding: 2rem;
+    padding-left: 1rem;
+  }
+
+  ul {
+    padding: 0;
+    padding-left: 33px;
+    overflow: visible;
+    position: relative;
+    columns: 2;
+    column-gap: 120px;
+
+    @media (max-width: 834px) {
+      columns: 1;
+    }
+
+    li {
+      margin: 2rem 0;
+      padding-left: 1rem;
+      line-height: 1.3;
+
+      &:first-of-type {
+        margin-top: 0;
+      }
+    }
+  }
+`;
+
+
+const ZigZagPage = ({ state, page }) => {
+  const plan = state.source.page[page];
+  const { acf, title, featured_image_src } = plan;
+  const imageUrl = featured_image_src;
+  const background = state.source.url+'/wp-content/uploads/2021/03/background-isae-11.svg';
+  return (
     <>
-      <SlimHero
-        title = {title.rendered}
+      <MainMessage
         background={background}
-        featured_image={featured_image_src}
-        description={excerpt.rendered}
+        bgColor={colors.white}
+        imageUrl={imageUrl}
+        title={title.rendered}
+        description={acf.descripcion}
       />
-     <PlanningSection bgColor={colors.lightGray}>
-     <MainContainer>
-     <Grid columns="2" gap="200px" med_gap="40px" small_gap="20px">
+      <PlanningSection bgColor={colors.lightGray}>
+        <MainContainer>
+          <Grid columns="2" gap="200px" med_gap="40px" small_gap="20px">
             <PlanDescription>
               <h2>{acf.planificacion.titulo}</h2>
               <div dangerouslySetInnerHTML={createMarkup(acf.planificacion.descripcion)} />
@@ -93,7 +137,8 @@ const GeneralPage = ({ state, page }) => {
             </PlanImage>
           </Grid>
         </MainContainer>
-        {acf.objetivos.titulo && <PlanningSection bgColor={colors.white}>
+      </PlanningSection>
+      {acf.objetivos.titulo && <PlanningSection bgColor={colors.white}>
         <MainContainer>
           <Grid columns="2" gap="200px" med_gap="40px" small_gap="20px">
             <PlanImage>
@@ -110,11 +155,16 @@ const GeneralPage = ({ state, page }) => {
           </Grid>
         </MainContainer>
       </PlanningSection>}
-      </PlanningSection>
-      <ContactForm />      
-      <HomeNews />
+      <FunctionsSection>
+        <CenteredHeading color={colors.primaryBlue}>{acf.funciones.titulo}</CenteredHeading>
+        <MainContainer>
+          <Functions
+            dangerouslySetInnerHTML={createMarkup(acf.funciones.descripcion)}
+          />
+        </MainContainer>
+      </FunctionsSection>            
     </>
   )
 }
 
-export default connect(GeneralPage);
+export default connect(ZigZagPage);
