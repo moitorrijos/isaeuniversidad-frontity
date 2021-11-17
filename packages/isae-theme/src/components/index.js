@@ -52,6 +52,8 @@ const globalStyles = css`
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", 'DM Sans', sans-serif;
     font-size: 18px;
+    text-align: justify;
+    hyphens: auto;
     line-height: 1.6;
     padding: 0;
     margin: 0;
@@ -62,6 +64,7 @@ const globalStyles = css`
     margin: 2rem 0;
     line-height: 1.1;
     font-weight: 500;
+    text-align: left;
   }
 
   h1 {

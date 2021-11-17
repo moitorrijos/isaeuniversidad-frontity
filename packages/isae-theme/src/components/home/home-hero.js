@@ -14,6 +14,7 @@ const HeroContainer = styled.div`
   position: relative;
   background-image: url(${props => props.url}/wp-content/uploads/2021/01/background-isae-home-hero-full.svg);
   background-repeat: no-repeat;
+  text-align: left;
   background-position: -160px top;
   background-size: 300px;
 `;
@@ -190,7 +191,7 @@ const HomeHero = ({ state }) => {
           </HeroInner>
           <HeroInner style={carouselItems.item2}>
             <HeroInfo>
-              <h1>{acf.carrusel_2.titulo}</h1>
+              <h2 style={{color:`white`}}>{acf.carrusel_2.titulo}</h2>
               <p>
                 {acf.carrusel_2.descripcion}
               </p>
@@ -211,7 +212,7 @@ const HomeHero = ({ state }) => {
           </HeroInner>
           <HeroInner style={carouselItems.item3}>
             <HeroInfo>
-              <h1>{acf.carrusel_3.titulo}</h1>
+              <h2 style={{color:`white`}}>{acf.carrusel_3.titulo}</h2>
               <p>
                 {acf.carrusel_3.descripcion}
               </p>
@@ -232,7 +233,7 @@ const HomeHero = ({ state }) => {
           </HeroInner>
           <HeroInner style={carouselItems.item4}>
             <HeroInfo>
-              <h1>{acf.carrusel_4.titulo}</h1>
+              <h2 style={{color:`white`}}>{acf.carrusel_4.titulo}</h2>
               <p>
                 {acf.carrusel_4.descripcion}
               </p>

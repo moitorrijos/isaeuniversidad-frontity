@@ -11,6 +11,7 @@ const Academic = styled.div`
   padding: 8rem 0;
   background-repeat: no-repeat;
   background-position: center center;
+  text-align: left;
 
   &:nth-of-type(odd) {
     background-color: ${colors.lightGray};
