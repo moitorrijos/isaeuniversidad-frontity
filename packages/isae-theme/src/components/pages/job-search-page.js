@@ -24,3 +24,4 @@ function JobSearchPage({ state, page }) {
 }
 
 export default connect(JobSearchPage)
+
