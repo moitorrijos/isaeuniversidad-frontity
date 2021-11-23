@@ -59,6 +59,9 @@ const globalStyles = css`
     margin: 0;
     color: ${colors.primaryText80};
   }
+  p {
+    text-align: justify;
+  }
 
   h1, h2, h3, h4 {
     margin: 2rem 0;

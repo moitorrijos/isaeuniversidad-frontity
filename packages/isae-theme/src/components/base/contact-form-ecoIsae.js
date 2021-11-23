@@ -89,16 +89,23 @@ const CfecoIsae = ({ state, branch, phone }) => {
             <h3>Contacto</h3>
             <p>
               {branch ? branch : ''}<br />
-              {phone ? phone : '(+507) 278-1432 / 278-1444'}<br />
+              {phone ? phone : '+507 278-1432 / 278-1444'}<br />
               mercadeo@isaeuniversidad.ac.pa 
             </p>
           </FormInfo>
           <Form onSubmit={handleSubmit(onSubmit)}>
             <input name="nombre_completo" placeholder="Nombre Completo" ref={register} />
+            <input name="cedula" placeholder="Cédula" ref={register} />
             <input name="direccion" placeholder="Dirección" ref={register} />
             <input name="telefono" placeholder="Teléfono" ref={register} />
-            <input name="correo" placeholder="Correo" ref={register} />
+            <input name="correo" placeholder="Correo" ref={register} />            
+            <select name="Docente-estudiante" ref={register}>
+            <option selected disabled> Seleccione uno</option>
+            <option value="docente">Docente</option>              
+            <option value="estudiante">Estudiante</option>              
+            </select>            
             <select name="sede" ref={register}>
+            <option selected disabled> Seleccione una Sede</option>
               {branches.map(branch => {
                 const { id, title } = state.source[branch.type][branch.id];
                 return(
@@ -106,10 +113,13 @@ const CfecoIsae = ({ state, branch, phone }) => {
                 )
               })}
             </select>
-            <select name="oferta" ref={register}>
+            <select name="carrera" ref={register}>
+            <option selected disabled> Seleccione una Carrera</option>
               {academics.map(academic => {
                   const { id, title } = state.source[academic.type][academic.id]
+                  
                   return(
+                    
                     <option key={id} value={title.rendered}>{title.rendered}</option>
                   )
                 }

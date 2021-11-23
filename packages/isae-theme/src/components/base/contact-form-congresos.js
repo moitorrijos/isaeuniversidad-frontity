@@ -96,7 +96,7 @@ const ContactForm = ({
                 ? branch
                 : "Dirección de Extensión y Asuntos Estudiantiles "}
               <br />
-              {phone ? phone : "(+507) 278-1432 Ext. 8080"}
+              {phone ? phone : "+507 278-1432 Ext. 8080"}
               <br />
               dir.extension@isaeuniversidad.ac.pa
             </p>

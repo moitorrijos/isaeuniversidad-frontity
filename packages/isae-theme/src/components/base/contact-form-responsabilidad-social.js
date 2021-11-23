@@ -85,7 +85,7 @@ const ContactForm = ({ state, branch, phone, selected_branch, selected_academic 
             <p>
               {branch ? branch : ""}
               <br />
-              {phone ? phone : "(+507) 278-1432 / 278-1444"}
+              {phone ? phone : "+507 278-1432 / 278-1444"}
               <br />
               mercadeo@isaeuniversidad.ac.pa
             </p>

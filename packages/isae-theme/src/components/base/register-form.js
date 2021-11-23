@@ -90,7 +90,7 @@ const RegisterForm = ({ state, egresado }) => {
             <h3>Contáctenos</h3>
             <p>
               Dirección de Extensión y Asuntos Estudiantiles <br />
-              (+507) 2781432 Ext. 8094<br />
+              +507 2781432 Ext. 8094<br />
               dir.extension@isaeuniversidad.ac.pa              
             </p>
           </FormInfo>
