@@ -77,7 +77,7 @@ const Footer = ({ state }) => {
               </Paragraph> */}
             </FooterItem>
             <FooterItem>
-              <FooterTitle>Vida Unviersitaria</FooterTitle>
+              <FooterTitle>Vida Universitaria </FooterTitle>
               <FooterNav>
                 {menu_vida_uni.map( item => {
                   const { id, title, url } = item

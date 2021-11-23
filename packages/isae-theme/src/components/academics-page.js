@@ -321,7 +321,7 @@ const AcademicsPage = ({ state, actions }) => {
         </ContactInformation>
       )}
       {/* <ContactForm selected_academic={title.rendered}  /> */}
-      {carreras && academic_slug !== "educacion-continua" ? (
+      {carreras && academic_slug !== "educacion-continua-panama" ? (
         <ContactForm selected_academic={title.rendered} />
       ) : (
         <ContactFormTwo

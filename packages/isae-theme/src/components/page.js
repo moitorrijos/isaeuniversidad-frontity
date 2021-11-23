@@ -17,6 +17,7 @@ import TutorialsPage from './pages/tutorials-page';
 import Convenios from './pages/convenios';
 import FormularioECOISAE from './pages/formulario-eco-isae';
 import Laboratorio from './pages/laboratorio';
+import EmpleoPage from './pages/empleo-page';
 
 const Page = ({ state }) => {
   const page = state.source.get(state.router.link);
@@ -56,17 +57,15 @@ const Page = ({ state }) => {
     return(<TutorialsPage />);
   } else if (page.id === 110602) {
     return(<SearchPage />);
-  }
-  else if (page.id === 109144) {
+  } else if (page.id === 109144) {
     return(<Convenios/>);
-  }
-  else if (page.id === 110709) {
+  } else if (page.id === 110709) {
     return(<Laboratorio page={110709}/>);
-  }
-  else if (page.id === 110694 ) {
+  } else if (page.id === 110694 ) {
     return(<FormularioECOISAE page={110694}/>);
-  }
-   else {
+  } else if (page.id === 110753 ) {
+    return(<EmpleoPage page={110753}/>);
+  } else {
     return <GeneralPage />;
   }
 }

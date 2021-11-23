@@ -18,8 +18,8 @@ const LogosContainer = styled.div`
 
 const ImageGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 1px;
 
   img {
     mix-blend-mode: multiply;
@@ -40,16 +40,15 @@ const ImageGrid = styled.div`
 
 const HomeLogos = ({ state }) => {
   const homeLogos = [
-    {id: 1, name: 'redulac-rrd'},
-    {id: 2, name: 'auppa'},
-    {id: 3, name: 'rep-wermap'},
-    {id: 4, name: 'ninos'},
-    {id: 5, name: 'omep'},
-    {id: 6, name: 'latino-america'},
-    {id: 7, name: 'aualcpi'},
-    {id: 8, name: 'inca'},
-    {id: 9, name: 'consejo-de-rectores-de-panama'},
-    {id: 10, name: 'auprica'}
+    {id: 1, name: 'repowermap'},
+    {id: 2, name: 'redular'},
+    {id: 3, name: 'omep'},
+    {id: 4, name: 'inca'},
+    {id: 5, name: 'ecalfor'},
+    {id: 6, name: 'consejo-de-rectores'},
+    {id: 7, name: 'aurpica'},
+    {id: 8, name: 'AUPPA'},
+    {id: 9, name: 'aualcpi'}
     ]
   return(
     <LogosContainer>
@@ -58,8 +57,8 @@ const HomeLogos = ({ state }) => {
           {homeLogos.map(logo => (
             <Image
               key={logo.id}
-              src={`${state.source.url}/wp-content/uploads/2021/01/${logo.name}.png`}
-              alt="REDULAC/RRD"
+              src={`${state.source.url}/wp-content/uploads/2021/11/${logo.name}.jpg`}
+              alt={`Universidad ${logo.name} Logo`}
             />
           ))}
         </ImageGrid>
