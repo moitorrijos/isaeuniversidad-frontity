@@ -59,7 +59,7 @@ const globalStyles = css`
     margin: 0;
     color: ${colors.primaryText80};
   }
-  p {
+  p { 
     text-align: justify;
   }
 

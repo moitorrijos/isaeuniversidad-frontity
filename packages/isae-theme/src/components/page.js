@@ -18,6 +18,7 @@ import Convenios from './pages/convenios';
 import FormularioECOISAE from './pages/formulario-eco-isae';
 import Laboratorio from './pages/laboratorio';
 import EmpleoPage from './pages/empleo-page';
+import ReglamentoPage from './pages/reglamentos-page';
 
 const Page = ({ state }) => {
   const page = state.source.get(state.router.link);
@@ -65,7 +66,9 @@ const Page = ({ state }) => {
     return(<FormularioECOISAE page={110694}/>);
   } else if (page.id === 110753 ) {
     return(<EmpleoPage page={110753}/>);
-  } else {
+  }else if (page.id === 110761 ) {
+    return(<ReglamentoPage page={110761}/>);
+  }else {
     return <GeneralPage />;
   }
 }
