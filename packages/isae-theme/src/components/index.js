@@ -59,6 +59,7 @@ const globalStyles = css`
     margin: 0;
     color: ${colors.primaryText80};
   }
+  .css-17g1lfv-SubSubmenu > a {    text-align: left; }
   p { 
     text-align: justify;
   }
