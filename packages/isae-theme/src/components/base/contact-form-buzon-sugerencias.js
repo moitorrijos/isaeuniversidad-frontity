@@ -10,13 +10,15 @@ const FormContainer = styled.div`
   background-color: ${colors.blueBright600};
 
   @media (max-width: 600px) {
-    padding: 6rem 0;
+    padding: 5rem 0;
   }
 `;
 
 const FormGrid = styled.div`
   display: block;
-  
+  grid-template-columns: 320px 1fr;
+  align-items: center;
+  gap: 100px;
 
   @media (max-width: 834px) {
     grid-template-columns: 1fr;
