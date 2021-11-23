@@ -9,7 +9,7 @@ import GeneralPage from './pages/general-page';
 import ZigZagPage from './pages/zig-zag-page';
 import LegalPage from './pages/legal-page';
 import ServicesPage from './pages/services-page';
-import JobSearchPage from './pages/job-search-page';
+import BuzonSugerencias from './pages/job-search-page';
 import VirtualPage from './pages/virtual-page';
 import Congresos from './pages/Congresos';
 import SearchPage from './pages/search-page';
@@ -43,7 +43,7 @@ const Page = ({ state }) => {
   } else if (page.id === 109692) {
     return(<JobSearchPage page={109692} />);
   } else if (page.id === 109704) {
-    return(<JobSearchPage page={109704} />);
+    return(<BuzonSugerencias page={109704} />);
   } else if (page.id === 109148) {
     return(<ServicesPage page={109148} />);
   } else if (page.id === 109856 ) {
