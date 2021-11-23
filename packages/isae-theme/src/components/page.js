@@ -68,9 +68,7 @@ const Page = ({ state }) => {
     return(<EmpleoPage page={110753}/>);
   }else if (page.id === 110761 ) {
     return(<ReglamentoPage page={110761}/>);
-  }else {
-    return <GeneralPage />;
-  }
+  }else {    return <GeneralPage />;  }
 }
 
 export default connect(Page);

@@ -155,6 +155,23 @@ const ZigZagPage = ({ state, page }) => {
           </Grid>
         </MainContainer>
       </PlanningSection>}
+      <PlanningSection bgColor={colors.lightGray}>
+        <MainContainer>
+          <Grid columns="2" gap="200px" med_gap="40px" small_gap="20px">
+            <PlanDescription>
+              <h2>{acf.grupo_1.titulo}</h2>
+              <div dangerouslySetInnerHTML={createMarkup(acf.grupo_1.descripcion)} />
+            </PlanDescription>
+            <PlanImage>
+              <Image
+                src={acf.planificacion.imagen.url ? acf.grupo_1.imagen.url : ''}
+                alt={acf.planificacion.imagen.alt ? acf.grupo_1.imagen.alt : ''}
+                height={528}
+              />
+            </PlanImage>
+          </Grid>
+        </MainContainer>
+      </PlanningSection>
       <FunctionsSection>
         <CenteredHeading color={colors.primaryBlue}>{acf.funciones.titulo}</CenteredHeading>
         <MainContainer>
