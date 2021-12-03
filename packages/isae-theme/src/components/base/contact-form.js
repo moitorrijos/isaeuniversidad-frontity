@@ -88,7 +88,7 @@ const ContactForm = ({ state, branch, phone, selected_branch, selected_academic 
               <br />
               {phone ? phone : "+507 278-1432 / 278-1444"}
               <br />
-              info@isaeuniversidad.ac.pa 
+              mercadeo@isaeuniversidad.ac.pa 
             </p>
           </FormInfo>
           <Form onSubmit={handleSubmit(onSubmit)}>
