@@ -69,7 +69,7 @@ const Footer = ({ state }) => {
               <Paragraph>
                 Teléfono: +507 278-1432 / 278-1444<br />
                 WhatsApp: +507 6548-7314<br />
-                Correo: mercadeo@isaeuniversidad.ac.pa
+                Correo: info@isaeuniversidad.ac.pa
               </Paragraph>
               {/* <Paragraph>
                 (+507) 278-1432 / 278-1444

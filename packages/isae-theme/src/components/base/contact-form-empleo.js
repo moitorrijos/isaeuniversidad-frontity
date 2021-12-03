@@ -122,6 +122,8 @@ const ContactForm = ({
             />
             <label for="nacionalidad">Nacionalidad :</label>
             <input name="nacionalidad" ref={register} />
+            <label for="paisOrigen">Pais de Origen :</label>
+            <input name="paisOrigen" ref={register} />
             <label for="tipodocumento">Tipo de Documento :</label>
             <select id="identidad-tipo" name="identidad">
               <option selected disabled>
@@ -148,10 +150,26 @@ const ContactForm = ({
             <input name="telefono" ref={register} />
             <label for="telefonoresidencia">Teléfono Residencial :</label>
             <input name="telresidencial" ref={register} />
-            <label for="empleo">Último Empleo - Actual :</label>
-            <input name="telresidencial" ref={register} />
-            <label for="cargo">Cargo :</label>
+            <hr />
+            <h4>Experiencia Laboral</h4>
+            <label for="empleo">Nombre de Empresa :</label>
             <input name="cargo" ref={register} />
+            <label for="cargo">Cargo :</label>
+            <input name="descripcionempleo" ref={register} />
+            <label for="descripcionempleo">
+              Descripción del último empleo :
+            </label>
+            <textarea
+              name="descripcionultimoempleo"
+              id=""
+              cols="30"
+              rows="10"
+              ref={register}
+              ></textarea>
+              <label for="empleo1">Nombre de Empresa :</label>
+            <input name="cargo1" ref={register} />
+            <label for="cargo1">Cargo :</label>
+            <input name="descripcionempleo1" ref={register} />
             <label for="descripcionempleo">
               Descripción del último empleo :
             </label>
@@ -178,8 +196,24 @@ const ContactForm = ({
             <label for="centro-de-estudio">Centro de estudio :</label>
             <input name="centro-de-estudio" ref={register} />
             <label for="tituloObtenido">Último título obtenido :</label>
-            <input name="tituloObtenido" ref={register} />
-            <hr />            
+            <input name="tituloObtenido" ref={register} />                       
+            
+            <label for="estudio1">Estudios :</label>
+            <select id="estudio1" name="estudio">
+              <option selected disabled>
+                Seleccione uno
+              </option>
+              <option value="maestria">Maestria</option>
+              <option value="doctorado">Doctorado</option>
+              <option value="licenciatura">Licenciatura</option>
+              <option value="incompleto">Incompleto</option>
+            </select>
+            <label for="centro-de-estudio1">Centro de estudio :</label>
+            <input name="centro-de-estudio1" ref={register} />
+            <label for="tituloObtenido1">Título obtenido :</label>
+            <input name="tituloObtenido1" ref={register} />
+            <hr /> 
+
             <h4>Idioma</h4>
             <label for="idioma_uno">Idioma :</label>
             <input name="idioma_dos" ref={register} />
@@ -228,7 +262,10 @@ const ContactForm = ({
               ></textarea>
               <hr />            
             <h4>Solicitud de Empleo</h4><hr />     
-            <p>Esta empresa garantiza que la selección se hará en base a las características que se ajusten más a los requisitos establecidos en la descripción del puesto vacante. Con ese propósito le agradecemos nos proporcione la información más exacta posible. Los datos serán tratados de manera confidencial.</p><hr />     
+            <p>Esta empresa garantiza que la selección se hará en base a las características que se ajusten más a los requisitos establecidos en la descripción del puesto vacante. Con ese propósito le agradecemos nos proporcione la información más exacta posible. Los datos serán tratados de manera confidencial.</p>
+            <label for="empleo_solicitud">
+              Disponibilidad :
+            </label>    
             <select id="empleo_solicitud" name="empleo_solicitud">
               <option selected disabled>
                 Seleccione uno
@@ -236,7 +273,8 @@ const ContactForm = ({
               <option value="Ocupado">Ocupado actualmente</option>
               <option value="Disponible">Disponibilidad inmediata</option>                        
             </select>
-            <label for="area-interes">Indicar su área de interes en nuestra organización :</label>
+            <label for="area-interes">Posición a la que aspira
+ :</label>
             <select id="area-interes" name="area-interes">
               <option selected disabled>
                 Seleccione uno
