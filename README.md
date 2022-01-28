@@ -3,11 +3,14 @@
 Este sitio está creado usando Frontity para el _frontend_ y _WordPress_ como el _backend_ y sistema de gestión de contenido.
 
 #### Tabla de Contenidos
-
+- [Crear las variables de entorno](#crear-variables-entorno)
 - [Conectar Frontity con WordPress](#conectar-frontity-wp)
 - [Crear un servidor de desarrollo](#launch-a-development-server)
 - [Crear un proyecto listo para producción](#create-a-production-ready-build)
 - [Despelgar](#deploy)
+
+### Crear las variables de entorno
+Para crear las variables de entorno copia el archivo .env.sample a un nuevo archivo .env (No borres el archivo .env.sample).
 
 ### Cómo conectar tu proyecto Frontity con WordPress
 
