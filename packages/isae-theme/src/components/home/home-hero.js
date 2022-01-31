@@ -156,7 +156,7 @@ const HomeHero = ({ state }) => {
       <MainContainer>
         <Carousel>
           <HeroInner style={carouselItems.item1}>
-            <HeroInfo style={props}>
+            <HeroInfo>
               <h1>{acf.carrusel_1.titulo}</h1>
               <p>
                 {acf.carrusel_1.descripcion}
@@ -168,7 +168,7 @@ const HomeHero = ({ state }) => {
                 {acf.carrusel_1.titulo_boton}
               </MainButton>
             </HeroInfo>
-            <HeroImage style={props}>
+            <HeroImage>
               <Image
                 alt={acf.carrusel_1.imagen.alt}
                 src={acf.carrusel_1.imagen.sizes["1536x1536"]}
