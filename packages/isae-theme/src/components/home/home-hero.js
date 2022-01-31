@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { styled, connect } from 'frontity';
 import colors from '../../styles/colors';
 import { effects } from '../../styles/effects';
-import { Spring, config } from 'react-spring/renderprops'
+// import { Spring, config } from 'react-spring/renderprops'
 import RightArrowCircle from '../icons/right-arrow-circle';
 import useCarousel from '../../hooks/use-carousel';
 import MainContainer from '../main-container';
@@ -156,38 +156,26 @@ const HomeHero = ({ state }) => {
       <MainContainer>
         <Carousel>
           <HeroInner style={carouselItems.item1}>
-            <Spring
-              from={{ opacity: 0, transform: 'translateY(-100px)' }}
-              to={{ opacity: 1, transform: 'translateY(0)' }}
-              config={config.gentle}
-            >
-              {props => <HeroInfo style={props}>
-                <h1>{acf.carrusel_1.titulo}</h1>
-                <p>
-                  {acf.carrusel_1.descripcion}
-                </p>
-                <MainButton
-                  href={acf.carrusel_1.url_de_boton}
-                >
-                  <RightArrowCircle color={colors.primaryBlue} />
-                  {acf.carrusel_1.titulo_boton}
-                </MainButton>
-              </HeroInfo>}
-            </Spring>
-            <Spring 
-              from={{ opacity: 0, transform: 'translateX(100px)' }}
-              to={{ opacity: 1, transform: 'translateY(0)' }}
-              config={config.gentle}
-            >
-              {props => <HeroImage style={props}>
-                <Image
-                  alt={acf.carrusel_1.imagen.alt}
-                  src={acf.carrusel_1.imagen.sizes["1536x1536"]}
-                  height={620}
-                  width={812}
-                />
-              </HeroImage>}
-            </Spring>
+            <HeroInfo style={props}>
+              <h1>{acf.carrusel_1.titulo}</h1>
+              <p>
+                {acf.carrusel_1.descripcion}
+              </p>
+              <MainButton
+                href={acf.carrusel_1.url_de_boton}
+              >
+                <RightArrowCircle color={colors.primaryBlue} />
+                {acf.carrusel_1.titulo_boton}
+              </MainButton>
+            </HeroInfo>
+            <HeroImage style={props}>
+              <Image
+                alt={acf.carrusel_1.imagen.alt}
+                src={acf.carrusel_1.imagen.sizes["1536x1536"]}
+                height={620}
+                width={812}
+              />
+            </HeroImage>
           </HeroInner>
           <HeroInner style={carouselItems.item2}>
             <HeroInfo>
