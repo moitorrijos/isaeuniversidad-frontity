@@ -44,21 +44,15 @@ const BranchPage = ({ state, actions }) => {
         celular={acf.celular}
       />
       {acf.ofertas_academicas && <FilterButtons>
-          {acf.ofertas_academicas.map((oferta, index) => {
+          <button
+            key={0}
+            onClick={ () => { filterButton('all') } }
+            style = { currentItem === 'all' ? currentItemStyle : itemStyle }
+          >
+            Todo
+          </button>
+          {acf.ofertas_academicas.map((oferta) => {
             let { id, title, slug } = state.source[oferta.post_type][oferta.ID];
-            if (index === 0) {
-              id = 0;
-              slug = 'all';
-              return (
-                <button
-                  key={id}
-                  onClick={ () => { filterButton(slug) } }
-                  style = { currentItem === slug ? currentItemStyle : itemStyle }
-                >
-                  Todo
-                </button>
-              )
-            }
             return(
               <button
                 key={id}

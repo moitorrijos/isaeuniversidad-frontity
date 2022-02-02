@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { styled, connect } from 'frontity';
 import colors from '../../styles/colors';
 import { effects } from '../../styles/effects';
-// import { Spring, config } from 'react-spring/renderprops'
 import RightArrowCircle from '../icons/right-arrow-circle';
 import useCarousel from '../../hooks/use-carousel';
 import MainContainer from '../main-container';

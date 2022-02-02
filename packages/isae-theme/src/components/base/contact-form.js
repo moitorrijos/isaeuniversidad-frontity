@@ -132,7 +132,7 @@ const ContactForm = ({ state, branch, phone, selected_branch, selected_academic 
                 );
               })}
             </select>
-            <button type="button">
+            <button type="submit">
               Enviar
               <RightArrowCircle color={colors.white} />
             </button>
