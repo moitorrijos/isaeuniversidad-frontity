@@ -2,7 +2,6 @@ import React from 'react';
 import { styled, connect } from 'frontity';
 import colors from '../../styles/colors';
 import MainContainer from '../main-container';
-import { useForm } from "react-hook-form";
 
 const FormContainer = styled.div`
   padding: 8rem 0;
@@ -76,8 +75,15 @@ const Form = styled.form`
 const RegisterForm = ({ state, egresado }) => {
   const academics = state.source.get('/ofertaacadmica').items;
   const branches = state.source.get('/sede').items;
-  const { register, handleSubmit } = useForm();
-  const onSubmit = data => console.log(data);
+  const [nombre, setNombre] = useState("")
+  const [apellido, setApellido] = useState("")
+  const [correo, setCorreo] = useState("")
+  const [telefono, setTelefono] = useState("")
+  const [trabajo, setTrabajo] = useState("")
+  const [cargo, setCargo] = useState("")
+  const [oferta, setOferta] = useState("")
+  const [sede, setSede] = useState("")
+  const submitForm = data => console.log(data);
 
   return(
     <FormContainer id="formulario-contacto">
@@ -94,14 +100,14 @@ const RegisterForm = ({ state, egresado }) => {
               dir.extension@isaeuniversidad.ac.pa              
             </p>
           </FormInfo>
-          <Form onSubmit={handleSubmit(onSubmit)}>
-            <input name="nombre" placeholder="Nombre" ref={register} />
-            <input name="apellido" placeholder="Apellido" ref={register} />
-            <input name="correo" placeholder="Correo Electrónico" ref={register} />
-            <input name="telefono" placeholder="Teléfono" ref={register} />
-            <input name="trabajo" placeholder="Lugar de Trabajo" ref={register} />
-            <input name="cargo" placeholder="Cargo" ref={register} />
-            <select name="oferta" ref={register}>
+          <Form onSubmit={submitForm}>
+            <input name="nombre" placeholder="Nombre" defaultValue={nombre} onChange={event => setNombre(event.target.value)} />
+            <input name="apellido" placeholder="Apellido" defaultValue={apellido} onChange={event => setApellido(event.target.value)} />
+            <input name="correo" placeholder="Correo Electrónico" defaultValue={correo} onChange={event => setCorreo(event.target.value)} />
+            <input name="telefono" placeholder="Teléfono" defaultValue={telefono} onChange={event => setTelefono(event.target.value)} />
+            <input name="trabajo" placeholder="Lugar de Trabajo" defaultValue={trabajo} onChange={event => setTrabajo(event.target.value)} />
+            <input name="cargo" placeholder="Cargo" defaultValue={cargo} onChange={event => setCargo(event.target.value)} />
+            <select name="oferta" defaultValue={oferta} onChange={event => setOferta(event.target.value)}>
               {academics.map(academic => {
                   const { id, title } = state.source[academic.type][academic.id]
                   return(
@@ -110,7 +116,7 @@ const RegisterForm = ({ state, egresado }) => {
                 }
               )}
             </select>
-            <select name="sede" ref={register}>
+            <select name="sede" defaultValue={sede} onChange={event => setSede(event.target.value)}>
               {branches.map(branch => {
                 const { id, title } = state.source[branch.type][branch.id];
                 return(
@@ -118,7 +124,7 @@ const RegisterForm = ({ state, egresado }) => {
                 )
               })}
             </select>
-            <button type="button">
+            <button type="submit">
               Registrarme Ahora
             </button>
           </Form>

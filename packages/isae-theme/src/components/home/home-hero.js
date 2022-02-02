@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { styled, connect } from "frontity";
 import colors from "../../styles/colors";
 import { effects } from "../../styles/effects";
-// import { Spring, config } from 'react-spring/renderprops'
 import RightArrowCircle from "../icons/right-arrow-circle";
 import useCarousel from "../../hooks/use-carousel";
 import MainContainer from "../main-container";
@@ -11,8 +10,7 @@ import Image from "@frontity/components/image";
 const HeroContainer = styled.div`
   background-color: ${colors.primaryBlue300};
   position: relative;
-  background-image: url(${(props) =>
-    props.url}/wp-content/uploads/2021/01/background-isae-home-hero-full.svg);
+  background-image: url(${(props) => props.url}/wp-content/uploads/2021/01/background-isae-home-hero-full.svg);
   background-repeat: no-repeat;
   text-align: left;
   background-position: -160px top;
@@ -69,8 +67,7 @@ const HeroInner = styled.div`
   grid-template-columns: 368px 1fr;
   gap: 100px;
   align-items: center;
-  background-image: url(${(props) =>
-    props.url}/wp-content/uploads/2021/01/background-isae-home-hero.svg);
+  background-image: url(${(props) => props.url}/wp-content/uploads/2021/01/background-isae-home-hero.svg);
   background-repeat: no-repeat;
   background-position: center center;
   transition: all 0.5s ease-in-out;
@@ -131,7 +128,7 @@ const HeroInfo = styled.div`
 `;
 
 const HeroImage = styled.div`
-  img {
+  img, video {
     width: 100%;
     display: block;
     object-fit: cover;
@@ -185,20 +182,15 @@ const HomeHero = ({ state }) => {
               </MainButton>
             </HeroInfo>
             <HeroImage>
-              {/* <Image */}
-              {/* alt={acf.carrusel_2.imagen.alt}
+              {acf.carrusel_2.imagen ?
+                <Image
+                alt={acf.carrusel_2.imagen.alt}
                 src={acf.carrusel_2.imagen.sizes["1536x1536"]}
                 height="620"
-              /> */}
-              <iframe
-                width="560"
-                height="315"
-                src="https://www.youtube.com/embed/ZrkaIGlnvPI?controls=0&amp;start=14"
-                title="YouTube video player"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-              ></iframe>
+                /> :
+                <video width="670" height="620" autoPlay muted loop>
+                  <source src={acf.carrusel_2.video.url} type="video/mp4" />
+                </video>}
             </HeroImage>
           </HeroInner>
           <HeroInner style={carouselItems.item3}>
