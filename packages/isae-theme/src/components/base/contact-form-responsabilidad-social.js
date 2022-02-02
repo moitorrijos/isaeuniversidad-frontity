@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { styled, connect } from 'frontity';
 import colors from '../../styles/colors';
 import MainContainer from '../main-container';
-import { useForm } from "react-hook-form";
 import RightArrowCircle from '../icons/right-arrow-circle';
 
 const FormContainer = styled.div`
@@ -66,12 +65,26 @@ const Form = styled.form`
   }
 `;
 
-const ContactForm = ({ state, branch, phone, selected_branch, selected_academic }) => {
+const ContactFormRespSocial = ({ state, branch, phone }) => {
   const academics = state.source.get('/ofertaacadmica').items;
   const branches = state.source.get('/sede').items;
-  const { register, handleSubmit } = useForm();
-  const onSubmit = data => console.log(data);
-  
+  const [nombre, setNombre] = useState("")
+  const [apellido, setApellido] = useState("")
+  const [correo, setCorreo] = useState("")
+  const [telefono, setTelefono] = useState("")
+  const [selectedAcademic, setSelectedAcademic] = useState("")
+  const [selectedBranch, setSelectedBranch] = useState("")
+  const data = {
+    nombre,
+    apellido,
+    correo,
+    telefono,
+    selectedAcademic,
+    selectedBranch
+  }
+  const submitForm = () => console.log(data);
+
+    
   return (
     <FormContainer id="formulario-contacto">
       <MainContainer>
@@ -79,7 +92,8 @@ const ContactForm = ({ state, branch, phone, selected_branch, selected_academic 
           <FormInfo>
             <h3>Solicitud de información</h3>
             <p>
-            Te invitamos a completar el formulario y participar de los diversos programas de Responsabilidad Social Empresarial de ISAE Universidad ¡El futuro está en tus manos!
+              Ponte en contacto con nosotros y obtén información sobre la oferta
+              académica de tu interés.
             </p>
             <h3>Contacto</h3>
             <p>
@@ -87,18 +101,18 @@ const ContactForm = ({ state, branch, phone, selected_branch, selected_academic 
               <br />
               {phone ? phone : "+507 278-1432 / 278-1444"}
               <br />
-              mercadeo@isaeuniversidad.ac.pa
+              isae@isaeuniversidad.ac.pa
             </p>
           </FormInfo>
-          <Form onSubmit={handleSubmit(onSubmit)}>
-            <input name="nombre" placeholder="Nombre" ref={register} />
-            <input name="apellido" placeholder="Apellido" ref={register} />
-            <input name="correo" placeholder="Correo" ref={register} />
-            <input name="telefono" placeholder="Teléfono" ref={register} />
+          <Form onSubmit={submitForm}>
+            <input name="nombre" placeholder="Nombre" defaultValue={nombre} onChange={(event) => {setNombre(event.target.value)}} />
+            <input name="apellido" placeholder="Apellido" defaultValue={apellido} onChange={(event) => {setApellido(event.target.value)}} />
+            <input name="correo" placeholder="Correo" defaultValue={correo} onChange={(event) => {setCorreo(event.target.value)}} />
+            <input name="telefono" placeholder="Teléfono" defaultValue={telefono} onChange={(event) => {setTelefono(event.target.value)}} />
             <select
               name="oferta"
-              ref={register}
-              defaultValue={selected_academic}
+              defaultValue={selectedAcademic}
+              onChange={(event) => {setSelectedAcademic(event.target.value)}}
             >
               {academics.map((academic) => {
                 const { id, title } = state.source[academic.type][academic.id];
@@ -109,7 +123,7 @@ const ContactForm = ({ state, branch, phone, selected_branch, selected_academic 
                 );
               })}
             </select>
-            <select name="sede" ref={register} defaultValue={selected_branch}>
+            <select name="sede" defaultValue={selectedBranch} onChange={(event) => setSelectedBranch(event.target.value)}>
               {branches.map((branch) => {
                 const { id, title } = state.source[branch.type][branch.id];
                 return (
@@ -119,7 +133,7 @@ const ContactForm = ({ state, branch, phone, selected_branch, selected_academic 
                 );
               })}
             </select>
-            <button type="button">
+            <button type="submit">
               Enviar
               <RightArrowCircle color={colors.white} />
             </button>
@@ -130,4 +144,4 @@ const ContactForm = ({ state, branch, phone, selected_branch, selected_academic 
   );
 }
 
-export default connect(ContactForm);
+export default connect(ContactFormRespSocial);
