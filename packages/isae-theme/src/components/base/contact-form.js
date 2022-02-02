@@ -65,7 +65,7 @@ const Form = styled.form`
   }
 `;
 
-const ContactForm = ({ state, branch, phone, selected_branch, selected_academic }) => {
+const ContactForm = ({ state, branch, phone, selected_branch, selected_academic, EmailFormulario }) => {
   const academics = state.source.get('/ofertaacadmica').items;
   const branches = state.source.get('/sede').items;
   const [nombre, setNombre] = useState("")
@@ -83,7 +83,8 @@ const ContactForm = ({ state, branch, phone, selected_branch, selected_academic 
     selectedBranch
   }
   const submitForm = () => console.log(data);
-  
+
+    
   return (
     <FormContainer id="formulario-contacto">
       <MainContainer>
@@ -100,7 +101,8 @@ const ContactForm = ({ state, branch, phone, selected_branch, selected_academic 
               <br />
               {phone ? phone : "+507 278-1432 / 278-1444"}
               <br />
-              mercadeo@isaeuniversidad.ac.pa 
+              {EmailFormulario ? EmailFormulario : "isae@isaeuniversidad.ac.pa " }
+              
             </p>
           </FormInfo>
           <Form onSubmit={submitForm}>

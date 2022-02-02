@@ -1,5 +1,5 @@
 import React from 'react';
-import { styled, connect } from 'frontity';
+import { styled, connect, Global, css } from 'frontity';
 import colors from '../../styles/colors';
 import { effects } from '../../styles/effects';
 import PrimaryButton from '../primary-button';
@@ -14,6 +14,29 @@ const PaymentPage = ({ state }) => {
   const background = state.source.url+'/wp-content/uploads/2021/02/background-isae-7.svg';
   return(
     <>
+    <Global styles={css`
+            .masinfo, .masinfo ul li a {
+              font-size: 1em!important;
+              text-align: left;
+            }
+            ul.lista-pagos li {
+              width: 100%;
+              display: flex;
+              flex-direction: row;
+              justify-content: flex-start;
+              align-items: center;
+              margin-bottom: -43px;
+          }
+          ul.lista-pagos li a {
+            margin-left: 3px;
+        }
+        p.pfinal {
+          margin-top: 59px;
+          font-size: initial;
+          font-weight: 700;
+      }
+          `}
+        />
       <PaymentSection background={background} bgcolor={colors.white}>
         <MainContainer>
           <Grid columns="2" gap="100px" med_gap="40px" small_gap="20px">
@@ -43,7 +66,7 @@ const PaymentPage = ({ state }) => {
         </MainContainer>
       </PaymentSection>
       <CenteredSection background={acf.imagen_fondo.url}>
-        <div dangerouslySetInnerHTML={createMarkup(acf.mas_info)} />
+        <div className="masinfo" dangerouslySetInnerHTML={createMarkup(acf.mas_info)} />
       </CenteredSection>
     </>
   );
@@ -80,6 +103,7 @@ const PaymentImage = styled.figure`
     }
   }
 `;
+
 
 const PaymentDescription = styled.div`
   align-self: center;
