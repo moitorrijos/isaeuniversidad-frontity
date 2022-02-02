@@ -101,8 +101,8 @@ const AcademicUnits = ({ campus, state, actions,ciudad }) => {
     <Units background={background}>
         
       <MainContainer>        
-        <h2>Unidades Académicas</h2>
-        <p>Dentro de {ciudad}</p>
+        <h2>Unidades Académicas y Administrativas</h2>
+        <h2>{ciudad}</h2><br/>
         <Grid columns="2" gap="40px">
           {[...departamentos].reverse().map(depto => {
             const randomNumber = () => {
@@ -149,7 +149,7 @@ const AcademicUnits = ({ campus, state, actions,ciudad }) => {
             }
           })}
         </Grid>
-      </MainContainer>
+      </MainContainer>      
     </Units>
   );
 }

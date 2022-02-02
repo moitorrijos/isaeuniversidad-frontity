@@ -7,6 +7,7 @@ const Section = styled.div`
   background-image: url(${props => props.background ? props.background : ''});
   background-size: cover;
   text-align: center;
+  background-position: center;
 
   @media (max-width: 600px) {
     padding: 4rem 2rem;

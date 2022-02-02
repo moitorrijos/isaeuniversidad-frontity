@@ -59,7 +59,7 @@ const AWSPage = ({ state }) => {
   const data = state.source.get(state.router.link);
   const pageData = state.source.page[data.id];
   const background = state.source.url+'/wp-content/uploads/2021/02/background-isae-7.svg';
-  const { acf, title } = pageData;
+  const { acf } = pageData;
   const { imagen, logo_proyecto_aws, descripcion, video, boton_conoce_mas, imagen_fondo } = acf;
   return (
     <>
