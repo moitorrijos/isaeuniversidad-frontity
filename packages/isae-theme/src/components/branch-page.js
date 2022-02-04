@@ -75,7 +75,7 @@ const BranchPage = ({ state, actions }) => {
         campus={campus}
         slug={currentItem}
       />
-      <AcademicUnits campus={campus} ciudad={acf.ciudad} />
+      <AcademicUnits campus={campus} ciudad={acf.ciudad} provincia={acf.provincia} />
       <ContactForm
         branch={title.rendered}
         phone={acf.telefono}

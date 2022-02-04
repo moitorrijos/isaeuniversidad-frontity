@@ -19,6 +19,10 @@ const PaymentPage = ({ state }) => {
               font-size: 1em!important;
               text-align: left;
             }
+            .masinfo{
+              max-width: 775px;
+            }
+            
             ul.lista-pagos li {
               width: 100%;
               display: flex;
@@ -30,6 +34,7 @@ const PaymentPage = ({ state }) => {
           ul.lista-pagos li a {
             margin-left: 3px;
         }
+
         p.pfinal {
           margin-top: 59px;
           font-size: initial;

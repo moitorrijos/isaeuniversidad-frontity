@@ -99,7 +99,7 @@ const ContactForm = ({ state, branch, phone, selected_branch, selected_academic,
             <p>
               {branch ? branch : ""}
               <br />
-              {phone ? phone : "+507 278-1432 / 278-1444"}
+              {phone ? phone : "+507 278-1432 / +507 278-1444"}
               <br />
               {EmailFormulario ? EmailFormulario : "isae@isaeuniversidad.ac.pa " }
               
@@ -110,6 +110,7 @@ const ContactForm = ({ state, branch, phone, selected_branch, selected_academic,
             <input name="apellido" placeholder="Apellido" defaultValue={apellido} onChange={(event) => {setApellido(event.target.value)}} />
             <input name="correo" placeholder="Correo" defaultValue={correo} onChange={(event) => {setCorreo(event.target.value)}} />
             <input name="telefono" placeholder="Teléfono" defaultValue={telefono} onChange={(event) => {setTelefono(event.target.value)}} />
+            
             <select
               name="oferta"
               defaultValue={selectedAcademic}
@@ -134,7 +135,7 @@ const ContactForm = ({ state, branch, phone, selected_branch, selected_academic,
                 );
               })}
             </select>
-            <button type="submit">
+            <button type="button">
               Enviar
               <RightArrowCircle color={colors.white} />
             </button>
