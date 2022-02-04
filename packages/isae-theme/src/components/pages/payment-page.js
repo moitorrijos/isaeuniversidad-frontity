@@ -20,7 +20,7 @@ const PaymentPage = ({ state }) => {
               text-align: left;
             }
             .masinfo{
-              max-width: 775px;
+              max-width: 775px!important;
             }
             
             ul.lista-pagos li {
