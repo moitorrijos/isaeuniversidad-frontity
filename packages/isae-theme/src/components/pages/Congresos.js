@@ -56,57 +56,6 @@ const PlanImage = styled.figure`
   }
 `;
 
-const FunctionsSection = styled.div`
-  padding: 6rem 0 8rem;
-  background-image: linear-gradient(20deg, ${colors.lightGray}, ${colors.mediumGray});
-
-  @media (max-width: 834px) {
-    padding: 4rem 0 8rem;
-  }
-`;
-
-const CenteredHeading = styled.h2`
-  padding: 0 4rem;
-  text-align: center;
-  color: ${props => props.color};
-`;
-
-const Functions = styled.div`
-  padding: 4rem;
-  border-radius: 20px;
-  background-color: ${colors.white};
-  box-shadow: ${effects.boxShadow};
-
-  @media (max-width: 834px) {
-    padding: 2rem;
-    padding-left: 1rem;
-  }
-
-  ul {
-    padding: 0;
-    padding-left: 33px;
-    overflow: visible;
-    position: relative;
-    columns: 2;
-    column-gap: 120px;
-
-    @media (max-width: 834px) {
-      columns: 1;
-    }
-
-    li {
-      margin: 2rem 0;
-      padding-left: 1rem;
-      line-height: 1.3;
-
-      &:first-of-type {
-        margin-top: 0;
-      }
-    }
-  }
-`;
-
-
 const ZigZagPage = ({ state, page }) => {
   const plan = state.source.page[page];
   const { acf, title, featured_image_src } = plan;
@@ -122,24 +71,6 @@ const ZigZagPage = ({ state, page }) => {
         title={title.rendered}
         description={acf.descripcion}
       />
-      {/* Eliminado en informe 8 */}
-      {/* <PlanningSection bgColor={colors.lightGray}>
-        <MainContainer>
-          <Grid columns="2" gap="200px" med_gap="40px" small_gap="20px">
-            <PlanDescription>
-              <h2>{acf.planificacion.titulo}</h2>
-              <div dangerouslySetInnerHTML={createMarkup(acf.planificacion.descripcion)} />
-            </PlanDescription>
-            <PlanImage>
-              <Image
-                src={acf.planificacion.imagen.url ? acf.planificacion.imagen.url : ''}
-                alt={acf.planificacion.imagen.alt ? acf.planificacion.imagen.alt : ''}
-                height={528}
-              />
-            </PlanImage>
-          </Grid>
-        </MainContainer>
-      </PlanningSection> */}
 
       {acf.objetivos.titulo && <PlanningSection bgColor={colors.white}>
         <MainContainer>
@@ -158,14 +89,6 @@ const ZigZagPage = ({ state, page }) => {
           </Grid>
         </MainContainer>
       </PlanningSection>}
-      {/* <FunctionsSection>
-        <CenteredHeading color={colors.primaryBlue}>{acf.funciones.titulo}</CenteredHeading>
-        <MainContainer>
-          <Functions
-            dangerouslySetInnerHTML={createMarkup(acf.funciones.descripcion)}
-          />
-        </MainContainer>
-      </FunctionsSection> */}
       <ContactForm />
       <HomeNews />
     </>
