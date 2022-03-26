@@ -146,12 +146,11 @@ const HeroImage = styled.div`
 
 const HomeHero = ({ state }) => {
   const { acf } = state.source.page[90585];
-  const backgrouldUrl = state.source.url;
+  const backgroundUrl = state.source.url;
   const [currentItem, setCurrentItem] = useState(1);
   const carouselItems = useCarousel(currentItem, setCurrentItem, true, 4);
 
-  return (
-    <HeroContainer url={backgrouldUrl}>
+  return (acf && <HeroContainer url={backgroundUrl}>
       <MainContainer>
         <Carousel>
           <HeroInner style={carouselItems.item1}>

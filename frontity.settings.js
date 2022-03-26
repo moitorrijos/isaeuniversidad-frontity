@@ -32,6 +32,11 @@ const settings = {
           },
           "postTypes": [
             {
+              type: "diapositiva",
+              endpoint: "diapositiva",
+              archive: "/diapositiva",
+            },
+            {
               type: "media",
               endpoint: "media",
               archive: "/media",

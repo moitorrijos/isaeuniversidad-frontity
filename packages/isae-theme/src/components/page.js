@@ -11,7 +11,6 @@ import LegalPage from './pages/legal-page';
 import ServicesPage from './pages/services-page';
 import BuzonSugerencias from './pages/job-search-page';
 import VirtualPage from './pages/virtual-page';
-import Congresos from './pages/Congresos';
 import SearchPage from './pages/search-page';
 import TutorialsPage from './pages/tutorials-page';
 import Convenios from './pages/convenios';
@@ -53,7 +52,7 @@ const Page = ({ state }) => {
   } else if (page.id === 90519){
     return(<VirtualPage />);
   } else if (page.id === 109151){
-    return(<Congresos page={109151} />);
+    return(<GeneralPage page={109151} />);
   } else if (page.id === 110069 ){
     return(<TutorialsPage />);
   } else if (page.id === 110602) {
