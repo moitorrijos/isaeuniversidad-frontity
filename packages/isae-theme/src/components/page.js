@@ -18,6 +18,8 @@ import FormularioECOISAE from './pages/formulario-eco-isae';
 import Laboratorio from './pages/laboratorio';
 import EmpleoPage from './pages/empleo-page';
 import ReglamentoPage from './pages/reglamentos-page';
+import Estadistica from './pages/estadistica-page';
+import Curriculum from './pages/curriculum-page';
 
 const Page = ({ state }) => {
   const page = state.source.get(state.router.link);
@@ -28,7 +30,7 @@ const Page = ({ state }) => {
   } else if (page.id === 91148) {
     return(<PlanningPage page={91148} />);
   } else if (page.id === 109103) {
-    return(<PlanningPage page={109103} />);
+    return(<Estadistica page={109103} />);
   } else if (page.id === 91204) {
     return(<PaymentPage />);
   } else if (page.id === 109114) {
@@ -48,7 +50,7 @@ const Page = ({ state }) => {
   } else if (page.id === 109856 ) {
     return(<ServicesPage page={109856} />);
   } else if (page.id === 109854) {
-    return(<ServicesPage page={109854}/>);  
+    return(<Curriculum page={109854}/>);  
   } else if (page.id === 90519){
     return(<VirtualPage />);
   } else if (page.id === 109151){
