@@ -119,7 +119,10 @@ const PlanningPage = ({ state, page }) => {
   const { acf, title, featured_image_src } = plan;
   const background = state.source.url+'/wp-content/uploads/2021/03/background-isae-11.svg';
   const background2 = state.source.url+'/wp-content/uploads/2021/03/background-isae-12.svg';
-  const imageUrl = featured_image_src;
+  // const imageUrl = featured_image_src;  
+  const imageUrl = "https://isae.prontoaqui.com/wp-content/uploads/2021/03/Rectangle12.jpg";
+  
+  console.log(plan);
   return(
     <>
       <MainMessage
@@ -215,7 +218,7 @@ const PlanningPage = ({ state, page }) => {
             {acf.memorias9.icono && <MemoryCard memory={acf.memorias9}  />}
             {acf.memorias10.icono && <MemoryCard memory={acf.memorias10}  />}
             {acf.memorias11.icono && <MemoryCard memory={acf.memorias11}  />}
-            {acf.memorias12.icono && <MemoryCard memory={acf.memorias12}  />}
+            {acf.memorias12.icono && <MemoryCard memory={acf.memorias12}  />} 
           </Grid>
         </MainContainer>
       </MemorySection>
