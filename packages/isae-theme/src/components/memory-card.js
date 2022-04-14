@@ -32,12 +32,12 @@ const MemoryCardSection = styled.div`
   }
 `;
 
-const MemoryCard = ({ memory, nombre }) => {
+const MemoryCard = ({ memory }) => {
   return (
     <MemoryCardSection>
       <Image src={memory.icono.url} height={80} />
       <h3>{memory.ano}</h3>
-      <Link link={memory.url}>Descargar {nombre}</Link>
+      <Link link={memory.url}>Descargar Memoria Institucional</Link>
     </MemoryCardSection>
   )
 }
