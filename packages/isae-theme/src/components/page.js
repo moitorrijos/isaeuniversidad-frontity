@@ -20,6 +20,8 @@ import EmpleoPage from './pages/empleo-page';
 import ReglamentoPage from './pages/reglamentos-page';
 import Estadistica from './pages/estadistica-page';
 import Curriculum from './pages/curriculum-page';
+import ServicesPageAcreditacion from './pages/services-pageacreditacion';
+import ServicesPageacreditacion from './pages/services-pageacreditacion';
 
 const Page = ({ state }) => {
   const page = state.source.get(state.router.link);
@@ -48,7 +50,7 @@ const Page = ({ state }) => {
   } else if (page.id === 109148) {
     return(<ServicesPage page={109148} />);
   } else if (page.id === 109856 ) {
-    return(<ServicesPage page={109856} />);
+    return(<ServicesPageacreditacion page={109856} />);
   } else if (page.id === 109854) {
     return(<Curriculum page={109854}/>);  
   } else if (page.id === 90519){
