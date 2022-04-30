@@ -29,7 +29,7 @@ const ServicesPage = ({ state, page }) => {
       />}
       {acf.seccion_3.imagen && <MainMessageVid
         bgColor={colors.lightGray}
-        imageUrl={acf.seccion_3.imagen.url}
+        // imageUrl={acf.seccion_3.imagen.url}
         title={acf.seccion_3.titulo}
         description={acf.seccion_3.descripcion}
       />}
