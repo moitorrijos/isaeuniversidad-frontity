@@ -20,7 +20,6 @@ import EmpleoPage from './pages/empleo-page';
 import ReglamentoPage from './pages/reglamentos-page';
 import Estadistica from './pages/estadistica-page';
 import Curriculum from './pages/curriculum-page';
-import ServicesPageAcreditacion from './pages/services-pageacreditacion';
 import ServicesPageacreditacion from './pages/services-pageacreditacion';
 
 const Page = ({ state }) => {
