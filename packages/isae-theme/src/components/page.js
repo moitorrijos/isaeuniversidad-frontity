@@ -38,6 +38,8 @@ const Page = ({ state }) => {
     return(<AWSPage page={109114} />);
   } else if (page.id === 90536) {
     return(<ZigZagPage page={90536} />);
+   } else if (page.id === 111235) {
+    return(<ServicesPage page={111235} />);
   } else if (page.id === 90553) {
     return(<LegalPage />);
   } else if (page.id === 109632) {
@@ -48,6 +50,8 @@ const Page = ({ state }) => {
     return(<BuzonSugerencias page={109704} />);
   } else if (page.id === 109148) {
     return(<ServicesPage page={109148} />);
+  } else if (page.id === 111226) {
+    return(<ServicesPage page={11226} />);
   } else if (page.id === 109856 ) {
     return(<ServicesPageacreditacion page={109856} />);
   } else if (page.id === 109854) {
